@@ -1,6 +1,8 @@
 # Imports
 import urllib.request
 import pandas as pd
+from pandas.io.common import EmptyDataError
+
 import gzip
 import requests
 import io
@@ -23,11 +25,14 @@ r = requests.get(url, headers=headers)
 decompressedFile = gzip.decompress(r.content)
 
 
-with open(uncompressName, "w+") as f:
+with open(uncompressName, "r+b") as f:
     f.write(decompressedFile)
 
     # Import file tab-delimited
-    array = pd.read_csv(f, sep="\t", header=None)
+    try:
+        array = pd.read_csv(f, sep="\t", header=None)
+    except EmptyDataError:
+        array = pd.DataFrame()
     # Named columns
     array.columns = ["RAP", "LOC"]
 
