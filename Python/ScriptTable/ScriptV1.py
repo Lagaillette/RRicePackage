@@ -1,6 +1,7 @@
 # Imports
 import pandas as pd
-import urllib.request
+import gzip
+import requests
 
 #local file in the same folder
 file = 'RAP-MSU.txt'
