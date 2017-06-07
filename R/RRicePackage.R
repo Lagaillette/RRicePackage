@@ -1,44 +1,44 @@
 #the class for the properties
 setClass(
   #name of the class
-  "prototype",
+  "Property",
   
   #attributes of the class
-  slots=list(description="character")
+  slots = list(description = "character")
 )
 
 #the class for the genes
 setClass(
   #name of the class
-  "gene",
+  "Gene",
   
   #attributes of the class
-  slots=list(start="numeric", end="numeric", name="character", strand="factor", properties="vector")
+  slots = list(start = "numeric", end = "numeric", name = "character", strand = "factor", properties = "vector")
 )
 
 #the class for the chromosomes
 setClass(
   #name of the class
-  "chromosome",
+  "Chromosome",
   
   #attributes of the class
-  slots=list(name="character")
+  slots = list(name = "character")
 )
 
 #the class for the locus
 setClass(
   #name of the class
-  "locus",
+  "Locus",
   
   #attributes of the class
-  slots=list(start="numeric", end="numeric", genes="vector", chromosome="chromosome")
+  slots = list(start = "numeric", end = "numeric", genes = "vector", chromosome = "Chromosome")
 )
 
 #the class for the experiments
 setClass(
   #name of the class
-  "experiment",
+  "Experiment",
   
   #attributes of the class
-  slots=list(name="character", date="character", locus="locus")
+  slots = list(name = "character", date = "character", locus = "Locus")
 )
