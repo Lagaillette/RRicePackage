@@ -42,3 +42,17 @@ setClass(
   #attributes of the class
   slots = list(name = "character", date = "character", locus = "Locus")
 )
+
+
+#-----------------------------------
+
+#test recovery datas from .txt in vector
+table <- read.table("./test/text.txt")
+
+datas <- vector(mode='list', length=57)
+
+for ( i in 1:nrow(test) ) {
+  datas[i] <- new ("Locus", start =test[[2]][[i]], end=test[[3]][[i]]) 
+}
+
+datas
