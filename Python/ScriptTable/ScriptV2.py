@@ -24,13 +24,17 @@ uncompressName = filename[:-3]
 r = requests.get(url, headers=headers)
 decompressedFile = gzip.decompress(r.content)
 
-
-with open(uncompressName, "r+b") as f:
+# Create the file .txt
+with open(uncompressName, "wb") as f:
     f.write(decompressedFile)
+    f.close()
+
+#Use the previous created file (.txt)
+with open(uncompressName, "r+b") as file:
 
     # Import file tab-delimited
     try:
-        array = pd.read_csv(f, sep="\t", header=None)
+        array = pd.read_csv(file, sep="\t", header=None)
     except EmptyDataError:
         array = pd.DataFrame()
     # Named columns
