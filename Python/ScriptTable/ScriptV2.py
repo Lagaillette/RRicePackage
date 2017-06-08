@@ -7,12 +7,12 @@ import gzip
 import requests
 import io
 
+#Init result
+result = 0
+i = 0
 
 #local file in the same folder
 url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"
-
-#headers of the file
-headers = {'RAP': 'LOC'}
 
 #Give the entire name of the file with the extension .gz
 filename = url.split("/")[-1]
@@ -21,7 +21,7 @@ filename = url.split("/")[-1]
 uncompressName = filename[:-3]
 
 #Fetch the file by the url and decompress it
-r = requests.get(url, headers=headers)
+r = requests.get(url)
 decompressedFile = gzip.decompress(r.content)
 
 # Create the file .txt
@@ -52,8 +52,8 @@ with open(uncompressName, "r+b") as file:
             # Find the line corresponding to the entered RAP ID
             data = array.loc[array['RAP'] == RapID]
 
-            # Print the corresponding LOC ID
-            print(data["LOC"])
+            # Store the corresponding LOC ID and split the string
+            result = data['LOC'].str.split(',').str
 
         elif (choice == '2'):
 
@@ -64,8 +64,8 @@ with open(uncompressName, "r+b") as file:
             # Find the line corresponding to the entered RAP ID
             data = array.loc[array['LOC'] == RapID]
 
-            # Print the corresponding LOC ID
-            print(data["RAP"])
+            # Store the corresponding RAP ID and split the string
+            result = data['RAP'].str.split(',').str
 
         elif (choice == '3'):
 
@@ -75,6 +75,13 @@ with open(uncompressName, "r+b") as file:
 
         else:
             print("Error ! Choose 1, 2 or 3")
+
+        #Loop for printing the result
+        while (i<int(result.len())):
+            print(result[i].values, end=' ', flush=True)
+            i = i +1
+
+
 
     f.close()
 
