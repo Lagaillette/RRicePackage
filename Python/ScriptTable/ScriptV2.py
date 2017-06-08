@@ -89,7 +89,7 @@ with open(uncompressName, "r+b") as file:
 
 
 
-    f.close()
+    file.close()
 
 
 
