@@ -49,23 +49,30 @@ with open(uncompressName, "r+b") as file:
             RapID = input('RAP ID : ')
             print("\n")
 
-            # Find the line corresponding to the entered RAP ID
+            # Find the line corresponding to the entered RAP ID (Select LOC FROM LOC where RAP = RapID)
             data = array.loc[array['RAP'] == RapID]
 
             # Store the corresponding LOC ID and split the string
             result = data['LOC'].str.split(',').str
 
+            # reinitialize i
+            i = 0
+            # Loop for printing the result
+            while (i < int(result.len())):
+                print("LOC ID : " + result[i].values, end=' ', flush=True)
+                i = i + 1
+
         elif (choice == '2'):
 
             # Save the entered RAP ID
-            RapID = input('LOC ID : ')
+            LOCID = input('LOC ID : ')
             print("\n")
 
-            # Find the line corresponding to the entered RAP ID
-            data = array.loc[array['LOC'] == RapID]
+            # Find the line corresponding to the entered LOC ID (Select rap From RAP where LOC like LOCID)
+            data = array[array['LOC'].str.contains(LOCID)]
 
-            # Store the corresponding RAP ID and split the string
-            result = data['RAP'].str.split(',').str
+            # Print the corresponding LOC ID
+            print("RAP ID : " + data["RAP"].values, end=' ', flush=True)
 
         elif (choice == '3'):
 
@@ -76,10 +83,9 @@ with open(uncompressName, "r+b") as file:
         else:
             print("Error ! Choose 1, 2 or 3")
 
-        #Loop for printing the result
-        while (i<int(result.len())):
-            print(result[i].values, end=' ', flush=True)
-            i = i +1
+
+
+
 
 
 
