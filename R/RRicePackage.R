@@ -16,6 +16,17 @@ setClass(
   slots = list(start = "numeric", end = "numeric", name = "character", strand = "factor", properties = "vector")
 )
 
+#the class for the genes
+setClass(
+  #name of the class
+  "Gene2",
+  
+  #attributes of the class
+  slots = list(uniquename = "factor", msU7name = "factor", fgeneshName = "factor", rappredname = "factor", fmin = "numeric", fmax = "numeric",contig = "factor",iricname = "factor", strand = "factor", description = "character")
+)
+
+
+
 #the class for the chromosomes
 setClass(
   #name of the class
@@ -47,22 +58,62 @@ setClass(
 
 #Methods
 
+
+#Generic Methods 
+
+setGeneric(name = "ExistLocusOrNot",
+           def = function(start){standardGeneric("ExistLocusOrNot" )}
+)
+
+setGeneric(name = "importGeneDatas",
+           def = function(database){standardGeneric("importGeneDatas" )}
+)
+
+setGeneric(name = "importLocusDatas",
+           def = function(database){standardGeneric("importLocusDatas" )}
+)
+
+#Methods 
+
 setMethod("show",
           "Locus",
           function(object){
             cat ("*** Class Locus , start is " , object@start, " end is", object@end , " and it's chromosome is ", object@chromosome)
-          })
-
-setGeneric(name = "ExistLocus",
-           def = function(start,list_locus){standardGeneric("ExistLocus" )}
+          }
 )
 
-setMethod(f="ExistLocus",
+setMethod(f="importGeneDatas",
           signature = "numeric",
-          definition = function(start,list_locus){
+          definition = function(database){
+            csv <- read.csv("./test/outputRAPDB.csv")
+            genes <- vector(mode='list', length=nrow(csv))
+            for ( i in 1:nrow(csv) ) {
+              genes[i] <- new ("Gene2", uniquename = factor(csv[[1]][[i]]), msU7name = factor(csv[[9]][[i]]), fgeneshName = factor(csv[[4]][[i]]), rappredname = factor(csv[[5]][[i]]), fmin = csv[[6]][[i]], fmax = csv[[2]][[i]],contig = factor(csv[[7]][[i]]),iricname = factor(csv[[8]][[i]]), strand = factor(csv[[10]][[i]]), description = as.character(csv[[11]][[i]]))
+            }
+            return(genes)
+          }
+  
+)
+
+setMethod(f="importLocusDatas",
+          signature = "numeric",
+          definition = function(database){
+            table <- read.table("./test/text.txt")
+            datas <- vector(mode='list', length=57)
+            for ( i in 1:nrow(test) ) {
+              datas[i] <- new ("Locus", start = table[[2]][[i]], end = table[[3]][[i]], chromosome = table[[1]][[i]])
+            }
+            return(datas)
+          }
+          
+)
+
+setMethod(f="ExistLocusOrNot",
+          signature = "numeric",
+          definition = function(start){
             result <- FALSE
-            for (i in 1:length(list_locus)){
-              if(list_locus[i] == start){
+            for (i in 1:length(datas)){
+              if(datas[[i]]@start == start){
                 result <- TRUE
               }
             }
@@ -70,20 +121,4 @@ setMethod(f="ExistLocus",
           }
 )
 
-#-----------------------------------
-
-#test recovery datas from .txt in vector
-test <- read.table("./test/text.txt")
-
-datas <- vector(mode='list', length=57)
-test[[1]][[1]]
-for ( i in 1:nrow(test) ) {
-  datas[i] <- new ("Locus", start =test[[2]][[i]], end=test[[3]][[i]], chromosome=test[[1]][[i]])
-}
-
-datas
-
-showMethods(class="Locus")
-
-ExistLocus(6612124,datas)
 
