@@ -31,7 +31,7 @@ setClass(
   "Locus",
   
   #attributes of the class
-  slots = list(start = "numeric", end = "numeric", genes = "vector", chromosome = "Chromosome")
+  slots = list(start = "numeric", end = "numeric", genes = "vector", chromosome = "numeric")
 )
 
 #the class for the experiments
@@ -43,16 +43,47 @@ setClass(
   slots = list(name = "character", date = "character", locus = "Locus")
 )
 
+#-----------------------------------
+
+#Methods
+
+setMethod("show",
+          "Locus",
+          function(object){
+            cat ("*** Class Locus , start is " , object@start, " end is", object@end , " and it's chromosome is ", object@chromosome)
+          })
+
+setGeneric(name = "ExistLocus",
+           def = function(start,list_locus){standardGeneric("ExistLocus" )}
+)
+
+setMethod(f="ExistLocus",
+          signature = "numeric",
+          definition = function(start,list_locus){
+            result <- FALSE
+            for (i in 1:length(list_locus)){
+              if(list_locus[i] == start){
+                result <- TRUE
+              }
+            }
+            return(result)
+          }
+)
 
 #-----------------------------------
 
 #test recovery datas from .txt in vector
-table <- read.table("./test/text.txt")
+test <- read.table("./test/text.txt")
 
 datas <- vector(mode='list', length=57)
-
+test[[1]][[1]]
 for ( i in 1:nrow(test) ) {
-  datas[i] <- new ("Locus", start =test[[2]][[i]], end=test[[3]][[i]]) 
+  datas[i] <- new ("Locus", start =test[[2]][[i]], end=test[[3]][[i]], chromosome=test[[1]][[i]])
 }
 
 datas
+
+showMethods(class="Locus")
+
+ExistLocus(6612124,datas)
+
