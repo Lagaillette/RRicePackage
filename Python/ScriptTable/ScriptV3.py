@@ -1,12 +1,8 @@
 # Imports
-import urllib.request
 import pandas as pd
 from pandas.io.common import EmptyDataError
-
 import gzip
 import requests
-import io
-
 
 class RRice:
 
@@ -15,7 +11,7 @@ class RRice:
         self.url = ""
         self.nameFile = ""
 
-    def loadFileURL(self, url):
+    def loadFileURL(self, url="http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"):
 
         """
         Download the file located in the URL
