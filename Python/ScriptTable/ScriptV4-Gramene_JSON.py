@@ -28,7 +28,6 @@ class RRice:
         """
 
         self.url = url
-        self.nameFile = "fileJSON.json"
 
         # Fetch the file by the url and decompress it
         r = requests.get(self.url)
@@ -50,9 +49,21 @@ class RRice:
 
     def rapToLoc(self, RAPID):
 
+        """
+
+        :param RAPID: the RAP ID that you want LOC ID
+        :type RAPID:
+        """
+
+        self.nameFile = "fileJSON.json"
+
         # If the file doesn't exist, it download it
         if(self.existFile() == False):
             self.loadFileURL('http://data.gramene.org/v53/genes?q='+RAPID+'&bedFeature=gene&bedCombiner=canonical')
+            print("File created")
+            print(self.pathToFile)
+        else:
+            print("File already exist")
         with open(self.nameFile, 'r') as f:
             data = json.load(f)
             i=0
