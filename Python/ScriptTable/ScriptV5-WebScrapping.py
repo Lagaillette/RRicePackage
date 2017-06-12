@@ -17,10 +17,8 @@ class RRice:
     def loadFileURL(self):
 
         """
-        Download the file located in the URL
+        Download the file located in the rapdb download page
 
-        :param url: The url for accessing the file
-        :type url: String
         """
 
         # URL of the web page to analyze
@@ -30,11 +28,13 @@ class RRice:
         # Find links
         for link in soup.findAll('a'):
             linkfound = link.get('href')
+
             # Choose the file which begun by RAP-MSU
             if ("./archive/RAP-MSU_" in linkfound):
                 # Format the URL
                 self.url = "http://rapdb.dna.affrc.go.jp/download" + linkfound[1:]
 
+        #Give the name of the file with the extension .gz
         filename = self.url.split("/")[-1]
 
         # Give the name of the file without .gz
@@ -49,9 +49,8 @@ class RRice:
             f.write(decompressedFile)
             f.close()
 
-        # Return the name of the created file
+        # Store the name of the created file
         self.nameFile = uncompressName
-        #return uncompressName
 
 
     def rapToLoc(self, RAPID):
