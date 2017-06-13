@@ -1,3 +1,5 @@
+
+
 #the class for the properties
 setClass(
   #name of the class
