@@ -33,22 +33,22 @@ class RRice():
         self.RAP_name = result.find('td', attrs={"class": "c05"}).contents
         print(self.RAP_name)
         self.CGSNL_symbol = result.find('td', attrs={"class": "c06"}).contents[0]
-        print(self.CGSNL_symbol)
+        print("CGSNL Gene Symbol : "+self.CGSNL_symbol)
         self.CGSNL_name = result.find('td', attrs={"class": "c07"}).contents[0]
         print("CGSNL Gene Name : "+self.CGSNL_name)
         self.Oryzabase_symbol = result.find('td', attrs={"class": "c08"}).contents[0]
-        print(self.Oryzabase_symbol)
+        print("Oryzabase Gene Symbol Synonym(s) : "+self.Oryzabase_symbol)
         self.Oryzabase_name = result.find('td', attrs={"class": "c09"}).contents[0]
-        print(self.Oryzabase_name)
+        print("Oryzabase Gene Name Synonym(s) : "+self.Oryzabase_name)
 
-    # It still doesn't work, I will find why
+    # It doesn't work because of null tab
     def informations(self):
         print(
               "ID : "+self.id+
               "\nDescription : "+self.description+
               "\nPosition : "+self.position+
-              "\nRAP-DB Gene Symbol Synonym(s) : "+self.RAP_symbol+
-              "\nRAP-DB Gene Name Synonym(s) : "+self.RAP_name+
+              "\nRAP-DB Gene Symbol Synonym(s) : " + self.RAP_symbol+
+              "\nRAP-DB Gene Name Synonym(s) : " + self.RAP_name+
               "\nCGSNL Gene Symbol : "+self.CGSNL_symbol+
               "\nCGSNL Gene Name : "+self.CGSNL_name+
               "\nOryzabase Gene Symbol Synonym(s) : "+self.Oryzabase_symbol+
