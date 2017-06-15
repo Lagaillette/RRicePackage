@@ -1,2 +1,2 @@
-import .ScriptV7-Table
+from RRiceBeta import *
 
