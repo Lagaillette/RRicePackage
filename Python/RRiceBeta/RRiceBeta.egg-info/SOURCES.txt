@@ -1,0 +1,15 @@
+setup.py
+RRiceBeta/ScriptV1.py
+RRiceBeta/ScriptV2.py
+RRiceBeta/ScriptV3.py
+RRiceBeta/ScriptV4-Gramene_JSON.py
+RRiceBeta/ScriptV5-WebScrapping.py
+RRiceBeta/ScriptV6-WebScrapping.py
+RRiceBeta/__init__.py
+RRiceBeta/scriptv7_table.py
+RRiceBeta.egg-info/PKG-INFO
+RRiceBeta.egg-info/SOURCES.txt
+RRiceBeta.egg-info/dependency_links.txt
+RRiceBeta.egg-info/not-zip-safe
+RRiceBeta.egg-info/requires.txt
+RRiceBeta.egg-info/top_level.txt

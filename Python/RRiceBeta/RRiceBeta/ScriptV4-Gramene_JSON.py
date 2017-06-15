@@ -10,7 +10,7 @@ import json
 
 
 
-class RRice:
+class ScriptV4:
 
     #constructor
     def __init__(self):
