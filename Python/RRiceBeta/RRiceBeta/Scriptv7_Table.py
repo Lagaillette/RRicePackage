@@ -1,8 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 
-class RRice():
+class ScriptV7():
 
     def __init__(self):
         self.id = ""
@@ -44,11 +45,25 @@ class RRice():
                    "Oryzabase Gene Name Synonym(s)" : self.Oryzabase_name
                    }
 
-        print(hashmap)
+        print(hashmap['CGSNL Gene Name'])
         print(len(hashmap))
+        self.oryzabase(hashmap['CGSNL Gene Name'])
         return hashmap
 
 
 
 
 
+    def oryzabase(self, CG_name):
+        # Import file tab-delimited
+        try:
+            array = pd.read_csv("../OryzabaseGeneListEn_20170615010051.txt", sep="\t", encoding='utf-8')
+            print("ok")
+            #array = pd.read_csv(self.file, sep="\t", names=['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology'])
+
+        except NameError:
+            array = pd.DataFrame()
+
+        #array.columns = ['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology']
+        data = array.loc[array['CGSNL Gene Name'] == CG_name]
+        return data
