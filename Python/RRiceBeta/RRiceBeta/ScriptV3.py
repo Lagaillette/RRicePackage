@@ -4,7 +4,7 @@ from pandas.io.common import EmptyDataError
 import gzip
 import requests
 
-class RRice:
+class ScriptV3:
 
     #constructor
     def __init__(self):

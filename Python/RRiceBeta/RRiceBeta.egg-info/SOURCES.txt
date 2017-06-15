@@ -1,4 +1,10 @@
 setup.py
+RRiceBeta/ScriptV1.py
+RRiceBeta/ScriptV2.py
+RRiceBeta/ScriptV3.py
+RRiceBeta/ScriptV4-Gramene_JSON.py
+RRiceBeta/ScriptV5-WebScrapping.py
+RRiceBeta/ScriptV6-WebScrapping.py
 RRiceBeta/__init__.py
 RRiceBeta/scriptv7_table.py
 RRiceBeta.egg-info/PKG-INFO

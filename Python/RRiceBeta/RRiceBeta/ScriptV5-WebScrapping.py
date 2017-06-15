@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-class RRice:
+class ScriptV5:
 
     #constructor
     def __init__(self):
