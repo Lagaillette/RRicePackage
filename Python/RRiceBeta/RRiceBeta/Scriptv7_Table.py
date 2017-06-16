@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import os
 
 
 class ScriptV7():
@@ -47,6 +48,9 @@ class ScriptV7():
 
         print(hashmap['CGSNL Gene Name'])
         print(len(hashmap))
+        pathToFile = os.getcwd() + '/' + "OryzabaseGeneListEn.txt"
+        self.loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
+        print("Find file OK")
         self.oryzabase(hashmap['CGSNL Gene Name'])
         return hashmap
 
@@ -57,7 +61,7 @@ class ScriptV7():
     def oryzabase(self, CG_name):
         # Import file tab-delimited
         try:
-            array = pd.read_csv("../OryzabaseGeneListEn_20170615010051.txt", sep="\t", encoding='utf-8')
+            array = pd.read_csv("./OryzabaseGeneListEn_20170615010051.txt", sep="\t", encoding='utf-8')
             print("ok")
             #array = pd.read_csv(self.file, sep="\t", names=['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology'])
 
@@ -67,3 +71,22 @@ class ScriptV7():
         #array.columns = ['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology']
         data = array.loc[array['CGSNL Gene Name'] == CG_name]
         return data
+
+
+    def loadFileURL(self, nameFile, url):
+
+        """
+        Download the file located in the rapdb download page
+
+        """
+
+        # Fetch the file by the url and decompress it
+        print("debut")
+        r = requests.get(url)
+        print("r ok")
+
+        # Create the file .txt
+        with open(nameFile, "wb") as f:
+            f.write(r.content)
+            print(f)
+            f.close()

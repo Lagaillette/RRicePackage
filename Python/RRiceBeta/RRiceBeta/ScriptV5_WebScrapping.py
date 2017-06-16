@@ -52,6 +52,8 @@ class ScriptV5:
         # Store the name of the created file
         self.nameFile = uncompressName
 
+        print("File created")
+
 
     def rapToLoc(self, RAPID):
 
