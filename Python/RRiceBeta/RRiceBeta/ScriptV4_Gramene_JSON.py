@@ -69,5 +69,38 @@ class ScriptV4:
             i=0
             while(data[0]["xrefs"][i]["db"] != "TIGR_LOCUS"):
                 i += 1
-            print(data[0]["xrefs"][i]["ids"])
+            return (data[0]["xrefs"][i]["ids"])
             f.close()
+
+
+    def xrefs(self, RAPID):
+
+        self.nameFile = "fileJSON.json"
+
+        # If the file doesn't exist, it download it
+        if (self.existFile() == False):
+            self.loadFileURL('http://data.gramene.org/v53/genes?q=' + RAPID + '&bedFeature=gene&bedCombiner=canonical')
+            print("File created")
+            print(self.pathToFile)
+        else:
+            print("File already exist")
+        with open(self.nameFile, 'r') as f:
+            data = json.load(f)
+            i = 0
+            hashmap =  {}
+            while (i < len(data[0]["xrefs"][i]["db"])):
+                if (data[0]["xrefs"][i]["db"] == "Uniprot/SPTREMBL"):
+                    hashmap["Uniprot/SPTREMBL"] = data[0]["xrefs"][i]["ids"]
+
+                if (data[0]["xrefs"][i]["db"] == "RefSeq_peptide"):
+                    hashmap["RefSeq_peptide"] = data[0]["xrefs"][i]["ids"]
+
+                if (data[0]["xrefs"][i]["db"] == "RefSeq_mRNA"):
+                    hashmap["RefSeq_mRNA"] = data[0]["xrefs"][i]["ids"]
+
+                if (data[0]["xrefs"][i]["db"] == "EntrezGene"):
+                    hashmap["EntrezGene"] = data[0]["xrefs"][i]["ids"]
+                i += 1
+            f.close()
+        print(hashmap)
+        return hashmap
