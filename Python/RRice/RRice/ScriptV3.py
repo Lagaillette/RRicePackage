@@ -24,20 +24,17 @@ class ScriptV3:
         filename = self.url.split("/")[-1]
 
         # Give the name of the file without .gz
-        uncompressName = filename[:-3]
+        self.nameFile = "../resources/"+filename[:-3]
 
         # Fetch the file by the url and decompress it
         r = requests.get(self.url)
         decompressedFile = gzip.decompress(r.content)
 
         # Create the file .txt
-        with open(uncompressName, "wb") as f:
+        with open(self.nameFile, "wb") as f:
             f.write(decompressedFile)
             f.close()
 
-        # Return the name of the created file
-        self.nameFile = uncompressName
-        #return uncompressName
 
 
     def rapToLoc(self, RAPID):
