@@ -31,3 +31,14 @@ Experiment <- function(name){
 
 #####################################################################
 ############################ Methods ################################
+
+setMethod("show",
+          signature = "Experiment",
+          def = function(object){
+            databases <- ""
+            for(i in length(object@databases)){
+              databases <- paste(databases,object@databases[[i]])
+            }
+            return (paste("your Experiment has as name ", object@name, ",was created on ", object@date, " and concern the databases : ", database(s), sep = ""))
+          }
+)
