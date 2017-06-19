@@ -7,7 +7,7 @@ setClass(
   "Gene",
 
   #attributes of the class
-  slots = list(uniquename = "factor", msU7name = "factor", fgeneshName = "factor", rappredname = "factor", fmin = "numeric", fmax = "numeric",contig = "factor",iricname = "factor", strand = "factor", description = "character")
+  slots = list(uniquename = "character", locus = "data.frame")
 )
 
 
@@ -15,8 +15,8 @@ setClass(
 ########################### Constructor #############################
 
 
-Gene <- function(uniquename, msU7name, fgeneshName, rappredname, fmin, fmax,contig,iricname, strand, description){
-  result <- new("Gene", uniquename, msU7name, fgeneshName, rappredname, fmin, fmax,contig,iricname, strand, description)
+Gene <- function(uniquename, locus){
+  result <- new("Gene", uniquename = uniquename, locus = locus)
   return(result)
 }
 

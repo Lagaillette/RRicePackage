@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Scriptv7_Table.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Scriptv7_Table.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RRiceBeta/Scriptv7_Table.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-129">
@@ -226,7 +226,11 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="Python.Scriptv7_Table">
+=======
   <component name="RunManager" selected="Python.ScriptV4_Gramene_JSON">
+>>>>>>> 2d532ee2733c754b20a3fe215b898cf36eb55c14
     <configuration default="false" name="ScriptV8_Oryzabase" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -479,8 +483,13 @@
     </list>
     <recent_temporary>
       <list size="5">
+<<<<<<< HEAD
+        <item index="0" class="java.lang.String" itemvalue="Python.Scriptv7_Table" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ScriptV4_Gramene_JSON" />
+=======
         <item index="0" class="java.lang.String" itemvalue="Python.ScriptV4_Gramene_JSON" />
         <item index="1" class="java.lang.String" itemvalue="Python.Scriptv7_Table" />
+>>>>>>> 2d532ee2733c754b20a3fe215b898cf36eb55c14
         <item index="2" class="java.lang.String" itemvalue="Python.ScriptV6_WebScrapping" />
         <item index="3" class="java.lang.String" itemvalue="Python.ScriptV5_WebScrapping" />
         <item index="4" class="java.lang.String" itemvalue="Python.ScriptV8_Oryzabase" />
@@ -643,6 +652,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
           <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+>>>>>>> 2d532ee2733c754b20a3fe215b898cf36eb55c14
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -669,6 +679,8 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/RRiceBeta/ScriptV4_Gramene_JSON.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -679,5 +691,6 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 2d532ee2733c754b20a3fe215b898cf36eb55c14
   </component>
 </project>
