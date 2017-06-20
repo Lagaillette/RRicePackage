@@ -7,7 +7,7 @@ setClass(
   
   #attributes of the classnumeric
   slots = list(msU7name = "character", fgeneshName = "character", rappredname = "character", fmin = "numeric", fmax = "numeric",contig = "character",iricname = "character", strand = "numeric", description = "character"),
-
+  
   contains = "Gene"
 )
 
