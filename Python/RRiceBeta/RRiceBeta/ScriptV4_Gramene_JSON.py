@@ -88,19 +88,23 @@ class ScriptV4:
             data = json.load(f)
             i = 0
             hashmap =  {}
-            while (i < len(data[0]["xrefs"][i]["db"])):
-                if (data[0]["xrefs"][i]["db"] == "Uniprot/SPTREMBL"):
-                    hashmap["Uniprot/SPTREMBL"] = data[0]["xrefs"][i]["ids"]
+            while (i < len(data[0]["xrefs"])):
 
-                if (data[0]["xrefs"][i]["db"] == "RefSeq_peptide"):
+                if (data[0]["xrefs"][i]["db"] == "Uniprot/SPTREMBL"):
+                    hashmap[data[0]["xrefs"][i]["db"]] = data[0]["xrefs"][i]["ids"]
+                    #hashmap["Uniprot/SPTREMBL"] = data[0]["xrefs"][i]["ids"]
+                
+                elif (data[0]["xrefs"][i]["db"] == "RefSeq_peptide"):
                     hashmap["RefSeq_peptide"] = data[0]["xrefs"][i]["ids"]
 
-                if (data[0]["xrefs"][i]["db"] == "RefSeq_mRNA"):
+                elif (data[0]["xrefs"][i]["db"] == "RefSeq_mRNA"):
                     hashmap["RefSeq_mRNA"] = data[0]["xrefs"][i]["ids"]
 
-                if (data[0]["xrefs"][i]["db"] == "EntrezGene"):
+                elif (data[0]["xrefs"][i]["db"] == "EntrezGene"):
                     hashmap["EntrezGene"] = data[0]["xrefs"][i]["ids"]
+
                 i += 1
+
             f.close()
         print(hashmap)
         return hashmap
