@@ -16,7 +16,7 @@ class ScriptV4:
     def __init__(self):
         self.url = ""
         self.nameFile = ""
-        self.pathToFile = "../resources/"+self.nameFile
+        self.pathToFile = os.getcwd()+'/'+self.nameFile
 
     def loadFileURL(self, url="http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"):
 
@@ -33,7 +33,7 @@ class ScriptV4:
         r = requests.get(self.url)
 
         # Create the file .txt
-        with open(self.pathToFile, "wb") as f:
+        with open(self.nameFile, "wb") as f:
             f.write(r.content)
             f.close()
 
@@ -56,7 +56,6 @@ class ScriptV4:
         """
 
         self.nameFile = "fileJSON.json"
-        self.pathToFile = "../resources/" + self.nameFile
 
         # If the file doesn't exist, it download it
         if(self.existFile() == False):
@@ -79,7 +78,6 @@ class ScriptV4:
     def xrefs(self, RAPID):
 
         self.nameFile = "fileJSON.json"
-        self.pathToFile = "../resources/"+self.nameFile
 
         # If the file doesn't exist, it download it
         if (self.existFile() == False):
@@ -88,7 +86,7 @@ class ScriptV4:
             print(self.pathToFile)
         else:
             print("File already exist")
-        with open(self.pathToFile, 'r') as f:
+        with open(self.nameFile, 'r') as f:
             data = json.load(f)
             i = 0
             hashmap =  {}
