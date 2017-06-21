@@ -7,15 +7,7 @@ import os
 class ScriptV7():
 
     def __init__(self):
-        self.id = ""
-        self.description = ""
-        self.position = ""
-        self.RAP_symbol = ""
-        self.RAP_name = ""
-        self.CGSNL_symbol = ""
-        self.CGSNL_name = ""
-        self.Oryzabase_symbol = ""
-        self.Oryzabase_name = ""
+        self.pathToFile = ""
 
     # It's working
     def rapToLoc(self, RAPID):
