@@ -1,11 +1,11 @@
 package:
   name: rricebeta
-  version: "1.4"
+  version: "0.1"
 
 source:
-  fn: RRiceBeta-1.4.tar.gz
-  url: https://pypi.python.org/packages/24/dc/693c972e62c376ebd2713e3b48befadce314cb3bcf96aa6d70b3001b582e/RRiceBeta-1.4.tar.gz
-  md5: 7812e9377a0dc4db83d77471800abf99
+  fn: rricebeta-0.1.tar.gz
+  url: https://pypi.python.org/packages/94/e4/b07eafe27d50434910cf8f1a19f63d9db388a8df0fe418c19f37ba7c5efc/rricebeta-0.1.tar.gz
+  md5: 9dfc393a8ba28b6d2dee5154f69a51b8
 #  patches:
    # List any patch files here
    # - fix.patch
@@ -49,7 +49,7 @@ requirements:
 test:
   # Python imports
   imports:
-    - RRiceBeta
+    - rricebeta
 
   # commands:
     # You can put test commands to be run here.  Use this to test that the
