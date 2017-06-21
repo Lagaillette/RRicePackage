@@ -34,7 +34,7 @@ def existFile(pathToFile):
 def main():
     #Parameters
     RAPID = sys.argv[1]
-    print(RAPID)
+    #End parameters
 
     html_page = requests.get(
         "http://rapdb.dna.affrc.go.jp/tools/search/run?keyword=" + RAPID + "&submit=Search&id=on&size=10")
@@ -111,6 +111,7 @@ def main():
     return hashmap
 
 
+# Pour eviter que le script soit execute lors d'un simple import
 if __name__ == "__main__":
     main()
 
