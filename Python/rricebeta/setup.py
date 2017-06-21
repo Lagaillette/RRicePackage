@@ -1,13 +1,13 @@
 from setuptools import setup
 
-setup(name='RRiceBeta',
-      version='1.5',
+setup(name='rricebeta',
+      version='1.4',
       description='RRice Package',
       url='https://github.com/Lagaillette/RRicePackage/tree/master/Python/RRiceBeta',
       author='Baptiste VAUTRIN',
       author_email='baptiste.vautrin@gmail.com',
       license='ICTLAB',
-      packages=['RRiceBeta'],
+      packages=['rricebeta'],
       install_requires=[
           'requests', 'bs4', 'pandas', 'gzip', 'os' ,'json'
 
