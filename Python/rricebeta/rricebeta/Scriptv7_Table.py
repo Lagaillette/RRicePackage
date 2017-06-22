@@ -33,6 +33,7 @@ def existFile(pathToFile):
 
 def main():
     #Parameters
+    # RAPID_valide = "Os06g0654600"
     RAPID = sys.argv[1]
     #End parameters
 
