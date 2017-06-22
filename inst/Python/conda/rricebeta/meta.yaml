@@ -1,0 +1,74 @@
+package:
+  name: rricebeta
+  version: "0.1"
+
+source:
+  fn: rricebeta-0.1.tar.gz
+  url: https://pypi.python.org/packages/94/e4/b07eafe27d50434910cf8f1a19f63d9db388a8df0fe418c19f37ba7c5efc/rricebeta-0.1.tar.gz
+  md5: 9dfc393a8ba28b6d2dee5154f69a51b8
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - rricebeta = rricebeta:main
+    #
+    # Would create an entry point called rricebeta that calls rricebeta.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - requests
+    - bs4
+    - pandas
+    - gzip
+    - os
+    - json
+
+  run:
+    - python
+    - requests
+    - bs4
+    - pandas
+    - gzip
+    - os
+    - json
+
+test:
+  # Python imports
+  imports:
+    - rricebeta
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/Lagaillette/RRicePackage/tree/master/Python/RRiceBeta
+  license: ICTLAB
+  summary: 'RRice Package'
+  license_family: OTHER
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
