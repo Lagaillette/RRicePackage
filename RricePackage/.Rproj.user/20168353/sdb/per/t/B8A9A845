@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#the class for the genes\nsetClass(\n  #name of the class\n  \"Gene\",\n\n  #attributes of the class\n  slots = list(uniquename = \"factor\", msU7name = \"factor\", fgeneshName = \"factor\", rappredname = \"factor\", fmin = \"numeric\", fmax = \"numeric\",contig = \"factor\",iricname = \"factor\", strand = \"factor\", description = \"character\")\n)\n\n\n#####################################################################\n############################ Methods ################################\n",
+    "created" : 1497335430965.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1026485147",
+    "id" : "B8A9A845",
+    "lastKnownWriteTime" : 1497338569,
+    "last_content_update" : 1497338569863,
+    "path" : "~/Polytech-IG4/InternshipHanoi/RRicePackage/RricePackage/RricePackage/R/Gene.R",
+    "project_path" : "R/Gene.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

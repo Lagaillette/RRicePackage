@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#the class for the locus\nsetClass(\n  #name of the class\n  \"Locus\",\n\n  #attributes of the class\n  representation = representation(start = \"numeric\", end = \"numeric\", genes = \"vector\", chromosome = \"numeric\")\n\n)\n\n\n#####################################################################\n############################ Methods ################################\n\n",
+    "created" : 1497335735652.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3917241537",
+    "id" : "712F3670",
+    "lastKnownWriteTime" : 1497338549,
+    "last_content_update" : 1497338549888,
+    "path" : "~/Polytech-IG4/InternshipHanoi/RRicePackage/RricePackage/RricePackage/R/Locus.R",
+    "project_path" : "R/Locus.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
