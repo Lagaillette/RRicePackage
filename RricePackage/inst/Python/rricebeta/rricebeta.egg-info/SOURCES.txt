@@ -1,0 +1,17 @@
+setup.py
+rricebeta/ScriptV1.py
+rricebeta/ScriptV2.py
+rricebeta/ScriptV3.py
+rricebeta/ScriptV4_Gramene_JSON.py
+rricebeta/ScriptV5_WebScrapping.py
+rricebeta/ScriptV6_WebScrapping.py
+rricebeta/ScriptV8_Oryzabase.py
+rricebeta/Scriptv7_Table.py
+rricebeta/__init__.py
+rricebeta/testPython.py
+rricebeta.egg-info/PKG-INFO
+rricebeta.egg-info/SOURCES.txt
+rricebeta.egg-info/dependency_links.txt
+rricebeta.egg-info/not-zip-safe
+rricebeta.egg-info/requires.txt
+rricebeta.egg-info/top_level.txt
