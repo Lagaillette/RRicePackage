@@ -6,6 +6,17 @@ import sys
 
 # declaration des parametres au tout debut du main
 
+
+def existFile(pathToFile):
+    """
+
+    :return: return True if the file already exist, else return False
+    :rtype: Bool
+    """
+    return (os.path.isfile(pathToFile))
+
+
+
 def downloadFiles(hashmap):
 
     """
@@ -17,14 +28,22 @@ def downloadFiles(hashmap):
     for key, value in hashmap.items():
 
         pathToFile = '../resources/'+key
-        # Fetch the file by the url and decompress it
-        r = requests.get(value)
 
-        # Create the file .txt
-        with open(pathToFile, "wb") as f:
-            f.write(r.content)
-            print(pathToFile+" created")
-            f.close()
+        #If the file exists in the folder resources
+        if(existFile(pathToFile) == True):
+            print("File "+key+" already exist")
+
+        #If the file doesn't exist
+        else:
+            # Fetch the file by the url and decompress it
+            r = requests.get(value)
+
+            # Create the file .txt
+            with open(pathToFile, "wb") as f:
+                f.write(r.content)
+                print(pathToFile+" created")
+                f.close()
+
 
 
 def main():
