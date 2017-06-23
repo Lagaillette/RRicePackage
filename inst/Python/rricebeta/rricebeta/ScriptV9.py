@@ -45,6 +45,16 @@ def downloadFiles(hashmap):
                 f.close()
 
 
+def splitPath():
+    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
+    pathToFile = os.path.dirname(__file__)
+    while not (pathToFile.endswith('/')):
+        pathToFile = pathToFile[0:-1]
+
+    pathToFile += 'resources/OryzabaseGeneListEn.txt'
+    print(pathToFile)
+
+
 
 def main():
     #Parameters
@@ -64,6 +74,7 @@ def main():
             linkfound = "http://rice.plantbiology.msu.edu/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_7.0/chr01.dir/" + linkname
             linksList[linkname] = linkfound
     downloadFiles(linksList)
+    splitPath()
 
 
 # Pour eviter que le script soit execute lors d'un simple import
