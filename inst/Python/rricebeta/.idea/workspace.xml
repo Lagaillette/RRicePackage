@@ -26,8 +26,8 @@
       <file leaf-file-name="Scriptv7_Table.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rricebeta/Scriptv7_Table.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="31" selection-end-column="39" />
+            <state relative-caret-position="585">
+              <caret line="39" column="18" lean-forward="false" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -35,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptV9.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScriptV9.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV9.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
+            <state relative-caret-position="495">
               <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptV8_Oryzabase.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScriptV8_Oryzabase.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV8_Oryzabase.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
@@ -94,7 +94,7 @@
       <file leaf-file-name="ScriptV4_Gramene_JSON.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV4_Gramene_JSON.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-90">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -893,9 +893,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV8_Oryzabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="113" column="14" lean-forward="false" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV4_Gramene_JSON.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-90">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -903,8 +913,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rricebeta/Scriptv7_Table.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="31" selection-end-column="39" />
+        <state relative-caret-position="585">
+          <caret line="39" column="18" lean-forward="false" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -913,18 +923,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV9.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
+        <state relative-caret-position="495">
           <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rricebeta/ScriptV8_Oryzabase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="113" column="14" lean-forward="false" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
