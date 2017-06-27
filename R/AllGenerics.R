@@ -28,7 +28,8 @@ setGeneric(
 #' @docType methods
 setGeneric(
     name = "updateObject",
-    def = function(experiment, attribute , value){standardGeneric("updateObject" )}
+    def = function(experiment, attribute , value){
+          standardGeneric("updateObject" )}
 )
 
 
@@ -93,7 +94,8 @@ callDB1 <- function(database){
         csv <- read.csv("D:/Documents/Polytech-IG4/InternshipHanoi/outputRAPDB.csv", stringsAsFactors = FALSE)
         genes <- data.frame()
         for ( i in 1:nrow(csv) ) {
-            genes[] <- new ("GeneDB1", uniquename = csv[[1]][[i]], locus = data.frame(), msU7name = csv[[9]][[i]], fgeneshName = csv[[4]][[i]], rappredname = csv[[5]][[i]], fmin = as.numeric(csv[[6]][[i]]), fmax = as.numeric(csv[[2]][[i]]),contig = csv[[7]][[i]],iricname = csv[[8]][[i]], strand = as.numeric(csv[[10]][[i]]), description = as.character(csv[[11]][[i]], others = list()))
+            if(csv[[1]][[i]] != "uniquename")
+            genes <- append(genes,new ("GeneDB1", uniquename = csv[[1]][[i]], locus = data.frame(), msU7name = csv[[9]][[i]], fgeneshName = csv[[4]][[i]], rappredname = csv[[5]][[i]], fmin = as.numeric(csv[[6]][[i]]), fmax = as.numeric(csv[[2]][[i]]),contig = csv[[7]][[i]],iricname = csv[[8]][[i]], strand = as.numeric(csv[[10]][[i]]), description = as.character(csv[[11]][[i]], others = list())))
         }
     return(genes)
     }
