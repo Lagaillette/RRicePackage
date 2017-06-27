@@ -44,7 +44,8 @@ setMethod(
                          ",was experimented on ",
                          object@date, 
                          ", concern the database(s) : ",
-                         databases, sep = ""))
+                         databases,
+                         sep = ""))
         if(length(object@others) != 0){
             result <- paste(result,
                             " and has also others attributes : ",

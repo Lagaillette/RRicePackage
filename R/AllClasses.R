@@ -29,7 +29,7 @@ setClass(
 #' But every genes have informations in common. So we put all these informations
 #' into a global class "gene" from which the others specific gene class will
 #' inherit.
-#'
+#' 
 #' @slot id The id of the gene. Many genes can have the same id because there
 #' are the same in spite of the different attributes they have.
 #' @slot locus The locus the gene belongs.
@@ -43,7 +43,8 @@ setClass(
   "Gene",
   
   #attributes of the class
-  slots = list(uniquename = "character",
+  slots = list(id = "character",
+               uniquename = "character",
                locus = "data.frame",
                others = "list")
 )
@@ -58,9 +59,20 @@ setClass(
 #'
 #' @slot id The id of the gene. Many genes can have the same id because there
 #' are the same in spite of the different attributes they have.
-#' @inheritParams Gene
-#' @name Gene
-#' @rdname Gene-class
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot genes The list of genes we avec download.
+#' @slot msU7name an identicator
+#' @slot fgeneshName an identicator
+#' @slot rappredname an identicator
+#' @slot fmin an identicator
+#' @slot fmax an identicator
+#' @slot contig an identicator
+#' @slot iricname an identicator
+#' @slot strand an identicator
+#' @slot description a description
+#' @name GeneDB1
+#' @rdname GeneDB1-class
 #' @exportClass Gene
 setClass(
   #name of the class

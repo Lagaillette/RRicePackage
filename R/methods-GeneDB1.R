@@ -2,10 +2,11 @@
 ################################ Constructor ##################################
 
 
-GeneDB1 <- function(uniquename, locus, msU7name, fgeneshName, rappredname,
+GeneDB1 <- function(id, uniquename, locus, msU7name, fgeneshName, rappredname,
                     fmin, fmax,contig,iricname, strand, description){
     
     result <- new("GeneDB1",
+              id = id,
               uniquename = uniquename,
               locus = locus,
               others = list(),
