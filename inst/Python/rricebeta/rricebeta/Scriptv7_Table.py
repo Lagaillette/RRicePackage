@@ -6,6 +6,15 @@ import sys
 
 # declaration des parametres au tout debut du main
 
+def formatPathToFile(nameFile):
+    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
+    pathToFile = os.path.dirname(__file__)
+    while not (pathToFile.endswith('/')):
+        pathToFile = pathToFile[0:-1]
+
+    pathToFile += 'resources/'+nameFile
+    return pathToFile
+
 def loadFileURL(nameFile, url):
 
     """
