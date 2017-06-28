@@ -6,6 +6,15 @@ import sys
 
 # declaration des parametres au tout debut du main
 
+def formatPathToFile(nameFile):
+    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
+    pathToFile = os.path.dirname(__file__)
+    while not (pathToFile.endswith('/')):
+        pathToFile = pathToFile[0:-1]
+
+    pathToFile += 'resources/'+nameFile
+    return pathToFile
+
 def loadFileURL(nameFile, url):
 
     """
@@ -101,7 +110,7 @@ def main():
 
     print(hashmap['CGSNL Gene Name'])
     print(len(hashmap))
-    pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    pathToFile = formatPathToFile("OryzabaseGeneListEn.txt")
     if (existFile(pathToFile) == False):
         loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
     else:
