@@ -2,23 +2,21 @@
 ################################ Constructor ##################################
 
 
-GeneDB1 <- function(id, uniquename, locus, msU7name, fgeneshName, rappredname,
-                    fmin, fmax,contig,iricname, strand, description){
+GeneDB1 <- function(id, locus, rapDBGeneNameSynonym, rapDBGeneSymbolSynonym,
+                    cgsnlGeneName, cgsnlGeneSymbol, oryzabaseGeneNameSynonym,
+                    oryzabaseGeneSymbolSynonym, description){
     
     result <- new("GeneDB1",
-              id = id,
-              uniquename = uniquename,
-              locus = locus,
-              others = list(),
-              msU7name = msU7name,
-              fgeneshName = fgeneshName,
-              rappredname = rappredname,
-              fmin = fmin,
-              fmax = fmax,
-              contig = contig,
-              iricname = iricname,
-              strand = strand,
-              description = description)
+                  id = id,
+                  locus = locus,
+                  others = list(),
+                  rapDBGeneNameSynonym = rapDBGeneNameSynonym,
+                  rapDBGeneSymbolSynonym = rapDBGeneSymbolSynonym,
+                  cgsnlGeneName = cgsnlGeneName,
+                  cgsnlGeneSymbol = cgsnlGeneSymbol,
+                  oryzabaseGeneNameSynonym = oryzabaseGeneNameSynonym,
+                  oryzabaseGeneSymbolSynonym = oryzabaseGeneSymbolSynonym,
+                  description = description)
     
     return(result)
           
