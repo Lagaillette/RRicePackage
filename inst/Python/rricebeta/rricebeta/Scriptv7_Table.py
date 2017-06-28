@@ -44,6 +44,7 @@ def main():
     #Parameters
     # RAPID_valide = "Os06g0654600"
     RAPID = sys.argv[1]
+    RAPID = "Os06g0654600"
     #End parameters
 
     html_page = requests.get(
@@ -107,7 +108,7 @@ def main():
                "Oryzabase Gene Symbol Synonym(s)": Oryzabase_symbol,
                "Oryzabase Gene Name Synonym(s)": Oryzabase_name
                }
-
+    """
     print(hashmap['CGSNL Gene Name'])
     print(len(hashmap))
     pathToFile = formatPathToFile("OryzabaseGeneListEn.txt")
@@ -117,7 +118,9 @@ def main():
         print("File already exist")
     print("Find file OK")
     #self.oryzabase(hashmap)
+    """
     print(hashmap)
+
     return hashmap
 
 

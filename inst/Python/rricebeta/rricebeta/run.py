@@ -5,11 +5,7 @@ def main():
     contig = sys.argv[1]
     start = sys.argv[2]
     end = sys.argv[3]
-
-    # Fetch database
-    for arg in sys.argv[4:]:
-        print(arg)
-        # Appel des scripts ici en fonction de la db precisee
+    db = sys.argv[4]
 
 
 # Pour eviter que le script soit execute lors d'un simple import
