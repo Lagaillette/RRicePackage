@@ -110,7 +110,7 @@ def main():
 
     print(hashmap['CGSNL Gene Name'])
     print(len(hashmap))
-    pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    pathToFile = formatPathToFile("OryzabaseGeneListEn.txt")
     if (existFile(pathToFile) == False):
         loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
     else:

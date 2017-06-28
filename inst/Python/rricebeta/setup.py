@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='rricebeta',
-      version='0.1',
+      version='0.2',
       description='RRice Package',
       url='https://github.com/Lagaillette/RRicePackage/tree/master/Python/RRiceBeta',
       author='Baptiste VAUTRIN',

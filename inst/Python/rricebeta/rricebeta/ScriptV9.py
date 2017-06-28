@@ -15,7 +15,14 @@ def existFile(pathToFile):
     """
     return (os.path.isfile(pathToFile))
 
+def formatPathToFile(nameFile):
+    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
+    pathToFile = os.path.dirname(__file__)
+    while not (pathToFile.endswith('/')):
+        pathToFile = pathToFile[0:-1]
 
+    pathToFile += 'resources/'+nameFile
+    return pathToFile
 
 def downloadFiles(hashmap):
 
@@ -27,7 +34,7 @@ def downloadFiles(hashmap):
     # key is the name of the file and the value is the URL
     for key, value in hashmap.items():
 
-        pathToFile = '../resources/'+key
+        pathToFile = formatPathToFile(key)
 
         #If the file exists in the folder resources
         if(existFile(pathToFile) == True):
@@ -43,17 +50,6 @@ def downloadFiles(hashmap):
                 f.write(r.content)
                 print(pathToFile+" created")
                 f.close()
-
-
-def splitPath():
-    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
-    pathToFile = os.path.dirname(__file__)
-    while not (pathToFile.endswith('/')):
-        pathToFile = pathToFile[0:-1]
-
-    pathToFile += 'resources/OryzabaseGeneListEn.txt'
-    print(pathToFile)
-
 
 
 def main():
@@ -74,7 +70,6 @@ def main():
             linkfound = "http://rice.plantbiology.msu.edu/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_7.0/chr01.dir/" + linkname
             linksList[linkname] = linkfound
     downloadFiles(linksList)
-    splitPath()
 
 
 # Pour eviter que le script soit execute lors d'un simple import
