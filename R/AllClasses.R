@@ -27,14 +27,13 @@ setClass(
 #'
 #' A gene contains a lot of details that depend on the database it belongs. 
 #' But every genes have informations in common. So we put all these informations
-#' into a global class "gene" from which the others specific gene class will
+#' into a global class "Gene" from which the others specific genes classes will
 #' inherit.
 #' 
 #' @slot id The id of the gene. Many genes can have the same id because there
 #' are the same in spite of the different attributes they have.
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
-#' @slot genes The list of genes we avec download.
 #' @name Gene
 #' @rdname Gene-class
 #' @exportClass Gene
@@ -44,39 +43,14 @@ setClass(
   
   #attributes of the class
   slots = list(id = "character",
-               uniquename = "character",
                locus = "data.frame",
                others = "list")
 )
 
 
-#' The Gene specific to the first database class.
-#'
-#' A gene contains a lot of details that depend on the database it belongs. 
-#' But every gens have information in common. So we put all these informations
-#' into a global class "gene" from which the others specific gene class 
-#' inherit.
-#'
-#' @slot id The id of the gene. Many genes can have the same id because there
-#' are the same in spite of the different attributes they have.
-#' @slot locus The locus the gene belongs.
-#' @slot others The others attributes the user want to add or delete.
-#' @slot genes The list of genes we avec download.
-#' @slot msU7name an identicator
-#' @slot fgeneshName an identicator
-#' @slot rappredname an identicator
-#' @slot fmin an identicator
-#' @slot fmax an identicator
-#' @slot contig an identicator
-#' @slot iricname an identicator
-#' @slot strand an identicator
-#' @slot description a description
-#' @name GeneDB1
-#' @rdname GeneDB1-class
-#' @exportClass Gene
 setClass(
   #name of the class
-  "GeneDB1",
+  "GeneDBtest",
   
   #attributes of the classnumeric
   slots = list(msU7name = "character",
@@ -90,4 +64,40 @@ setClass(
                description = "character"),
   
   contains = "Gene"
+)
+
+#' The Gene specific to the first database class.
+#'
+#' This gene is specific to the database 1 that is the database "RAPDB". So it
+#' contains all the informations we can have about one gene with the "RAPDB" 
+#' database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because there
+#' are the same in spite of the different attributes they have.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot rapDBGeneNameSynonym an identificator
+#' @slot rapDBGeneSymbolSynonym an identificator
+#' @slot cgsnlGeneName an identificator
+#' @slot cgsnlGeneSymbol an identificator
+#' @slot oryzabaseGeneNameSynonym an identificator
+#' @slot oryzabaseGeneSymbolSynonym an identificator
+#' @slot description a description of the gene
+#' @name GeneDB1
+#' @rdname GeneDB1-class
+#' @exportClass Gene
+setClass(
+    #name of the class
+    "GeneDB1",
+    
+    #attributes of the classnumeric
+    slots = list(rapDBGeneNameSynonym = "character",
+                 rapDBGeneSymbolSynonym = "character",
+                 cgsnlGeneName = "character",
+                 cgsnlGeneSymbol = "character",
+                 oryzabaseGeneNameSynonym = "character",
+                 oryzabaseGeneSymbolSynonym = "character",
+                 description = "character"),
+    
+    contains = "Gene"
 )

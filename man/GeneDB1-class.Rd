@@ -5,10 +5,9 @@
 \alias{GeneDB1}
 \title{The Gene specific to the first database class.}
 \description{
-A gene contains a lot of details that depend on the database it belongs. 
-But every gens have information in common. So we put all these informations
-into a global class "gene" from which the others specific gene class 
-inherit.
+This gene is specific to the database 1 that is the database "RAPDB". So it
+contains all the informations we can have about one gene with the "RAPDB" 
+database.
 }
 \section{Slots}{
 
@@ -20,24 +19,18 @@ are the same in spite of the different attributes they have.}
 
 \item{\code{others}}{The others attributes the user want to add or delete.}
 
-\item{\code{genes}}{The list of genes we avec download.}
+\item{\code{rapDBGeneNameSynonym}}{an identificator}
 
-\item{\code{msU7name}}{an identicator}
+\item{\code{rapDBGeneSymbolSynonym}}{an identificator}
 
-\item{\code{fgeneshName}}{an identicator}
+\item{\code{cgsnlGeneName}}{an identificator}
 
-\item{\code{rappredname}}{an identicator}
+\item{\code{cgsnlGeneSymbol}}{an identificator}
 
-\item{\code{fmin}}{an identicator}
+\item{\code{oryzabaseGeneNameSynonym}}{an identificator}
 
-\item{\code{fmax}}{an identicator}
+\item{\code{oryzabaseGeneSymbolSynonym}}{an identificator}
 
-\item{\code{contig}}{an identicator}
-
-\item{\code{iricname}}{an identicator}
-
-\item{\code{strand}}{an identicator}
-
-\item{\code{description}}{a description}
+\item{\code{description}}{a description of the gene}
 }}
 

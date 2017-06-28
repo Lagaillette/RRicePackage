@@ -7,7 +7,7 @@
 \description{
 A gene contains a lot of details that depend on the database it belongs. 
 But every genes have informations in common. So we put all these informations
-into a global class "gene" from which the others specific gene class will
+into a global class "Gene" from which the others specific genes classes will
 inherit.
 }
 \section{Slots}{
@@ -19,7 +19,5 @@ are the same in spite of the different attributes they have.}
 \item{\code{locus}}{The locus the gene belongs.}
 
 \item{\code{others}}{The others attributes the user want to add or delete.}
-
-\item{\code{genes}}{The list of genes we avec download.}
 }}
 

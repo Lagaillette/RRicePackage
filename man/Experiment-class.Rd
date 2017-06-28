@@ -3,13 +3,36 @@
 \docType{classes}
 \name{Experiment}
 \alias{Experiment}
+\alias{Experiment}
+\alias{addAttribute,Experiment-method}
+\alias{updateObject,Experiment-method}
+\alias{addAttribute,Experiment-method}
 \alias{deleteAttribute,Experiment-method}
 \title{The Experiment class.}
 \usage{
+Experiment(name, locus)
+
+\S4method{updateObject}{Experiment}(experiment, attribute, value)
+
+\S4method{addAttribute}{Experiment}(object, name, value)
+
 \S4method{deleteAttribute}{Experiment}(object, name)
+}
+\arguments{
+\item{name}{The name of the Experiment}
+
+\item{locus}{The Table of locus}
+}
+\value{
+An Experiment
 }
 \description{
 Some details about this class and my plans for it in the body.
+
+This constructor allows to create an Experiment object, with a name and a
+locus list. The locus list is a .txt file, so you have to do a "read.table"
+of your file into a variable and put this variable as the "locus" parameter
+in the constructor.
 }
 \section{Slots}{
 
