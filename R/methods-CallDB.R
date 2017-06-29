@@ -114,11 +114,11 @@ CallDB1 <- function (locusListe) {
 }
 
 #phase de test
-data <- data.frame(ch = c("1"),
-                   st = c("5671734"),
-                   end = c("6337629"))
+#data <- data.frame(ch = c("1"),
+#                   st = c("5671734"),
+#                   end = c("6337629"))
 
-print(data)
+#print(data)
 
-CallDB1(data)
+#CallDB1(data)
 
