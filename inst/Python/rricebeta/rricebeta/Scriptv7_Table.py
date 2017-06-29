@@ -119,7 +119,7 @@ def rapdb(RAPID):
     #self.oryzabase(hashmap)
     """
 
-    return json.dumps(hashmap)
+    return hashmap
 
 
 
