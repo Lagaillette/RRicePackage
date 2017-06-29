@@ -90,9 +90,9 @@ CallDB1 <- function (locusListe) {
         pos2 <- pos1[[1]][[2]]
         pos3 <- strsplit(pos2,"[..]")
         
-        positiondata <- data.frame(ch=c(as.character(pos1[[1]][[1]])),
-                                   st=c(as.character(pos3[[1]][[1]])),
-                                   end=c(as.character(pos3[[1]][[3]])))
+        positiondata <- data.frame(ch=c(pos1[[1]][[1]]),
+                                   st=c(pos3[[1]][[1]]),
+                                   end=c(pos3[[1]][[3]]))
         
         #prochaine étape -> créer objet et mettre tous les attributs dedans
         #créé un nouvel objet gene
@@ -104,7 +104,7 @@ CallDB1 <- function (locusListe) {
                            as.character(cgsnl_gene),
                            as.character(ory_gene_name),
                            as.character(ory_gene_symbole),
-                           data.frame(ch=c(pos1[[1]][[1]]),st=c(pos3[[1]][[1]]),end=c(pos3[[1]][[3]])),
+                           positiondata,
                            as.character(description))
         
         liste_genes <- append(liste_genes,newgene)
@@ -114,11 +114,11 @@ CallDB1 <- function (locusListe) {
 }
 
 #phase de test
-#data <- data.frame(ch = c("1"),
-#                   st = c("5671734"),
-#                   end = c("6337629"))
+data <- data.frame(ch = c("1"),
+                   st = c("5671734"),
+                   end = c("6337629"))
 
-#print(data)
+print(data)
 
-#CallDB1(data)
+CallDB1(data)
 
