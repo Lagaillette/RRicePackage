@@ -6,10 +6,6 @@ import json
 
 def snpSeek(contig, start, end):
 
-    contig = "6"
-    start = "26834016"
-    end = "26836134"
-
     Log =  open('log.txt', 'w')
     url = 'http://snp-seek.irri.org/ws/genomics/gene/osnippo/'
     u = ''
