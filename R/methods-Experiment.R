@@ -147,9 +147,8 @@ setMethod(
 )
 
 
-#' @export
-#' @aliases addAttribute,Experiment-method
-#' @rdname Experiment-class
+
+
 setMethod(
     "addAttribute",
     signature = "Experiment",
