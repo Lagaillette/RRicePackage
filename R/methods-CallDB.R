@@ -1,7 +1,7 @@
 library(jsonlite)
 
 #on relie au fichier methods-GeneDB1.R to call function GeneDB1
-source("RRicePackage/R/methods-GeneDB1.R")
+source("rRice/R/methods-GeneDB1.R")
 
 command ="python3"
 
@@ -18,7 +18,7 @@ Appel_Scriptv7 <- function (RAPID) {
   
     #chemin pour n'importe quel utilisateur
     debut = getwd()
-    path = "/RRicePackage/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
+    path = "/rRice/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
     path2script = paste(c(debut,path), collapse = '')
 
     # Build up args in a vector
@@ -48,7 +48,7 @@ Appel_Scriptv7 <- function (RAPID) {
 CallDB1 <- function (locusListe) {
   
     debut = getwd()
-    path = "/RRicePackage/inst/Python/rricebeta/rricebeta/run.py"
+    path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
     path2script = paste(c(debut,path), collapse = '')
     
     liste_genes <- data.frame()
@@ -85,6 +85,15 @@ CallDB1 <- function (locusListe) {
         ory_gene_name = test["Oryzabase Gene Name Synonym(s)"]
         cgsnl_gene = test["CGSNL Gene Symbol"]
         
+        position <- as.character(position) 
+        pos1 <- strsplit(position, ":")
+        pos2 <- pos1[[1]][[2]]
+        pos3 <- strsplit(pos2,"[..]")
+        
+        positiondata <- data.frame(ch=c(as.character(pos1[[1]][[1]])),
+                                   st=c(as.character(pos3[[1]][[1]])),
+                                   end=c(as.character(pos3[[1]][[3]])))
+        
         #prochaine étape -> créer objet et mettre tous les attributs dedans
         #créé un nouvel objet gene
         newgene <- GeneDB1(as.character(id_rec),
@@ -95,6 +104,7 @@ CallDB1 <- function (locusListe) {
                            as.character(cgsnl_gene),
                            as.character(ory_gene_name),
                            as.character(ory_gene_symbole),
+                           data.frame(ch=c(pos1[[1]][[1]]),st=c(pos3[[1]][[1]]),end=c(pos3[[1]][[3]])),
                            as.character(description))
         
         liste_genes <- append(liste_genes,newgene)
@@ -104,11 +114,11 @@ CallDB1 <- function (locusListe) {
 }
 
 #phase de test
-data <- data.frame(ch = c("1","1"),
-                   st = c("5671734","148907"),
-                   end = c("6337629","248907"))
+#data <- data.frame(ch = c("1"),
+#                   st = c("5671734"),
+#                   end = c("6337629"))
 
 #print(data)
 
-CallDB1(data)
+#CallDB1(data)
 
