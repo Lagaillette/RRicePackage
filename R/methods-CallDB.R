@@ -2,14 +2,12 @@ library(jsonlite)
 
 command ="python3"
 
-#exemple RAPID = "Os06g0654600"
-#RAPID = "Os06g0654600"
-
 #pour appeler le fichier SCriptv7_Table.py -> BESOIN de l'attribut "RAPID"
 
-#' Fonction qui appel le Scriptv7 de python
+#' This function calls Scriptv7 from python
 #'
-#' Cette fonction permet à l'utilisateur de chercher si le RAPID existe dans Oryzabase.txt
+#' Cette fonction permet à l'utilisateur de chercher si le RAPID existe dans 
+#' Oryzabase.txt
 #' @param RAPID
 #' @keywords 
 #' @export
@@ -17,61 +15,63 @@ command ="python3"
 #' Appel_Scriptv7("Os06g0654600")
 Appel_Scriptv7 <- function (RAPID) {
   
-#chemin pour n'importe quel utilisateur
-debut = getwd()
-path2script = paste(c(debut,"/RRicePackage/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"), collapse = '')
+    #chemin pour n'importe quel utilisateur
+    debut = getwd()
+    path = "/RRicePackage/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
+    path2script = paste(c(debut,path), collapse = '')
 
-# Build up args in a vector
-# RAPID_valide = "Os06g0654600" -> exemple valide
-args = c(RAPID)
+    # Build up args in a vector
+    # RAPID_valide = "Os06g0654600" -> exemple valide
+    args = c(RAPID)
 
-# Add path to script as first arg
-allArgs = c(path2script, args)
+    # Add path to script as first arg
+    allArgs = c(path2script, args)
 
-Routput = system2(command, args=allArgs, stdout=TRUE)
+    Routput = system2(command, args=allArgs, stdout=TRUE)
 
-#Appelé à chaque fois qu'elle rencontrera un print
-print(Routput)
+    #Appelé à chaque fois qu'elle rencontrera un print
+    print(Routput)
 }
-
-#Appel_Scriptv7(RAPID)
-
 
 #Ma fonction CallDB1 
 
-#' Fonction qui appel le run.py
+#' This function calls run.py
 #'
-#' Description
-#' @param Liste de locus
+#' This function will call for each locus in the list, the run.py script and
+#' python will return the list of the genes which are present in the locus and
+#' in the DB1. All these locus will be stocked in liste_genes
+#' @param Locus list
 #' @keywords 
 #' @export
 #' @examples
 #' callDB1(Liste de locus)
-callDB1 <- function (locusListe) {
+CallDB1 <- function (locusListe) {
   
-  debut = getwd()
-  path2script = paste(c(debut,"/RRicePackage/inst/Python/rricebeta/rricebeta/run.py"), collapse = '')
+    debut = getwd()
+    path = "/RRicePackage/inst/Python/rricebeta/rricebeta/run.py"
+    path2script = paste(c(debut,path), collapse = '')
   
-  for (i in 1 : nrow(locusListe)) {
-    ch = as.character(locusListe[i,1])
-    start = as.character(locusListe[i,2])
-    end = as.character(locusListe[i,3])
+    for (i in 1 : nrow(locusListe)) {
+        ch = as.character(locusListe[i,1])
+        start = as.character(locusListe[i,2])
+        end = as.character(locusListe[i,3])
     
-    #print(paste(class(ch)," ",class(start)," ",class(end)))
+        #print(paste(class(ch)," ",class(start)," ",class(end)))
     
-    #appel du script python run.py avec les attributs (chx, start, end, DB) -> tous les attributs doivent etre en chaine de carac
-    args = c(ch, start, end, "1")
-    allArgs = c(path2script, args)
-    Routput = system2(command, args=allArgs, stdout=TRUE)
-    #print(Routput)
-    test <- fromJSON(Routput)
-    
-    
-    #for (i in 1:length(test)){
-    #  print(paste("numero",i," -> ",test[i][1]))
-    #}
-    
-    id = test["ID"]
+        #appel du script python run.py avec les attributs (chx, start, end, DB) 
+        #-> tous les attributs doivent etre en chaine de carac
+        args = c(ch, start, end, "1")
+        allArgs = c(path2script, args)
+        Routput = system2(command, args=allArgs, stdout=TRUE)
+        #print(Routput)
+        test <- fromJSON(Routput)
+    }
+  
+    for (i in 1:length(test)){
+        print(paste("numero",i," -> ",test[i][1]))
+    }
+  
+    id_rec = test["ID"]
     position = test["Position"]
     rap_symbole = test["RAP-DB Gene Symbol Synonym(s)"]
     cgsnl_name = test["CGSNL Gene Name"]
@@ -81,9 +81,19 @@ callDB1 <- function (locusListe) {
     ory_gene_name = test["Oryzabase Gene Name Synonym(s)"]
     cgsnl_gene = test["CGSNL Gene Symbol"]
     
-    #cat(paste("\n",id,"\n", position,"\n",rap_symbole,"\n",cgsnl_name,"\n",ory_gene_symbole,"\n",description,"\n",rap_name,"\n",ory_gene_name,"\n",cgsnl_gene))
-    
     #prochaine étape -> créer objet et mettre tous les attributs dedans
-  }
+    #créé un nouvel objet gene
+    newgene <- GeneDB1(id = id_rec,
+                       locus = position,
+                       rapDBGeneNameSynonym = rap_name,
+                       rapDBGeneSymbolSynonym = rap_symbole,
+                       cgsnlGeneName = cgsnl_name,
+                       cgsnlGeneSymbol = cgsnl_gene,
+                       oryzabaseGeneNameSynonym = ory_gene_name,
+                       oryzabaseGeneSymbolSynonym = ory_gene_symbole,
+                       description = description)
+    #liste d'objets genes
+    liste_genes <- data.frame()
+    liste_genes <- append(newgene)
 }
 
