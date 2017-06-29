@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 import sys
+import json
 
 # declaration des parametres au tout debut du main
 
@@ -40,10 +41,9 @@ def existFile(pathToFile):
     """
     return (os.path.isfile(pathToFile))
 
-def main():
+def rapdb(RAPID):
     #Parameters
     # RAPID_valide = "Os06g0654600"
-    RAPID = sys.argv[1]
     #End parameters
 
     html_page = requests.get(
@@ -107,7 +107,7 @@ def main():
                "Oryzabase Gene Symbol Synonym(s)": Oryzabase_symbol,
                "Oryzabase Gene Name Synonym(s)": Oryzabase_name
                }
-
+    """
     print(hashmap['CGSNL Gene Name'])
     print(len(hashmap))
     pathToFile = formatPathToFile("OryzabaseGeneListEn.txt")
@@ -117,12 +117,9 @@ def main():
         print("File already exist")
     print("Find file OK")
     #self.oryzabase(hashmap)
-    print(hashmap)
-    return hashmap
+    """
 
+    return json.dumps(hashmap)
 
-# Pour eviter que le script soit execute lors d'un simple import
-if __name__ == "__main__":
-    main()
 
 
