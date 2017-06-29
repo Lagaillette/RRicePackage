@@ -1,6 +1,10 @@
-from rricebeta import snpSeek as snpSeek
-from rricebeta import Scriptv7_Table as rapdb
+import os
 import sys
+path = os.path.dirname(__file__)
+sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
+import snpSeek as snpSeek
+import Scriptv7_Table as rapdb
+import ScriptGramene as gramene
 
 def main():
     pathScript = sys.argv[0]
@@ -8,12 +12,20 @@ def main():
     start = sys.argv[2]
     end = sys.argv[3]
     db = sys.argv[4]
+    print(db)
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
-    print(dataSnp[0]["raprepName"])
-    rapdb.rapdb(dataSnp[0]["raprepName"])
-    jsonRapdb = rapdb.rapdb(dataSnp[0]["raprepName"])
-    return jsonRapdb
+    print(dataSnp)
+    if(db == "1"):
+        rapdb.rapdb(dataSnp[0]["raprepName"])
+        jsonRapdb = rapdb.rapdb(dataSnp[0]["raprepName"])
+        print(jsonRapdb)
+
+    elif(db == "2"):
+        jsonGramene = gramene.gramene(dataSnp[0]["raprepName"])
+        print(jsonGramene)
+
+
 
 
 # Pour eviter que le script soit execute lors d'un simple import
