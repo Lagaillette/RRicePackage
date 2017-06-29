@@ -1,6 +1,9 @@
+import os
+import sys
+path = os.path.dirname(__file__)
+sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 from rricebeta import snpSeek as snpSeek
 from rricebeta import Scriptv7_Table as rapdb
-import sys
 
 def main():
     pathScript = sys.argv[0]
@@ -10,6 +13,7 @@ def main():
     db = sys.argv[4]
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
+    print(dataSnp)
     print(dataSnp[0]["raprepName"])
     rapdb.rapdb(dataSnp[0]["raprepName"])
     jsonRapdb = rapdb.rapdb(dataSnp[0]["raprepName"])
