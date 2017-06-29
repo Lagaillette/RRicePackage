@@ -1,8 +1,20 @@
 ###############################################################################
 ################################ Constructor ##################################
 
-
-Experiment <- function(name){
+#' Constructor of an Experiment
+#' 
+#' This constructor allows to create an Experiment object, with a name and a
+#' locus list. The locus list is a .txt file, so you have to do a "read.table"
+#' of your file into a variable and put this variable as the "locus" parameter
+#' in the constructor. 
+#'
+#' @param name The name of the Experiment
+#' @param locus The Table of locus 
+#' @return An Experiment
+#' @export
+#' @aliases addAttribute,Experiment-method
+#' @rdname Experiment-class
+Experiment <- function(name, locus){
     nbdb <- as.numeric(readline(prompt=
                 "Enter the numbers of databases you want to experiment : "))
     databases <- vector(mode='list', length=nbdb)
@@ -16,7 +28,7 @@ Experiment <- function(name){
                                 prompt = paste("Enter the name (number)",
                                          "of the database you want: ")))
         callDB <- paste("callDB",databases[i],sep="")
-        genes[[i]] <- (do.call(callDB, args = list(databases[i])))
+        genes[[i]] <- (do.call(callDB, args = list(locus)))
     }
     result <- new("Experiment",
                   name=name,
@@ -100,7 +112,9 @@ setMethod(
     }
 )
 
-
+#' @export
+#' @aliases updateObject,Experiment-method
+#' @rdname Experiment-class
 setMethod(
     "updateObject",
     signature = "Experiment",
@@ -121,6 +135,8 @@ setMethod(
         return(object@name)
     }
 )
+
+
 setMethod(
     "setName",
     signature = "Experiment",
@@ -131,7 +147,9 @@ setMethod(
 )
 
 
-
+#' @export
+#' @aliases addAttribute,Experiment-method
+#' @rdname Experiment-class
 setMethod(
     "addAttribute",
     signature = "Experiment",
@@ -144,6 +162,8 @@ setMethod(
         return(object)
     }
 )
+
+
 #' @export
 #' @aliases deleteAttribute,Experiment-method
 #' @rdname Experiment-class

@@ -46,8 +46,8 @@ print(Routput)
 #' @keywords 
 #' @export
 #' @examples
-#' Appel_Scriptv7(Liste de locus)
-CallDB1 <- function (locusListe) {
+#' callDB1(Liste de locus)
+callDB1 <- function (locusListe) {
   
   debut = getwd()
   path2script = paste(c(debut,"/RRicePackage/inst/Python/rricebeta/rricebeta/run.py"), collapse = '')
