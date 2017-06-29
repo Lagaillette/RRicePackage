@@ -2,12 +2,9 @@ import requests
 import re
 import os
 import pprint
-import json, csv, sys
+import json
 
-def main():
-    contig = sys.argv[1]
-    start = sys.argv[2]
-    end = sys.argv[3]
+def snpSeek(contig, start, end):
 
     contig = "6"
     start = "26834016"
@@ -54,9 +51,4 @@ def main():
     locus = contig + ':' + start + '-' + end
 
     #retourne un tableau
-    print(data)
-
-
-# Pour eviter que le script soit execute lors d'un simple import
-if __name__ == "__main__":
-    main()
+    return data
