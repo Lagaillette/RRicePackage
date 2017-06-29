@@ -5,6 +5,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import snpSeek as snpSeek
 import Scriptv7_Table as rapdb
 import ScriptGramene as gramene
+import ScriptV8_Oryzabase as oryzabase
 
 def main():
     pathScript = sys.argv[0]
@@ -24,6 +25,9 @@ def main():
     elif(db == "2"):
         jsonGramene = gramene.gramene(dataSnp[0]["raprepName"])
         print(jsonGramene)
+
+    elif(db == "3"):
+        oryzabase.oryzabase()
 
 
 
