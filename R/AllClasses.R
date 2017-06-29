@@ -97,6 +97,7 @@ setClass(
                  cgsnlGeneSymbol = "character",
                  oryzabaseGeneNameSynonym = "character",
                  oryzabaseGeneSymbolSynonym = "character",
+                 position = "data.frame",
                  description = "character"),
     
     contains = "Gene"

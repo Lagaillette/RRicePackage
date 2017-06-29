@@ -4,7 +4,7 @@
 
 GeneDB1 <- function(id, locus, rapDBGeneNameSynonym, rapDBGeneSymbolSynonym,
                     cgsnlGeneName, cgsnlGeneSymbol, oryzabaseGeneNameSynonym,
-                    oryzabaseGeneSymbolSynonym, description){
+                    oryzabaseGeneSymbolSynonym, position, description){
     
     result <- new("GeneDB1",
                   id = id,
@@ -16,6 +16,7 @@ GeneDB1 <- function(id, locus, rapDBGeneNameSynonym, rapDBGeneSymbolSynonym,
                   cgsnlGeneSymbol = cgsnlGeneSymbol,
                   oryzabaseGeneNameSynonym = oryzabaseGeneNameSynonym,
                   oryzabaseGeneSymbolSynonym = oryzabaseGeneSymbolSynonym,
+                  position = position,
                   description = description)
     
     return(result)
