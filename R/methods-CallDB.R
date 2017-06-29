@@ -1,8 +1,9 @@
 library(jsonlite)
 
-command ="python3"
+#on relie au fichier methods-GeneDB1.R to call function GeneDB1
+source("RRicePackage/R/methods-GeneDB1.R")
 
-#pour appeler le fichier SCriptv7_Table.py -> BESOIN de l'attribut "RAPID"
+command ="python3"
 
 #' This function calls Scriptv7 from python
 #'
@@ -33,7 +34,6 @@ Appel_Scriptv7 <- function (RAPID) {
     print(Routput)
 }
 
-#Ma fonction CallDB1 
 
 #' This function calls run.py
 #'
@@ -50,11 +50,15 @@ CallDB1 <- function (locusListe) {
     debut = getwd()
     path = "/RRicePackage/inst/Python/rricebeta/rricebeta/run.py"
     path2script = paste(c(debut,path), collapse = '')
+    
+    liste_genes <- data.frame()
   
     for (i in 1 : nrow(locusListe)) {
         ch = as.character(locusListe[i,1])
         start = as.character(locusListe[i,2])
         end = as.character(locusListe[i,3])
+        
+        #print(paste(ch," ",start," ",end))
     
         #print(paste(class(ch)," ",class(start)," ",class(end)))
     
@@ -63,37 +67,48 @@ CallDB1 <- function (locusListe) {
         args = c(ch, start, end, "1")
         allArgs = c(path2script, args)
         Routput = system2(command, args=allArgs, stdout=TRUE)
+        print(Routput)
         #print(Routput)
         test <- fromJSON(Routput)
+        
+        #for (j in 1:length(test)){
+        #    print(paste("numero",j," -> ",test[j][1]))
+        #}
+        
+        id_rec = test["ID"]
+        position = test["Position"]
+        rap_symbole = test["RAP-DB Gene Symbol Synonym(s)"]
+        cgsnl_name = test["CGSNL Gene Name"]
+        ory_gene_symbole = test["Oryzabase Gene Symbol Synonym(s)"]
+        description = test["Description"]
+        rap_name = test["RAP-DB Gene Name Synonym(s)"]
+        ory_gene_name = test["Oryzabase Gene Name Synonym(s)"]
+        cgsnl_gene = test["CGSNL Gene Symbol"]
+        
+        #prochaine étape -> créer objet et mettre tous les attributs dedans
+        #créé un nouvel objet gene
+        newgene <- GeneDB1(as.character(id_rec),
+                           locusListe[i,],
+                           as.character(rap_name),
+                           as.character(rap_symbole),
+                           as.character(cgsnl_name),
+                           as.character(cgsnl_gene),
+                           as.character(ory_gene_name),
+                           as.character(ory_gene_symbole),
+                           as.character(description))
+        
+        liste_genes <- append(liste_genes,newgene)
+        
     }
-  
-    for (i in 1:length(test)){
-        print(paste("numero",i," -> ",test[i][1]))
-    }
-  
-    id_rec = test["ID"]
-    position = test["Position"]
-    rap_symbole = test["RAP-DB Gene Symbol Synonym(s)"]
-    cgsnl_name = test["CGSNL Gene Name"]
-    ory_gene_symbole = test["Oryzabase Gene Symbol Synonym(s)"]
-    description = test["Description"]
-    rap_name = test["RAP-DB Gene Name Synonym(s)"]
-    ory_gene_name = test["Oryzabase Gene Name Synonym(s)"]
-    cgsnl_gene = test["CGSNL Gene Symbol"]
-    
-    #prochaine étape -> créer objet et mettre tous les attributs dedans
-    #créé un nouvel objet gene
-    newgene <- GeneDB1(id = id_rec,
-                       locus = position,
-                       rapDBGeneNameSynonym = rap_name,
-                       rapDBGeneSymbolSynonym = rap_symbole,
-                       cgsnlGeneName = cgsnl_name,
-                       cgsnlGeneSymbol = cgsnl_gene,
-                       oryzabaseGeneNameSynonym = ory_gene_name,
-                       oryzabaseGeneSymbolSynonym = ory_gene_symbole,
-                       description = description)
-    #liste d'objets genes
-    liste_genes <- data.frame()
-    liste_genes <- append(newgene)
+    return (liste_genes)
 }
+
+#phase de test
+data <- data.frame(ch = c("1","1"),
+                   st = c("5671734","148907"),
+                   end = c("6337629","248907"))
+
+#print(data)
+
+CallDB1(data)
 
