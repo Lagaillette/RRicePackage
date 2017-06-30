@@ -2,6 +2,7 @@ library(jsonlite)
 
 #on relie au fichier methods-GeneDB1.R to call function GeneDB1
 source("rRice/R/methods-GeneDB1.R")
+source("rRice/R/functions-basics.R")
 
 command ="python3"
 
@@ -96,29 +97,37 @@ CallDB1 <- function (locusListe) {
         
         #prochaine étape -> créer objet et mettre tous les attributs dedans
         #créé un nouvel objet gene
-        newgene <- GeneDB1(as.character(id_rec),
-                           locusListe[i,],
-                           as.character(rap_name),
-                           as.character(rap_symbole),
-                           as.character(cgsnl_name),
-                           as.character(cgsnl_gene),
-                           as.character(ory_gene_name),
-                           as.character(ory_gene_symbole),
-                           positiondata,
-                           as.character(description))
         
-        liste_genes <- append(liste_genes,newgene)
+        if (existeGene(liste_genes, as.character(id_rec))) {
+            newgene <- GeneDB1(as.character(id_rec),
+                               locusListe[i,],
+                               as.character(rap_name),
+                               as.character(rap_symbole),
+                               as.character(cgsnl_name),
+                               as.character(cgsnl_gene),
+                               as.character(ory_gene_name),
+                               as.character(ory_gene_symbole),
+                               positiondata,
+                               as.character(description))
+            
+            liste_genes <- append(liste_genes,newgene)
+        }
+        
         
     }
     return (liste_genes)
 }
 
 #phase de test
-#data <- data.frame(ch = c("1"),
-#                   st = c("5671734"),
-#                   end = c("6337629"))
+data <- data.frame(ch = c("1","1","1"),
+                   st = c("148907","10225320","9344261"),
+                   end = c("248907","10325320","11332201"))
 
-#print(data)
+#data <- data.frame(ch = c("1","1","1"),
+#                   st = c("148907","5671734","5671734"),
+#                   end = c("248907","6337629","6337629"))
 
-#CallDB1(data)
+print(data)
+
+CallDB1(data)
 

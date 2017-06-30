@@ -5,6 +5,7 @@ existsGene <- function(genes, id){
         if (genes[i]@id == id){
             found <- TRUE
         }
+        i <- i+1
     }
     return(found)
 }
