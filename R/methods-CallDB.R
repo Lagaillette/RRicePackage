@@ -1,8 +1,8 @@
 library(jsonlite)
 
 #on relie au fichier methods-GeneDB1.R to call function GeneDB1
-source("rRice/R/methods-GeneDB1.R")
-source("rRice/R/functions-basics.R")
+#source("rRice/R/methods-GeneDB1.R")
+#source("rRice/R/functions-basics.R")
 
 command ="python3"
 
@@ -15,7 +15,7 @@ command ="python3"
 #' @export
 #' @examples
 #' Appel_Scriptv7("Os06g0654600")
-Appel_Scriptv7 <- function (RAPID) {
+appel_Scriptv7 <- function (RAPID) {
   
     #chemin pour n'importe quel utilisateur
     debut = getwd()
@@ -46,7 +46,7 @@ Appel_Scriptv7 <- function (RAPID) {
 #' @export
 #' @examples
 #' callDB1(Liste de locus)
-CallDB1 <- function (locusListe) {
+callDB1 <- function (locusListe) {
   
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
