@@ -16,18 +16,32 @@ def main():
     print(db)
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
+    hashmap = dataSnp[0]
     print(dataSnp)
     if(db == "1"):
-        rapdb.rapdb(dataSnp[0]["raprepName"])
-        jsonRapdb = rapdb.rapdb(dataSnp[0]["raprepName"])
-        print(jsonRapdb)
+        if(hashmap["raprepName"]):
+            dataRapdb = rapdb.rapdb(hashmap["raprepName"])
+            print(dataRapdb)
+        else:
+            print("empty")
 
     elif(db == "2"):
-        jsonGramene = gramene.gramene(dataSnp[0]["raprepName"])
-        print(jsonGramene)
+        if(hashmap["raprepName"]):
+            dataGramene = gramene.gramene(hashmap["raprepName"])
+            print(dataGramene)
+        else:
+            print("empty")
 
     elif(db == "3"):
-        oryzabase.oryzabase()
+        dataOryzabase = oryzabase.oryzabaseRapId(hashmap["raprepName"])
+        if(not dataOryzabase.empty):
+            print("OK")
+            print(dataOryzabase)
+        else:
+            print("no rap id")
+            rapdbCGSNL = rapdb.rapdb(hashmap["raprepName"])
+            dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
+            print(dataOryzabase)
 
 
 

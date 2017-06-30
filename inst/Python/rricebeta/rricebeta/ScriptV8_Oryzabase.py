@@ -37,7 +37,7 @@ def existFile(pathToFile):
     """
     return (os.path.isfile(pathToFile))
 
-def oryzabase(hashmap):
+def oryzabaseCGSNL(CGSNL):
     pathToFile = '../resources/OryzabaseGeneListEn.txt'
     if(existFile(pathToFile) == False):
         loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
@@ -54,14 +54,31 @@ def oryzabase(hashmap):
         array = pd.DataFrame()
 
     #array.columns = ['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology']
-    if (hashmap["CGSNL Gene Name"]):
-        print("Find by CGSNL Gene Name")
-        data = array.loc[array['CGSNL Gene Name'] == hashmap["CGSNL Gene Name"]]
-    elif (hashmap["ID"]):
-        print("Find by RAP ID")
-        data = array.loc[array['RAP ID'] == hashmap["ID"]]
+    print("Find by CGSNL Gene Name")
+    data = array.loc[array['CGSNL Gene Name'] == CGSNL]
+    return data
+
+def oryzabaseRapId(RAPID):
+    pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    if(existFile(pathToFile) == False):
+        loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
     else:
-        print("Empty")
+        print("File already exist")
+    print("Find file OK")
+
+    # Import file tab-delimited
+    try:
+        array = pd.read_csv("../resources/OryzabaseGeneListEn.txt", sep="\t", encoding='utf-8')
+        #array = pd.read_csv(self.file, sep="\t", names=['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology'])
+
+    except NameError:
+        array = pd.DataFrame()
+
+    #array.columns = ['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology']
+
+    print("Find by RAP ID")
+    data = array.loc[array['RAP ID'] == RAPID]
+
     print(data)
     return data
 
