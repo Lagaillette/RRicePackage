@@ -13,7 +13,7 @@ def main():
     start = sys.argv[2]
     end = sys.argv[3]
     db = sys.argv[4]
-    print(db)
+    #print(db)
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
     hashmap = dataSnp[0]
@@ -34,10 +34,10 @@ def main():
             print("OK")
             print(dataOryzabase)
         else:
-            print("no rap id")
+            #print("no rap id")
             rapdbCGSNL = rapdb.rapdb(hashmap["raprepName"])
             dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
-            print(dataOryzabase)
+            #print(dataOryzabase)
 
 
 
