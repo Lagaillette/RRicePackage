@@ -30,7 +30,6 @@ def main():
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
     hashmap = dataSnp[0]
-    print(dataSnp)
     if(db == "1"):
         if(hashmap["raprepName"]):
             dataRapdb = rapdb.rapdb(hashmap["raprepName"])
@@ -45,17 +44,22 @@ def main():
         else:
             print("empty")
 
+    # Faire try
     elif(db == "3"):
-        dataOryzabase = oryzabase.oryzabaseRapId(hashmap["raprepName"])
-        if(not dataOryzabase.empty):
+        try:
+            dataOryzabase = oryzabase.oryzabaseRapId(hashmap["raprepName"])
             print("OK")
             print(dataOryzabase)
-        else:
+        except:
+            #Si vide ya erreur
             print("no rap id")
-            rapdbCGSNL = rapdb.rapdb(hashmap["raprepName"])
-            dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
-            print(dataOryzabase)
-
+            try:
+                rapdbCGSNL = rapdb.rapdb(hashmap["raprepName"])
+                dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
+                print(dataOryzabase)
+            except:
+                print("not found")
+    """
     elif(db == "4"):
         url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"
         filename = url.split("/")[-1]
@@ -68,7 +72,7 @@ def main():
             r = requests.get(url)
             decompressedFile = gzip.decompress(r.content)
             # Create the file .txt
-            with open(pathToFile, "wb") as f:
+            with open(pathToFile, "w") as f:
                 f.write(decompressedFile)
                 f.close()
         newFile = formatPathToFile("geneID.txt")
@@ -83,14 +87,14 @@ def main():
 
             # Find the line corresponding to the entered RAP ID (Select LOC FROM LOC where RAP = RapID)
             data = array.loc[array['RAP'] == hashmap["raprepName"]]
-            data['iricname'] = hashmap['iricname']
+            data.loc[:, 'iricname'] = hashmap['iricname']
 
             # Store the corresponding LOC ID and split the string
-            print(data.to_csv)
+            print(data['iricname'])
             data.to_csv(f, sep='\t')
 
             f.close()
-
+    """
 
 
 

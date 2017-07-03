@@ -45,13 +45,16 @@ def oryzabaseCGSNL(CGSNL):
         print("File already exist")
     print("Find file OK")
 
-    # Import file tab-delimited
+    # Import file tab-
+    nameFile = formatPathToFile("OryzabaseGeneListEn.txt")
     try:
-        array = pd.read_csv("../resources/OryzabaseGeneListEn.txt", sep="\t", encoding='utf-8')
+        array = pd.read_csv(nameFile, sep="\t", encoding='utf-8')
         #array = pd.read_csv(self.file, sep="\t", names=['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology'])
 
     except NameError:
         array = pd.DataFrame()
+
+    print(array)
 
     #array.columns = ['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology']
     print("Find by CGSNL Gene Name")
@@ -67,8 +70,9 @@ def oryzabaseRapId(RAPID):
     print("Find file OK")
 
     # Import file tab-delimited
+    nameFile = formatPathToFile("OryzabaseGeneListEn.txt")
     try:
-        array = pd.read_csv("../resources/OryzabaseGeneListEn.txt", sep="\t", encoding='utf-8')
+        array = pd.read_csv(nameFile, sep="\t", encoding='utf-8')
         #array = pd.read_csv(self.file, sep="\t", names=['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology'])
 
     except NameError:
@@ -76,7 +80,6 @@ def oryzabaseRapId(RAPID):
 
     #array.columns = ['Trait Id', 'CGSNL Gene Symbol', 'Gene symbol synonym(s)', ' CGSNL Gene Name', 'Gene name synonym(s)', 'Protein Name', 'Allele', 'Chromosome No.', 'Explanation', 'Trait Class', 'RAP ID', 'GrameneId', 'Arm', 'Locate(cM)', 'Gene Ontology', 'Trait Ontology', 'Plant Ontology']
 
-    print("Find by RAP ID")
     data = array.loc[array['RAP ID'] == RAPID]
 
     print(data)
