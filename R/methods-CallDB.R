@@ -1,9 +1,9 @@
 library(jsonlite)
 
 #on relie au fichier methods-GeneDB1.R to call function GeneDB1
-source("rRice/R/methods-GeneDB1.R")
+#source("./methods-GeneDB1.R")
 
-command ="python3"
+command ="py"
 
 #' This function calls Scriptv7 from python
 #'

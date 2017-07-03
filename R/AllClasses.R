@@ -85,7 +85,7 @@ setClass(
 #' @slot description a description of the gene
 #' @name GeneDB1
 #' @rdname GeneDB1-class
-#' @exportClass Gene
+#' @exportClass GeneDB1
 setClass(
     #name of the class
     "GeneDB1",
@@ -100,5 +100,61 @@ setClass(
                  position = "data.frame",
                  description = "character"),
     
+    contains = "Gene"
+)
+
+
+#' The Gene  class specific to the third database.
+#'
+#' This gene is specific to the database 3 that is the database "Oryzabase". 
+#' So it contains all the informations we can have about one gene with the 
+#' "Oryzabase" database.
+#'
+#' @slot id
+#' @slot locus 
+#' @slot GeneId 
+#' @slot cgsnlGeneSymbol
+#' @slot GeneSymbolSynonim
+#' @slot cgsnlSymbolSynonim
+#' @slot GeneNameSynonim
+#' @slot proteinName
+#' @slot allele
+#' @slot chromosomeNumber
+#' @slot explanation
+#' @slot traitClass
+#' @slot rapID
+#' @slot grameneId
+#' @slot arm
+#' @slot locate
+#' @slot geneOntology
+#' @slot traitOntology
+#' @slot plantOntology
+#' @name GeneDB3
+#' @rdname GeneDB3-class
+#' @exportClass GeneDB3
+setClass(
+    #name of the class
+    "GeneDB3",
+    
+    #attributes of the classnumeric
+    slots = list(traitGeneId = "character",
+                 cgsnlGeneSymbol = "character",
+                 GeneSymbolSynonim = "character",
+                 cgsnlSymbolSynonim = "character",
+                 GeneNameSynonim = "character",
+                 proteinName = "character",
+                 allele = "character",
+                 chromosomeNumber = "numeric",
+                 explanation = "character",
+                 traitClass = "character",
+                 rapID = "character",
+                 grameneId = "character",
+                 arm = "character",
+                 locate = "character",
+                 geneOntology = "character",
+                 traitOntology = "character",
+                 plantOntology = "character"
+    ),
+                 
     contains = "Gene"
 )

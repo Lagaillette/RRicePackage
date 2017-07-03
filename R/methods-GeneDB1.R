@@ -20,7 +20,7 @@ GeneDB1 <- function(id, locus, rapDBGeneNameSynonym, rapDBGeneSymbolSynonym,
                   description = description)
     
     return(result)
-          
+    
 }
 
 

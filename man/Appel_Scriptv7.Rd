@@ -2,12 +2,13 @@
 % Please edit documentation in R/methods-CallDB.R
 \name{Appel_Scriptv7}
 \alias{Appel_Scriptv7}
-\title{Fonction qui appel le Scriptv7 de python}
+\title{This function calls Scriptv7 from python}
 \usage{
 Appel_Scriptv7(RAPID)
 }
 \description{
-Cette fonction permet à l'utilisateur de chercher si le RAPID existe dans Oryzabase.txt
+Cette fonction permet à l'utilisateur de chercher si le RAPID existe dans 
+Oryzabase.txt
 }
 \examples{
 Appel_Scriptv7("Os06g0654600")
