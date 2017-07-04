@@ -1,16 +1,16 @@
 command ="python3"
 
 
-#exemple RAPID = "Os06g0654600" 
-RAPID = "Os06g0654600" 
+#exemple RAPID = "Os06g0654600"
+RAPID = "Os06g0654600"
 
 #pour appeler le fichier SCriptv7_Table.py -> BESOIN de l'attribut "RAPID"
 Appel_Scriptv7 <- function (RAPID) {
-  
+
 #à modifier en fonction de l'utilisateur
 #path2script="/home/ioit.user4/RRicePackage/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
-path2script="/home/ioit.user3/RRicePackage/RricePackage/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
-  
+path2script="inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
+
 # Build up args in a vector
 # RAPID_valide = "Os06g0654600" -> exemple valide
 args = c(RAPID)
