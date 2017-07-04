@@ -12,7 +12,7 @@ existsGene <- function(genes, id){
 }
 
 
-#this function allow us to know if the user is using Linux or Windows
+#this function allows us to know if the user is using Linux or Windows
 whichone <- function(){
   found <- 0
   
