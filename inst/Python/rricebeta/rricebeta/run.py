@@ -2,6 +2,7 @@ import os
 import sys
 import requests
 import gzip
+import csv
 import pandas as pd
 path = os.path.dirname(__file__)
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
@@ -9,6 +10,7 @@ import snpSeek as snpSeek
 import Scriptv7_Table as rapdb
 import ScriptGramene as gramene
 import ScriptV8_Oryzabase as oryzabase
+import snpSeekAll as snpSeekAll
 
 def formatPathToFile(nameFile):
     # on supprime le dernier char tant qu'on n'a pas rencontré '/'
@@ -20,9 +22,14 @@ def formatPathToFile(nameFile):
     return pathToFile
 
 
+
 def main():
     pathScript = sys.argv[0]
     contig = sys.argv[1]
+    if len(contig)<2:
+        contig =  'chr0'+contig # test if for 10 - 11 - 12
+    else:
+        contig =  'chr'+contig
     start = sys.argv[2]
     end = sys.argv[3]
     db = sys.argv[4]
@@ -30,6 +37,8 @@ def main():
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
     hashmap = dataSnp[0]
+    #geneID(contig, start, end, hashmap[], hashmap["raprepName"])
+
     if(db == "1"):
         if(hashmap["raprepName"]):
             dataRapdb = rapdb.rapdb(hashmap["raprepName"])
@@ -48,6 +57,7 @@ def main():
     elif(db == "3"):
         try:
             dataOryzabase = oryzabase.oryzabaseRapId(hashmap["raprepName"])
+            print(hashmap["raprepName"])
             print("OK")
             print(dataOryzabase)
         except:
@@ -59,7 +69,8 @@ def main():
                 print(dataOryzabase)
             except:
                 print("not found")
-    """
+
+    # Ecriture fichier
     elif(db == "4"):
         url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"
         filename = url.split("/")[-1]
@@ -94,9 +105,20 @@ def main():
             data.to_csv(f, sep='\t')
 
             f.close()
-    """
-
-
+    # Plage chromosome
+    elif(db == "5"):
+    snpSeekAll.snpSeekAll("Os12:1..27,531,856")
+    snpSeekAll.snpSeekAll("Os02:1..35,937,250")
+    snpSeekAll.snpSeekAll("Os03:1..36,413,819")
+    snpSeekAll.snpSeekAll("Os04:1..35,502,694")
+    snpSeekAll.snpSeekAll("Os05:1..29,958,434")
+    snpSeekAll.snpSeekAll("Os06:1..31,248,787")
+    snpSeekAll.snpSeekAll("Os07:1..29,697,621")
+    snpSeekAll.snpSeekAll("Os08:1..28,443,022")
+    snpSeekAll.snpSeekAll("Os09:1..23,012,720")
+    snpSeekAll.snpSeekAll("Os10:1..23,207,287")
+    snpSeekAll.snpSeekAll("Os11:1..29,021,106")
+    snpSeekAll.snpSeekAll("Os12:1..27,531,856")
 
 
 # Pour eviter que le script soit execute lors d'un simple import
