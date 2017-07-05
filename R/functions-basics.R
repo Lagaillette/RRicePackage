@@ -27,7 +27,7 @@ whichOS <- function(){
 }
 
 
-AlreadyUsedDB <- function(databases,i){
+alreadyUsedDB <- function(databases,i){
     j <- 1
     alreadyUsed <- FALSE
     while(j < i && !alreadyUsed){

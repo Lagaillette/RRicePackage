@@ -57,13 +57,13 @@ Experiment <- function(name, locus){
                                          "(example : 1 for RAPDB) :")))
         if(databases[i] > 0 && 
            databases[i] <= dbAvailables && 
-           !AlreadyUsedDB(databases,i)){
+           !alreadyUsedDB(databases,i)){
             callDB <- paste("callDB",databases[i],sep="")
             ##genes[[i]] <- (do.call(callDB, args = list(locus)))
             i <- i+1
         }
         else{
-            if(AlreadyUsedDB(databases,i)){
+            if(alreadyUsedDB(databases,i)){
                 message("the database is already used. Try again")
             }
             else{
