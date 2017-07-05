@@ -105,20 +105,22 @@ def main():
             data.to_csv(f, sep='\t')
 
             f.close()
+
     # Plage chromosome
+    # Cree le fichier fileID.txt
     elif(db == "5"):
-    snpSeekAll.snpSeekAll("Os12:1..27,531,856")
-    snpSeekAll.snpSeekAll("Os02:1..35,937,250")
-    snpSeekAll.snpSeekAll("Os03:1..36,413,819")
-    snpSeekAll.snpSeekAll("Os04:1..35,502,694")
-    snpSeekAll.snpSeekAll("Os05:1..29,958,434")
-    snpSeekAll.snpSeekAll("Os06:1..31,248,787")
-    snpSeekAll.snpSeekAll("Os07:1..29,697,621")
-    snpSeekAll.snpSeekAll("Os08:1..28,443,022")
-    snpSeekAll.snpSeekAll("Os09:1..23,012,720")
-    snpSeekAll.snpSeekAll("Os10:1..23,207,287")
-    snpSeekAll.snpSeekAll("Os11:1..29,021,106")
-    snpSeekAll.snpSeekAll("Os12:1..27,531,856")
+        snpSeekAll.snpSeekAll("Os12:1..27,531,856")
+        snpSeekAll.snpSeekAll("Os02:1..35,937,250")
+        snpSeekAll.snpSeekAll("Os03:1..36,413,819")
+        snpSeekAll.snpSeekAll("Os04:1..35,502,694")
+        snpSeekAll.snpSeekAll("Os05:1..29,958,434")
+        snpSeekAll.snpSeekAll("Os06:1..31,248,787")
+        snpSeekAll.snpSeekAll("Os07:1..29,697,621")
+        snpSeekAll.snpSeekAll("Os08:1..28,443,022")
+        snpSeekAll.snpSeekAll("Os09:1..23,012,720")
+        snpSeekAll.snpSeekAll("Os10:1..23,207,287")
+        snpSeekAll.snpSeekAll("Os11:1..29,021,106")
+        snpSeekAll.snpSeekAll("Os12:1..27,531,856")
 
 
 # Pour eviter que le script soit execute lors d'un simple import

@@ -14,7 +14,7 @@ def snpSeekAll(string):
     print(start)
     end = string[8:].split(",")
     end = end[0] + end[1] + end[2]
-
+    print("c parti")
     Log = open('log.txt', 'w')
     url = 'http://snp-seek.irri.org/ws/genomics/gene/osnippo/'
     u = ''
@@ -36,7 +36,7 @@ def snpSeekAll(string):
     print(data)
 
     # retourne un tableau
-    with open("fileid.txt", 'w') as myfile:
+    with open("fileid.txt", 'a') as myfile:
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
         wr.writerow(data)
         myfile.close
