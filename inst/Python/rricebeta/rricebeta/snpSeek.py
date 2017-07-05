@@ -29,10 +29,6 @@ def snpSeek(contig, start, end):
     
     """
 
-    if len(contig)<2:
-        contig =  'chr0'+contig # test if for 10 - 11 - 12
-    else:
-        contig =  'chr'+contig
 
     Log.write(url + contig + '?' + 'start='+ start + '&end='+ end + '&model=msu7\n')
     try:
