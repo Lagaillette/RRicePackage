@@ -1,0 +1,22 @@
+How to launch the package with devtools
+
+
+- launch Rstudio
+- install devtools with install.package(“devtools”)  (if it’s the first use)
+- Import devtools with “library(devtools)”
+- check the path using “getwd”
+if you want or not move to an other folder (like rRice for example) use 
+“setwd(“path_to_the_rRice_folder”)”
+- do “devtools::as.package(“path_to_the_rRice_folder”)” to do the package and 
+see all the informations of this package
+- do  “devtools::install(“path_to_the_rRice_folder”)” to install the package 
+into your Rstudio
+- import the package “library(rRice)” 
+
+
+If you don’t have Python 3 : 
+    
+    /** to do **/ 
+    Install Python 3
+Install requests and pandas for python
+import pandas and requests to python
