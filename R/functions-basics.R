@@ -13,17 +13,17 @@ existsGene <- function(genes, id){
 
 
 #this function allows us to know if the user is using Linux or Windows
-whichone <- function(){
-  found <- 0
-  
-  debut = getwd()
-  if (substr(debut, 0,1) == '/') #ubuntu
-    found <- 1
-  else #windows
+whichOS <- function(){
     found <- 0
-  
-  print(found)
-  return(found)
+    
+    debut = getwd()
+    if (substr(debut, 0,1) == '/') #ubuntu
+        found <- 1
+    else #windows
+        found <- 0
+    
+    print(found)
+    return(found)
 }
 
 
@@ -39,5 +39,4 @@ AlreadyUsedDB <- function(databases,i){
         }
     }
     return(alreadyUsed)
-    
 }
