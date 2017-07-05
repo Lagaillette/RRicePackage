@@ -25,3 +25,19 @@ whichone <- function(){
   print(found)
   return(found)
 }
+
+
+AlreadyUsedDB <- function(databases,i){
+    j <- 1
+    alreadyUsed <- FALSE
+    while(j < i && !alreadyUsed){
+        if (as.numeric(databases[j]) == as.numeric(databases[i])){
+            alreadyUsed <- TRUE
+        }
+        else{
+            j <- j+1
+        }
+    }
+    return(alreadyUsed)
+    
+}

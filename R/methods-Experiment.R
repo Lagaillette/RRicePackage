@@ -15,20 +15,63 @@
 #' @aliases addAttribute,Experiment-method
 #' @rdname Experiment-class
 Experiment <- function(name, locus){
-    nbdb <- as.numeric(readline(prompt=
-                "Enter the numbers of databases you want to experiment : "))
-    databases <- vector(mode='list', length=nbdb)
-    date <- (readline(
-                 prompt="Enter the date of the experiment (mm/dd/yyyy) : "))
-    date <- as.Date(c(date), format =  "%m/%d/%Y")
+    ## the number of databases available. To increment every time we have
+    ## one more database available
+    dbAvailables <- 3
+    ## to check if the number the user will put is correct or not
+    correctNbdb <- FALSE
+    while(!correctNbdb){
+        nbdb <- as.numeric(
+                readline(
+                prompt="How many databases do you want to experiment : "))
+        if(is.numeric(nbdb) && nbdb > 0 && nbdb <= dbAvailables){
+            databases <- vector(mode='list', length=nbdb)
+            correctNbdb <- TRUE
+        }
+        else{
+            message("you have not choose a correct number of databases.")
+            message("please try again")
+        }
+    }
+    ## Allows to check if the date is good or not
+    correctDate <- FALSE
+    while(!correctDate){
+        date <- (readline(
+            prompt="Enter the date of the experiment (mm/dd/yyyy) : "))
+        date <- as.Date(c(date), format =  "%m/%d/%Y")
+        if(!is.na(date) && format(date, '%Y') > 1900 && format(date, '%Y') <= format(Sys.Date(), '%Y')){
+            correctDate <- TRUE
+        }
+        else{
+            message("please write the date in the format asked.")
+        }
+    }
+    ## We create the list which will have the genes of the databases
     genes <- vector(mode='list', length=nbdb)
-    for(i in 1:nbdb){
+    i <- 1
+    while(i <= nbdb){
         databases[i] <- as.numeric(
                             readline(
-                                prompt = paste("Enter the name (number)",
-                                         "of the database you want: ")))
-        callDB <- paste("callDB",databases[i],sep="")
-        genes[[i]] <- (do.call(callDB, args = list(locus)))
+                                prompt = paste("Enter the number",
+                                         "of the database you want",
+                                         "(example : 1 for RAPDB) :")))
+        if(databases[i] > 0 && 
+           databases[i] <= dbAvailables && 
+           !AlreadyUsedDB(databases,i)){
+            callDB <- paste("callDB",databases[i],sep="")
+            ##genes[[i]] <- (do.call(callDB, args = list(locus)))
+            i <- i+1
+        }
+        else{
+            if(AlreadyUsedDB(databases,i)){
+                message("the database is already used. Try again")
+            }
+            else{
+                message("this number of database not exists. Try again")
+                message("You can put a number between 1 and 3")
+            }
+            
+        }
     }
     result <- new("Experiment",
                   name=name,
