@@ -54,47 +54,47 @@ def rapdb(RAPID):
     try:
         rapid = result.find('td', attrs={"class": "c01"}).a.contents[0]
     except:
-        #print("Error : empty ID")
+        print("Error : empty ID")
         rapid = RAPID
     try:
         description = result.find('td', attrs={"class": "c02"}).contents[0]
     except:
-        #print("Error : empty description")
+        print("Error : empty description")
         description = ""
     try:
         position = result.find('td', attrs={"class": "c03"}).a.contents[0]
     except:
-        #print("Error : empty position")
+        print("Error : empty position")
         position = ""
     try:
         RAP_symbol = result.find('td', attrs={"class": "c04"}).contents[0]
     except:
-        #print("Error : empty RAP symbol")
+        print("Error : empty RAP symbol")
         RAP_symbol = ""
     try:
         RAP_name = result.find('td', attrs={"class": "c05"}).contents[0]
     except:
-        #print("Empty error")
+        print("Empty error")
         RAP_name = ""
     try:
         CGSNL_symbol = result.find('td', attrs={"class": "c06"}).contents[0]
     except:
-        #print("Empty error")
+        print("Empty error")
         CGSNL_symbol = ""
     try:
         CGSNL_name = result.find('td', attrs={"class": "c07"}).contents[0]
     except:
-        #print("Empty error")
+        print("Empty error")
         CGSNL_name = ""
     try:
         Oryzabase_symbol = result.find('td', attrs={"class": "c08"}).contents[0]
     except:
-        #print("Empty error")
+        print("Empty error")
         Oryzabase_symbol = ""
     try:
         Oryzabase_name = result.find('td', attrs={"class": "c09"}).contents[0]
     except:
-        #print("Empty error")
+        print("Empty error")
         Oryzabase_name = ""
 
     hashmap = {"ID": rapid,
