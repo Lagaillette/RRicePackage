@@ -33,7 +33,6 @@ def main():
     start = sys.argv[2]
     end = sys.argv[3]
     db = sys.argv[4]
-    print(db)
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
     hashmap = dataSnp[0]
@@ -121,6 +120,10 @@ def main():
         snpSeekAll.snpSeekAll("Os10:1..23,207,287")
         snpSeekAll.snpSeekAll("Os11:1..29,021,106")
         snpSeekAll.snpSeekAll("Os12:1..27,531,856")
+
+    # Return the SnpSeek Call
+    elif(db == "6"):
+        return hashmap
 
 
 # Pour eviter que le script soit execute lors d'un simple import
