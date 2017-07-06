@@ -2,13 +2,13 @@
 ################################ Constructor ##################################
 
 
-GeneDB1 <- function(id, locus,traitGeneId, cgsnlGeneSymbol, GeneSymbolSynonim,
+GeneDB3 <- function(id, locus,traitGeneId, cgsnlGeneSymbol, GeneSymbolSynonim,
                     cgsnlSymbolSynonim, GeneNameSynonim, proteinName,
                     allele, chromosomeNumber, explanation, traitClass,
                     rapID, grameneId, arm, locate, geneOntology,
                     traitOntology, plantOntology ){
     
-    result <- new("GeneDB1",
+    result <- new("GeneDB3",
                   id = id,
                   locus = locus,
                   others = list(),
