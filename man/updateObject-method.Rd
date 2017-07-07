@@ -5,14 +5,14 @@
 \alias{updateObject}
 \title{Update an attribute of an object}
 \usage{
-updateObject(experiment, attribute, value)
+updateObject(object, attribute, value)
 }
 \arguments{
+\item{object}{The object for which we want modification}
+
 \item{attribute}{The attribute we want to update}
 
 \item{value}{The value we want to give at the attribute}
-
-\item{object}{The object for which we want modification}
 }
 \value{
 The object without the attribute we want to delete

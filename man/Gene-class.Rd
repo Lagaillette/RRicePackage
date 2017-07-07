@@ -5,7 +5,7 @@
 \alias{Gene}
 \title{The Gene class.}
 \description{
-A gene contains a lot of details that depend on the database it belongs. 
+A gene contains a lot of details that depend on the database it belongs.
 But every genes have informations in common. So we put all these informations
 into a global class "Gene" from which the others specific genes classes will
 inherit.
