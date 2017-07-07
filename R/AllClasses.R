@@ -12,10 +12,10 @@
 #' @docType class
 #' @exportClass Experiment
 setClass(
-  #name of the class
+  ##name of the class
   "Experiment",
 
-  #attributes of the class
+  ##attributes of the class
   representation = representation(name = "character",
                                   date = "Date",
                                   databases = "list",
@@ -38,10 +38,10 @@ setClass(
 #' @rdname Gene-class
 #' @exportClass Gene
 setClass(
-  #name of the class
+  ##name of the class
   "Gene",
 
-  #attributes of the class
+  ##attributes of the class
   slots = list(id = "character",
                locus = "data.frame",
                others = "list")
@@ -49,10 +49,10 @@ setClass(
 
 
 setClass(
-  #name of the class
+  ##name of the class
   "GeneDBtest",
 
-  #attributes of the classnumeric
+  ##attributes of the classnumeric
   slots = list(msU7name = "character",
                fgeneshName = "character",
                rappredname = "character",
@@ -87,10 +87,10 @@ setClass(
 #' @rdname GeneDB1-class
 #' @exportClass GeneDB1
 setClass(
-    #name of the class
+    ##name of the class
     "GeneDB1",
 
-    #attributes of the classnumeric
+    ##attributes of the classnumeric
     slots = list(rapDBGeneNameSynonym = "character",
                  rapDBGeneSymbolSynonym = "character",
                  cgsnlGeneName = "character",
@@ -110,33 +110,35 @@ setClass(
 #' So it contains all the informations we can have about one gene with the
 #' "Oryzabase" database.
 #'
-#' @slot id
-#' @slot locus
-#' @slot GeneId
-#' @slot cgsnlGeneSymbol
-#' @slot GeneSymbolSynonim
-#' @slot cgsnlSymbolSynonim
-#' @slot GeneNameSynonim
-#' @slot proteinName
-#' @slot allele
-#' @slot chromosomeNumber
-#' @slot explanation
-#' @slot traitClass
-#' @slot rapID
-#' @slot grameneId
-#' @slot arm
-#' @slot locate
-#' @slot geneOntology
-#' @slot traitOntology
-#' @slot plantOntology
+#' @slot id The id of the gene. Many genes can have the same id because there
+#' are the same in spite of the different attributes they have.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot traitGeneId id
+#' @slot cgsnlGeneSymbol id
+#' @slot GeneSymbolSynonim id
+#' @slot cgsnlSymbolSynonim id
+#' @slot GeneNameSynonim id
+#' @slot proteinName id
+#' @slot allele id
+#' @slot chromosomeNumber id
+#' @slot explanation id
+#' @slot traitClass id
+#' @slot rapID id
+#' @slot grameneId id
+#' @slot arm id
+#' @slot locate id
+#' @slot geneOntology id
+#' @slot traitOntology id
+#' @slot plantOntology id
 #' @name GeneDB3
 #' @rdname GeneDB3-class
 #' @exportClass GeneDB3
 setClass(
-    #name of the class
+    ##name of the class
     "GeneDB3",
 
-    #attributes of the classnumeric
+    ##attributes of the classnumeric
     slots = list(traitGeneId = "character",
                  cgsnlGeneSymbol = "character",
                  GeneSymbolSynonim = "character",

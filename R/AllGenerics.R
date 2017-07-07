@@ -28,7 +28,7 @@ setGeneric(
 #' @docType methods
 setGeneric(
     name = "updateObject",
-    def = function(experiment, attribute , value){
+    def = function(object, attribute , value){
           standardGeneric("updateObject" )}
 )
 
@@ -82,38 +82,6 @@ setGeneric(
     name = "deleteAttribute",
     def = function(object, name){standardGeneric("deleteAttribute" )}
 )
-
-###############################################################################
-################################ functions ####################################
-
-
-# callDB functions --------------------------------------------------
-
-callDB <- function(locus){
-    csv <- read.csv(
-    "D:/Documents/Polytech-IG4/InternshipHanoi/outputRAPDB.csv",
-    stringsAsFactors = FALSE)
-    genes <- data.frame()
-    for ( i in 1:nrow(csv) ) {
-        if(csv[[1]][[i]] != "uniquename")
-        genes <- append(
-                     GeneDB1(id = "id",
-                             uniquename = csv[[1]][[i]],
-                             locus = data.frame(),
-                             msU7name = csv[[9]][[i]],
-                             fgeneshName = csv[[4]][[i]],
-                             rappredname = csv[[5]][[i]],
-                             fmin = as.numeric(csv[[6]][[i]]),
-                             fmax = as.numeric(csv[[2]][[i]]),
-                             contig = csv[[7]][[i]],
-                             iricname = csv[[8]][[i]],
-                             strand = as.numeric(csv[[10]][[i]]),
-                             description = as.character(csv[[11]][[i]],
-                             others = list())))
-    }
-    return(genes)
-    
-}
 
 
 

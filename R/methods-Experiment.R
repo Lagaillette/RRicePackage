@@ -161,7 +161,7 @@ setMethod(
 setMethod(
     "updateObject",
     signature = "Experiment",
-    def = function(experiment, attribute, value){
+    def = function(object, attribute, value){
         name_setter = paste("set",
                             toupper(substr(attribute, 1, 1)),
                             substr(attribute, 2, nchar(attribute)),

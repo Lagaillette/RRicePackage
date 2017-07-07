@@ -1,40 +1,40 @@
 library(jsonlite)
 
-#on relie au fichier methods-GeneDB1.R to call function GeneDB1
-#A faire dans DESCRIPTION !!
-source("rRice/R/methods-GeneDB1.R")
-source("rRice/R/methods-GeneDB3.R")
-source("rRice/R/functions-basics.R")
-source("rRice/R/AllClasses.R")
+##on relie au fichier methods-GeneDB1.R to call function GeneDB1
+##A faire dans DESCRIPTION !!
+##source("rRice/R/methods-GeneDB1.R")
+##source("rRice/R/methods-GeneDB3.R")
+##source("rRice/R/functions-basics.R")
+##source("rRice/R/AllClasses.R")
 
 command ="python3"
 
 #' This function calls Scriptv7 from python
 #'
-#' Cette fonction permet Ã  l'utilisateur de chercher si le RAPID existe dans 
+#' Cette fonction permet à l'utilisateur de chercher si le RAPID existe dans 
 #' Oryzabase.txt
-#' @param RAPID
+#' @param RAPID id for the script
 #' @keywords 
 #' @export
 #' @examples
 #' Appel_Scriptv7("Os06g0654600")
 appel_Scriptv7 <- function (RAPID) {
-  
-    #chemin pour n'importe quel utilisateur
+    
+    ##chemin pour n'importe quel utilisateur
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
     path2script = paste(c(debut,path), collapse = '')
-
-    # Build up args in a vector
-    # RAPID_valide = "Os06g0654600" -> exemple valide
+    
+    ## Build up args in a vector
+    ## RAPID_valide = "Os06g0654600" -> exemple valide
     args = c(RAPID)
-
-    # Add path to script as first arg
+    
+    ## Add path to script as first arg
     allArgs = c(path2script, args)
-
+    
     Routput = system2(command, args=allArgs, stdout=TRUE)
-
-    #AppelÃ© Ã  chaque fois qu'elle rencontrera un print
+    
+    ##Appelé à chaque fois qu'elle rencontrera un print
     print(Routput)
 }
 
@@ -44,37 +44,39 @@ appel_Scriptv7 <- function (RAPID) {
 #' This function will call for each locus in the list, the run.py script and
 #' python will return the list of the genes which are present in the locus and
 #' in the DB1. All these locus will be stocked in liste_genes
-#' @param Locus list
+#' 
+#' @param locusList list of locus for which we want the genes
 #' @keywords 
 #' @export
+#' @import jsonlite
 #' @examples
 #' callDB1(Liste de locus)
-callDB1 <- function (locusListe) {
-  
+callDB1 <- function (locusList) {
+    
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
     path2script = paste(c(debut,path), collapse = '')
     
     liste_genes <- data.frame()
-  
-    for (i in 1 : nrow(locusListe)) {
-        ch = as.character(locusListe[i,1])
-        start = as.character(locusListe[i,2])
-        end = as.character(locusListe[i,3])
     
-        #appel du script python run.py avec les attributs (chx, start, end, DB) 
-        #-> tous les attributs doivent etre en chaine de carac
+    for (i in 1 : nrow(locusList)) {
+        ch = as.character(locusList[i,1])
+        start = as.character(locusList[i,2])
+        end = as.character(locusList[i,3])
+        
+        ##appel du script python run.py avec les attributs (chx, start, end, DB) 
+        ##-> tous les attributs doivent etre en chaine de carac
         args = c(ch, start, end, "1")
         allArgs = c(path2script, args)
         Routput = system2(command, args=allArgs, stdout=TRUE)
-        #print(Routput)
+        ##print(Routput)
         
         if (Routput != "empty") {
             json_output <- fromJSON(Routput)
             
-            #for (j in 1:length(json_output)){
-            #    print(paste("numero",j," -> ",json_output[j][1]))
-            #}
+            ##for (j in 1:length(json_output)){
+            ##    print(paste("numero",j," -> ",json_output[j][1]))
+            ##}
             
             id_rec = json_output["ID"]
             position = json_output["Position"]
@@ -95,13 +97,13 @@ callDB1 <- function (locusListe) {
                                        st=c(pos3[[1]][[1]]),
                                        end=c(pos3[[1]][[3]]))
             
-
-            #Permet de savoir si le gÃ¨ne existe deja dans notre liste
-            #On ajoute seulement les gÃ¨nes qui ne sont pas dans la liste
+            
+            ##Permet de savoir si le gène existe deja dans notre liste
+            ##On ajoute seulement les gènes qui ne sont pas dans la liste
             
             if (!existsGene(liste_genes,as.character(id_rec))) {
                 newgene <- GeneDB1(as.character(id_rec),
-                                   locusListe[i,],
+                                   locusList[i,],
                                    as.character(rap_name),
                                    as.character(rap_symbole),
                                    as.character(cgsnl_name),
@@ -110,7 +112,7 @@ callDB1 <- function (locusListe) {
                                    as.character(ory_gene_symbole),
                                    positiondata,
                                    as.character(description))
-                #print(id_rec)
+                ##print(id_rec)
                 liste_genes <- append(liste_genes,newgene)
             }
         }
@@ -123,12 +125,12 @@ callDB1 <- function (locusListe) {
 #' This function will call for each locus in the list, the run.py script and
 #' python will return the list of the genes which are present in the locus and
 #' in the DB3. All these locus will be stocked in liste_genes
-#' @param Locus list
+#' @param locusList list
 #' @keywords 
 #' @export
 #' @examples
 #' callDB3(Liste de locus)
-callDB3 <- function (locusListe) {
+callDB3 <- function (locusList) {
     
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
@@ -136,10 +138,10 @@ callDB3 <- function (locusListe) {
     
     liste_genes <- data.frame()
     
-    for (i in 1 : nrow(locusListe)) {
-        ch = as.character(locusListe[i,1])
-        start = as.character(locusListe[i,2])
-        end = as.character(locusListe[i,3])
+    for (i in 1 : nrow(locusList)) {
+        ch = as.character(locusList[i,1])
+        start = as.character(locusList[i,2])
+        end = as.character(locusList[i,3])
         
         #appel du script python run.py avec les attributs (chx, start, end, DB) 
         #-> tous les attributs doivent etre en chaine de carac
@@ -175,12 +177,12 @@ callDB3 <- function (locusListe) {
             plant_ontology = json_output["Plant Ontology"]
             
             
-            #Permet de savoir si le gÃ¨ne existe deja dans notre liste
-            #On ajoute seulement les gÃ¨nes qui ne sont pas dans la liste
+            #Permet de savoir si le gène existe deja dans notre liste
+            #On ajoute seulement les gènes qui ne sont pas dans la liste
             
             if (!existsGene(liste_genes,as.character(trait_gene_id))) {
                 newgene <- GeneDB3("",
-                                   locusListe[i,],
+                                   locusList[i,],
                                    as.character(trait_gene_id),
                                    as.character(cgsnl_gene_symbol),
                                    as.character(gene_symbole_synonyme),
@@ -225,4 +227,3 @@ callDB3 <- function (locusListe) {
 #print(data)
 
 #callDB1(data)
-
