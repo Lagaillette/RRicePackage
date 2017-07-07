@@ -1,9 +1,6 @@
-#' @export
-#' @param object the Experiment we want to update
-#' @param attribute the attribute we want to update
-#' @param value the value we want to give to the attribute
 #' @aliases updateObject,Experiment-method
-#' @rdname Experiment-class
+#' @rdname updateObject-methods
+#' @aliases updateObject,Experiment-method
 setMethod(
     "updateObject",
     signature = "Experiment",

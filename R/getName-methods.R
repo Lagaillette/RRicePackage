@@ -1,8 +1,5 @@
-#' Get the name of an Experiment
-#'
-#' @param object The Experiment for which we want to get the name
-#' @return The name of the object
-#' @exportMethod getName
+#' @rdname getName-methods
+#' @aliases getName,Experiment-method
 setMethod(
     "getName",
     signature = "Experiment",

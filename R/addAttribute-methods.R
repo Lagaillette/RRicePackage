@@ -1,3 +1,6 @@
+#' @name addAttribute
+#' @rdname addAttribute-methods
+#' @aliases addAttribute,Experiment-method
 setMethod(
     "addAttribute",
     signature = "Experiment",
@@ -11,6 +14,10 @@ setMethod(
     }
 )
 
+
+#' @name addAttribute
+#' @rdname addAttribute-methods
+#' @aliases addAttribute,Gene-method
 setMethod(
     "addAttribute",
     signature = "Gene",

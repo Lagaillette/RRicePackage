@@ -1,8 +1,6 @@
-#' Set the name of an Experiment
-#'
-#' @param object The Experiment for which we want to set the name
-#' @param name The name we want to give at the object
 #' @return The object with the new name
+#' @rdname setName-methods
+#' @aliases setName,Experiment-method
 setMethod(
     "setName",
     signature = "Experiment",

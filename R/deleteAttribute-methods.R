@@ -1,6 +1,7 @@
-#' @export
+#' @rdname deleteAttribute-methods
+#' @examples 
+#' deleteAttribute(your_experiment, name_of_the_attribute)
 #' @aliases deleteAttribute,Experiment-method
-#' @rdname Experiment-class
 setMethod(
     "deleteAttribute",
     signature = "Experiment",
@@ -19,6 +20,12 @@ setMethod(
     }
 )
 
+
+#' @name deleteAttribute
+#' @rdname deleteAttribute-methods
+#' @aliases deleteAttribute,Experiment-method
+#' @examples 
+#' deleteAttribute(your_Gene, name_of_the_attribute)
 setMethod(
     "deleteAttribute",
     signature = "Gene",

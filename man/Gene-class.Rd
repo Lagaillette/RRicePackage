@@ -3,7 +3,7 @@
 \docType{class}
 \name{Gene}
 \alias{Gene}
-\title{The Gene class.}
+\title{An S4 class to represent a Gene.}
 \description{
 A gene contains a lot of details that depend on the database it belongs.
 But every genes have informations in common. So we put all these informations

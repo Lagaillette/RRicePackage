@@ -10,8 +10,8 @@
 #' @return The object without the attribute we want to delete
 #' @exportMethod updateObject
 #' @name updateObject
-#' @rdname updateObject-method
-#' @docType methods
+#' @rdname updateObject-methods
+#' @docType method
 setGeneric(
     name = "updateObject",
     def = function(object, attribute , value){
@@ -24,6 +24,9 @@ setGeneric(
 #' @param object The object for which we want to get the name
 #' @return The name of the object
 #' @exportMethod getName
+#' @name getName
+#' @rdname getName-methods
+#' @docType method
 setGeneric(
     name = "getName",
     def = function(object){standardGeneric("getName" )}
@@ -34,7 +37,10 @@ setGeneric(
 #'
 #' @param object The object for which we want to set the name
 #' @param name The name we want to give at the object
-#' @return The object with the new name
+#' @return The object with the new name#' @exportMethod addAttribute
+#' @name setName
+#' @rdname setName-methods
+#' @docType method
 setGeneric(
     name = "setName",
     def = function(object, name){standardGeneric("setName" )}
@@ -48,8 +54,8 @@ setGeneric(
 #' @return The object without the attribute you want to delete.
 #' @exportMethod addAttribute
 #' @name addAttribute
-#' @rdname addAttribute-method
-#' @docType methods
+#' @rdname addAttribute-methods
+#' @docType method
 setGeneric(
     name = "addAttribute",
     def = function(object, name, value){standardGeneric("addAttribute" )}
@@ -62,8 +68,9 @@ setGeneric(
 #' @return The object without the attribute you want to delete.
 #' @exportMethod deleteAttribute
 #' @name deleteAttribute
-#' @rdname deleteAttribute-method
-#' @docType methods
+#' @rdname deleteAttribute-methods
+#' @exportMethod deleteAttribute
+#' @docType method
 setGeneric(
     name = "deleteAttribute",
     def = function(object, name){standardGeneric("deleteAttribute" )}

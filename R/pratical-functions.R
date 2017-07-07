@@ -1,4 +1,8 @@
-#This function is used in methods-calldb to know if a gene belongs to the liste (genes)
+#' Function that allows to know if a gene already exists or not
+#' 
+#' @param genes the list of unique genes.
+#' @param id the id of the gene we don't want to duplicate.
+#' @return Boolean TRUE if the gene exists, FALSE if not.
 existsGene <- function(genes, id){
     found <- FALSE
     i <- 1
@@ -11,8 +15,11 @@ existsGene <- function(genes, id){
     return(found)
 }
 
-
-#this function allows us to know if the user is using Linux or Windows
+#'Function to know the OS using the package
+#'
+#' this function allows us to know if the user is using Linux or Windows
+#' 
+#' @return numeric 0 if windows, 1 if linux
 whichOS <- function(){
     found <- 0
     
@@ -26,7 +33,11 @@ whichOS <- function(){
     return(found)
 }
 
-
+#' Function checking if the database is already used
+#' 
+#' @param databases the list of the databases we have
+#' @param i the number of the database we want to know if it's already used
+#' @return Boolean TRUE if the database is already used, FALSE if not
 alreadyUsedDB <- function(databases,i){
     j <- 1
     alreadyUsed <- FALSE
