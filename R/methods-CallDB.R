@@ -23,14 +23,14 @@ appel_Scriptv7 <- function (RAPID) {
     ##chemin pour n'importe quel utilisateur
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
-    path2script = paste(c(debut,path), collapse = '')
+    path2Script = paste(c(debut,path), collapse = '')
     
     ## Build up args in a vector
     ## RAPID_valide = "Os06g0654600" -> exemple valide
     args = c(RAPID)
     
     ## Add path to script as first arg
-    allArgs = c(path2script, args)
+    allArgs = c(path2Script, args)
     
     Routput = system2(command, args=allArgs, stdout=TRUE)
     
@@ -43,21 +43,22 @@ appel_Scriptv7 <- function (RAPID) {
 #'
 #' This function will call for each locus in the list, the run.py script and
 #' python will return the list of the genes which are present in the locus and
-#' in the DB1. All these locus will be stocked in liste_genes
+#' in the DB1. All these locus will be stocked in listGenes
 #' 
 #' @param locusList list of locus for which we want the genes
 #' @keywords 
 #' @export
 #' @import jsonlite
+#' @importFrom jsonLite fromJSON
 #' @examples
-#' callDB1(Liste de locus)
+#' callDB1(locus_list)
 callDB1 <- function (locusList) {
     
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
-    path2script = paste(c(debut,path), collapse = '')
+    path2Script = paste(c(debut,path), collapse = '')
     
-    liste_genes <- data.frame()
+    listGenes <- data.frame()
     
     for (i in 1 : nrow(locusList)) {
         ch = as.character(locusList[i,1])
@@ -67,33 +68,33 @@ callDB1 <- function (locusList) {
         ##appel du script python run.py avec les attributs (chx, start, end, DB) 
         ##-> tous les attributs doivent etre en chaine de carac
         args = c(ch, start, end, "1")
-        allArgs = c(path2script, args)
+        allArgs = c(path2Script, args)
         Routput = system2(command, args=allArgs, stdout=TRUE)
         ##print(Routput)
         
         if (Routput != "empty") {
-            json_output <- fromJSON(Routput)
+            jsonOutput <- fromJSON(Routput)
             
-            ##for (j in 1:length(json_output)){
-            ##    print(paste("numero",j," -> ",json_output[j][1]))
+            ##for (j in 1:length(jsonOutput)){
+            ##    print(paste("numero",j," -> ",jsonOutput[j][1]))
             ##}
             
-            id_rec = json_output["ID"]
-            position = json_output["Position"]
-            rap_symbole = json_output["RAP-DB Gene Symbol Synonym(s)"]
-            cgsnl_name = json_output["CGSNL Gene Name"]
-            ory_gene_symbole = json_output["Oryzabase Gene Symbol Synonym(s)"]
-            description = json_output["Description"]
-            rap_name = json_output["RAP-DB Gene Name Synonym(s)"]
-            ory_gene_name = json_output["Oryzabase Gene Name Synonym(s)"]
-            cgsnl_gene = json_output["CGSNL Gene Symbol"]
+            idRec = jsonOutput["ID"]
+            position = jsonOutput["Position"]
+            rapSymbol = jsonOutput["RAP-DB Gene Symbol Synonym(s)"]
+            cgsnlName = jsonOutput["CGSNL Gene Name"]
+            oryGeneSymbol = jsonOutput["Oryzabase Gene Symbol Synonym(s)"]
+            description = jsonOutput["Description"]
+            rapName = jsonOutput["RAP-DB Gene Name Synonym(s)"]
+            oryGeneName = jsonOutput["Oryzabase Gene Name Synonym(s)"]
+            cgsnlGene = jsonOutput["CGSNL Gene Symbol"]
             
             position <- as.character(position) 
             pos1 <- strsplit(position, ":")
             pos2 <- pos1[[1]][[2]]
             pos3 <- strsplit(pos2,"[..]")
             
-            positiondata <- data.frame(ch=c(pos1[[1]][[1]]),
+            positionData <- data.frame(ch=c(pos1[[1]][[1]]),
                                        st=c(pos3[[1]][[1]]),
                                        end=c(pos3[[1]][[3]]))
             
@@ -101,30 +102,31 @@ callDB1 <- function (locusList) {
             ##Permet de savoir si le gène existe deja dans notre liste
             ##On ajoute seulement les gènes qui ne sont pas dans la liste
             
-            if (!existsGene(liste_genes,as.character(id_rec))) {
-                newgene <- GeneDB1(as.character(id_rec),
+            if (!existsGene(listGenes,as.character(idRec))) {
+                newGene <- GeneDB1(as.character(idRec),
                                    locusList[i,],
-                                   as.character(rap_name),
-                                   as.character(rap_symbole),
-                                   as.character(cgsnl_name),
-                                   as.character(cgsnl_gene),
-                                   as.character(ory_gene_name),
-                                   as.character(ory_gene_symbole),
-                                   positiondata,
+                                   as.character(rapName),
+                                   as.character(rapSymbol),
+                                   as.character(cgsnlName),
+                                   as.character(cgsnlGene),
+                                   as.character(oryGeneName),
+                                   as.character(oryGeneSymbol),
+                                   positionData,
                                    as.character(description))
                 ##print(id_rec)
-                liste_genes <- append(liste_genes,newgene)
+                listGenes <- append(listGenes,newGene)
             }
         }
     }
-    return (liste_genes)
+    return (listGenes)
 }
 
 #' callDB3
 #'
 #' This function will call for each locus in the list, the run.py script and
 #' python will return the list of the genes which are present in the locus and
-#' in the DB3. All these locus will be stocked in liste_genes
+#' in the DB3. All these locus will be stocked in listGenes
+#' 
 #' @param locusList list
 #' @keywords 
 #' @export
@@ -134,9 +136,9 @@ callDB3 <- function (locusList) {
     
     debut = getwd()
     path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
-    path2script = paste(c(debut,path), collapse = '')
+    path2Script = paste(c(debut,path), collapse = '')
     
-    liste_genes <- data.frame()
+    listGenes <- data.frame()
     
     for (i in 1 : nrow(locusList)) {
         ch = as.character(locusList[i,1])
@@ -146,72 +148,72 @@ callDB3 <- function (locusList) {
         #appel du script python run.py avec les attributs (chx, start, end, DB) 
         #-> tous les attributs doivent etre en chaine de carac
         args = c(ch, start, end, "3")
-        allArgs = c(path2script, args)
-        Routput = system2(command, args=allArgs, stdout=TRUE)
-        print(Routput)
+        allArgs = c(path2Script, args)
+        rOutput = system2(command, args=allArgs, stdout=TRUE)
+        print(rOutput)
         
-        if (Routput != "not found") {
-            json_output <- fromJSON(Routput)
+        if (rOutput != "not found") {
+            jsonOutput <- fromJSON(Routput)
             
-            for (j in 1:length(json_output)){
-                print(paste("numero",j," -> ",json_output[j][1]))
+            for (j in 1:length(jsonOutput)){
+                print(paste("numero",j," -> ",jsonOutput[j][1]))
             }
             
             
-            trait_gene_id = json_output["Trait Gene Id"]
-            cgsnl_gene_symbol =json_output["CGSNL Gene Symbol"]
-            gene_symbole_synonyme =json_output["Gene symbol synonym(s)"]
-            cgsnl_gene_name = json_output["CGSNL Gene Name"]
-            gene_name_synonyme =json_output["Gene name synonym(s)"]
-            protein_name =json_output["Protein Name"]
-            allele = json_output["Allele"]
-            chromosome_no = json_output["Chromosome No."]
-            explanation =json_output["Explanation"]
-            trait_class =json_output["Trait Class"]
-            rap_id =json_output["RAP ID"]
-            gramene_id =json_output["Gramene ID"]
-            arm =json_output["Arm"]
-            locate_cm = json_output["Locate(cM)"]
-            gene_ontology = json_output["Gene Ontology"]
-            trait_ontology = json_output["Trait Ontology"]
-            plant_ontology = json_output["Plant Ontology"]
+            traitGeneId = jsonOutput["Trait Gene Id"]
+            cgsnlGeneSymbol =jsonOutput["CGSNL Gene Symbol"]
+            geneSymbolSynonym =jsonOutput["Gene symbol synonym(s)"]
+            cgsnlGeneName = jsonOutput["CGSNL Gene Name"]
+            geneNameSynonym =jsonOutput["Gene name synonym(s)"]
+            proteinName =jsonOutput["Protein Name"]
+            allele = jsonOutput["Allele"]
+            chromosomeNo = jsonOutput["Chromosome No."]
+            explanation =jsonOutput["Explanation"]
+            traitClass =jsonOutput["Trait Class"]
+            rapId =jsonOutput["RAP ID"]
+            grameneId =jsonOutput["Gramene ID"]
+            arm =jsonOutput["Arm"]
+            locateCm = jsonOutput["Locate(cM)"]
+            geneOntology = jsonOutput["Gene Ontology"]
+            traitOntology = jsonOutput["Trait Ontology"]
+            plantOntology = jsonOutput["Plant Ontology"]
             
             
             #Permet de savoir si le gène existe deja dans notre liste
             #On ajoute seulement les gènes qui ne sont pas dans la liste
             
-            if (!existsGene(liste_genes,as.character(trait_gene_id))) {
-                newgene <- GeneDB3("",
+            if (!existsGene(listGenes,as.character(traitGeneId))) {
+                newGene <- GeneDB3("",
                                    locusList[i,],
-                                   as.character(trait_gene_id),
-                                   as.character(cgsnl_gene_symbol),
-                                   as.character(gene_symbole_synonyme),
-                                   as.character(cgsnl_gene_name),
-                                   as.character(gene_name_synonyme),
-                                   as.character(protein_name),
+                                   as.character(traitGeneId),
+                                   as.character(cgsnlGeneSymbol),
+                                   as.character(geneSymbolSynonym),
+                                   as.character(cgsnlGeneName),
+                                   as.character(geneNameSynonym),
+                                   as.character(proteinName),
                                    as.character(allele),
-                                   as.character(chromosome_no),
+                                   as.character(chromosomeNo),
                                    as.character(explanation),
-                                   as.character(trait_class),
-                                   as.character(rap_id),
-                                   as.character(gramene_id),
+                                   as.character(traitClass),
+                                   as.character(rapId),
+                                   as.character(grameneId),
                                    as.character(arm),
-                                   as.character(locate_cm),
-                                   as.character(gene_ontology),
-                                   as.character(trait_ontology),
-                                   as.character(plant_ontology))
+                                   as.character(locateCm),
+                                   as.character(geneOntology),
+                                   as.character(traitOntology),
+                                   as.character(plantOntology))
                 #print(id_rec)
-                liste_genes <- append(liste_genes,newgene)
+                listGenes <- append(listGenes,newGene)
             }
         }
         else {
             print("not found")
         }
     }
-    return (liste_genes)
+    return (listGenes)
 }
 
-#phase de json_output
+#phase de jsonOutput
 #data <- data.frame(ch = c("1","1","1","1","1"),
 #                   st = c("148907","5671734","9344261","10225320","148907"),
 #                   end = c("248907","6337629","11332201","10325320","248907"))
