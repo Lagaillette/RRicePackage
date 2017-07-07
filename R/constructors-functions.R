@@ -36,7 +36,9 @@ Experiment <- function(name, locus){
         date <- (readline(
             prompt="Enter the date of the experiment (mm/dd/yyyy) : "))
         date <- as.Date(c(date), format =  "%m/%d/%Y")
-        if(!is.na(date) && format(date, '%Y') > 1900 && format(date, '%Y') <= format(Sys.Date(), '%Y')){
+        if(!is.na(date) && 
+           format(date, '%Y') > 1900 &&
+           format(date, '%Y') <= format(Sys.Date(), '%Y')){
             correctDate <- TRUE
         }
         else{
