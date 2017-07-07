@@ -9,35 +9,6 @@ library(jsonlite)
 
 command ="python3"
 
-#' This function calls Scriptv7 from python
-#'
-#' Cette fonction permet à l'utilisateur de chercher si le RAPID existe dans 
-#' Oryzabase.txt
-#' @param RAPID id for the script
-#' @keywords 
-#' @export
-#' @examples
-#' Appel_Scriptv7("Os06g0654600")
-appel_Scriptv7 <- function (RAPID) {
-    
-    ##chemin pour n'importe quel utilisateur
-    debut = getwd()
-    path = "/rRice/inst/Python/rricebeta/rricebeta/Scriptv7_Table.py"
-    path2Script = paste(c(debut,path), collapse = '')
-    
-    ## Build up args in a vector
-    ## RAPID_valide = "Os06g0654600" -> exemple valide
-    args = c(RAPID)
-    
-    ## Add path to script as first arg
-    allArgs = c(path2Script, args)
-    
-    Routput = system2(command, args=allArgs, stdout=TRUE)
-    
-    ##Appelé à chaque fois qu'elle rencontrera un print
-    print(Routput)
-}
-
 
 #' callDB1
 #'
@@ -46,10 +17,9 @@ appel_Scriptv7 <- function (RAPID) {
 #' in the DB1. All these locus will be stocked in listGenes
 #' 
 #' @param locusList list of locus for which we want the genes
-#' @keywords 
 #' @export
 #' @import jsonlite
-#' @importFrom jsonLite fromJSON
+#' @importFrom jsonlite fromJSON
 #' @examples
 #' callDB1(locus_list)
 callDB1 <- function (locusList) {
@@ -69,11 +39,11 @@ callDB1 <- function (locusList) {
         ##-> tous les attributs doivent etre en chaine de carac
         args = c(ch, start, end, "1")
         allArgs = c(path2Script, args)
-        Routput = system2(command, args=allArgs, stdout=TRUE)
-        ##print(Routput)
+        rOutput = system2(command, args=allArgs, stdout=TRUE)
+        ##print(rOutput)
         
-        if (Routput != "empty") {
-            jsonOutput <- fromJSON(Routput)
+        if (rOutput != "empty") {
+            jsonOutput <- fromJSON(rOutput)
             
             ##for (j in 1:length(jsonOutput)){
             ##    print(paste("numero",j," -> ",jsonOutput[j][1]))
@@ -97,11 +67,7 @@ callDB1 <- function (locusList) {
             positionData <- data.frame(ch=c(pos1[[1]][[1]]),
                                        st=c(pos3[[1]][[1]]),
                                        end=c(pos3[[1]][[3]]))
-            
-            
-            ##Permet de savoir si le gène existe deja dans notre liste
-            ##On ajoute seulement les gènes qui ne sont pas dans la liste
-            
+
             if (!existsGene(listGenes,as.character(idRec))) {
                 newGene <- GeneDB1(as.character(idRec),
                                    locusList[i,],
@@ -128,10 +94,10 @@ callDB1 <- function (locusList) {
 #' in the DB3. All these locus will be stocked in listGenes
 #' 
 #' @param locusList list
-#' @keywords 
+#' @importFrom jsonlite fromJSON
 #' @export
 #' @examples
-#' callDB3(Liste de locus)
+#' callDB3(locus_list)
 callDB3 <- function (locusList) {
     
     debut = getwd()
@@ -153,7 +119,7 @@ callDB3 <- function (locusList) {
         print(rOutput)
         
         if (rOutput != "not found") {
-            jsonOutput <- fromJSON(Routput)
+            jsonOutput <- fromJSON(rOutput)
             
             for (j in 1:length(jsonOutput)){
                 print(paste("numero",j," -> ",jsonOutput[j][1]))
@@ -177,10 +143,6 @@ callDB3 <- function (locusList) {
             geneOntology = jsonOutput["Gene Ontology"]
             traitOntology = jsonOutput["Trait Ontology"]
             plantOntology = jsonOutput["Plant Ontology"]
-            
-            
-            #Permet de savoir si le gène existe deja dans notre liste
-            #On ajoute seulement les gènes qui ne sont pas dans la liste
             
             if (!existsGene(listGenes,as.character(traitGeneId))) {
                 newGene <- GeneDB3("",

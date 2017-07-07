@@ -1,19 +1,5 @@
-#This file contains the functions which not concern an existing class
-#Contains also all the "setGeneric" methods
-
-
 ###############################################################################
 ############################### setGeneric ####################################
-
-setGeneric(
-    name = "searchGeneProperty",
-    def = function(object, search){standardGeneric("searchGeneProperty" )}
-)
-
-setGeneric(
-    name = "searchGeneFmin",
-    def = function(object, search){standardGeneric("searchGeneFmin" )}
-)
 
 
 #' Update an attribute of an object

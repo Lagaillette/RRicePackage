@@ -1,4 +1,4 @@
-#' The Experiment class.
+#' An S4 class to represent an Experiment class.
 #'
 #' Some details about this class and my plans for it in the body.
 #'
@@ -23,7 +23,7 @@ setClass(
                                   others = "list")
 )
 
-#' The Gene class.
+#' An S4 class to represent a Gene.
 #'
 #' A gene contains a lot of details that depend on the database it belongs.
 #' But every genes have informations in common. So we put all these informations
@@ -48,25 +48,9 @@ setClass(
 )
 
 
-setClass(
-  ##name of the class
-  "GeneDBtest",
 
-  ##attributes of the classnumeric
-  slots = list(msU7name = "character",
-               fgeneshName = "character",
-               rappredname = "character",
-               fmin = "numeric",
-               fmax = "numeric",
-               contig = "character",
-               iricname = "character",
-               strand = "numeric",
-               description = "character"),
 
-  contains = "Gene"
-)
-
-#' The Gene specific to the first database class.
+#' An S4 class to represent the first database Gene.
 #'
 #' This gene is specific to the database 1 that is the database "RAPDB". So it
 #' contains all the informations we can have about one gene with the "RAPDB"
@@ -104,7 +88,7 @@ setClass(
 )
 
 
-#' The Gene  class specific to the third database.
+#' An S4 class to represent the third database Gene.
 #'
 #' This gene is specific to the database 3 that is the database "Oryzabase".
 #' So it contains all the informations we can have about one gene with the
