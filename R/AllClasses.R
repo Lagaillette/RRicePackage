@@ -20,7 +20,24 @@ setClass(
                date = "Date",
                databases = "list",
                genes = "list",
-               others = "list")
+               others = "list"),
+  
+  validity = checkExperiment <- function(object){
+      errors <- character()
+      yearDate <- object@date
+      if(length(object@databases)<0){
+          msg <- paste("You have to have at least one database.")
+          errors <- c(errors, msg)
+      }
+      if (yearDate > Sys.Date()) {
+          msg <- paste("The year has to be bellow", 
+                       "the current year.")
+          errors <- c(errors, msg)
+      }
+      if(length(errors) == 0) TRUE else errors
+  }
+  
+  
 )
 
 #' An S4 class to represent a Gene.
