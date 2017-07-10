@@ -1,6 +1,4 @@
 #' @rdname deleteAttribute-methods
-#' @examples 
-#' deleteAttribute(your_experiment, name_of_the_attribute)
 #' @aliases deleteAttribute,Experiment-method
 setMethod(
     "deleteAttribute",
@@ -23,9 +21,7 @@ setMethod(
 
 #' @name deleteAttribute
 #' @rdname deleteAttribute-methods
-#' @aliases deleteAttribute,Experiment-method
-#' @examples 
-#' deleteAttribute(your_Gene, name_of_the_attribute)
+#' @aliases deleteAttribute,Gene-method
 setMethod(
     "deleteAttribute",
     signature = "Gene",

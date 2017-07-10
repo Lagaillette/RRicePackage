@@ -9,7 +9,7 @@
 #' @param locus The Table of locus 
 #' @return An Experiment
 #' @export
-#' @aliases addAttribute,Experiment-method
+#' @aliases Experiment,Experiment-method
 #' @rdname Experiment-class
 Experiment <- function(name, locus){
     ## the number of databases available. To increment every time we have
@@ -78,16 +78,6 @@ Experiment <- function(name, locus){
                   databases=databases,
                   genes=genes,
                   others=list())
-    return(result)
-}
-
-
-Gene <- function(uniquename, locus){
-    result <- new("Gene", 
-                  uniquename = uniquename,
-                  locus = locus,
-                  others = list()
-    )
     return(result)
 }
 

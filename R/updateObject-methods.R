@@ -1,4 +1,3 @@
-#' @aliases updateObject,Experiment-method
 #' @rdname updateObject-methods
 #' @aliases updateObject,Experiment-method
 setMethod(

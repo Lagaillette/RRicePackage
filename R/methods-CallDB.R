@@ -20,8 +20,7 @@ command ="python3"
 #' @export
 #' @import jsonlite
 #' @importFrom jsonlite fromJSON
-#' @examples
-#' callDB1(locus_list)
+#' @rdname callDB1-function
 callDB1 <- function (locusList) {
     
     debut = getwd()
@@ -96,8 +95,7 @@ callDB1 <- function (locusList) {
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @export
-#' @examples
-#' callDB3(locus_list)
+#' @rdname callDB3-function
 callDB3 <- function (locusList) {
     
     debut = getwd()

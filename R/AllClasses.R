@@ -7,7 +7,7 @@
 #' @slot databases the databases which concern the object we are studying
 #' @slot genes The list of genes we avec download.
 #' @slot others The others attributes the user can add and delete
-#' @name Experiment
+#' @name Experiment-class
 #' @rdname Experiment-class
 #' @docType class
 #' @exportClass Experiment
@@ -16,11 +16,11 @@ setClass(
   "Experiment",
 
   ##attributes of the class
-  representation = representation(name = "character",
-                                  date = "Date",
-                                  databases = "list",
-                                  genes = "list",
-                                  others = "list")
+  slots = list(name = "character",
+               date = "Date",
+               databases = "list",
+               genes = "list",
+               others = "list")
 )
 
 #' An S4 class to represent a Gene.
@@ -34,7 +34,7 @@ setClass(
 #' are the same in spite of the different attributes they have.
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
-#' @name Gene
+#' @name Gene-class
 #' @rdname Gene-class
 #' @exportClass Gene
 setClass(
@@ -66,8 +66,9 @@ setClass(
 #' @slot cgsnlGeneSymbol an identificator
 #' @slot oryzabaseGeneNameSynonym an identificator
 #' @slot oryzabaseGeneSymbolSynonym an identificator
+#' @slot position the position of the gene into the chromosome
 #' @slot description a description of the gene
-#' @name GeneDB1
+#' @name GeneDB1-class
 #' @rdname GeneDB1-class
 #' @exportClass GeneDB1
 setClass(
@@ -115,7 +116,7 @@ setClass(
 #' @slot geneOntology id
 #' @slot traitOntology id
 #' @slot plantOntology id
-#' @name GeneDB3
+#' @name GeneDB3-class
 #' @rdname GeneDB3-class
 #' @exportClass GeneDB3
 setClass(

@@ -11,7 +11,7 @@
 #' @exportMethod updateObject
 #' @name updateObject
 #' @rdname updateObject-methods
-#' @docType method
+#' @docType methods
 setGeneric(
     name = "updateObject",
     def = function(object, attribute , value){
@@ -26,7 +26,7 @@ setGeneric(
 #' @exportMethod getName
 #' @name getName
 #' @rdname getName-methods
-#' @docType method
+#' @docType methods
 setGeneric(
     name = "getName",
     def = function(object){standardGeneric("getName" )}
@@ -40,7 +40,7 @@ setGeneric(
 #' @return The object with the new name#' @exportMethod addAttribute
 #' @name setName
 #' @rdname setName-methods
-#' @docType method
+#' @docType methods
 setGeneric(
     name = "setName",
     def = function(object, name){standardGeneric("setName" )}
@@ -55,7 +55,7 @@ setGeneric(
 #' @exportMethod addAttribute
 #' @name addAttribute
 #' @rdname addAttribute-methods
-#' @docType method
+#' @docType methods
 setGeneric(
     name = "addAttribute",
     def = function(object, name, value){standardGeneric("addAttribute" )}
@@ -70,7 +70,7 @@ setGeneric(
 #' @name deleteAttribute
 #' @rdname deleteAttribute-methods
 #' @exportMethod deleteAttribute
-#' @docType method
+#' @docType methods
 setGeneric(
     name = "deleteAttribute",
     def = function(object, name){standardGeneric("deleteAttribute" )}
