@@ -38,7 +38,8 @@ whichOS <- function(){
 #' Function checking if the database is already used
 #' 
 #' @param databases the list of the databases we have
-#' @param i the number of the database we want to know if it's already used
+#' @param i the number representing the length of the databases list. 
+#' So databases[i] we want to know if it exists or not
 #' @return Boolean TRUE if the database is already used, FALSE if not
 #' @rdname alreadyUsedDB-function
 alreadyUsedDB <- function(databases,i){
