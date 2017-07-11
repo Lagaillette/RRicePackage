@@ -1,24 +1,26 @@
 geneTest1 <- new("GeneDB1",
-                 id = "test1", locus = data.frame(),
-                 rapDBGeneNameSynonym = "character",
-                 rapDBGeneSymbolSynonym = "character",
-                 cgsnlGeneName = "character",
-                 cgsnlGeneSymbol = "character",
-                 oryzabaseGeneNameSynonym = "character",
-                 oryzabaseGeneSymbolSynonym = "character",
-                 position = data.frame(),
-                 description = "character")
+                 id="test1", locus=data.frame(),
+                 others=list(),
+                 rapDBGeneNameSynonym="character",
+                 rapDBGeneSymbolSynonym="character",
+                 cgsnlGeneName="character",
+                 cgsnlGeneSymbol="character",
+                 oryzabaseGeneNameSynonym="character",
+                 oryzabaseGeneSymbolSynonym="character",
+                 position=data.frame(),
+                 description="character")
 
 geneTest2 <- new("GeneDB1",
-                 id = "test2", locus = data.frame(),
-                 rapDBGeneNameSynonym = "character",
-                 rapDBGeneSymbolSynonym = "character",
-                 cgsnlGeneName = "character",
-                 cgsnlGeneSymbol = "character",
-                 oryzabaseGeneNameSynonym = "character",
-                 oryzabaseGeneSymbolSynonym = "character",
-                 position = data.frame(),
-                 description = "character")
+                 id="test2", locus=data.frame(),
+                 others=list(),
+                 rapDBGeneNameSynonym="character",
+                 rapDBGeneSymbolSynonym="character",
+                 cgsnlGeneName="character",
+                 cgsnlGeneSymbol="character",
+                 oryzabaseGeneNameSynonym="character",
+                 oryzabaseGeneSymbolSynonym="character",
+                 position=data.frame(),
+                 description="character")
 
 listTest <- list(geneTest1, geneTest2)
 frameTest <- data.frame()

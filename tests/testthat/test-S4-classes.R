@@ -1,24 +1,47 @@
 geneTest1 <- new("GeneDB1",
-                 id = "test1", locus = data.frame(),
-                 rapDBGeneNameSynonym = "character",
-                 rapDBGeneSymbolSynonym = "character",
-                 cgsnlGeneName = "character",
-                 cgsnlGeneSymbol = "character",
-                 oryzabaseGeneNameSynonym = "character",
-                 oryzabaseGeneSymbolSynonym = "character",
-                 position = data.frame(),
-                 description = "character")
+                 id="test1", locus=data.frame(),
+                 others=list(),
+                 rapDBGeneNameSynonym="character",
+                 rapDBGeneSymbolSynonym="character",
+                 cgsnlGeneName="character",
+                 cgsnlGeneSymbol="character",
+                 oryzabaseGeneNameSynonym="character",
+                 oryzabaseGeneSymbolSynonym="character",
+                 position=data.frame(),
+                 description="character")
 
 geneTest2 <- new("GeneDB1",
-                 id = "test2", locus = data.frame(),
-                 rapDBGeneNameSynonym = "character",
-                 rapDBGeneSymbolSynonym = "character",
-                 cgsnlGeneName = "character",
-                 cgsnlGeneSymbol = "character",
-                 oryzabaseGeneNameSynonym = "character",
-                 oryzabaseGeneSymbolSynonym = "character",
-                 position = data.frame(),
-                 description = "character")
+                 id="test2", locus=data.frame(),
+                 others=list(),
+                 rapDBGeneNameSynonym="character",
+                 rapDBGeneSymbolSynonym="character",
+                 cgsnlGeneName="character",
+                 cgsnlGeneSymbol="character",
+                 oryzabaseGeneNameSynonym="character",
+                 oryzabaseGeneSymbolSynonym="character",
+                 position=data.frame(),
+                 description="character")
+
+geneDB3Test <- new("GeneDB3",
+                   id="test2", locus=data.frame(),
+                   others=list(),
+                   traitGeneId="character",
+                   cgsnlGeneSymbol="character",
+                   GeneSymbolSynonim="character",
+                   cgsnlSymbolSynonim="character",
+                   GeneNameSynonim="character",
+                   proteinName="character",
+                   allele="character",
+                   chromosomeNumber=1,
+                   explanation="character",
+                   traitClass="character",
+                   rapID="character",
+                   grameneId="character",
+                   arm="character",
+                   locate="character",
+                   geneOntology="character",
+                   traitOntology="character",
+                   plantOntology="character")
 
 listTest <- list(geneTest1, geneTest2)
 expTest <- new(Class="Experiment",
@@ -48,4 +71,9 @@ test_that("Experiment with some bad consitions",{
                                genes=listTest,
                                databases = list(),
                                others=list()))
+})
+
+test_that("GeneDBi with no error",{
+    testthat::expect_s4_class(geneTest1, "GeneDB1")
+    testthat::expect_s4_class(geneDB3Test, "GeneDB3")
 })
