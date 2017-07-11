@@ -1,6 +1,6 @@
 Package: rRice
 Type: Package
-Title: rRice package to make easier the study of the genomic of rice.
+Title: rRice package to make easier the study of the genomic of rice
 Version: 0.1.0
 Author: Gallego Julien <julien.gallego.pro@gmail.com>,
          Hai Ho Bich <hobichhai@gmail.com>
