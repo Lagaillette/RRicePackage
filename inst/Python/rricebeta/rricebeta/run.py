@@ -11,6 +11,7 @@ import Scriptv7_Table as rapdb
 import ScriptGramene as gramene
 import ScriptV8_Oryzabase as oryzabase
 import snpSeekAll as snpSeekAll
+import Script_IC4R as ic4r
 
 def formatPathToFile(nameFile):
     # on supprime le dernier char tant qu'on n'a pas rencontré '/'
@@ -124,6 +125,10 @@ def main():
     # Return the SnpSeek Call
     elif(db == "6"):
         return hashmap
+
+
+    elif (db == "7"):
+        ic4r.ic4r()
 
 
 # Pour eviter que le script soit execute lors d'un simple import
