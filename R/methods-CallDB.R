@@ -33,7 +33,8 @@ getOutPutJSON <- function (outPut) {
 creationGeneDB1 <- function (i, locusList) {
     
     ##PATH for package when it will be installed -> when it will be released
-    path <- paste(system.file(package = "rRice"), "Python/rricebeta/rricebeta/run.py", sep="/")
+    path <- paste(system.file(package = "rRice"),
+                  "Python/rricebeta/rricebeta/run.py", sep="/")
     path2Script = paste(c(path), collapse = '')
     
     ##While I am using rRice, I use that
@@ -139,7 +140,8 @@ callDB1 <- function (locusList) {
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- paste(system.file(package = "rRice"), "Python/rricebeta/rricebeta/run.py", sep="/")
+    path <- paste(system.file(package = "rRice"), 
+                  "Python/rricebeta/rricebeta/run.py", sep="/")
     path2Script = paste(c(path), collapse = '')
     
     ##While I am using rRice, I use that
