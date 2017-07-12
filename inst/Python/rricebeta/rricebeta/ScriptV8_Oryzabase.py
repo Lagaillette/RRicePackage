@@ -62,7 +62,8 @@ def oryzabaseCGSNL(CGSNL):
     return data
 
 def oryzabaseRapId(RAPID):
-    pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    pathToFile = formatPathToFile("OryzabaseGeneListEn.txt")
+    #pathToFile = '../resources/OryzabaseGeneListEn.txt'
     if(existFile(pathToFile) == False):
         loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
     else:
