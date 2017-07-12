@@ -19,7 +19,13 @@ def ic4r():
         for link in body.findAll('tr'):
             for linkbody in link.findAll('td'):
                 content.append(linkbody.contents)
-    print(headers[3])
-    df = pd.DataFrame({'A' : 1.})
+    print(content)
+    df = pd.DataFrame(content)
+
+    print(content[0])
 
     print(df)
+
+    ww = [['ouais', 'ok'], ['en fait non', 'en fait si']]
+    dd = pd.DataFrame(ww)
+    print(dd)
