@@ -4,21 +4,9 @@ library(jsonlite)
 ##A faire avec Roxygen2 au dessus de classes @export
 ##source("rRice/R/constructors-functions.R")
 ##source("rRice//R/AllClasses.R")
+##source("rRice//R/pratical-functions.R")
 
 command ="python3"
-
-#'Function for a JSON return
-#'
-#' this function will only return an JSON return which start with "{"
-#' It will allow us to treat the exception error from python 
-#' 
-#' @return return only string which starts with "{" -> JSON 
-#' @rdname getOutPutJSON-function
-getOutPutJSON <- function (outPut) {
-    if (identical(substr(outPut,0,1),'{')) {
-        return(outPut)
-    }
-}
 
 #' creationGeneDB1
 #'
@@ -33,8 +21,15 @@ getOutPutJSON <- function (outPut) {
 creationGeneDB1 <- function (i, locusList) {
     
     ##PATH for package when it will be installed -> when it will be released
-    path <- paste(system.file(package = "rRice"),
-                  "Python/rricebeta/rricebeta/run.py", sep="/")
+    if (whichOS() == 1) {
+        path <- paste(system.file(package = "rRice"),
+                      "Python/rricebeta/rricebeta/run.py", sep="/")
+    }
+    else {
+        path <- paste(system.file(package = "rRice"),
+                      "Python\\rricebeta\\rricebeta\\run.py", sep="\\")
+    }
+    
     path2Script = paste(c(path), collapse = '')
     
     ##While I am using rRice, I use that
@@ -72,14 +67,20 @@ creationGeneDB1 <- function (i, locusList) {
         oryGeneName = jsonOutput["Oryzabase Gene Name Synonym(s)"]
         cgsnlGene = jsonOutput["CGSNL Gene Symbol"]
  
-        position <- as.character(position) 
-        pos1 <- strsplit(position, ":")
-        pos2 <- pos1[[1]][[2]]
-        pos3 <- strsplit(pos2,"[..]")
+        if (position != "") {
+            position <- as.character(position) 
+            pos1 <- strsplit(position, ":")
+            pos2 <- pos1[[1]][[2]]
+            pos3 <- strsplit(pos2,"[..]")
+            
+            positionData <- data.frame(ch=c(pos1[[1]][[1]]),
+                                       st=c(pos3[[1]][[1]]),
+                                       end=c(pos3[[1]][[3]]))
+        }
+        else {
+            positionData <- data.frame()
+        }
         
-        positionData <- data.frame(ch=c(pos1[[1]][[1]]),
-                                   st=c(pos3[[1]][[1]]),
-                                   end=c(pos3[[1]][[3]]))
         
         dataLocus <- data.frame(ch = ch, st = start, end = end)
         
@@ -140,8 +141,15 @@ callDB1 <- function (locusList) {
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- paste(system.file(package = "rRice"), 
-                  "Python/rricebeta/rricebeta/run.py", sep="/")
+    if (whichOS() == 1) {
+        path <- paste(system.file(package = "rRice"),
+                      "Python/rricebeta/rricebeta/run.py", sep="/")
+    }
+    else {
+        path <- paste(system.file(package = "rRice"),
+                      "Python\\rricebeta\\rricebeta\\run.py", sep="\\")
+    }
+    
     path2Script = paste(c(path), collapse = '')
     
     ##While I am using rRice, I use that
@@ -260,6 +268,23 @@ callDB3 <- function (locusList) {
 #                    st = c("9344261"),
 #                    end = c("11332201"))
 
-#print(data)
-#s <- callDB3(data)
-#print(s)
+
+# print(data)
+# s <- callDB1(data)
+# print(s)
+
+# data <- data.frame(ch = c("1","1","1","1","1","1","1","1","1","1","1","1","1","1"),
+#                   st = c("148907","5671734","9344261","9344261","10225320","10225320","15367095","21149478","21390962","22689596","34657419","34796909","34796909","39864172"),
+#                   end = c("248907","6337629","11332201","11332201","10325320","10325320","17233103","22250712","21490962","22789596","35396321","34896909","34896909","41317992"))
+# 
+# data <- data.frame(ch = c("","","","","","","","","","","","","",""),
+#                    st = c("","","","","","","","","","","","","",""),
+#                    end = c("","","","","","","","","","","","","",""))
+
+ # data23 <- data.frame(ch = c("2","2","2","2","3","3","3"),
+ #                    st = c("6142704","25638752","26084899","30847375","31694633","35301755","35301755"),
+ #                    end = c("6965539","25738752","26883277","33746199","32833262","35401755","35401755"))
+
+
+
+
