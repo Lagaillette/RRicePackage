@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Gallego Julien <julien.gallego.pro@gmail.com>,
          Hai Ho Bich <hobichhai@gmail.com>
 Maintainer: Hai Ho Bich <hobichhai@gmail.com>
-License: What license is it under?
+License: Artistic-2.0
 Imports: methods, jsonlite
 Suggests: testthat
 SystemRequirements: python pkgs bs4, lxml, pandas
