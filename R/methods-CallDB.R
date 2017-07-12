@@ -2,8 +2,8 @@ library(jsonlite)
 
 ##on relie au fichier methods-GeneDB1.R to call function GeneDB1
 ##A faire avec Roxygen2 au dessus de classes @export
-source("rRice/R/constructors-functions.R")
-source("rRice/R/AllClasses.R")
+##source("rRice/R/constructors-functions.R")
+##source("rRice//R/AllClasses.R")
 
 command ="python3"
 
@@ -31,9 +31,15 @@ getOutPutJSON <- function (outPut) {
 #' @export
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (i, locusList) {
-    debut = getwd()
-    path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
-    path2Script = paste(c(debut,path), collapse = '')
+    
+    ##PATH for package when it will be installed -> when it will be released
+    path <- paste(system.file(package = "rRice"), "Python/rricebeta/rricebeta/run.py", sep="/")
+    path2Script = paste(c(path), collapse = '')
+    
+    ##While I am using rRice, I use that
+    # debut = getwd()
+    # path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
+    # path2Script = paste(c(debut,path), collapse = '')
     
     ch = as.character(locusList[i,1])
     start = as.character(locusList[i,2])
@@ -132,9 +138,14 @@ callDB1 <- function (locusList) {
 #' @export
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
-    debut = getwd()
-    path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
-    path2Script = paste(c(debut,path), collapse = '')
+    ##PATH for package when it will be installed -> when it will be released
+    path <- paste(system.file(package = "rRice"), "Python/rricebeta/rricebeta/run.py", sep="/")
+    path2Script = paste(c(path), collapse = '')
+    
+    ##While I am using rRice, I use that
+    # debut = getwd()
+    # path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
+    # path2Script = paste(c(debut,path), collapse = '')
     
     ch = as.character(locusList[i,1])
     start = as.character(locusList[i,2])
@@ -247,6 +258,6 @@ callDB3 <- function (locusList) {
 #                    st = c("9344261"),
 #                    end = c("11332201"))
 
-# print(data)
-
-# callDB3(data)
+#print(data)
+#s <- callDB3(data)
+#print(s)
