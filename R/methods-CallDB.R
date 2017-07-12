@@ -46,7 +46,8 @@ creationGeneDB1 <- function (i, locusList) {
     rOutput = system2(command, args=allArgs, stdout=TRUE)
     ##print(rOutput)
     
-    rOutput <- lapply(1 : length(rOutput), function(x) getOutPutJSON(rOutput[x]))
+    rOutput <- lapply(1 : length(rOutput), 
+                      function(x) getOutPutJSON(rOutput[x]))
     
     rOutput[sapply(rOutput, is.null)] <- NULL
             
@@ -146,11 +147,12 @@ creationGeneDB3 <- function (i, locusList) {
     rOutput = system2(command, args=allArgs, stdout=TRUE)
     ##print(rOutput)
     
-    rOutput <- lapply(1 : length(rOutput), function(x) getOutPutJSON(rOutput[x]))
+    rOutput <- lapply(1 : length(rOutput), 
+                      function(x) getOutPutJSON(rOutput[x]))
 
     rOutput[sapply(rOutput, is.null)] <- NULL
 
-    #if rOutput is an empty list then we don't create a new GeneDB1
+    ##if rOutput is an empty list then we don't create a new GeneDB1
     if (length(rOutput) > 0) {
         jsonOutput <- fromJSON(rOutput[[1]])
 
@@ -237,14 +239,14 @@ callDB3 <- function (locusList) {
 #                   st = c("148907","9344261","148907"),
 #                   end = c("248907","11332201","248907"))
 
-# data <- data.frame(ch = c("1"),
-#                    st = c("148907"),
-#                    end = c("248907"))
+ # data <- data.frame(ch = c("1"),
+ #                    st = c("148907"),
+ #                    end = c("248907"))
 
 # data <- data.frame(ch = c("1"),
 #                    st = c("9344261"),
 #                    end = c("11332201"))
 
-#print(data)
+# print(data)
 
-#callDB3(data)
+# callDB3(data)
