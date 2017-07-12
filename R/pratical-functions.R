@@ -21,17 +21,18 @@ existsGene <- function(genes, id){
 #' this function allows us to know if the user is using Linux or Windows
 #' 
 #' @return numeric 0 if windows, 1 if linux
+#' @export
 #' @rdname whichOS-function
 whichOS <- function(){
     found <- 0
     
     debut = getwd()
-    if (substr(debut, 0,1) == '/') #ubuntu
+    if (substr(debut, 0,1) == '/') ##ubuntu
         found <- 1
-    else #windows
+    else ##windows
         found <- 0
     
-    print(found)
+    ##print(found)
     return(found)
 }
 
@@ -61,6 +62,7 @@ alreadyUsedDB <- function(databases,i){
 #' It will allow us to treat the exception error from python 
 #' 
 #' @return return only string which starts with "{" -> JSON 
+#' @export
 #' @rdname getOutPutJSON-function
 getOutPutJSON <- function (outPut) {
     if (identical(substr(outPut,0,1),'{')) {
