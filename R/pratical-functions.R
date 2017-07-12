@@ -38,8 +38,7 @@ whichOS <- function(){
 #' Function checking if the database is already used
 #' 
 #' @param databases the list of the databases we have
-#' @param i the number representing the length of the databases list. 
-#' So databases[i] we want to know if it exists or not
+#' @param i the number of the database we want to know if it's already used
 #' @return Boolean TRUE if the database is already used, FALSE if not
 #' @rdname alreadyUsedDB-function
 alreadyUsedDB <- function(databases,i){
@@ -54,4 +53,17 @@ alreadyUsedDB <- function(databases,i){
         }
     }
     return(alreadyUsed)
+}
+
+#'Function for a JSON return
+#'
+#' this function will only return an JSON return which start with "{"
+#' It will allow us to treat the exception error from python 
+#' 
+#' @return return only string which starts with "{" -> JSON 
+#' @rdname getOutPutJSON-function
+getOutPutJSON <- function (outPut) {
+    if (identical(substr(outPut,0,1),'{')) {
+        return(outPut)
+    }
 }
