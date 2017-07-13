@@ -2,11 +2,12 @@ library(jsonlite)
 
 ##on relie au fichier methods-GeneDB1.R to call function GeneDB1
 ##A faire avec Roxygen2 au dessus de classes @export
-##source("rRice/R/constructors-functions.R")
-##source("rRice//R/AllClasses.R")
-##source("rRice//R/pratical-functions.R")
+# source("rRice/R/constructors-functions.R")
+# source("rRice//R/AllClasses.R")
+# source("rRice//R/pratical-functions.R")
 
-command ="python3"
+##command <- "python3"
+
 
 #' creationGeneDB1
 #'
@@ -14,28 +15,19 @@ command ="python3"
 #' It will call run.py script which will return the list of the genes which 
 #' are present in the locus
 #' 
-#' @param integer i,locusList list
+#' @param i number
+#' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @export
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (i, locusList) {
     
     ##PATH for package when it will be installed -> when it will be released
-    if (whichOS() == 1) {
-        path <- paste(system.file(package = "rRice"),
-                      "Python/rricebeta/rricebeta/run.py", sep="/")
-    }
-    else {
-        path <- paste(system.file(package = "rRice"),
-                      "Python\\rricebeta\\rricebeta\\run.py", sep="\\")
-    }
+    path <- system.file("Python/rricebeta/rricebeta",
+                        "run.py",
+                        package = "rRice")
     
     path2Script = paste(c(path), collapse = '')
-    
-    ##While I am using rRice, I use that
-    # debut = getwd()
-    # path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
-    # path2Script = paste(c(debut,path), collapse = '')
     
     ch = as.character(locusList[i,1])
     start = as.character(locusList[i,2])
@@ -45,7 +37,10 @@ creationGeneDB1 <- function (i, locusList) {
     ##-> tous les attributs doivent etre en chaine de carac
     args = c(ch, start, end, "1")
     allArgs = c(path2Script, args)
-    rOutput = system2(command, args=allArgs, stdout=TRUE)
+    
+    ##rOutput = system2(command, args=allArgs, stdout=TRUE)
+    rOutput = system2(command=path, args=args, stdout=TRUE)
+    
     ##print(rOutput)
     
     rOutput <- lapply(1 : length(rOutput), 
@@ -84,16 +79,19 @@ creationGeneDB1 <- function (i, locusList) {
         
         dataLocus <- data.frame(ch = ch, st = start, end = end)
         
-        newGene <- GeneDB1(as.character(idRec),
-                           dataLocus,
-                           as.character(rapName),
-                           as.character(rapSymbol),
-                           as.character(cgsnlName),
-                           as.character(cgsnlGene),
-                           as.character(oryGeneName),
-                           as.character(oryGeneSymbol),
-                           positionData,
-                           as.character(description))
+        newGene <- new("GeneDB1",
+                       uniqueId = as.character(idRec),
+                       ids = list(),
+                       locus = dataLocus,
+                       others = list(),
+                       rapDBGeneNameSynonym = as.character(rapName),
+                       rapDBGeneSymbolSynonym = as.character(rapSymbol),
+                       cgsnlGeneName = as.character(cgsnlName),
+                       cgsnlGeneSymbol = as.character(cgsnlGene),
+                       oryzabaseGeneNameSynonym = as.character(oryGeneName),
+                       oryzabaseGeneSymbolSynonym = as.character(oryGeneSymbol),
+                       position = positionData,
+                       description = as.character(description))
 
         return(newGene)
     }
@@ -135,27 +133,18 @@ callDB1 <- function (locusList) {
 #' It will call run.py script which will return the list of the genes which 
 #' are present in the locus
 #' 
-#' @param integer i,locusList list
+#' @param i number
+#' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @export
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    if (whichOS() == 1) {
-        path <- paste(system.file(package = "rRice"),
-                      "Python/rricebeta/rricebeta/run.py", sep="/")
-    }
-    else {
-        path <- paste(system.file(package = "rRice"),
-                      "Python\\rricebeta\\rricebeta\\run.py", sep="\\")
-    }
+    path <- system.file("Python/rricebeta/rricebeta",
+                        "run.py",
+                        package = "rRice")
     
     path2Script = paste(c(path), collapse = '')
-    
-    ##While I am using rRice, I use that
-    # debut = getwd()
-    # path = "/rRice/inst/Python/rricebeta/rricebeta/run.py"
-    # path2Script = paste(c(debut,path), collapse = '')
     
     ch = as.character(locusList[i,1])
     start = as.character(locusList[i,2])
@@ -165,7 +154,11 @@ creationGeneDB3 <- function (i, locusList) {
     ##-> tous les attributs doivent etre en chaine de carac
     args = c(ch, start, end, "3")
     allArgs = c(path2Script, args)
-    rOutput = system2(command, args=allArgs, stdout=TRUE)
+    
+    #rOutput = system2(command, args=allArgs, stdout=TRUE)
+    rOutput = system2(command=path, args=args, stdout=TRUE)
+    
+    
     ##print(rOutput)
     
     rOutput <- lapply(1 : length(rOutput), 
@@ -196,25 +189,28 @@ creationGeneDB3 <- function (i, locusList) {
         plantOntology = jsonOutput["Plant Ontology"]
 
         if (!existsGene(listGenes,as.character(traitGeneId))) {
-            newGene <- GeneDB3("",
-                               locusList[i,],
-                               as.character(traitGeneId),
-                               as.character(cgsnlGeneSymbol),
-                               as.character(geneSymbolSynonym),
-                               as.character(cgsnlGeneName),
-                               as.character(geneNameSynonym),
-                               as.character(proteinName),
-                               as.character(allele),
-                               as.character(chromosomeNo),
-                               as.character(explanation),
-                               as.character(traitClass),
-                               as.character(rapId),
-                               as.character(grameneId),
-                               as.character(arm),
-                               as.character(locateCm),
-                               as.character(geneOntology),
-                               as.character(traitOntology),
-                               as.character(plantOntology))
+            newGene <- new("GeneDB3",
+                           uniqueId = "",
+                           ids = list(),
+                           locus = locusList[i,],
+                           others = list(),
+                           traitGeneId = as.character(traitGeneId),
+                           cgsnlGeneSymbol = as.character(cgsnlGeneSymbol),
+                           GeneSymbolSynonim = as.character(geneSymbolSynonym),
+                           cgsnlSymbolSynonim = as.character(cgsnlGeneName),
+                           GeneNameSynonim = as.character(geneNameSynonym),
+                           proteinName = as.character(proteinName),
+                           allele = as.character(allele),
+                           chromosomeNumber = as.numeric(chromosomeNo),
+                           explanation = as.character(explanation),
+                           traitClass = as.character(traitClass),
+                           rapID = as.character(rapId),
+                           grameneId = as.character(grameneId),
+                           arm = as.character(arm),
+                           locate = as.character(locateCm),
+                           geneOntology = as.character(geneOntology),
+                           traitOntology = as.character(traitOntology),
+                           plantOntology = as.character(plantOntology))
         }
 
         return(newGene)
@@ -260,18 +256,17 @@ callDB3 <- function (locusList) {
 #                   st = c("148907","9344261","148907"),
 #                   end = c("248907","11332201","248907"))
 
- # data <- data.frame(ch = c("1"),
- #                    st = c("148907"),
- #                    end = c("248907"))
-
 # data <- data.frame(ch = c("1"),
 #                    st = c("9344261"),
 #                    end = c("11332201"))
 
+data <- data.frame(ch = c("1"),
+                   st = c("148907"),
+                   end = c("248907"))
 
-# print(data)
-# s <- callDB1(data)
-# print(s)
+print(data)
+s <- callDB3(data)
+print(s)
 
 # data <- data.frame(ch = c("1","1","1","1","1","1","1","1","1","1","1","1","1","1"),
 #                   st = c("148907","5671734","9344261","9344261","10225320","10225320","15367095","21149478","21390962","22689596","34657419","34796909","34796909","39864172"),
