@@ -47,9 +47,10 @@ setClass(
 #' into a global class "Gene" from which the others specific genes classes will
 #' inherit.
 #'
-#' @slot uniqueId The id of the gene. Many genes can have the same id because 
+#' @slot id The id of the gene. Many genes can have the same id because 
 #' there are the same in spite of the different attributes they have.
-#' @slot ids the list of diferent ids it have we will use with the databases.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @name Gene-class
@@ -60,8 +61,8 @@ setClass(
   "Gene",
 
   ##attributes of the class
-  representation(uniqueId = "character",
-               ids = "list",
+  representation(id = "character",
+               genesIDs = "list",
                locus = "data.frame",
                others = "list"),
   
@@ -77,9 +78,10 @@ setClass(
 #' contains all the informations we can have about one gene with the "RAPDB"
 #' database.
 #'
-#' @slot uniqueId The id of the gene. Many genes can have the same id because 
+#' @slot id The id of the gene. Many genes can have the same id because 
 #' there are the same in spite of the different attributes they have.
-#' @slot ids the list of diferent ids it have we will use with the databases.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot rapDBGeneNameSynonym an identificator
@@ -117,9 +119,10 @@ setClass(
 #' So it contains all the informations we can have about one gene with the
 #' "Oryzabase" database.
 #'
-#' @slot uniqueId The id of the gene. Many genes can have the same id because 
+#' @slot id The id of the gene. Many genes can have the same id because 
 #' there are the same in spite of the different attributes they have.
-#' @slot ids the list of diferent ids it have we will use with the databases.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot traitGeneId id
