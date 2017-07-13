@@ -1,0 +1,1 @@
+http://snp-seek.irri.org/ws/genomics/gene/osnippo/chr01?start=148907&end=248907&model=msu7
