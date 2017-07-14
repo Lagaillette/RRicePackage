@@ -80,8 +80,7 @@ creationGeneDB1 <- function (i, locusList) {
         dataLocus <- data.frame(ch = ch, st = start, end = end)
         
         newGene <- new("GeneDB1",
-                       uniqueId = as.character(idRec),
-                       ids = list(),
+                       id = as.character(idRec),
                        locus = dataLocus,
                        others = list(),
                        rapDBGeneNameSynonym = as.character(rapName),
@@ -190,8 +189,7 @@ creationGeneDB3 <- function (i, locusList) {
 
         if (!existsGene(listGenes,as.character(traitGeneId))) {
             newGene <- new("GeneDB3",
-                           uniqueId = "",
-                           ids = list(),
+                           id = "",
                            locus = locusList[i,],
                            others = list(),
                            traitGeneId = as.character(traitGeneId),
@@ -260,13 +258,13 @@ callDB3 <- function (locusList) {
 #                    st = c("9344261"),
 #                    end = c("11332201"))
 
-data <- data.frame(ch = c("1"),
-                   st = c("148907"),
-                   end = c("248907"))
-
-print(data)
-s <- callDB3(data)
-print(s)
+# data <- data.frame(ch = c("1"),
+#                    st = c("148907"),
+#                    end = c("248907"))
+# 
+# print(data)
+# s <- callDB1(data)
+# print(s)
 
 # data <- data.frame(ch = c("1","1","1","1","1","1","1","1","1","1","1","1","1","1"),
 #                   st = c("148907","5671734","9344261","9344261","10225320","10225320","15367095","21149478","21390962","22689596","34657419","34796909","34796909","39864172"),
