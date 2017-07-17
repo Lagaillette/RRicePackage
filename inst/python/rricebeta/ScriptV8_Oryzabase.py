@@ -40,7 +40,8 @@ def existFile(pathToFile):
     return (os.path.isfile(pathToFile))
 
 def oryzabaseCGSNL(CGSNL):
-    pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    #pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    pathToFile = formatPathToFile('OryzabaseGeneListEn.txt')
     if(existFile(pathToFile) == False):
         loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
     else:
@@ -64,7 +65,8 @@ def oryzabaseCGSNL(CGSNL):
     return data
 
 def oryzabaseRapId(RAPID):
-    pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    #pathToFile = '../resources/OryzabaseGeneListEn.txt'
+    pathToFile = formatPathToFile('OryzabaseGeneListEn.txt')
     if(existFile(pathToFile) == False):
         loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
     else:
