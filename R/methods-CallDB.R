@@ -23,7 +23,7 @@ library(jsonlite)
 creationGeneDB1 <- function (i, locusList) {
     
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("Python/rricebeta/rricebeta",
+    path <- system.file("python/rricebeta",
                         "run.py",
                         package = "rRice")
     
@@ -47,7 +47,7 @@ creationGeneDB1 <- function (i, locusList) {
                       function(x) getOutPutJSON(rOutput[x]))
     
     rOutput[sapply(rOutput, is.null)] <- NULL
-            
+    
     ##if rOutput is an empty list then we don't create a new GeneDB1
     if (length(rOutput) > 0) {
         jsonOutput <- fromJSON(rOutput[[1]])
@@ -61,7 +61,7 @@ creationGeneDB1 <- function (i, locusList) {
         rapName = jsonOutput["RAP-DB Gene Name Synonym(s)"]
         oryGeneName = jsonOutput["Oryzabase Gene Name Synonym(s)"]
         cgsnlGene = jsonOutput["CGSNL Gene Symbol"]
- 
+        
         if (position != "") {
             position <- as.character(position) 
             pos1 <- strsplit(position, ":")
@@ -91,7 +91,7 @@ creationGeneDB1 <- function (i, locusList) {
                        oryzabaseGeneSymbolSynonym = as.character(oryGeneSymbol),
                        position = positionData,
                        description = as.character(description))
-
+        
         return(newGene)
     }
 }
@@ -111,15 +111,15 @@ callDB1 <- function (locusList) {
     
     ##We call the function creationGeneDB1 to create our newGene
     listGenes <- lapply(1 : nrow(locusList),
-         FUN = function(x) creationGeneDB1(x, locusList))
-
+                        FUN = function(x) creationGeneDB1(x, locusList))
+    
     
     ##Remove all the NULL object from the list
     listGenes[sapply(listGenes, is.null)] <- NULL
     
     ##To delete all the geneDB1 which exists in double
     listGenes <- unique(listGenes)
-
+    
     ##print(listGenes)
     return (listGenes)
 }
@@ -139,7 +139,7 @@ callDB1 <- function (locusList) {
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("Python/rricebeta/rricebeta",
+    path <- system.file("python/rricebeta",
                         "run.py",
                         package = "rRice")
     
@@ -162,13 +162,13 @@ creationGeneDB3 <- function (i, locusList) {
     
     rOutput <- lapply(1 : length(rOutput), 
                       function(x) getOutPutJSON(rOutput[x]))
-
+    
     rOutput[sapply(rOutput, is.null)] <- NULL
-
+    
     ##if rOutput is an empty list then we don't create a new GeneDB1
     if (length(rOutput) > 0) {
         jsonOutput <- fromJSON(rOutput[[1]])
-
+        
         traitGeneId = jsonOutput["Trait Gene Id"]
         cgsnlGeneSymbol =jsonOutput["CGSNL Gene Symbol"]
         geneSymbolSynonym =jsonOutput["Gene symbol synonym(s)"]
@@ -186,7 +186,7 @@ creationGeneDB3 <- function (i, locusList) {
         geneOntology = jsonOutput["Gene Ontology"]
         traitOntology = jsonOutput["Trait Ontology"]
         plantOntology = jsonOutput["Plant Ontology"]
-
+        
         if (!existsGene(listGenes,as.character(traitGeneId))) {
             newGene <- new("GeneDB3",
                            id = "",
@@ -210,7 +210,7 @@ creationGeneDB3 <- function (i, locusList) {
                            traitOntology = as.character(traitOntology),
                            plantOntology = as.character(plantOntology))
         }
-
+        
         return(newGene)
     }
 }
@@ -230,7 +230,7 @@ callDB3 <- function (locusList) {
     
     ##We call the function creationGeneDB1 to create our newGene
     listGenes <- lapply(1 : nrow(locusList),
-                 FUN = function(x) creationGeneDB3(x, locusList))
+                        FUN = function(x) creationGeneDB3(x, locusList))
     
     
     ##Remove all the NULL object from the list
@@ -238,7 +238,7 @@ callDB3 <- function (locusList) {
     
     ##To delete all the geneDB1 which exists in double
     listGenes <- unique(listGenes)
-
+    
     ##print(listGenes)
     return (listGenes)
 }
@@ -263,7 +263,7 @@ callDB3 <- function (locusList) {
 #                    end = c("248907"))
 # 
 # print(data)
-# s <- callDB1(data)
+# s <- callDB3(data)
 # print(s)
 
 # data <- data.frame(ch = c("1","1","1","1","1","1","1","1","1","1","1","1","1","1"),
@@ -274,9 +274,9 @@ callDB3 <- function (locusList) {
 #                    st = c("","","","","","","","","","","","","",""),
 #                    end = c("","","","","","","","","","","","","",""))
 
- # data23 <- data.frame(ch = c("2","2","2","2","3","3","3"),
- #                    st = c("6142704","25638752","26084899","30847375","31694633","35301755","35301755"),
- #                    end = c("6965539","25738752","26883277","33746199","32833262","35401755","35401755"))
+# data23 <- data.frame(ch = c("2","2","2","2","3","3","3"),
+#                    st = c("6142704","25638752","26084899","30847375","31694633","35301755","35301755"),
+#                    end = c("6965539","25738752","26883277","33746199","32833262","35401755","35401755"))
 
 
 
