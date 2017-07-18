@@ -131,6 +131,10 @@ def main():
 
     elif (db == "7"):
         ic4r.ic4r()
+        
+    elif (db == "call_snpSeek"):
+        for i in range(0, len(dataSnp)):
+            print(dataSnp[i])
 
 
 # Pour eviter que le script soit execute lors d'un simple import
