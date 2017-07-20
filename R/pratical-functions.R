@@ -61,6 +61,7 @@ alreadyUsedDB <- function(databases,i){
 #' this function will only return an JSON return which start with "\{"
 #' It will allow us to treat the exception error from python 
 #' 
+#' @param outPut character
 #' @return return only string which starts with "\{" -> JSON 
 #' @export
 #' @rdname getOutPutJSON-function

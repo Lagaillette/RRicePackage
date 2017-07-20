@@ -187,29 +187,28 @@ creationGeneDB3 <- function (i, locusList) {
         traitOntology = jsonOutput["Trait Ontology"]
         plantOntology = jsonOutput["Plant Ontology"]
         
-        if (!existsGene(listGenes,as.character(traitGeneId))) {
-            newGene <- new("GeneDB3",
-                           id = "",
-                           locus = locusList[i,],
-                           others = list(),
-                           traitGeneId = as.character(traitGeneId),
-                           cgsnlGeneSymbol = as.character(cgsnlGeneSymbol),
-                           GeneSymbolSynonim = as.character(geneSymbolSynonym),
-                           cgsnlSymbolSynonim = as.character(cgsnlGeneName),
-                           GeneNameSynonim = as.character(geneNameSynonym),
-                           proteinName = as.character(proteinName),
-                           allele = as.character(allele),
-                           chromosomeNumber = as.numeric(chromosomeNo),
-                           explanation = as.character(explanation),
-                           traitClass = as.character(traitClass),
-                           rapID = as.character(rapId),
-                           grameneId = as.character(grameneId),
-                           arm = as.character(arm),
-                           locate = as.character(locateCm),
-                           geneOntology = as.character(geneOntology),
-                           traitOntology = as.character(traitOntology),
-                           plantOntology = as.character(plantOntology))
-        }
+        newGene <- new("GeneDB3",
+                       id = "",
+                       locus = locusList[i,],
+                       others = list(),
+                       traitGeneId = as.character(traitGeneId),
+                       cgsnlGeneSymbol = as.character(cgsnlGeneSymbol),
+                       GeneSymbolSynonim = as.character(geneSymbolSynonym),
+                       cgsnlSymbolSynonim = as.character(cgsnlGeneName),
+                       GeneNameSynonim = as.character(geneNameSynonym),
+                       proteinName = as.character(proteinName),
+                       allele = as.character(allele),
+                       chromosomeNumber = as.numeric(chromosomeNo),
+                       explanation = as.character(explanation),
+                       traitClass = as.character(traitClass),
+                       rapID = as.character(rapId),
+                       grameneId = as.character(grameneId),
+                       arm = as.character(arm),
+                       locate = as.character(locateCm),
+                       geneOntology = as.character(geneOntology),
+                       traitOntology = as.character(traitOntology),
+                       plantOntology = as.character(plantOntology))
+        
         
         return(newGene)
     }
@@ -280,145 +279,10 @@ callDB3 <- function (locusList) {
 
 ############################################
 
-#' id
-#'
-#' This function will only return the id from the rOutput 
-#' 
-#' @param rOutput character
-#' @importFrom jsonlite fromJSON
-#' @export
-#' @rdname id-function
-id <- function (rOutput) {
-    #output <- getOutPutJSON(rOutput)
-    #print(rOutput)
-    
-    #t <- '{"msu7Name": "LOC_Os01g01970"}' # --> BON
-    #t <- "{'msu7Name': 'LOC_Os01g01970'}" # --> PAS BON POUR JSON
-    # rOutput <- {'contig': 'chr01',
-    #             'fmin': 524578, 
-    #             'rappredName': 'None', 
-    #             'fmax': 528002, 
-    #             'strand': -1, 
-    #             'uniquename': 'LOC_Os01g01970', 
-    #             'fgeneshName': 'chr01-gene_91', 
-    #             'msu7Name': 'LOC_Os01g01970', 
-    #             'description': 'expressed protein', 
-    #             'raprepName': 'Os01g0109750', 
-    #             'iricname': 'OsNippo01g015950'}
-    
-    ##A VOIR AVEC BAPTISTE POUR QUE JE RECOIVE UN BON JSON
-    rOutput <- gsub('\'', '"', rOutput)
-    rOutput <- gsub('None', '"None"', rOutput)
-    
-    #print(j['msu7Name'])
-    jsonOutput <- fromJSON(rOutput)
-    if (jsonOutput['rappredName'] == "None"){
-        id <- jsonOutput['raprepName']
-    }
-    else if (jsonOutput['rapredName'] == "None") {
-        id <- jsonOutput['rappredName']
-    }
-    else {
-        id <- jsonOutput['raprepName']
-    }
-    
-    return (id)
-}
-
-#' getIds
-#'
-#' This function is called for each locus and has to return the list of ids 
-#' present in the locus
-#' 
-#' @param i number
-#' @param locusList list
-#' @importFrom jsonlite fromJSON
-#' @export
-#' @rdname getIds-function
-getIds <- function (i, locusList) {
-    ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
-                        "run.py",
-                        package = "rRice")
-    
-    listIds <- data.frame()
-    
-    #path2Script = paste(c(path), collapse = '')
-    
-    ch = as.character(locusList[i,1])
-    start = as.character(locusList[i,2])
-    end = as.character(locusList[i,3])
-    
-    ##appel du script python run.py avec les attributs (chx, start, end, DB) 
-    ##-> tous les attributs doivent etre en chaine de carac
-    args = c(ch, start, end, "call_snpSeek", "None")
-    #allArgs = c(path2Script, args)
-    
-    #rOutput = system2(command, args=allArgs, stdout=TRUE)
-    rOutput = system2(command=path, args=args, stdout=TRUE)
-    
-    rOutput <- lapply(1 : length(rOutput),
-                      function(x) getOutPutJSON(rOutput[x]))
-
-    rOutput[sapply(rOutput, is.null)] <- NULL
-    
-    ##print(rOutput)
 
 
-    if (length(rOutput) > 0) {
-        #print(rOutput)
-        #jsonOutput <- fromJSON(rOutput[[1]])
-        
-        listIds <- lapply(1 : length(rOutput),
-                            FUN = function(x) id(rOutput[[x]]))
-    }
-    
-    ##listIds[sapply(listIds, is.null)] <- NULL
-
-    ##print(listIds)
-    return (listIds)
-}
-
-#' callSnpSeek
-#'
-#' This function will call for each locus in the list, the run.py script and
-#' python will return the list of the ids which are present in each locus
-#' 
-#' @param locusList list
-#' @export
-#' @rdname callSnpSeek-function
-callSnpSeek <- function (locusList) {
-    
-    listIds <- data.frame()
-    
-    ##We call the function creationGeneDB1 to create our newGene
-    listIds <- lapply(1 : nrow(locusList),
-                        FUN = function(x) getIds(x, locusList))
-    
-    
-    ##Remove all the NULL object from the list
-    listIds[sapply(listIds, is.null)] <- NULL
-    
-    ##To delete all the geneDB1 which exists in double
-    listIds <- unique(listIds)
-    
-    ##print(listIds)
-    return (listIds)
-}
 
 
-# data <- data.frame(ch = c("1"),
-#                    st = c("527906"),
-#                    end = c("842359"))
-# 
-
-#data <- data.frame(ch = c("1","1","1"),
-#                   st = c("148907","9344261","527906"),
-#                   end = c("248907","11332201","842359"))
-
-# print(data)
-# s <- callSnpSeek(data)
-#print(s)
 
 #########################################
 
@@ -435,17 +299,17 @@ callSnpSeek <- function (locusList) {
 #' @export
 #' @rdname creationGeneDB1Bis-function
 creationGeneDB1Bis <- function (x, y, IdsList) {
-
+    
     ##PATH for package when it will be installed -> when it will be released
     path <- system.file("python/rricebeta",
                         "run.py",
                         package = "rRice")
-
+    
     path2Script = paste(c(path), collapse = '')
-
+    
     id <- IdsList[[x]][[y]]
     id <- as.character(id)
-
+    
     if (id != "None") {
         ##appel du script python run.py avec les attributs (chx, start, end, DB)
         ##-> tous les attributs doivent etre en chaine de carac
@@ -462,11 +326,11 @@ creationGeneDB1Bis <- function (x, y, IdsList) {
         rOutput[sapply(rOutput, is.null)] <- NULL
         
         ##print(rOutput)
-
+        
         ##if rOutput is not an empty list then we don't create a new GeneDB1
         if (length(rOutput) > 0) {
             jsonOutput <- fromJSON(rOutput[[1]])
-
+            
             idRec = jsonOutput["ID"]
             position = jsonOutput["Position"]
             rapSymbol = jsonOutput["RAP-DB Gene Symbol Synonym(s)"]
@@ -476,13 +340,13 @@ creationGeneDB1Bis <- function (x, y, IdsList) {
             rapName = jsonOutput["RAP-DB Gene Name Synonym(s)"]
             oryGeneName = jsonOutput["Oryzabase Gene Name Synonym(s)"]
             cgsnlGene = jsonOutput["CGSNL Gene Symbol"]
-
+            
             if (position != "") {
                 position <- as.character(position)
                 pos1 <- strsplit(position, ":")
                 pos2 <- pos1[[1]][[2]]
                 pos3 <- strsplit(pos2,"[..]")
-
+                
                 positionData <- data.frame(ch=c(pos1[[1]][[1]]),
                                            st=c(pos3[[1]][[1]]),
                                            end=c(pos3[[1]][[3]]))
@@ -490,24 +354,24 @@ creationGeneDB1Bis <- function (x, y, IdsList) {
             else {
                 positionData <- data.frame()
             }
-
-
+            
+            
             ##dataLocus <- data.frame(ch = ch, st = start, end = end)
             dataLocus <- data.frame(ch = "?", st = "?", end = "?")
-
+            
             newGene <- new("GeneDB1",
-                       id = as.character(idRec),
-                       locus = dataLocus,
-                       others = list(),
-                       rapDBGeneNameSynonym = as.character(rapName),
-                       rapDBGeneSymbolSynonym = as.character(rapSymbol),
-                       cgsnlGeneName = as.character(cgsnlName),
-                       cgsnlGeneSymbol = as.character(cgsnlGene),
-                       oryzabaseGeneNameSynonym = as.character(oryGeneName),
-                       oryzabaseGeneSymbolSynonym = as.character(oryGeneSymbol),
-                       position = positionData,
-                       description = as.character(description))
-
+                           id = as.character(idRec),
+                           locus = dataLocus,
+                           others = list(),
+                           rapDBGeneNameSynonym = as.character(rapName),
+                           rapDBGeneSymbolSynonym = as.character(rapSymbol),
+                           cgsnlGeneName = as.character(cgsnlName),
+                           cgsnlGeneSymbol = as.character(cgsnlGene),
+                           oryzabaseGeneNameSynonym = as.character(oryGeneName),
+                           oryzabaseGeneSymbolSynonym = as.character(oryGeneSymbol),
+                           position = positionData,
+                           description = as.character(description))
+            
             return(newGene)
         }
     }
@@ -524,13 +388,13 @@ creationGeneDB1Bis <- function (x, y, IdsList) {
 #' @rdname callCreationGeneDB1-function
 callCreationGeneDB1 <- function (x, IdsList) {
     listGenes1 <- data.frame()
-
+    
     listGenes1 <- lapply(1 : length(IdsList[[x]]),
-                        FUN = function(y) creationGeneDB1Bis(x, y, IdsList))
+                         FUN = function(y) creationGeneDB1Bis(x, y, IdsList))
     
     ##Remove all the NULL object from the list
     ##listGenes[sapply(listGenes, is.null)] <- NULL
-
+    
     return(listGenes1)
 }
 
@@ -542,20 +406,20 @@ callCreationGeneDB1 <- function (x, IdsList) {
 #' @export
 #' @rdname callDB1Bis-function
 callDB1Bis <- function (IdsList) {
-
+    
     listGenes <- data.frame()
-
+    
     ##We call the function creationGeneDB1 to create our newGene
     listGenes <- lapply(1 : length(IdsList),
                         FUN = function(x) callCreationGeneDB1(x, IdsList))
-
-
+    
+    
     ##Remove all the NULL object from the list
     listGenes[sapply(listGenes, is.null)] <- NULL
-
+    
     ##To delete all the geneDB1 which exists in double
     listGenes <- unique(listGenes)
-
+    
     ##print(listGenes)
     return (listGenes)
 }
