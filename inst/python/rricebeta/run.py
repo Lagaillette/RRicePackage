@@ -36,9 +36,13 @@ def main():
     start = sys.argv[2]
     end = sys.argv[3]
     db = sys.argv[4]
+    #pour le nouveau callDB1
+    idGene = sys.argv[5]
 
-    dataSnp = snpSeek.snpSeek(contig, start, end)
-    hashmap = dataSnp[0]
+    if (db != "script7"):
+        dataSnp = snpSeek.snpSeek(contig, start, end)
+        hashmap = dataSnp[0]
+    
     #geneID(contig, start, end, hashmap[], hashmap["raprepName"])
 
     if(db == "1"):
@@ -135,6 +139,10 @@ def main():
     elif (db == "call_snpSeek"):
         for i in range(0, len(dataSnp)):
             print(dataSnp[i])
+    
+    elif (db == "script7"):
+        print(rapdb.rapdb(idGene))
+    
 
 
 # Pour eviter que le script soit execute lors d'un simple import
