@@ -1,3 +1,5 @@
+library(jsonlite)
+
 #' id
 #'
 #' This function will only return the id from the rOutput 
@@ -67,34 +69,40 @@ getIds <- function (i, locusList) {
     start = as.character(locusList[i,2])
     end = as.character(locusList[i,3])
     
-    ##appel du script python run.py avec les attributs (chx, start, end, DB) 
-    ##-> tous les attributs doivent etre en chaine de carac
-    args = c(ch, start, end, "call_snpSeek", "None")
-    #allArgs = c(path2Script, args)
-    
-    #rOutput = system2(command, args=allArgs, stdout=TRUE)
-    rOutput = system2(command=path, args=args, stdout=TRUE)
-    
-    rOutput <- lapply(1 : length(rOutput),
-                      function(x) getOutPutJSON(rOutput[x]))
-    
-    rOutput[sapply(rOutput, is.null)] <- NULL
-    
-    ##print(rOutput)
-    
-    
-    if (length(rOutput) > 0) {
-        #print(rOutput)
-        #jsonOutput <- fromJSON(rOutput[[1]])
+    if (ch != "" && start != "" && end != "") {
+        ##appel du script python run.py avec les attributs (chx, start, end, DB) 
+        ##-> tous les attributs doivent etre en chaine de carac
+        args = c(ch, start, end, "call_snpSeek", "None")
+        #allArgs = c(path2Script, args)
         
-        listIds <- lapply(1 : length(rOutput),
-                          FUN = function(x) id(rOutput[[x]]))
+        #rOutput = system2(command, args=allArgs, stdout=TRUE)
+        rOutput = system2(command=path, args=args, stdout=TRUE)
+        
+        rOutput <- lapply(1 : length(rOutput),
+                          function(x) getOutPutJSON(rOutput[x]))
+        
+        rOutput[sapply(rOutput, is.null)] <- NULL
+        
+        ##print(rOutput)
+        
+        
+        if (length(rOutput) > 0) {
+            #print(rOutput)
+            #jsonOutput <- fromJSON(rOutput[[1]])
+            
+            listIds <- lapply(1 : length(rOutput),
+                              FUN = function(x) id(rOutput[[x]]))
+        }
+        
+        ##listIds[sapply(listIds, is.null)] <- NULL
+        
+        ##print(listIds)
+        return (listIds)
+    }
+    else {
+        return (list())
     }
     
-    ##listIds[sapply(listIds, is.null)] <- NULL
-    
-    ##print(listIds)
-    return (listIds)
 }
 
 #' Function for recup a list of ids
@@ -105,22 +113,28 @@ getIds <- function (i, locusList) {
 #' @export
 #' @rdname callSnpSeek-function
 callSnpSeek <- function(locus){
+
+        listIds <- data.frame()
+        
+        if (length(locus) > 0) {
+            ##We call the function creationGeneDB1 to create our newGene
+            listIds <- lapply(1 : nrow(locus),
+                              FUN = function(x) getIds(x, locus))
+            
+            
+            ##Remove all the NULL object from the list
+            listIds[sapply(listIds, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listIds <- unique(listIds)
+            
+            ##print(listIds)
+            return (listIds)
+        }
+        else {
+            return (list())
+        }
     
-    listIds <- data.frame()
-    
-    ##We call the function creationGeneDB1 to create our newGene
-    listIds <- lapply(1 : nrow(locus),
-                      FUN = function(x) getIds(x, locus))
-    
-    
-    ##Remove all the NULL object from the list
-    listIds[sapply(listIds, is.null)] <- NULL
-    
-    ##To delete all the geneDB1 which exists in double
-    listIds <- unique(listIds)
-    
-    ##print(listIds)
-    return (listIds)
 }
 
 

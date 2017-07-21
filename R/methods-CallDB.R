@@ -149,69 +149,76 @@ creationGeneDB3 <- function (i, locusList) {
     start = as.character(locusList[i,2])
     end = as.character(locusList[i,3])
     
-    ##appel du script python run.py avec les attributs (chx, start, end, DB) 
-    ##-> tous les attributs doivent etre en chaine de carac
-    args = c(ch, start, end, "3", "None")
-    allArgs = c(path2Script, args)
-    
-    #rOutput = system2(command, args=allArgs, stdout=TRUE)
-    rOutput = system2(command=path, args=args, stdout=TRUE)
-    
-    
-    ##print(rOutput)
-    
-    rOutput <- lapply(1 : length(rOutput), 
-                      function(x) getOutPutJSON(rOutput[x]))
-    
-    rOutput[sapply(rOutput, is.null)] <- NULL
-    
-    ##if rOutput is an empty list then we don't create a new GeneDB1
-    if (length(rOutput) > 0) {
-        jsonOutput <- fromJSON(rOutput[[1]])
+    if (ch != "" && start != "" && end != "") {
+        ##appel du script python run.py avec les attributs (chx, start, end, DB) 
+        ##-> tous les attributs doivent etre en chaine de carac
+        args = c(ch, start, end, "3", "None")
+        allArgs = c(path2Script, args)
         
-        traitGeneId = jsonOutput["Trait Gene Id"]
-        cgsnlGeneSymbol =jsonOutput["CGSNL Gene Symbol"]
-        geneSymbolSynonym =jsonOutput["Gene symbol synonym(s)"]
-        cgsnlGeneName = jsonOutput["CGSNL Gene Name"]
-        geneNameSynonym =jsonOutput["Gene name synonym(s)"]
-        proteinName =jsonOutput["Protein Name"]
-        allele = jsonOutput["Allele"]
-        chromosomeNo = jsonOutput["Chromosome No."]
-        explanation =jsonOutput["Explanation"]
-        traitClass =jsonOutput["Trait Class"]
-        rapId =jsonOutput["RAP ID"]
-        grameneId =jsonOutput["Gramene ID"]
-        arm =jsonOutput["Arm"]
-        locateCm = jsonOutput["Locate(cM)"]
-        geneOntology = jsonOutput["Gene Ontology"]
-        traitOntology = jsonOutput["Trait Ontology"]
-        plantOntology = jsonOutput["Plant Ontology"]
-        
-        newGene <- new("GeneDB3",
-                       id = "",
-                       locus = locusList[i,],
-                       others = list(),
-                       traitGeneId = as.character(traitGeneId),
-                       cgsnlGeneSymbol = as.character(cgsnlGeneSymbol),
-                       GeneSymbolSynonim = as.character(geneSymbolSynonym),
-                       cgsnlSymbolSynonim = as.character(cgsnlGeneName),
-                       GeneNameSynonim = as.character(geneNameSynonym),
-                       proteinName = as.character(proteinName),
-                       allele = as.character(allele),
-                       chromosomeNumber = as.numeric(chromosomeNo),
-                       explanation = as.character(explanation),
-                       traitClass = as.character(traitClass),
-                       rapID = as.character(rapId),
-                       grameneId = as.character(grameneId),
-                       arm = as.character(arm),
-                       locate = as.character(locateCm),
-                       geneOntology = as.character(geneOntology),
-                       traitOntology = as.character(traitOntology),
-                       plantOntology = as.character(plantOntology))
+        #rOutput = system2(command, args=allArgs, stdout=TRUE)
+        rOutput = system2(command=path, args=args, stdout=TRUE)
         
         
-        return(newGene)
+        ##print(rOutput)
+        
+        rOutput <- lapply(1 : length(rOutput), 
+                          function(x) getOutPutJSON(rOutput[x]))
+        
+        rOutput[sapply(rOutput, is.null)] <- NULL
+        
+        ##if rOutput is an empty list then we don't create a new GeneDB1
+        if (length(rOutput) > 0) {
+            jsonOutput <- fromJSON(rOutput[[1]])
+            
+            traitGeneId = jsonOutput["Trait Gene Id"]
+            cgsnlGeneSymbol =jsonOutput["CGSNL Gene Symbol"]
+            geneSymbolSynonym =jsonOutput["Gene symbol synonym(s)"]
+            cgsnlGeneName = jsonOutput["CGSNL Gene Name"]
+            geneNameSynonym =jsonOutput["Gene name synonym(s)"]
+            proteinName =jsonOutput["Protein Name"]
+            allele = jsonOutput["Allele"]
+            chromosomeNo = jsonOutput["Chromosome No."]
+            explanation =jsonOutput["Explanation"]
+            traitClass =jsonOutput["Trait Class"]
+            rapId =jsonOutput["RAP ID"]
+            grameneId =jsonOutput["Gramene ID"]
+            arm =jsonOutput["Arm"]
+            locateCm = jsonOutput["Locate(cM)"]
+            geneOntology = jsonOutput["Gene Ontology"]
+            traitOntology = jsonOutput["Trait Ontology"]
+            plantOntology = jsonOutput["Plant Ontology"]
+            
+            newGene <- new("GeneDB3",
+                           id = "",
+                           locus = locusList[i,],
+                           others = list(),
+                           traitGeneId = as.character(traitGeneId),
+                           cgsnlGeneSymbol = as.character(cgsnlGeneSymbol),
+                           GeneSymbolSynonim = as.character(geneSymbolSynonym),
+                           cgsnlSymbolSynonim = as.character(cgsnlGeneName),
+                           GeneNameSynonim = as.character(geneNameSynonym),
+                           proteinName = as.character(proteinName),
+                           allele = as.character(allele),
+                           chromosomeNumber = as.numeric(chromosomeNo),
+                           explanation = as.character(explanation),
+                           traitClass = as.character(traitClass),
+                           rapID = as.character(rapId),
+                           grameneId = as.character(grameneId),
+                           arm = as.character(arm),
+                           locate = as.character(locateCm),
+                           geneOntology = as.character(geneOntology),
+                           traitOntology = as.character(traitOntology),
+                           plantOntology = as.character(plantOntology))
+            
+            
+            return(newGene)
+        }
     }
+    else {
+        return("One of your locus has a problem")
+    }
+    
+    
 }
 
 #' callDB3
@@ -409,19 +416,24 @@ callDB1Bis <- function (IdsList) {
     
     listGenes <- data.frame()
     
-    ##We call the function creationGeneDB1 to create our newGene
-    listGenes <- lapply(1 : length(IdsList),
-                        FUN = function(x) callCreationGeneDB1(x, IdsList))
-    
-    
-    ##Remove all the NULL object from the list
-    listGenes[sapply(listGenes, is.null)] <- NULL
-    
-    ##To delete all the geneDB1 which exists in double
-    listGenes <- unique(listGenes)
-    
-    ##print(listGenes)
-    return (listGenes)
+    if (class(IdsList) == "list") {
+        ##We call the function creationGeneDB1 to create our newGene
+        listGenes <- lapply(1 : length(IdsList),
+                            FUN = function(x) callCreationGeneDB1(x, IdsList))
+        
+        
+        ##Remove all the NULL object from the list
+        listGenes[sapply(listGenes, is.null)] <- NULL
+        
+        ##To delete all the geneDB1 which exists in double
+        listGenes <- unique(listGenes)
+        
+        ##print(listGenes)
+        return (listGenes)
+    }
+    else {
+        return("IdsList has to be a list")
+    }
 }
 
 # data <- data.frame(ch = c("1"),
