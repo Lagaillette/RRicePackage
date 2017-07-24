@@ -4,7 +4,7 @@
 #'
 #' @slot name The name of the experiment
 #' @slot date The date of the experiment
-#' @slot databases the databases which concern the object we are studying
+#' @slot databases the databases which concern the object we are studying 
 #' @slot genes The list of genes we avec download.
 #' @slot others The others attributes the user can add and delete
 #' @name Experiment-class
