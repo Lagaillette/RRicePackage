@@ -13,8 +13,11 @@ inherit.
 \section{Slots}{
 
 \describe{
-\item{\code{id}}{The id of the gene. Many genes can have the same id because there
-are the same in spite of the different attributes they have.}
+\item{\code{id}}{The id of the gene. Many genes can have the same id because 
+there are the same in spite of the different attributes they have.}
+
+\item{\code{genesIDs}}{the list of diferent ids it have we will use with the 
+databases.}
 
 \item{\code{locus}}{The locus the gene belongs.}
 
