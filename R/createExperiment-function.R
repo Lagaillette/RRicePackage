@@ -44,6 +44,8 @@ createExperiment <- function(name, locus){
             message("please write the date in the format asked.")
         }
     }
+    ## We get all the geneIds of the locuses
+    genesIds <- callSnpSeek(locus)
     ## We create the list which will have the genes of the databases
     genes <- vector(mode='list', length=nbdb)
     i <- 1
