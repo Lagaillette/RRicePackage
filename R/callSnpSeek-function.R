@@ -42,7 +42,10 @@ id <- function (rOutput) {
         id <- jsonOutput['raprepName']
     }
     
-    return (id)
+    if (id != "None") {
+        return (id)
+    }
+    
 }
 
 #' getIds
@@ -94,7 +97,8 @@ getIds <- function (i, locusList) {
                               FUN = function(x) id(rOutput[[x]]))
         }
         
-        ##listIds[sapply(listIds, is.null)] <- NULL
+        ##Remove all the NULL object from the list
+        listIds[sapply(listIds, is.null)] <- NULL
         
         ##print(listIds)
         return (listIds)
