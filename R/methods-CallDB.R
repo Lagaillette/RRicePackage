@@ -145,12 +145,10 @@ callDB1 <- function (IdsList, locusList) {
         ##To delete all the geneDB1 which exists in double
         listGenes <- unique(listGenes)
         
+        ##liste is a list with only the genes. 
         liste <- list()
-        l <- list()
         lapply(1 : length(listGenes),
                FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        #listGenes[sapply(liste, is.null)] <- NULL
         
         return (liste)
     }
