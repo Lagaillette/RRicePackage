@@ -155,7 +155,7 @@ callDB1 <- function (IdsList, locusList) {
         return (liste)
     }
     else {
-        return("IdsList has to be a list")
+        stop("IdsList has to be a list")
     }
 }
 
