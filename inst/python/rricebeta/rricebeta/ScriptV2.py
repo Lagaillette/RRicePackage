@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Imports
 import urllib.request
 import pandas as pd

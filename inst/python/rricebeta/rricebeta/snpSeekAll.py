@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import requests
 import re
 import os
@@ -40,3 +42,4 @@ def snpSeekAll(string):
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
         wr.writerow(data)
         myfile.close
+

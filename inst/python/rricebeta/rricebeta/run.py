@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import sys
 import requests
@@ -12,6 +14,7 @@ import ScriptGramene as gramene
 import ScriptV8_Oryzabase as oryzabase
 import snpSeekAll as snpSeekAll
 import Script_IC4R as ic4r
+import Script_planttfdb as planttfdb
 
 def formatPathToFile(nameFile):
     # on supprime le dernier char tant qu'on n'a pas rencontré '/'
@@ -124,11 +127,16 @@ def main():
 
     # Return the SnpSeek Call
     elif(db == "6"):
-        return hashmap
+        print(hashmap)
 
 
     elif (db == "7"):
-        ic4r.ic4r()
+        dataIc4r = ic4r.ic4r(hashmap["raprepName"])
+        print(dataIc4r)
+
+    elif (db == "8"):
+        dataPlanttfdb = planttfdb.planttfdb(hashmap["msu7Name"])
+        print(dataPlanttfdb)
 
 
 # Pour eviter que le script soit execute lors d'un simple import

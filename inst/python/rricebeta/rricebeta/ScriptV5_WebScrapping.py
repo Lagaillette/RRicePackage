@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import pandas as pd
 from pandas.io.common import EmptyDataError
@@ -6,37 +8,22 @@ from bs4 import BeautifulSoup
 import requests
 
 
-class ScriptV6:
-
+class ScriptV5:
 
     #constructor
-
     def __init__(self):
-        """
-            Test if the file already exists.
-                If yes, it just prints informations.
-                If no, it downloads the file on RapDB and prints informations
-        """
         self.url = ""
         self.nameFile = ""
-        self.pathToFile = ""
+        self.pathToFile = os.getcwd() + '/' + self.nameFile
 
-        self.findFileOnRapdb()
-        # If the file already exists
-        if(self.existFile() == True):
-            print("File already exist :\nName : "+self.nameFile+"\nPath : "+self.pathToFile+"\n")
-        # If the file doesn't exists
-        else:
-            self.loadFileURL()
-            print("File downloaded :\nName : " + self.nameFile + "\nPath : " + self.pathToFile + "\nDonwloaded at : " + self.url+"\n")
+    def loadFileURL(self):
 
-    def findFileOnRapdb(self):
+        """
+        Download the file located in the rapdb download page
+
+        """
 
         # URL of the web page to analyze
-        """
-            Fetch the link of the most recent file RAP-MSU
-            Initialize attributes at the creation of the class
-        """
         html_page = requests.get("http://rapdb.dna.affrc.go.jp/download/irgsp1.html")
         soup = BeautifulSoup(html_page.content, "lxml")
 
@@ -49,32 +36,25 @@ class ScriptV6:
                 # Format the URL
                 self.url = "http://rapdb.dna.affrc.go.jp/download" + linkfound[1:]
 
-        #Give the name of the file with the extension .gz (RAP*****.txt.gz)
+        #Give the name of the file with the extension .gz
         filename = self.url.split("/")[-1]
 
-        # Initialize the name of the file without .gz ((RAP*****.txt)
-        self.nameFile = filename[:-3]
-
-        # Initialize the path where the file is located
-        self.pathToFile = os.getcwd() + '/' + self.nameFile
-
-
-    def loadFileURL(self):
-
-        """
-        Download the file located in the rapdb download page
-
-        """
+        # Give the name of the file without .gz
+        uncompressName = filename[:-3]
 
         # Fetch the file by the url and decompress it
         r = requests.get(self.url)
         decompressedFile = gzip.decompress(r.content)
 
         # Create the file .txt
-        with open(self.nameFile, "wb") as f:
+        with open(uncompressName, "wb") as f:
             f.write(decompressedFile)
             f.close()
 
+        # Store the name of the created file
+        self.nameFile = uncompressName
+
+        print("File created")
 
 
     def rapToLoc(self, RAPID):
@@ -142,15 +122,9 @@ class ScriptV6:
 
             file.close()
 
-
-    def existFile(self):
-        return(os.path.isfile(self.pathToFile))
-
-
     def informations(self):
         """
             Print the informations of the class
         """
         print("Name : "+self.nameFile)
-        print("Path : " + self.pathToFile)
         print("URL : " +self.url)
