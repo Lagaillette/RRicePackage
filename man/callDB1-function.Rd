@@ -4,13 +4,13 @@
 \alias{callDB1}
 \title{callDB1}
 \usage{
-callDB1(locusList)
+callDB1(IdsList, locusList)
 }
 \arguments{
-\item{locusList}{list of locus for which we want the genes}
+\item{IdsList}{list of locus for which we want the genes}
+
+\item{locusList}{list}
 }
 \description{
-This function will call for each locus in the list, the run.py script and
-python will return the list of the genes which are present in the locus and
-in the DB1. All these locus will be stocked in listGenes
+This function is the new function which will replace callDB1 function
 }
