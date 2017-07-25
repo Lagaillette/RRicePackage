@@ -58,8 +58,10 @@ createExperiment <- function(name, locus){
         if(databases[i] > 0 && 
            databases[i] <= dbAvailables && 
            !alreadyUsedDB(databases,i)){
+            print("in")
             callDB <- paste("callDB",databases[i],sep="")
-            ##genes[[i]] <- (do.call(callDB, args = list(locus)))
+            print(callDB)
+            genes[[i]] <- (do.call(callDB, args = list(genesIds, locus)))
             i <- i+1
         }
         else{
