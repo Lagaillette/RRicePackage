@@ -76,5 +76,20 @@ setGeneric(
     def = function(object, name){standardGeneric("deleteAttribute" )}
 )
 
+#' Get all the genes of the data base you want.
+#'
+#' @param object The object for which we want modification.
+#' @param nbDb The number of the db you want(ex : 1 for RAPDB).
+#' @return the list of the genes of the database you want.
+#' @exportMethod getDBGenes
+#' @name getDBGenes
+#' @rdname getDBGenes-methods
+#' @exportMethod getDBGenes
+#' @docType methods
+setGeneric(
+    name ="getDBGenes",
+    def = function(object, nbDB){standardGeneric("getDBGenes" )}
+)
+
 
 
