@@ -13,9 +13,10 @@ setMethod(
                  pos <- it
                  find <- TRUE
              }
+             it <- it+1
          }
          if(find){
-             return(object@genes[[it]])
+             return(object@genes[[pos]])
          }
           else{
               stop("the database you want to access is not available")
