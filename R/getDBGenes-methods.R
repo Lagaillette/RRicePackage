@@ -9,7 +9,7 @@ setMethod(
          pos <- NULL
          it <- 1
          while(it <= length(databases) && !find){
-             if(identical(databases[[it]],nbDB){
+             if(identical(databases[[it]],nbDB)){
                  pos <- it
                  find <- TRUE
              }
