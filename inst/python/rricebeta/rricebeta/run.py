@@ -15,6 +15,7 @@ import ScriptV8_Oryzabase as oryzabase
 import snpSeekAll as snpSeekAll
 import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
+import Script_plntfdb as plntfdb
 
 def formatPathToFile(nameFile):
     # on supprime le dernier char tant qu'on n'a pas rencontré '/'
@@ -137,6 +138,10 @@ def main():
     elif (db == "8"):
         dataPlanttfdb = planttfdb.planttfdb(hashmap["msu7Name"])
         print(dataPlanttfdb)
+
+    elif (db == "9"):
+        dataPlntfdb = plntfdb.plntfdb(hashmap["msu7Name"])
+        print(dataPlntfdb)
 
 
 # Pour eviter que le script soit execute lors d'un simple import
