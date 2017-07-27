@@ -30,7 +30,7 @@ def main():
     for i in liste1:
         if(verifGoodFile(i)):
             changeRightPyFile(i)
-            print(i)
+            #print(i)
 
 
 if __name__ == "__main__":
