@@ -1,9 +1,7 @@
 
 .onLoad <- function(libname, pkgname) {
 
-    #packageStartupMessage("Good")
+    ##call this function for executable python files
+    callExecutablePy()
     
-    ##We load this function to execute all the python files
-    transformExePy()
-
 }
