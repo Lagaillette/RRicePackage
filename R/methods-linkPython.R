@@ -27,7 +27,7 @@ callExecutablePy <- function () {
     #writeLines(path, path1)
     
     ##put the variable path into python __main__
-    pySet("path", path2, namespace = "__main__")
-    pyExecfile(path)
+    PythonInR::pySet("path", path2, namespace = "__main__")
+    PythonInR::pyExecfile(path)
 }
 
