@@ -1,4 +1,5 @@
 library(jsonlite)
+library(findpython)
 
 #' creationGeneDB1
 #'
@@ -11,6 +12,7 @@ library(jsonlite)
 #' @param IdsList list
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
+#' @importFrom findpython find_python_cmd
 #' @export
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (x, y, IdsList, locusList) {
@@ -20,7 +22,12 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
                         "run.py",
                         package = "rRice")
     
-    path2Script = paste(c(path), collapse = '')
+    ##manage the spaces -> for example "Program Files" under windows will 
+    ##generate an error because with system2 we generate a command line
+    ##with multiple arguments in one string. 
+    if (Sys.info()["sysname"] == "Windows"){
+        path <- shortPathName(path)
+    }
     
     id <- IdsList[[x]][[y]]
     id <- as.character(id)
@@ -28,12 +35,15 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     if (id != "None") {
         ##appel du script python run.py avec les attributs (chx, start, end, DB)
         ##-> tous les attributs doivent etre en chaine de carac
-        args = c("None", "None", "None", "script7", id)
-        allArgs = c(path2Script, args)
-        
-        ##rOutput = system2(command, args=allArgs, stdout=TRUE)
-        rOutput = system2(command=path, args=args, stdout=TRUE)
-        
+        if (Sys.info()["sysname"] == "Windows"){
+            args = c(path, "None", "None", "None", "script7", id)
+            cmd <- findpython::find_python_cmd()
+            rOutput = system2(command = cmd, args=args, stdout = TRUE)
+        }
+        else {
+            args = c("None", "None", "None", "script7", id)
+            rOutput = system2(command = path, args=args, stdout = TRUE)
+        }
         
         rOutput <- lapply(1 : length(rOutput),
                           function(x) getOutPutJSON(rOutput[x]))
@@ -187,7 +197,12 @@ creationGeneDB3 <- function (i, locusList) {
                         "run.py",
                         package = "rRice")
     
-    path2Script = paste(c(path), collapse = '')
+    ##manage the spaces -> for example "Program Files" under windows will 
+    ##generate an error because with system2 we generate a command line
+    ##with multiple arguments in one string. 
+    if (Sys.info()["sysname"] == "Windows"){
+        path <- shortPathName(path)
+    }
     
     ch = as.character(locusList[i,1])
     start = as.character(locusList[i,2])
@@ -196,14 +211,15 @@ creationGeneDB3 <- function (i, locusList) {
     if (ch != "" && start != "" && end != "") {
         ##appel du script python run.py avec les attributs (chx, start, end, DB) 
         ##-> tous les attributs doivent etre en chaine de carac
-        args = c(ch, start, end, "3", "None")
-        allArgs = c(path2Script, args)
-        
-        #rOutput = system2(command, args=allArgs, stdout=TRUE)
-        rOutput = system2(command=path, args=args, stdout=TRUE)
-        
-        
-        ##print(rOutput)
+        if (Sys.info()["sysname"] == "Windows"){
+            args = c(path, ch, start, end, "3", "None")
+            cmd <- findpython::find_python_cmd()
+            rOutput = system2(command = cmd, args=args, stdout = TRUE)
+        }
+        else {
+            args = c(ch, start, end, "3", "None")
+            rOutput = system2(command = path, args=args, stdout = TRUE)
+        }
         
         rOutput <- lapply(1 : length(rOutput), 
                           function(x) getOutPutJSON(rOutput[x]))

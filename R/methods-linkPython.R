@@ -13,10 +13,6 @@ callExecutablePy <- function () {
                         "test.py",
                         package = "rRice")
     
-    # path1 <- system.file("python",
-    #                     "appel.txt",
-    #                     package = "rRice")
-    
     path2 <- system.file("python/rricebeta",
                         package = "rRice")
     
@@ -27,6 +23,14 @@ callExecutablePy <- function () {
     #writeLines(path, path1)
     
     ##put the variable path into python __main__
+    # if (Sys.getenv("R_ARCH") == "/x64") {
+    #   PythonInR::pyConnect("C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python35\\python.exe")
+    #   
+    # }
+    # else {
+    #   PythonInR::pyConnect("C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python35-32\\python.exe")
+    # }
+    # print(PythonInR::pyIsConnected())
     PythonInR::pySet("path", path2, namespace = "__main__")
     PythonInR::pyExecfile(path)
 }

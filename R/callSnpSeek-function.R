@@ -1,4 +1,5 @@
 library(jsonlite)
+library(findpython)
 
 #' id
 #'
@@ -56,6 +57,7 @@ id <- function (rOutput) {
 #' @param i number
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
+#' @importFrom findpython find_python_cmd
 #' @export
 #' @rdname getIds-function
 getIds <- function (i, locusList) {
@@ -63,6 +65,13 @@ getIds <- function (i, locusList) {
     path <- system.file("python/rricebeta",
                         "run.py",
                         package = "rRice")
+    
+    ##manage the spaces -> for example "Program Files" under windows will 
+    ##generate an error because with system2 we generate a command line
+    ##with multiple arguments in one string. 
+    if (Sys.info()["sysname"] == "Windows"){
+        path <- shortPathName(path)
+    }
     
     listIds <- data.frame()
     
@@ -75,11 +84,18 @@ getIds <- function (i, locusList) {
     if (ch != "" && start != "" && end != "") {
         ##appel du script python run.py avec les attributs (chx, start, end, DB) 
         ##-> tous les attributs doivent etre en chaine de carac
-        args = c(ch, start, end, "call_snpSeek", "None")
-        #allArgs = c(path2Script, args)
+        if (Sys.info()["sysname"] == "Windows"){
+            args = c(path, ch, start, end, "call_snpSeek", "None")
+            cmd <- findpython::find_python_cmd()
+            rOutput = system2(command = cmd, args=args, stdout = TRUE)
+        }
+        else {
+            args = c(ch, start, end, "call_snpSeek", "None")
+            rOutput = system2(command = path, args=args, stdout = TRUE)
+        }
         
-        #rOutput = system2(command, args=allArgs, stdout=TRUE)
-        rOutput = system2(command=path, args=args, stdout=TRUE)
+        
+        #rOutput = system2(command=path, args=args, stdout=TRUE)
         
         rOutput <- lapply(1 : length(rOutput),
                           function(x) getOutPutJSON(rOutput[x]))
