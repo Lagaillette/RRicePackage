@@ -4,16 +4,24 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import os
+import sys
 
 def formatPathToFile(nameFile):
     # on supprime le dernier char tant qu'on n'a pas rencontré '/'
     pathToFile = os.path.dirname(__file__)
-    while not (pathToFile.endswith('/')):
-        pathToFile = pathToFile[0:-1]
+    #under not windows (nt = windows)
+    if os.name != "nt":
+        while not (pathToFile.endswith('/')):
+            pathToFile = pathToFile[0:-1]
 
-    pathToFile += 'resources/'+nameFile
+        pathToFile += 'resources/'+nameFile
+    else:
+        while not (pathToFile.endswith('\\')):
+            pathToFile = pathToFile[0:-1]
+
+        pathToFile += 'resources\\'+nameFile
     return pathToFile
-
+    
 def loadFileURL(nameFile, url):
 
     """

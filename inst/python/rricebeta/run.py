@@ -28,6 +28,7 @@ def formatPathToFile(nameFile):
 
 def main():
     pathScript = sys.argv[0]
+    print(pathScript)
     contig = sys.argv[1]
     if len(contig)<2:
         contig =  'chr0'+contig # test if for 10 - 11 - 12
@@ -41,6 +42,7 @@ def main():
 
     if (db != "script7"):
         dataSnp = snpSeek.snpSeek(contig, start, end)
+        print(dataSnp)
         hashmap = dataSnp[0]
     
     #geneID(contig, start, end, hashmap[], hashmap["raprepName"])
