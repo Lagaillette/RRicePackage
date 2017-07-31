@@ -13,6 +13,7 @@ library(findpython)
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
+#' @importFrom methods new
 #' @export
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (x, y, IdsList, locusList) {
@@ -198,6 +199,7 @@ callDB1 <- function (IdsList, locusList) {
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
+#' @importFrom methods new
 #' @export
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {

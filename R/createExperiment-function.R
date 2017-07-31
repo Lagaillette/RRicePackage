@@ -7,6 +7,7 @@
 #'
 #' @param name The name of the Experiment
 #' @param locus The Table of locus 
+#' @importFrom methods new
 #' @return An Experiment
 #' @export
 #' @rdname createExperiment-function
