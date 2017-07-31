@@ -1,8 +1,6 @@
 # 
 # 
-# data1 <- data.frame(ch = c("1"),
-#                    st = c("148907"),
-#                    end = c("248907"))
+
 # 
 # data2 <- data.frame(ch = c(""),
 #                    st = c(""),
@@ -106,3 +104,50 @@
 # 
 # 
 # 
+library(testthat)
+
+data1 <- data.frame(ch = c("1"),
+                    st = c("148907"),
+                    end = c("248907"))
+
+
+result1 <- list(list(
+    list("raprepName" = "Os01g0102700"),
+    list("raprepName" = "Os01g0102800"),
+    list("raprepName" = "Os01g0102900"),
+    list("raprepName" = "Os01g0103000"),
+    list("raprepName" = "Os01g0103100"),
+    list("raprepName" = "Os01g0103600"),
+    list("raprepName" = "Os01g0103800"),
+    list("raprepName" = "Os01g0103900"),
+    list("raprepName" = "Os01g0104000"),
+    list("raprepName" = "Os01g0104100"),
+    list("raprepName" = "Os01g0104200"),
+    list("raprepName" = "Os01g0104400"),
+    list("raprepName" = "Os01g0104500"),
+    list("raprepName" = "Os01g0104600")))
+
+
+test_that("Test callSnpSeek with multiple values",{
+    testthat::expect_equal(callSnpSeek(data1), result1)
+    #testthat::expect_equal(callSnpSeek(data2), result2)
+    #testthat::expect_equal(callSnpSeek(data3), result3)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
