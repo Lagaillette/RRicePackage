@@ -13,8 +13,6 @@ library(findpython)
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
-#' @importFrom methods new
-#' @importFrom utils shortPathName
 #' @export
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (x, y, IdsList, locusList) {
@@ -33,6 +31,17 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     
     id <- IdsList[[x]][[y]]
     id <- as.character(id)
+    print(id)
+    
+    ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
+    ##we only test the first db
+    if(grepl(',', id)) 
+    {
+        ids <- strsplit(id, ",")
+        id <- ids[[1]][[1]]
+        print(id)
+        print(ids[[1]][[2]])
+    }
     
     if (id != "None") {
         ##appel du script python run.py avec les attributs (chx, start, end, DB)
@@ -191,7 +200,6 @@ callDB1 <- function (IdsList, locusList) {
 #' @param i number
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
-#' @importFrom methods new
 #' @export
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
@@ -330,6 +338,10 @@ callDB3 <- function (locusList) {
 # data <- data.frame(ch = c("1"),
 #                    st = c("148907"),
 #                    end = c("248907"))
+
+# data <- data.frame(ch = c("1","1"),
+#                    st = c("148907","527906"),
+#                    end = c("248907","842359"))
 # 
 # print(data)
 # s <- callDB3(data)
