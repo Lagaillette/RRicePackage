@@ -197,6 +197,7 @@ callDB1 <- function (IdsList, locusList) {
 #' @param i number
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
+#' @importFrom findpython find_python_cmd
 #' @export
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (i, locusList) {
