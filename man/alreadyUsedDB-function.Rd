@@ -9,8 +9,7 @@ alreadyUsedDB(databases, i)
 \arguments{
 \item{databases}{the list of the databases we have}
 
-\item{i}{the number representing the length of the databases list. 
-So databases[i] we want to know if it exists or not}
+\item{i}{the number of the database we want to know if it's already used}
 }
 \value{
 Boolean TRUE if the database is already used, FALSE if not
