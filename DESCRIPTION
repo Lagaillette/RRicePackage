@@ -6,7 +6,7 @@ Author: Gallego Julien <julien.gallego.pro@gmail.com>,
          Hai Ho Bich <hobichhai@gmail.com>
 Maintainer: Hai Ho Bich <hobichhai@gmail.com>
 License: Artistic-2.0
-Imports: methods, jsonlite, reticulate, PythonInR, findpython
+Imports: methods, jsonlite, PythonInR, findpython
 Suggests: testthat
 SystemRequirements: python pkgs bs4, lxml, pandas, requests
 Description: This R package allows to access to the databases containing 
