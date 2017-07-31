@@ -33,7 +33,7 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     id <- as.character(id)
     
     ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
-    ##we only test the first db
+    ##we only test the first id
     if(grepl(',', id)) 
     {
         ids <- strsplit(id, ",")
