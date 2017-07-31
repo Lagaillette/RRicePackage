@@ -78,21 +78,37 @@ data2 <- data.frame(ch = c(""),
 
 data3 <- data.frame()
 
+# result1 <- list(list(
+#     list("raprepName" = "Os01g0102700"),
+#     list("raprepName" = "Os01g0102800"),
+#     list("raprepName" = "Os01g0102900"),
+#     list("raprepName" = "Os01g0103000"),
+#     list("raprepName" = "Os01g0103100"),
+#     list("raprepName" = "Os01g0103600"),
+#     list("raprepName" = "Os01g0103800"),
+#     list("raprepName" = "Os01g0103900"),
+#     list("raprepName" = "Os01g0104000"),
+#     list("raprepName" = "Os01g0104100"),
+#     list("raprepName" = "Os01g0104200"),
+#     list("raprepName" = "Os01g0104400"),
+#     list("raprepName" = "Os01g0104500"),
+#     list("raprepName" = "Os01g0104600")))
+
 result1 <- list(list(
-    list("raprepName" = "Os01g0102700"),
-    list("raprepName" = "Os01g0102800"),
-    list("raprepName" = "Os01g0102900"),
-    list("raprepName" = "Os01g0103000"),
-    list("raprepName" = "Os01g0103100"),
-    list("raprepName" = "Os01g0103600"),
-    list("raprepName" = "Os01g0103800"),
-    list("raprepName" = "Os01g0103900"),
-    list("raprepName" = "Os01g0104000"),
-    list("raprepName" = "Os01g0104100"),
-    list("raprepName" = "Os01g0104200"),
-    list("raprepName" = "Os01g0104400"),
-    list("raprepName" = "Os01g0104500"),
-    list("raprepName" = "Os01g0104600")))
+    "Os01g0102700",
+    "Os01g0102800",
+    "Os01g0102900",
+    "Os01g0103000",
+    "Os01g0103100",
+    "Os01g0103600",
+    "Os01g0103800",
+    "Os01g0103900",
+    "Os01g0104000",
+    "Os01g0104100",
+    "Os01g0104200",
+    "Os01g0104400",
+    "Os01g0104500",
+    "Os01g0104600"))
 
 result2 <- list(list())
 
