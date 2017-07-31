@@ -33,13 +33,7 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     id <- IdsList[[x]][[y]]
     id <- as.character(id)
     
-    ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
-    ##we only test the first id
-    if(grepl(',', id)) 
-    {
-        ids <- strsplit(id, ",")
-        id <- ids[[1]][[1]]
-    }
+    
     
     if (id != "None") {
         ##appel du script python run.py avec les attributs (chx, start, end, DB)
@@ -111,7 +105,6 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
             return(newGene)
         }
     }
-    
 }
 
 #' callCreationGeneDB1
@@ -371,4 +364,3 @@ callDB3 <- function (locusList) {
 #     #b <- append(l[[1]],l[[2]])
 #     print(l1)
 # }
-

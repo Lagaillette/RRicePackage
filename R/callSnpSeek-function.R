@@ -1,6 +1,31 @@
 library(jsonlite)
 library(findpython)
 
+#' noDoubleIds
+#'
+#' This function allows to avoid the problem when the id is composed by 2 ids
+#' Example : Os01g0115500,Os01g0115566
+#'
+#' @param id character
+#' @export
+#' @rdname noDoubleIds-function
+noDoubleIds <- function (id) {
+    id <- as.character(id)
+    ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
+    ##we only test the first id
+    if(grepl(',', id)) 
+    {
+        ids <- strsplit(id, ",")
+        id <- ids[[1]][[1]]
+        id1 <- ids[[1]][[2]]
+        liste <- list(id,id1)
+        return(liste)
+    }
+    else {
+        return(id)
+    }
+}
+
 #' id
 #'
 #' This function will only return the id from the rOutput 
@@ -116,13 +141,21 @@ getIds <- function (i, locusList) {
         ##Remove all the NULL object from the list
         listIds[sapply(listIds, is.null)] <- NULL
         
-        ##print(listIds)
-        return (listIds)
+        ##remove double ids
+        listIds <- lapply(1 : length(listIds),
+                          FUN = function(x) noDoubleIds(listIds[[x]]))
+        
+        ##to get only one list !!
+        liste <- list()
+        lapply(1 : length(listIds),
+               FUN = function(x){liste <<- append(liste,listIds[[x]])})
+        
+        ##print(liste)
+        return (liste)
     }
     else {
         return (list())
     }
-    
 }
 
 #' Function for recup a list of ids
@@ -162,11 +195,14 @@ callSnpSeek <- function(locus){
 #                    st = c("527906"),
 #                    end = c("842359"))
 # 
+# data1 <- data.frame(ch = c("1"),
+#                   st = c("148907"),
+#                   end = c("248907"))
 
 #data <- data.frame(ch = c("1","1","1"),
 #                   st = c("148907","9344261","527906"),
 #                   end = c("248907","11332201","842359"))
 
 # print(data)
-# s <- callSnpSeek(data)
+#s <- callSnpSeek(data)
 #print(s)
