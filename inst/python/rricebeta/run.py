@@ -132,7 +132,7 @@ def main():
 
     # Return the SnpSeek Call
     elif(db == "6"):
-        return hashmap
+        print(dataSnp)
 
 
     elif (db == "7"):
