@@ -31,7 +31,6 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     
     id <- IdsList[[x]][[y]]
     id <- as.character(id)
-    print(id)
     
     ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
     ##we only test the first db
@@ -39,8 +38,6 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     {
         ids <- strsplit(id, ",")
         id <- ids[[1]][[1]]
-        print(id)
-        print(ids[[1]][[2]])
     }
     
     if (id != "None") {
