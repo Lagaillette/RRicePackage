@@ -6,8 +6,7 @@ import requests
 import gzip
 import csv
 import pandas as pd
-path = os.path.dirname(__file__)
-sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
+import helper
 import snpSeek as snpSeek
 import Scriptv7_Table as rapdb
 import ScriptGramene as gramene
@@ -17,16 +16,6 @@ import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
 import Script_plntfdb as plntfdb
 import Script_funricegenes as funricegenes
-
-def formatPathToFile(nameFile):
-    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
-    pathToFile = os.path.dirname(__file__)
-    while not (pathToFile.endswith('/')):
-        pathToFile = pathToFile[0:-1]
-
-    pathToFile += 'resources/'+nameFile
-    return pathToFile
-
 
 
 def main():
@@ -50,6 +39,10 @@ def main():
             print(dataRapdb)
         else:
             print("empty")
+
+    elif (db == "call_snpSeek"):
+        for i in range(0, len(dataSnp)):
+            print(dataSnp[i])
 
     elif(db == "2"):
         if(hashmap["raprepName"]):
@@ -81,7 +74,7 @@ def main():
         filename = url.split("/")[-1]
 
         # Give the name of the file without .gz
-        pathToFile = formatPathToFile(filename[:-3])
+        pathToFile = helper.formatPathToFile(filename[:-3])
 
         if (not os.path.isfile(pathToFile)):
             # Fetch the file by the url and decompress it
@@ -91,7 +84,7 @@ def main():
             with open(pathToFile, "w") as f:
                 f.write(decompressedFile)
                 f.close()
-        newFile = formatPathToFile("geneID.txt")
+        newFile = helper.formatPathToFile("geneID.txt")
         with open(newFile, "a") as f:
             # Import file tab-delimited
             try:
@@ -137,7 +130,7 @@ def main():
         print(dataIc4r)
 
     elif (db == "8"):
-        dataPlanttfdb = planttfdb.planttfdb(hashmap["msu7Name"])
+        dataPlanttfdb = planttfdb.planttfdb("LOC_Os01g04750.1")
         print(dataPlanttfdb)
 
     elif (db == "9"):
@@ -145,8 +138,8 @@ def main():
         print(dataPlntfdb)
 
     elif (db == "10"):
-        print(hashmap["raprepName"])
-        dataFunricegenes = funricegenes.funricegenes("Os11g0210300")
+        dataFunricegenes = funricegenes.funricegenes("LOC_Os07g39750")
+        print(dataFunricegenes)
 
 
 # Pour eviter que le script soit execute lors d'un simple import
