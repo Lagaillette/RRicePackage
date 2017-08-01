@@ -40,7 +40,7 @@ callExecutablePy <- function () {
 #' modules we need if they have not yet been installed
 #' 
 #' @importFrom findpython find_python_cmd
-#' @importFrom utils shortPathName
+#' @import utils
 #' @rdname dlPythonModules-function
 dlPythonModules <- function () {
     path <- system.file("python/rricebeta",
