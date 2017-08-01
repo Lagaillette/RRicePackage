@@ -5,6 +5,7 @@ library(PythonInR)
 #' This function calls test.py which will be allow to all python file to be
 #' executable
 #' 
+#' @return nothing
 #' @import PythonInR
 #' @rdname callExecutablePy-function
 callExecutablePy <- function () {
@@ -39,6 +40,7 @@ callExecutablePy <- function () {
 #' This function calls importModules.py in order to install all the python
 #' modules we need if they have not yet been installed
 #' 
+#' @return nothing
 #' @importFrom findpython find_python_cmd
 #' @import utils
 #' @rdname dlPythonModules-function
