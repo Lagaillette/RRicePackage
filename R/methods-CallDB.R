@@ -35,8 +35,7 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     
     
     if (id != "None") {
-        ##appel du script python run.py avec les attributs (chx, start, end, DB)
-        ##-> tous les attributs doivent etre en chaine de carac
+        ##Call run.py from python 
         if (Sys.info()["sysname"] == "Windows"){
             args = c(path, "None", "None", "None", "script7", id)
             cmd <- findpython::find_python_cmd()
@@ -97,7 +96,8 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
                            cgsnlGeneName = as.character(cgsnlName),
                            cgsnlGeneSymbol = as.character(cgsnlGene),
                            oryzabaseGeneNameSynonym = as.character(oryGeneName),
-                           oryzabaseGeneSymbolSynonym = as.character(oryGeneSymbol),
+                           oryzabaseGeneSymbolSynonym = 
+                               as.character(oryGeneSymbol),
                            position = positionData,
                            description = as.character(description))
             
@@ -137,6 +137,15 @@ callCreationGeneDB1 <- function (x, IdsList, locusList) {
 #' @param locusList list
 #' @export
 #' @rdname callDB1-function
+#' @examples 
+#' locusList <- data.frame(ch = c("1","1"),
+#'                         st = c("148907","527906"),
+#'                         end = c("248907","842359"))
+#'                         
+#' ids <- list(list("Os01g0102700","Os01g0102800"),
+#'             list("Os01g0109750","Os01g0110100"))
+#'                 
+#' callDB1(ids, locusList)
 callDB1 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
@@ -210,8 +219,7 @@ creationGeneDB3 <- function (i, locusList) {
     end = as.character(locusList[i,3])
     
     if (ch != "" && start != "" && end != "") {
-        ##appel du script python run.py avec les attributs (chx, start, end, DB) 
-        ##-> tous les attributs doivent etre en chaine de carac
+        ##Call run.py 
         if (Sys.info()["sysname"] == "Windows"){
             args = c(path, ch, start, end, "3", "None")
             cmd <- findpython::find_python_cmd()
@@ -310,54 +318,4 @@ callDB3 <- function (locusList) {
     return (listGenes)
 }
 
-############################
 
-##Test phases
-# data <- data.frame(ch = c("1","1","1","1","1"),
-#                   st = c("148907","5671734","9344261","10225320","148907"),
-#                   end = c("248907","6337629","11332201","10325320","248907"))
-
-#data <- data.frame(ch = c("1","1","1"),
-#                   st = c("148907","9344261","148907"),
-#                   end = c("248907","11332201","248907"))
-
-# data <- data.frame(ch = c("1"),
-#                    st = c("9344261"),
-#                    end = c("11332201"))
-
-# data <- data.frame(ch = c("1"),
-#                    st = c("148907"),
-#                    end = c("248907"))
-
-# data <- data.frame(ch = c("1","1"),
-#                    st = c("148907","527906"),
-#                    end = c("248907","842359"))
-# 
-# print(data)
-# s <- callDB3(data)
-# print(s)
-
-# data <- data.frame(ch = c("1","1","1","1","1","1","1","1","1","1","1","1","1","1"),
-#                   st = c("148907","5671734","9344261","9344261","10225320","10225320","15367095","21149478","21390962","22689596","34657419","34796909","34796909","39864172"),
-#                   end = c("248907","6337629","11332201","11332201","10325320","10325320","17233103","22250712","21490962","22789596","35396321","34896909","34896909","41317992"))
-# 
-# data <- data.frame(ch = c("","","","","","","","","","","","","",""),
-#                    st = c("","","","","","","","","","","","","",""),
-#                    end = c("","","","","","","","","","","","","",""))
-
-# data23 <- data.frame(ch = c("2","2","2","2","3","3","3"),
-#                    st = c("6142704","25638752","26084899","30847375","31694633","35301755","35301755"),
-#                    end = c("6965539","25738752","26883277","33746199","32833262","35401755","35401755"))
-
-############################################
-
-# a <- function () {
-#     l <- list(list(1,2,3),list(4,5,6))
-#     l1 <- list()
-#     lapply(1 : length(l),
-#                     function(x){
-#                         l1 <<- append(l1,l[[x]])
-#                     })
-#     #b <- append(l[[1]],l[[2]])
-#     print(l1)
-# }
