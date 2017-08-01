@@ -4,18 +4,6 @@
 \name{deleteAttribute}
 \alias{deleteAttribute}
 \alias{deleteAttribute,Experiment-method}
-\alias{exp}
-\alias{<-}
-\alias{new(Class="Experiment",}
-\alias{name="test",}
-\alias{date=Sys.Date(),}
-\alias{databases=list(1),}
-\alias{others=list())}
-\alias{addAttribute(exp,}
-\alias{"test",}
-\alias{"value")}
-\alias{deleteAttribute(exp,}
-\alias{"test")}
 \alias{deleteAttribute}
 \alias{deleteAttribute,Gene-method}
 \title{Delete an attribute which has been add by the user.}
@@ -38,6 +26,13 @@ The object without the attribute you want to delete.
 Delete an attribute which has been add by the user.
 }
 \examples{
+exp <- new(Class="Experiment",
+name="test",
+date=Sys.Date(),
+databases=list(1),
+others=list())
+exp <- addAttribute(exp, "test", "value")
+exp <- deleteAttribute(exp, "test")
 gene <- new("GeneDB1")
 gene <- addAttribute(gene, "test", "value")
 gene <- deleteAttribute(gene, "test")

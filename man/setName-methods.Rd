@@ -23,3 +23,7 @@ The object with the new name
 \description{
 Set the name of an object
 }
+\examples{
+exp <- new(Class="Experiment", date=Sys.Date(), name="test")
+setName(exp, "name")
+}

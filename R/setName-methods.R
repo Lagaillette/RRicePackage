@@ -1,6 +1,7 @@
 #' @return The object with the new name
 #' @rdname setName-methods
 #' @aliases setName,Experiment-method
+#' @examples
 #' exp <- new(Class="Experiment", date=Sys.Date(), name="test")
 #' setName(exp, "name")
 setMethod(

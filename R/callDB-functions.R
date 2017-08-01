@@ -14,7 +14,6 @@
 #' @importFrom methods new
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (x, y, IdsList, locusList) {
-    
     ##PATH for package when it will be installed -> when it will be released
     path <- system.file("python/rricebeta",
                         "run.py",

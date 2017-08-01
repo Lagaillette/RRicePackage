@@ -1,5 +1,6 @@
 #' @rdname deleteAttribute-methods
 #' @aliases deleteAttribute,Experiment-method
+#' @examples
 #' exp <- new(Class="Experiment",
 #' name="test",
 #' date=Sys.Date(),

@@ -57,3 +57,6 @@ databases.}
 \item{\code{plantOntology}}{id}
 }}
 
+\examples{
+gene <- new("GeneDB3")
+}

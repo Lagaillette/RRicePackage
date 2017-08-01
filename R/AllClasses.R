@@ -11,20 +11,22 @@
 #' @rdname Experiment-class
 #' @docType class
 #' @exportClass Experiment
+#' @examples 
+#' exp <- new(Class="Experiment", date=Sys.Date(), name="test")
 setClass(
-  ##name of the class
-  "Experiment",
-
-  ##attributes of the class
-  representation(name = "character",
+    ##name of the class
+    "Experiment",
+    
+    ##attributes of the class
+    representation(name = "character",
                date = "Date",
                databases = "list",
                genes = "list",
                others = "list"),
-  
-  prototype( others = list()),
-  
-  validity = checkExperiment <- function(object){
+    
+    prototype( others = list()),
+    
+    validity = checkExperiment <- function(object){
       errors <- character()
       yearDate <- object@date
       if(length(object@databases)<0){
@@ -37,8 +39,8 @@ setClass(
           errors <- c(errors, msg)
       }
       if(length(errors) == 0) TRUE else errors
-  }
-  
+    }
+
   
 )
 
@@ -57,18 +59,17 @@ setClass(
 #' @slot others The others attributes the user want to add or delete.
 #' @name Gene-class
 #' @rdname Gene-class
-#' @exportClass Gene
 setClass(
-  ##name of the class
-  "Gene",
-
-  ##attributes of the class
-  representation(id = "character",
+    ##name of the class
+    "Gene",
+    
+    ##attributes of the class
+    representation(id = "character",
                genesIDs = "list",
                locus = "data.frame",
                others = "list"),
-  
-  prototype( others = list())
+    
+    prototype( others = list())
 )
 
 
@@ -97,10 +98,12 @@ setClass(
 #' @name GeneDB1-class
 #' @rdname GeneDB1-class
 #' @exportClass GeneDB1
+#' @examples
+#' gene <- new("GeneDB1")
 setClass(
     ##name of the class
     "GeneDB1",
-
+    
     ##attributes of the classnumeric
     slots = list(rapDBGeneNameSynonym = "character",
                  rapDBGeneSymbolSynonym = "character",
@@ -110,7 +113,7 @@ setClass(
                  oryzabaseGeneSymbolSynonym = "character",
                  position = "data.frame",
                  description = "character"),
-
+    
     contains = "Gene"
 )
 
@@ -147,6 +150,8 @@ setClass(
 #' @name GeneDB3-class
 #' @rdname GeneDB3-class
 #' @exportClass GeneDB3
+#' @examples 
+#' gene <- new("GeneDB3")
 setClass(
     ##name of the class
     "GeneDB3",

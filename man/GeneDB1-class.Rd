@@ -39,3 +39,6 @@ databases.}
 \item{\code{description}}{a description of the gene}
 }}
 
+\examples{
+gene <- new("GeneDB1")
+}

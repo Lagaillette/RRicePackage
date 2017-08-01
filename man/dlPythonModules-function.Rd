@@ -6,6 +6,9 @@
 \usage{
 dlPythonModules()
 }
+\value{
+nothing
+}
 \description{
 This function calls importModules.py in order to install all the python
 modules we need if they have not yet been installed

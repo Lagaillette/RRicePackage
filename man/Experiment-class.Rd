@@ -21,3 +21,6 @@ Some details about this class and my plans for it in the body.
 \item{\code{others}}{The others attributes the user can add and delete}
 }}
 
+\examples{
+exp <- new(Class="Experiment", date=Sys.Date(), name="test")
+}
