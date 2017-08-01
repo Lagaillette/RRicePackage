@@ -16,6 +16,7 @@ import snpSeekAll as snpSeekAll
 import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
 import Script_plntfdb as plntfdb
+import Script_funricegenes as funricegenes
 
 def formatPathToFile(nameFile):
     # on supprime le dernier char tant qu'on n'a pas rencontré '/'
@@ -128,7 +129,7 @@ def main():
 
     # Return the SnpSeek Call
     elif(db == "6"):
-        print(hashmap)
+        print(dataSnp)
 
 
     elif (db == "7"):
@@ -142,6 +143,10 @@ def main():
     elif (db == "9"):
         dataPlntfdb = plntfdb.plntfdb(hashmap["msu7Name"])
         print(dataPlntfdb)
+
+    elif (db == "10"):
+        print(hashmap["raprepName"])
+        dataFunricegenes = funricegenes.funricegenes("Os11g0210300")
 
 
 # Pour eviter que le script soit execute lors d'un simple import

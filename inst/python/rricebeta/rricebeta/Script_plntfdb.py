@@ -8,9 +8,9 @@ import gzip
 
 
 
-def plntfdb(MSUID):
+def plntfdb(ID):
 
-    html_page = requests.get('http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?seq_id='+MSUID)
+    html_page = requests.get('http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?seq_id='+ID)
     soup = BeautifulSoup(html_page.content, "lxml")
     # Find headers
     for search in soup.findAll('div', { "id" : "subcontent" }):
