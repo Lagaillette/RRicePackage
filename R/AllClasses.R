@@ -19,10 +19,10 @@ setClass(
     
     ##attributes of the class
     representation(name = "character",
-               date = "Date",
-               databases = "list",
-               genes = "list",
-               others = "list"),
+                   date = "Date",
+                   databases = "list",
+                   genes = "list",
+                   others = "list"),
     
     prototype( others = list()),
     
