@@ -11,6 +11,7 @@ library(findpython)
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
+#' @return it will return a GeneDB1
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -113,6 +114,7 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
+#' @return It will return a list of genesDB1
 #' @rdname callCreationGeneDB1-function
 callCreationGeneDB1 <- function (x, IdsList, locusList) {
     listGenes1 <- data.frame()
@@ -135,6 +137,7 @@ callCreationGeneDB1 <- function (x, IdsList, locusList) {
 #'
 #' @param IdsList list of locus for which we want the genes
 #' @param locusList list
+#' @return It will return only a list with all the genesDB1
 #' @export
 #' @rdname callDB1-function
 #' @examples 
@@ -197,6 +200,7 @@ callDB1 <- function (IdsList, locusList) {
 #' 
 #' @param i number
 #' @param locusList list
+#' @return it will return a geneDB3
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -297,6 +301,7 @@ creationGeneDB3 <- function (i, locusList) {
 #' in the DB3. All these locus will be stocked in listGenes
 #' 
 #' @param locusList list
+#' @return It will return a list of GenesDB3
 #' @export
 #' @rdname callDB3-function
 callDB3 <- function (locusList) {
