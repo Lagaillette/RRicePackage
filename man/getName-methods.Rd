@@ -19,3 +19,7 @@ The name of the object
 \description{
 Get the name of an object
 }
+\examples{
+exp <- new(Class="Experiment", date=Sys.Date(), name="test")
+getName(exp)
+}

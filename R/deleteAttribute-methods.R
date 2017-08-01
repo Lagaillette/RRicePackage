@@ -1,5 +1,12 @@
 #' @rdname deleteAttribute-methods
 #' @aliases deleteAttribute,Experiment-method
+#' exp <- new(Class="Experiment",
+#' name="test",
+#' date=Sys.Date(),
+#' databases=list(1),
+#' others=list())
+#' exp <- addAttribute(exp, "test", "value")
+#' exp <- deleteAttribute(exp, "test")
 setMethod(
     "deleteAttribute",
     signature = "Experiment",
@@ -22,6 +29,10 @@ setMethod(
 #' @name deleteAttribute
 #' @rdname deleteAttribute-methods
 #' @aliases deleteAttribute,Gene-method
+#' @examples 
+#' gene <- new("GeneDB1")
+#' gene <- addAttribute(gene, "test", "value")
+#' gene <- deleteAttribute(gene, "test")
 setMethod(
     "deleteAttribute",
     signature = "Gene",

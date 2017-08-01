@@ -1,6 +1,13 @@
 #' @name addAttribute
 #' @rdname addAttribute-methods
 #' @aliases addAttribute,Experiment-method
+#' @examples 
+#' exp <- new(Class="Experiment",
+#' name="test",
+#' date=Sys.Date(),
+#' databases=list(1),
+#' others=list())
+#' exp <- addAttribute(exp, "test", "value")
 setMethod(
     "addAttribute",
     signature = "Experiment",
@@ -18,6 +25,9 @@ setMethod(
 #' @name addAttribute
 #' @rdname addAttribute-methods
 #' @aliases addAttribute,Gene-method
+#' @examples 
+#' gene <- new("GeneDB1")
+#' gene <- addAttribute(gene, "test", "value")
 setMethod(
     "addAttribute",
     signature = "Gene",

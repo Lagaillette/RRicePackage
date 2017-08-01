@@ -28,3 +28,13 @@ The object without the attribute you want to delete.
 \description{
 Add an attribute to an object.
 }
+\examples{
+exp <- new(Class="Experiment",
+name="test",
+date=Sys.Date(),
+databases=list(1),
+others=list())
+exp <- addAttribute(exp, "test", "value")
+gene <- new("GeneDB1")
+gene <- addAttribute(gene, "test", "value")
+}

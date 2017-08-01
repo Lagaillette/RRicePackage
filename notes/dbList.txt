@@ -1,8 +1,8 @@
 Databases list
 
-1 - “RAPDB”
-2 - ”GRAMENE”
-3 -“ORYZABASE”
+1 - RAPDB
+2 - GRAMENE
+3 - ORYZABASE
 ...
 
 

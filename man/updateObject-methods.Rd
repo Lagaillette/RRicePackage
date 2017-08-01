@@ -23,3 +23,14 @@ The object without the attribute we want to delete
 \description{
 Update an attribute of an object
 }
+\examples{
+gene1 <- new("GeneDB1")
+listGenes <- list(gene1)
+exp <- new(Class="Experiment",
+name="test",
+date=Sys.Date(),
+genes=listGenes,
+databases=list(1),
+others=list())
+updateObject(exp,"name","test")
+}

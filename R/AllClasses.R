@@ -16,11 +16,13 @@ setClass(
   "Experiment",
 
   ##attributes of the class
-  slots = list(name = "character",
+  representation(name = "character",
                date = "Date",
                databases = "list",
                genes = "list",
                others = "list"),
+  
+  prototype( others = list()),
   
   validity = checkExperiment <- function(object){
       errors <- character()
