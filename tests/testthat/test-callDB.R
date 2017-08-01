@@ -150,13 +150,13 @@ res1 <- list(
 liste2 <- list(list(list()))
 
 ##callDB1(list("Os01g0102700"), data1)
-# 
-# test_that("Test callDB1 with multiple values",{
-#     testthat::expect_equal(callDB1(list("Os01g0102700"), data1), res1)
-#     testthat::expect_error(callDB1(liste2, data3))
-#     testthat::expect_error(callDB1(1, data3))
-#     testthat::expect_error(callDB1("string", data3))
-# })
+
+test_that("Test callDB1 with multiple values",{
+    testthat::expect_equal(callDB1(list("Os01g0102700"), data1), res1)
+    testthat::expect_error(callDB1(liste2, data3))
+    testthat::expect_error(callDB1(1, data3))
+    testthat::expect_error(callDB1("string", data3))
+})
 
 
 
