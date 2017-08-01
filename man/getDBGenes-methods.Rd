@@ -21,3 +21,15 @@ the list of the genes of the database you want.
 \description{
 Get all the genes of the data base you want.
 }
+\examples{
+gene1 <- new("GeneDB1")
+listGenes <- list(gene1)
+exp <- new(Class="Experiment",
+name="test",
+date=Sys.Date(),
+genes=listGenes,
+databases=list(1),
+others=list())
+getDBGenes(exp,1)
+
+}

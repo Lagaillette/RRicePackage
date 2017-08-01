@@ -1,5 +1,16 @@
 #' @rdname getDBGenes-methods
 #' @aliases getDBGenes,Experiment-method
+#' @examples 
+#' gene1 <- new("GeneDB1")
+#' listGenes <- list(gene1)
+#' exp <- new(Class="Experiment",
+#' name="test",
+#' date=Sys.Date(),
+#' genes=listGenes,
+#' databases=list(1),
+#' others=list())
+#' getDBGenes(exp,1)
+#' 
 setMethod(
     "getDBGenes",
      signature = "Experiment",
