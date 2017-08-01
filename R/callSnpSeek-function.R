@@ -1,6 +1,3 @@
-library(jsonlite)
-library(findpython)
-
 #' noDoubleIds
 #'
 #' This function allows to avoid the problem when the id is composed by 2 ids
@@ -167,26 +164,26 @@ getIds <- function (i, locusList) {
 #' @rdname callSnpSeek-function
 callSnpSeek <- function(locus){
 
-        listIds <- data.frame()
+    listIds <- data.frame()
+    
+    if (length(locus) > 0) {
+        ##We call the function creationGeneDB1 to create our newGene
+        listIds <- lapply(1 : nrow(locus),
+                          FUN = function(x) getIds(x, locus))
         
-        if (length(locus) > 0) {
-            ##We call the function creationGeneDB1 to create our newGene
-            listIds <- lapply(1 : nrow(locus),
-                              FUN = function(x) getIds(x, locus))
-            
-            
-            ##Remove all the NULL object from the list
-            listIds[sapply(listIds, is.null)] <- NULL
-            
-            ##To delete all the geneDB1 which exists in double
-            listIds <- unique(listIds)
-            
-            ##print(listIds)
-            return (listIds)
-        }
-        else {
-            return (list())
-        }
+        
+        ##Remove all the NULL object from the list
+        listIds[sapply(listIds, is.null)] <- NULL
+        
+        ##To delete all the geneDB1 which exists in double
+        listIds <- unique(listIds)
+        
+        ##print(listIds)
+        return (listIds)
+    }
+    else {
+        return (list())
+    }
     
 }
 

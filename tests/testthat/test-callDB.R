@@ -142,7 +142,8 @@ res1 <- list(
         oryzabaseGeneNameSynonym = "",
         oryzabaseGeneSymbolSynonym = "",
         position = data.frame(ch=c("chr01"),st=c("148085"),end=c("150568")),
-        description = "Translocon-associated beta family protein. (Os01t0102700-01)"
+        description = paste("Translocon-associated beta", 
+                            "family protein. (Os01t0102700-01)")
     )
 )
 

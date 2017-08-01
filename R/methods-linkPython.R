@@ -6,7 +6,6 @@ library(PythonInR)
 #' executable
 #' 
 #' @import PythonInR
-#' @export
 #' @rdname callExecutablePy-function
 callExecutablePy <- function () {
     path <- system.file("python/rricebeta",
@@ -41,7 +40,7 @@ callExecutablePy <- function () {
 #' modules we need if they have not yet been installed
 #' 
 #' @importFrom findpython find_python_cmd
-#' @export
+#' @importFrom utils shortPathName
 #' @rdname dlPythonModules-function
 dlPythonModules <- function () {
     path <- system.file("python/rricebeta",
