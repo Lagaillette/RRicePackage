@@ -4,7 +4,6 @@
 #' Example : Os01g0115500,Os01g0115566
 #'
 #' @param id character
-#' @export
 #' @rdname noDoubleIds-function
 noDoubleIds <- function (id) {
     id <- as.character(id)
@@ -29,7 +28,6 @@ noDoubleIds <- function (id) {
 #' 
 #' @param rOutput character
 #' @importFrom jsonlite fromJSON
-#' @export
 #' @rdname id-function
 id <- function (rOutput) {
     #output <- getOutPutJSON(rOutput)
@@ -80,7 +78,6 @@ id <- function (rOutput) {
 #' @param locusList list
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
-#' @export
 #' @rdname getIds-function
 getIds <- function (i, locusList) {
     ##PATH for package when it will be installed -> when it will be released
@@ -104,8 +101,7 @@ getIds <- function (i, locusList) {
     end = as.character(locusList[i,3])
     
     if (ch != "" && start != "" && end != "") {
-        ##appel du script python run.py avec les attributs (chx, start, end, DB) 
-        ##-> tous les attributs doivent etre en chaine de carac
+        ##Call run.py from python
         if (Sys.info()["sysname"] == "Windows"){
             args = c(path, ch, start, end, "call_snpSeek", "None")
             cmd <- findpython::find_python_cmd()
@@ -162,6 +158,12 @@ getIds <- function (i, locusList) {
 #' @return the list of id's of each genes we want
 #' @export
 #' @rdname callSnpSeek-function
+#' @examples 
+#' locusList <- data.frame(ch = c("1","1"),
+#'                         st = c("148907","527906"),
+#'                         end = c("248907","842359"))
+#'                   
+#' callSnpSeek(locusList)
 callSnpSeek <- function(locus){
 
     listIds <- data.frame()
@@ -186,20 +188,3 @@ callSnpSeek <- function(locus){
     }
     
 }
-
-
-# data <- data.frame(ch = c("1"),
-#                    st = c("527906"),
-#                    end = c("842359"))
-# 
-# data1 <- data.frame(ch = c("1"),
-#                   st = c("148907"),
-#                   end = c("248907"))
-
-#data <- data.frame(ch = c("1","1","1"),
-#                   st = c("148907","9344261","527906"),
-#                   end = c("248907","11332201","842359"))
-
-# print(data)
-#s <- callSnpSeek(data)
-#print(s)
