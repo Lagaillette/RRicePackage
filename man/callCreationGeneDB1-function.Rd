@@ -13,6 +13,9 @@ callCreationGeneDB1(x, IdsList, locusList)
 
 \item{locusList}{list}
 }
+\value{
+It will return a list of genesDB1
+}
 \description{
 This function ...
 }

@@ -9,6 +9,10 @@ noDoubleIds(id)
 \arguments{
 \item{id}{character}
 }
+\value{
+It will return only one id if it is not a double ID. Otherwise, it
+will return a list with the both ids
+}
 \description{
 This function allows to avoid the problem when the id is composed by 2 ids
 Example : Os01g0115500,Os01g0115566

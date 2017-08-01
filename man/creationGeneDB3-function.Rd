@@ -11,6 +11,9 @@ creationGeneDB3(i, locusList)
 
 \item{locusList}{list}
 }
+\value{
+it will return a geneDB3
+}
 \description{
 This function is called only by callDB3 and will create the gene DB3
 It will call run.py script which will return the list of the genes which 

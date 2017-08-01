@@ -9,6 +9,9 @@ callDB3(locusList)
 \arguments{
 \item{locusList}{list}
 }
+\value{
+It will return a list of GenesDB3
+}
 \description{
 This function will call for each locus in the list, the run.py script and
 python will return the list of the genes which are present in the locus and
