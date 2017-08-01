@@ -1,6 +1,3 @@
-library(jsonlite)
-library(findpython)
-
 #' creationGeneDB1
 #'
 #' This function is called only by callDB1 and will create the gene DB1
