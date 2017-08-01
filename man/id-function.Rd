@@ -9,6 +9,9 @@ id(rOutput)
 \arguments{
 \item{rOutput}{character}
 }
+\value{
+this funciton will only return the id
+}
 \description{
 This function will only return the id from the rOutput
 }

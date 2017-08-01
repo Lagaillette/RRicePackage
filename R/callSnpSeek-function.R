@@ -4,6 +4,8 @@
 #' Example : Os01g0115500,Os01g0115566
 #'
 #' @param id character
+#' @return It will return only one id if it is not a double ID. Otherwise, it
+#' will return a list with the both ids
 #' @rdname noDoubleIds-function
 noDoubleIds <- function (id) {
     id <- as.character(id)
@@ -27,6 +29,7 @@ noDoubleIds <- function (id) {
 #' This function will only return the id from the rOutput 
 #' 
 #' @param rOutput character
+#' @return this funciton will only return the id
 #' @importFrom jsonlite fromJSON
 #' @rdname id-function
 id <- function (rOutput) {
@@ -76,6 +79,7 @@ id <- function (rOutput) {
 #' 
 #' @param i number
 #' @param locusList list
+#' @return This function will return a list with all the ids from a locus
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @rdname getIds-function

@@ -11,6 +11,9 @@ callDB1(IdsList, locusList)
 
 \item{locusList}{list}
 }
+\value{
+It will return only a list with all the genesDB1
+}
 \description{
 This function is the new function which will replace callDB1 function
 }

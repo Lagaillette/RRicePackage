@@ -11,6 +11,9 @@ getIds(i, locusList)
 
 \item{locusList}{list}
 }
+\value{
+This function will return a list with all the ids from a locus
+}
 \description{
 This function is called for each locus and has to return the list of ids 
 present in the locus
