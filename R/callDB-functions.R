@@ -143,14 +143,14 @@ callCreationGeneDB1 <- function (x, IdsList, locusList) {
 #' @return It will return only a list with all the genesDB1
 #' @export
 #' @rdname callDB1-function
-#' @examples 
+#' @examples
 #' locusList <- data.frame(ch = c("1","1"),
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
-#'                         
+#' 
 #' ids <- list(list("Os01g0102700","Os01g0102800"),
 #'             list("Os01g0109750","Os01g0110100"))
-#'                 
+#' 
 #' callDB1(ids, locusList)
 callDB1 <- function (IdsList, locusList) {
     
