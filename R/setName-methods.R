@@ -2,8 +2,11 @@
 #' @rdname setName-methods
 #' @aliases setName,Experiment-method
 #' @examples
-#' exp <- new(Class="Experiment", date=Sys.Date(), name="test")
-#' setName(exp, "name")
+#' exp <- new(Class="Experiment",
+#'  databases=list(1),
+#'  date=Sys.Date(),
+#'  name="test")
+#' exp <- setName(exp, "testName")
 setMethod(
     "setName",
     signature = "Experiment",

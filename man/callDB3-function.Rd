@@ -17,11 +17,3 @@ This function will call for each locus in the list, the run.py script and
 python will return the list of the genes which are present in the locus and
 in the DB3. All these locus will be stocked in listGenes
 }
-\examples{
- 
-locusList <- data.frame(ch = c("1","1"),
-                        st = c("148907","527906"),
-                        end = c("248907","842359"))
-                
-callDB3(locusList)
-}

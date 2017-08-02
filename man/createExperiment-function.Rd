@@ -20,9 +20,3 @@ locus list. The locus list is a .txt file, so you have to do a "read.table"
 of your file into a variable and put this variable as the "locus" parameter
 in the constructor.
 }
-\examples{
-locusList <- data.frame(ch = c("1","1"),
-                        st = c("148907","527906"),
-                        end = c("248907","842359"))
-exp <- createExperiment("example",locusList)                         
-}

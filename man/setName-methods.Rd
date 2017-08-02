@@ -16,7 +16,7 @@ setName(object, name)
 \item{name}{The name we want to give at the object}
 }
 \value{
-The object with the new name#' @exportMethod addAttribute
+The object with the new name
 
 The object with the new name
 }
@@ -24,6 +24,9 @@ The object with the new name
 Set the name of an object
 }
 \examples{
-exp <- new(Class="Experiment", date=Sys.Date(), name="test")
-setName(exp, "name")
+exp <- new(Class="Experiment",
+ databases=list(1),
+ date=Sys.Date(),
+ name="test")
+exp <- setName(exp, "testName")
 }

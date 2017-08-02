@@ -13,6 +13,3 @@ nothing
 This function calls test.py which will be allow to all python file to be
 executable
 }
-\examples{
-callExecutablePy()
-}

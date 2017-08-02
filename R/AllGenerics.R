@@ -37,7 +37,8 @@ setGeneric(
 #'
 #' @param object The object for which we want to set the name
 #' @param name The name we want to give at the object
-#' @return The object with the new name#' @exportMethod addAttribute
+#' @return The object with the new name
+#' @exportMethod setName
 #' @name setName
 #' @rdname setName-methods
 #' @docType methods

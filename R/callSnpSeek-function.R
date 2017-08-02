@@ -7,8 +7,6 @@
 #' @return It will return only one id if it is not a double ID. Otherwise, it
 #' will return a list with the both ids
 #' @rdname noDoubleIds-function
-#' @examples 
-#' noDoubleIds("Os01g0115500,Os01g0115566")
 noDoubleIds <- function (id) {
     id <- as.character(id)
     ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
@@ -34,8 +32,6 @@ noDoubleIds <- function (id) {
 #' @return this funciton will only return the id
 #' @importFrom jsonlite fromJSON
 #' @rdname id-function
-#' @examples 
-#' 
 id <- function (rOutput) {
     #output <- getOutPutJSON(rOutput)
     #print(rOutput)

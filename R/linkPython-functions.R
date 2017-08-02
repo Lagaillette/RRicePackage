@@ -8,8 +8,6 @@ library(PythonInR)
 #' @return nothing
 #' @import PythonInR
 #' @rdname callExecutablePy-function
-#' @examples 
-#' callExecutablePy()
 callExecutablePy <- function () {
     path <- system.file("python/rricebeta",
                         "test.py",
@@ -46,8 +44,6 @@ callExecutablePy <- function () {
 #' @importFrom findpython find_python_cmd
 #' @import utils
 #' @rdname dlPythonModules-function
-#' @examples 
-#' dlPythonModules()
 dlPythonModules <- function () {
     path <- system.file("python/rricebeta",
                         "importModules.py",

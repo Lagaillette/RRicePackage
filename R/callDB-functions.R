@@ -300,12 +300,6 @@ creationGeneDB3 <- function (i, locusList) {
 #' @return It will return a list of GenesDB3
 #' @export
 #' @rdname callDB3-function
-#' @examples  
-#' locusList <- data.frame(ch = c("1","1"),
-#'                         st = c("148907","527906"),
-#'                         end = c("248907","842359"))
-#'                 
-#' callDB3(locusList)
 callDB3 <- function (locusList) {
     
     listGenes <- data.frame()

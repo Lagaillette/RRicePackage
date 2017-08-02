@@ -17,6 +17,3 @@ will return a list with the both ids
 This function allows to avoid the problem when the id is composed by 2 ids
 Example : Os01g0115500,Os01g0115566
 }
-\examples{
-noDoubleIds("Os01g0115500,Os01g0115566")
-}
