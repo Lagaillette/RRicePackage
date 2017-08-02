@@ -29,78 +29,84 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
     id <- IdsList[[x]][[y]]
     id <- as.character(id)
     
+    ch = as.character(locusList[x,1])
+    start = as.character(locusList[x,2])
+    end = as.character(locusList[x,3])
     
     
-    if (id != "None") {
-        ##Call run.py from python 
-        if (Sys.info()["sysname"] == "Windows"){
-            args = c(path, "None", "None", "None", "script7", id)
-            cmd <- findpython::find_python_cmd()
-            rOutput = system2(command = cmd, args=args, stdout = TRUE)
-        }
-        else {
-            args = c("None", "None", "None", "script7", id)
-            rOutput = system2(command = path, args=args, stdout = TRUE)
-        }
-        
-        rOutput <- lapply(1 : length(rOutput),
-                          function(x) getOutPutJSON(rOutput[x]))
-        
-        rOutput[sapply(rOutput, is.null)] <- NULL
-        
-        ##print(rOutput)
-        
-        ##if rOutput is not an empty list then we don't create a new GeneDB1
-        if (length(rOutput) > 0) {
-            jsonOutput <- fromJSON(rOutput[[1]])
-            
-            idRec = jsonOutput["ID"]
-            position = jsonOutput["Position"]
-            rapSymbol = jsonOutput["RAP-DB Gene Symbol Synonym(s)"]
-            cgsnlName = jsonOutput["CGSNL Gene Name"]
-            oryGeneSymbol = jsonOutput["Oryzabase Gene Symbol Synonym(s)"]
-            description = jsonOutput["Description"]
-            rapName = jsonOutput["RAP-DB Gene Name Synonym(s)"]
-            oryGeneName = jsonOutput["Oryzabase Gene Name Synonym(s)"]
-            cgsnlGene = jsonOutput["CGSNL Gene Symbol"]
-            
-            if (position != "") {
-                position <- as.character(position)
-                pos1 <- strsplit(position, ":")
-                pos2 <- pos1[[1]][[2]]
-                pos3 <- strsplit(pos2,"[..]")
-                
-                positionData <- data.frame(ch=c(pos1[[1]][[1]]),
-                                           st=c(pos3[[1]][[1]]),
-                                           end=c(pos3[[1]][[3]]))
+    if (ch != "" && start != "" && end != "") {
+        if (id != "None") {
+            ##Call run.py from python 
+            if (Sys.info()["sysname"] == "Windows"){
+                args = c(path, ch, start, end, "1", id)
+                cmd <- findpython::find_python_cmd()
+                rOutput = system2(command = cmd, args=args, stdout = TRUE)
             }
             else {
-                positionData <- data.frame()
+                args = c(ch, start, end, "1", id)
+                rOutput = system2(command = path, args=args, stdout = TRUE)
             }
             
+            rOutput <- lapply(1 : length(rOutput),
+                              function(x) getOutPutJSON(rOutput[x]))
             
-            ##dataLocus <- data.frame(ch = ch, st = start, end = end)
-            dataLocus <- data.frame(ch = as.character(locusList[x,1]),
-                                    st = as.character(locusList[x,2]),
-                                    end = as.character(locusList[x,3]))
+            rOutput[sapply(rOutput, is.null)] <- NULL
             
-            newGene <- new("GeneDB1",
-                           id = as.character(idRec),
-                           locus = dataLocus,
-                           others = list(),
-                           rapDBGeneNameSynonym = as.character(rapName),
-                           rapDBGeneSymbolSynonym = as.character(rapSymbol),
-                           cgsnlGeneName = as.character(cgsnlName),
-                           cgsnlGeneSymbol = as.character(cgsnlGene),
-                           oryzabaseGeneNameSynonym = as.character(oryGeneName),
-                           oryzabaseGeneSymbolSynonym = 
-                               as.character(oryGeneSymbol),
-                           position = positionData,
-                           description = as.character(description))
+            ##print(rOutput)
             
-            return(newGene)
+            ##if rOutput is not an empty list then we don't create a new GeneDB1
+            if (length(rOutput) > 0) {
+                jsonOutput <- fromJSON(rOutput[[1]])
+                
+                idRec = jsonOutput["ID"]
+                position = jsonOutput["Position"]
+                rapSymbol = jsonOutput["RAP-DB Gene Symbol Synonym(s)"]
+                cgsnlName = jsonOutput["CGSNL Gene Name"]
+                oryGeneSymbol = jsonOutput["Oryzabase Gene Symbol Synonym(s)"]
+                description = jsonOutput["Description"]
+                rapName = jsonOutput["RAP-DB Gene Name Synonym(s)"]
+                oryGeneName = jsonOutput["Oryzabase Gene Name Synonym(s)"]
+                cgsnlGene = jsonOutput["CGSNL Gene Symbol"]
+                
+                if (position != "") {
+                    position <- as.character(position)
+                    pos1 <- strsplit(position, ":")
+                    pos2 <- pos1[[1]][[2]]
+                    pos3 <- strsplit(pos2,"[..]")
+                    
+                    positionData <- data.frame(ch=c(pos1[[1]][[1]]),
+                                               st=c(pos3[[1]][[1]]),
+                                               end=c(pos3[[1]][[3]]))
+                }
+                else {
+                    positionData <- data.frame()
+                }
+                
+                
+                ##dataLocus <- data.frame(ch = ch, st = start, end = end)
+                dataLocus <- data.frame(ch = as.character(locusList[x,1]),
+                                        st = as.character(locusList[x,2]),
+                                        end = as.character(locusList[x,3]))
+                
+                newGene <- new("GeneDB1",
+                               id = as.character(idRec),
+                               locus = dataLocus,
+                               others = list(),
+                               rapDBGeneNameSynonym = as.character(rapName),
+                               rapDBGeneSymbolSynonym = as.character(rapSymbol),
+                               cgsnlGeneName = as.character(cgsnlName),
+                               cgsnlGeneSymbol = as.character(cgsnlGene),
+                               oryzabaseGeneNameSynonym = as.character(oryGeneName),
+                               oryzabaseGeneSymbolSynonym = 
+                                   as.character(oryGeneSymbol),
+                               position = positionData,
+                               description = as.character(description))
+                
+                return(newGene)
+            }
         }
     }
+    
 }
 
 #' callCreationGeneDB1
