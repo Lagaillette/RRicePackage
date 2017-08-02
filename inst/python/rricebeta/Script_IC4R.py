@@ -24,9 +24,11 @@ def ic4r(RAPID):
                 dict[str(headers[i][0])] = linkbody.contents
                 i = i+1
 
+            print(content)
             content.append(dict)
-
+    """
     df = pd.DataFrame(content)
     # Affichage premiere ligne
     #print(df.loc[0])
-    return df
+    return df.to_json()
+    """
