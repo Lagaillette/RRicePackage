@@ -5,11 +5,10 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 
-def ic4r():
+def ic4r(RAPID):
 
-    html_page = requests.get("http://expression.ic4r.org/expression-api?term=Os01g0100700#showtable")
+    html_page = requests.get('http://expression.ic4r.org/expression-api?term='+RAPID+'#showtable')
     soup = BeautifulSoup(html_page.content, "lxml")
-
     # Find headers
     headers = []
     for head in soup.findAll('thead'):
@@ -19,15 +18,15 @@ def ic4r():
     content = []
     for body in soup.findAll('tbody'):
         for link in body.findAll('tr'):
+            dict = {}
+            i=0
             for linkbody in link.findAll('td'):
-                content.append(linkbody.contents)
-    print(content)
+                dict[str(headers[i][0])] = linkbody.contents
+                i = i+1
+
+            content.append(dict)
+
     df = pd.DataFrame(content)
-
-    print(content[0])
-
-    print(df)
-
-    ww = [['ouais', 'ok'], ['en fait non', 'en fait si']]
-    dd = pd.DataFrame(ww)
-    print(dd)
+    # Affichage premiere ligne
+    #print(df.loc[0])
+    return df
