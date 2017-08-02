@@ -15,7 +15,7 @@ import snpSeekAll as snpSeekAll
 import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
 import Script_plntfdb as plntfdb
-#import Script_funricegenes as funricegenes
+import Script_funricegenes as funricegenes
 
 
 def main():
