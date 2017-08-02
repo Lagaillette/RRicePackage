@@ -3,7 +3,6 @@ import helper
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from pandas.io.common import EmptyDataError
 
 
 
@@ -30,7 +29,7 @@ def funricegenes(ID):
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU"]
