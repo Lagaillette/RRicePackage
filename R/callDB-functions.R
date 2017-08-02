@@ -96,7 +96,8 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
                                rapDBGeneSymbolSynonym = as.character(rapSymbol),
                                cgsnlGeneName = as.character(cgsnlName),
                                cgsnlGeneSymbol = as.character(cgsnlGene),
-                               oryzabaseGeneNameSynonym = as.character(oryGeneName),
+                               oryzabaseGeneNameSynonym = 
+                                   as.character(oryGeneName),
                                oryzabaseGeneSymbolSynonym = 
                                    as.character(oryGeneSymbol),
                                position = positionData,
