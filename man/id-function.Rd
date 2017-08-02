@@ -15,3 +15,6 @@ this funciton will only return the id
 \description{
 This function will only return the id from the rOutput
 }
+\examples{
+
+}
