@@ -305,6 +305,15 @@ callCreationGeneDB2 <- function (x, IdsList, locusList) {
 #' @return It will return only a list with all the genesDB2
 #' @export
 #' @rdname callDB2-function
+#' @examples 
+#' locusList <- data.frame(ch = c("1","1"),
+#'                         st = c("148907","527906"),
+#'                         end = c("248907","842359"))
+#'                         
+#' ids <- list(list("Os01g0102700","Os01g0102800"),
+#'             list("Os01g0109750","Os01g0110100"))
+#'                 
+#' callDB2(ids, locusList)
 callDB2 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
@@ -421,7 +430,7 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
                 
                 newGene <- new("GeneDB3",
                                id = "",
-                               locus = locusList[i,],
+                               locus = locusList[x,],
                                others = list(),
                                traitGeneId = as.character(traitGeneId),
                                cgsnlGeneSymbol = as.character(cgsnlGeneSymbol),
@@ -441,7 +450,6 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
                                geneOntology = as.character(geneOntology),
                                traitOntology = as.character(traitOntology),
                                plantOntology = as.character(plantOntology))
-                
                 
                 return(newGene)
             }
@@ -485,6 +493,15 @@ callCreationGeneDB3 <- function (x, IdsList, locusList) {
 #' @return It will return only a list with all the genesDB3
 #' @export
 #' @rdname callDB3-function
+#' @examples 
+#' locusList <- data.frame(ch = c("1","1"),
+#'                         st = c("148907","527906"),
+#'                         end = c("248907","842359"))
+#'                         
+#' ids <- list(list("Os01g0102700","Os01g0102800"),
+#'             list("Os01g0109750","Os01g0110100"))
+#'                 
+#' callDB3(ids, locusList)
 callDB3 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
