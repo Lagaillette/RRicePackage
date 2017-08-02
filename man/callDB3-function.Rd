@@ -22,8 +22,7 @@ locusList <- data.frame(ch = c("1","1"),
                         st = c("148907","527906"),
                         end = c("248907","842359"))
                         
-ids <- list(list("Os01g0102700","Os01g0102800"),
-            list("Os01g0109750","Os01g0110100"))
+ids <- list(list("idTest"))
                 
 callDB3(ids, locusList)
 }

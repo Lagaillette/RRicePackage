@@ -18,12 +18,11 @@ It will return only a list with all the genesDB1
 This function is the new function which will replace callDB1 function
 }
 \examples{
-locusList <- data.frame(ch = c("1","1"),
-                        st = c("148907","527906"),
-                        end = c("248907","842359"))
-
-ids <- list(list("Os01g0102700","Os01g0102800"),
-            list("Os01g0109750","Os01g0110100"))
-
+locusList <- data.frame(ch = c("1"),
+                        st = c("148907"),
+                        end = c("248907"))
+                        
+ids <- list(list("Os01g0102700"))
+                
 callDB1(ids, locusList)
 }

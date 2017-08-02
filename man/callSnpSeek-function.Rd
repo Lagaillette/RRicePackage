@@ -16,9 +16,9 @@ the list of id's of each genes we want
 Function for recup a list of ids
 }
 \examples{
-locusList <- data.frame(ch = c("1","1"),
-                        st = c("148907","527906"),
-                        end = c("248907","842359"))
+locusList <- data.frame(ch = c("1"),
+                        st = c("148907"),
+                        end = c("248907"))
                   
 callSnpSeek(locusList)
 }
