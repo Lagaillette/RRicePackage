@@ -7,7 +7,7 @@ Author: Gallego Julien <julien.gallego.pro@gmail.com>,
 Maintainer: Hai Ho Bich <hobichhai@gmail.com>
 License: Artistic-2.0
 Imports: methods, jsonlite, PythonInR, findpython, utils
-Suggests: testthat, knitr, rmarkdown
+Suggests: testthat, knitr
 SystemRequirements: python pkgs bs4, lxml, pandas, requests
 Description: This R package allows to access to the databases containing 
     informations about rice genomic and to manipulate these datas.

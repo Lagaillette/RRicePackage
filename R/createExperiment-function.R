@@ -10,8 +10,7 @@
 #' @importFrom methods new
 #' @return An Experiment
 #' @export
-#' @rdname createExperiment-function                         
-
+#' @rdname createExperiment-function
 createExperiment <- function(name, locus){
     ## the number of databases available. To increment every time we have
     ## one more database available
@@ -21,7 +20,7 @@ createExperiment <- function(name, locus){
     while(!correctNbdb){
         nbdb <- as.numeric(
             readline(
-                prompt="How many databases do you want to experiment : "))
+                prompt="How many databases do you want to experiment ? :"))
         if(is.numeric(nbdb) && nbdb > 0 && nbdb <= dbAvailables){
             databases <- vector(mode='list', length=nbdb)
             correctNbdb <- TRUE
@@ -52,11 +51,11 @@ createExperiment <- function(name, locus){
     genes <- vector(mode='list', length=nbdb)
     i <- 1
     while(i <= nbdb){
-        databases[i] <- as.numeric(
-            readline(
-                prompt = paste("Enter the number",
-                               "of the database you want",
-                               "(example : 1 for RAPDB) :")))
+        print("Enter the number(s) of the database you want : ")
+        print("1 for RAPDB")
+        print("2 for GRAMENE")
+        print("3 for ORYZABASE")
+        databases[i] <- as.numeric(readline())
         if(databases[i] > 0 && 
            databases[i] <= dbAvailables && 
            !alreadyUsedDB(databases,i)){
