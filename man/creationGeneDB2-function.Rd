@@ -19,7 +19,7 @@ creationGeneDB2(x, y, IdsList, locusList)
 it will return a GeneDB2
 }
 \description{
-This function is called only by callDB1 and will create the gene DB2
+This function is called only by callDB2 and will create the gene DB2
 It will call run.py script which will return the list of the genes which
 are present in the locus
 }

@@ -4,18 +4,22 @@
 \alias{creationGeneDB3}
 \title{creationGeneDB3}
 \usage{
-creationGeneDB3(i, locusList)
+creationGeneDB3(x, y, IdsList, locusList)
 }
 \arguments{
-\item{i}{number}
+\item{x}{number}
+
+\item{y}{number}
+
+\item{IdsList}{list}
 
 \item{locusList}{list}
 }
 \value{
-it will return a geneDB3
+it will return a GeneDB3
 }
 \description{
 This function is called only by callDB3 and will create the gene DB3
-It will call run.py script which will return the list of the genes which 
+It will call run.py script which will return the list of the genes which
 are present in the locus
 }

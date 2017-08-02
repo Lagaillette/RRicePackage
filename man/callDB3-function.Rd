@@ -4,16 +4,16 @@
 \alias{callDB3}
 \title{callDB3}
 \usage{
-callDB3(locusList)
+callDB3(IdsList, locusList)
 }
 \arguments{
+\item{IdsList}{list of locus for which we want the genes}
+
 \item{locusList}{list}
 }
 \value{
-It will return a list of GenesDB3
+It will return only a list with all the genesDB3
 }
 \description{
-This function will call for each locus in the list, the run.py script and
-python will return the list of the genes which are present in the locus and
-in the DB3. All these locus will be stocked in listGenes
+This function will call the third database
 }
