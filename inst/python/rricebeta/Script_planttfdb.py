@@ -3,7 +3,6 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-#from pandas.io.common import EmptyDataError
 import gzip
 
 
@@ -35,5 +34,5 @@ def planttfdb(MSUID):
         if (data.empty):
             return False
         else:
-            return data["Family"]
+            return data["Family"].values
 
