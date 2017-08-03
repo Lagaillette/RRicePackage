@@ -152,7 +152,7 @@ getIds <- function (i, locusList) {
         liste <- list()
         lapply(1 : length(listIds),
                FUN = function(x){liste <<- append(liste,listIds[[x]])})
-
+        
         ##print(liste)
         return (liste)
     }
@@ -176,7 +176,7 @@ getIds <- function (i, locusList) {
 #'                   
 #' callSnpSeek(locusList)
 callSnpSeek <- function(locus){
-
+    
     listIds <- data.frame()
     
     if (length(locus) > 0) {
