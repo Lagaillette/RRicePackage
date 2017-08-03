@@ -551,7 +551,37 @@ callDB3 <- function (IdsList, locusList) {
         
 }
 
-################################  DB7 - ######################################
+################################  DB7 - works but very long data ##############
+
+#' makeList
+#'
+#' This function is called in order to return elemnt which will form a list 
+#'
+#' @param liste list
+#' @param number number
+#' @return it will return ... 
+#' @importFrom methods new
+#' @rdname makeList-function
+makeList <- function (liste, number){
+    #print(liste[[1]])
+    if (number == 1)
+        return(liste[[1]][[1]])
+    else if (number == 2)
+        return(liste[[1]][[2]])
+    else if (number == 3)
+        return(liste[[1]][[3]])
+    else if (number == 4)
+        return(liste[[1]][[4]])
+    else if (number == 5)
+        return(liste[[1]][[5]])
+    else if (number == 6)
+        return(liste[[1]][[6]])
+    else if (number == 7)
+        return(liste[[1]][[7]])
+    else
+        stop("problem with the number which has to be between 1 and 7")
+    
+}
 
 #' analyseDataDB7
 #'
@@ -596,6 +626,16 @@ analyseDataDB7 <- function (rOutput) {
         #print(project_id)
         #print(tissue)
         #print(expr_value)
+        
+        return(list(experiment_name,
+                    dev_stage,
+                    experiment_id,
+                    variety,
+                    project_id,
+                    tissue,
+                    expr_value))
+        
+        
     }
 }
 
@@ -675,15 +715,41 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
             if (length(rOutput) > 0) {
                 rOutput <- lapply(1 : length(rOutput),
                                   function(x) analyseDataDB7(rOutput[x]))
+                ##print(length(rOutput))
+                      
+                experimentName <- lapply(1 : length(rOutput),
+                                         function(x) makeList(rOutput[x],1))
+                devStage <- lapply(1 : length(rOutput),
+                                   function(x) makeList(rOutput[x],2))
+                experimentId <- lapply(1 : length(rOutput),
+                                       function(x) makeList(rOutput[x],3))
+                variety <- lapply(1 : length(rOutput),
+                                  function(x) makeList(rOutput[x],4))
+                projectId <- lapply(1 : length(rOutput),
+                                    function(x) makeList(rOutput[x],5))
+                tissue <- lapply(1 : length(rOutput),
+                                 function(x) makeList(rOutput[x],6))
+                exprValue <- lapply(1 : length(rOutput),
+                                    function(x) makeList(rOutput[x],7))
+
+                ##print(exprValue)
                 
-                #print(rOutput)
+                newGene <- new("GeneDB7",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               experimentName = experimentName,
+                               devStage = devStage,
+                               experimentId = experimentId,
+                               variety = variety,
+                               projectId = projectId,
+                               tissue = tissue,
+                               exprValue = exprValue)
+                
+                return (newGene)
             }
-            
-            
-            #print(r["Tissue"])
-            #print(rOutput)
-            
-            
+   
         }
     }
     else {
@@ -964,7 +1030,16 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
             ##print(rOutput[2])
             id <- rOutput[1]
             family <- rOutput[2]
-            print(paste(id,family))
+            #print(paste(id,family))
+            
+            newGene <- new("GeneDB9",
+                           id = as.character(id),
+                           genesIDs = as.list(IdsList[[x]][[y]]),
+                           locus = locusList[x,],
+                           others = list(),
+                           family = family)
+            
+            return (newGene)
         }
     }
     else {
@@ -1043,4 +1118,159 @@ callDB9 <- function (IdsList, locusList) {
         stop("IdsList has to be a list")
     }
 }
+
+
+###################################  DB10 - works  ######################
+#' creationGeneDB10
+#'
+#' This function is called only by callDB10 and will create the gene DB10
+#' It will call run.py script which will return the list of the genes which
+#' are present in the locus
+#'
+#' @param x number
+#' @param y number
+#' @param IdsList list
+#' @param locusList list
+#' @return it will return a GeneDB10
+#' @importFrom jsonlite fromJSON
+#' @importFrom findpython find_python_cmd
+#' @importFrom methods new
+#' @rdname creationGeneDB10-function
+creationGeneDB10 <- function (x, y, IdsList, locusList) {
+    ##PATH for package when it will be installed -> when it will be released
+    path <- system.file("python/rricebeta",
+                        "run.py",
+                        package = "rRice")
+    
+    ##manage the spaces -> for example "Program Files" under windows will 
+    ##generate an error because with system2 we generate a command line
+    ##with multiple arguments in one string. 
+    if (Sys.info()["sysname"] == "Windows"){
+        path <- shortPathName(path)
+    }
+    
+    ch = as.character(locusList[x,1])
+    start = as.character(locusList[x,2])
+    end = as.character(locusList[x,3])
+    
+    id <- IdsList[[x]][[y]]
+    id <- as.character(id[[1]])
+    
+    if (ch != "" && start != "" && end != "") {
+        if (id != "None") {
+            ##Call run.py from python 
+            if (Sys.info()["sysname"] == "Windows"){
+                args = c(path, ch, start, end, "10", id)
+                cmd <- findpython::find_python_cmd()
+                rOutput = system2(command = cmd, args=args, stdout = TRUE)
+            }
+            else {
+                args = c(ch, start, end, "10", id)
+                rOutput = system2(command = path, args=args, stdout = TRUE)
+            }
+            ##rOutput is an array so don't use getOutputJSON
+            ##print(class(rOutput))
+            #print(rOutput)
+            # print(rOutput[1])
+            # print(rOutput[2])
+            # print(rOutput[3])
+            
+            symbol <- rOutput[2]
+            if (symbol == "Series([], Name: Symbol, dtype: object)"){
+                symbol <- "None"
+            }
+            else {
+                symbol <- strsplit(symbol," ")
+                symbol <- symbol[[1]][[length(symbol[[1]])]]
+            }
+            #print(symbol)
+            
+            newGene <- new("GeneDB10",
+                           id = as.character(id),
+                           genesIDs = as.list(IdsList[[x]][[y]]),
+                           locus = locusList[x,],
+                           others = list(),
+                           symbol = symbol)
+            
+            return (newGene)
+
+        }
+    }
+    else {
+        stop("One of the element of the locus is empty")
+    }
+}
+
+#' callCreationGeneDB10
+#'
+#' This function ...
+#'
+#' @param x number
+#' @param IdsList list
+#' @param locusList list
+#' @return It will return a list of genesDB10
+#' @rdname callCreationGeneDB10-function
+callCreationGeneDB10 <- function (x, IdsList, locusList) {
+    listGenes10 <- data.frame()
+    
+    listGenes10 <- lapply(1 : length(IdsList[[x]]),
+                         FUN = function(y) creationGeneDB10(x,
+                                                            y,
+                                                            IdsList,
+                                                            locusList))
+    
+    ##Remove all the NULL object from the list
+    ##listGenes[sapply(listGenes, is.null)] <- NULL
+    
+    return(listGenes10)
+}
+
+#' callDB10
+#'
+#' This function will call 
+#'
+#' @param IdsList list of locus for which we want the genes
+#' @param locusList list
+#' @return It will return only a list with all the genesDB10
+#' @export
+#' @rdname callDB10-function
+#' @examples 
+#' locusList <- data.frame(ch = c("1","1"),
+#'                         st = c("148907","527906"),
+#'                         end = c("248907","842359"))
+#'                         
+#' ids <- list(list("Os01g0102700","Os01g0102800"),
+#'             list("Os01g0109750","Os01g0110100"))
+#'                 
+#' callDB10(ids, locusList)
+callDB10 <- function (IdsList, locusList) {
+    
+    listGenes <- data.frame()
+    
+    if (class(IdsList) == "list") {
+        ##We call the function creationGeneDB1 to create our newGene
+        listGenes <- lapply(1 : length(IdsList),
+                            FUN = function(x) callCreationGeneDB10(x, 
+                                                                  IdsList, 
+                                                                  locusList))
+        
+        
+        ##Remove all the NULL object from the list
+        listGenes[sapply(listGenes, is.null)] <- NULL
+        
+        ##To delete all the geneDB1 which exists in double
+        listGenes <- unique(listGenes)
+        
+        ##liste is a list with only the genes. 
+        liste <- list()
+        lapply(1 : length(listGenes),
+               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
+        
+        return (liste)
+    }
+    else {
+        stop("IdsList has to be a list")
+    }
+}
+
 
