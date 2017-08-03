@@ -136,3 +136,16 @@ setGeneric(
     name = "getId",
     def = function(object){standardGeneric("getId" )}
 )
+
+#' Get the locus of an object
+#'
+#' @param object The object for which we want to get the locus
+#' @return The locus of the object
+#' @exportMethod getLocus
+#' @name getLocus
+#' @rdname getLocus-methods
+#' @docType methods
+setGeneric(
+    name = "getLocus",
+    def = function(object){standardGeneric("getLocus" )}
+)

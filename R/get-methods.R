@@ -40,3 +40,17 @@ setMethod(
         return(object@id)
     }
 )
+
+#' @rdname getLocus-methods
+#' @aliases getLocus,Experiment-method
+#' @examples 
+#' gene <- new("Gene", id="exId", locus=data.frame(1,222,333) )
+#' 
+#' getLocus(exp)
+setMethod(
+    "getLocus",
+    signature = "Gene",
+    def = function(object){
+        return(object@locus)
+    }
+)
