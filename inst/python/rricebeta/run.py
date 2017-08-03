@@ -32,8 +32,9 @@ def main():
     dataSnp = snpSeek.snpSeek(contig, start, end)
     hashmap = dataSnp[0]
 
-    if(sys.argv[5] != "None"):
+    if(len(sys.argv) > 5):
         id = sys.argv[5]
+        print(id)
 
         if (db == "1"):
             dataRapdb = rapdb.rapdb(id)
@@ -137,14 +138,6 @@ def main():
         elif (db == "10"):
             dataFunricegenes = funricegenes.funricegenes(id)
             print(dataFunricegenes)
-
-        elif (db == "11"):
-            dataFunricegenes2 = funricegenes.funricegenes2(id)
-            print(dataFunricegenes2)
-
-        elif (db == "12"):
-            dataFunricegenes3 = funricegenes.funricegenes3(id)
-            print(dataFunricegenes3)
 
 
     #geneID(contig, start, end, hashmap[], hashmap["raprepName"])
