@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import helper
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -9,7 +10,8 @@ import gzip
 
 def planttfdb(MSUID):
 
-    html_page = requests.get('http://planttfdb.cbi.pku.edu.cn/download.php')
+    url = 'http://planttfdb.cbi.pku.edu.cn/download.php'
+    html_page = helper.connectionError(url)
     soup = BeautifulSoup(html_page.content, "lxml")
     # Find headers
     for search in soup.findAll('table', { "id" : "oid_tfid" }):

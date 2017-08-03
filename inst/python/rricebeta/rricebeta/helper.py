@@ -98,6 +98,10 @@ def connectionError(link):
             return html_page
 
     except requests.exceptions.RequestException:
-        print("No internet connection or proxy error")
+        print("Unknow internet error")
+        sys.exit(1)
+
+    except requests.exceptions.Timeout:
+        print("Timeout")
         sys.exit(1)
 
