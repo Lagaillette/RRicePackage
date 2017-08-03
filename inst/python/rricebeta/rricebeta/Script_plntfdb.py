@@ -3,7 +3,6 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from pandas.io.common import EmptyDataError
 import gzip
 
 
@@ -24,4 +23,7 @@ def plntfdb(ID):
                else:
                    return False
            i = i + 1
+
+       else:
+           return False
 

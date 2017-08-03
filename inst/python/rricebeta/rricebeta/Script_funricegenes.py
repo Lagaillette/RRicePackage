@@ -43,3 +43,48 @@ def funricegenes(ID):
     return data["Symbol"]
 
 
+def funricegenes2(ID):
+
+    link = "https://funricegenes.github.io/famInfo.table.txt"
+
+    # Import file tab-delimited direclty by the link
+    try:
+        array = pd.read_csv(link, sep="\t", header=None)
+    except EmptyDataError:
+        array = pd.DataFrame()
+    # Named columns
+    array.columns = ["Symbol", "RAPdb", "MSU", "Name"]
+    if (ID[:3] == "LOC"):
+        data = array.loc[array['MSU'] == ID]
+
+    else:
+        data = array.loc[array['RAPdb'] == ID]
+
+    hashmap = {"Symbol" : data["Symbol"].values, "Name" : data["Name"].values}
+
+    return hashmap
+
+
+
+def funricegenes3(ID):
+
+    link = "https://funricegenes.github.io/geneKeyword.table.txt"
+
+    # Import file tab-delimited direclty by the link
+    try:
+        array = pd.read_csv(link, sep="\t", header=None, encoding="utf-8")
+    except EmptyDataError:
+        array = pd.DataFrame()
+    # Named columns
+    array.columns = ["Symbol", "RAPdb", "MSU", "Keyword", "Title"]
+    if (ID[:3] == "LOC"):
+        data = array.loc[array['MSU'] == ID]
+
+    else:
+        data = array.loc[array['RAPdb'] == ID]
+
+    hashmap = {"Symbol" :
+                   data["Symbol"].values, "Keyword" : data["Keyword"].values, "Title" : data["Title"].values}
+
+    return hashmap
+

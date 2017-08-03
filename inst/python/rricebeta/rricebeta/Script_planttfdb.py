@@ -3,7 +3,6 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from pandas.io.common import EmptyDataError
 import gzip
 
 
@@ -22,18 +21,18 @@ def planttfdb(MSUID):
     # Import file tab-delimited
     try:
         array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
     array.columns = ["TF_ID", "Gene_ID", "Family"]
 
     data = array.loc[array['TF_ID'] == MSUID]
     if (not data.empty):
-        return data["Family"]
+        return data["Family"].values
     else:
         data = array.loc[array['Gene_ID'] == MSUID]
         if (data.empty):
             return False
         else:
-            return data["Family"]
+            return data["Family"].values
 
