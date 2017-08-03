@@ -2,7 +2,7 @@
 % Please edit documentation in R/callSnpSeek-function.R
 \name{callSnpSeek}
 \alias{callSnpSeek}
-\title{Function for recup a list of ids}
+\title{CallSnpSeek}
 \usage{
 callSnpSeek(locus)
 }
@@ -13,7 +13,7 @@ callSnpSeek(locus)
 the list of id's of each genes we want
 }
 \description{
-Function for recup a list of ids
+It will return a list of IDs and msu7Name
 }
 \examples{
 locusList <- data.frame(ch = c("1"),
