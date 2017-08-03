@@ -28,5 +28,6 @@ exp <- new(Class="Experiment",
  databases=list(1),
  date=Sys.Date(),
  name="test")
-exp <- setName(exp, "testName")
+ 
+exp <- setName(exp, "example")
 }
