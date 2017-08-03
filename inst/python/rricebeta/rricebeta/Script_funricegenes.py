@@ -27,11 +27,13 @@ def funricegenes(ID):
             f.close()
     """
 
+
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None)
     except EmptyDataError:
         array = pd.DataFrame()
+
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU"]
     if (ID[:3] == "LOC"):

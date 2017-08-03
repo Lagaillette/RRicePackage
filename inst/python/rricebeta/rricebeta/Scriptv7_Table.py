@@ -7,35 +7,13 @@ import os
 import sys
 import json
 
-# declaration des parametres au tout debut du main
-
-def formatPathToFile(nameFile):
-    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
-    pathToFile = os.path.dirname(__file__)
-    while not (pathToFile.endswith('/')):
-        pathToFile = pathToFile[0:-1]
-
-    pathToFile += 'resources/'+nameFile
-    return pathToFile
-
-
-def existFile(pathToFile):
-    """
-
-    :return: return True if the file already exist, else return False
-    :rtype: Bool
-    """
-    return (os.path.isfile(pathToFile))
-
 def rapdb(RAPID):
     #Parameters
     # RAPID_valide = "Os06g0654600"
     #End parameters
-    try:
-        html_page = requests.get("http://rapdb.dna.affrc.go.jp/tools/search/run?keyword=" + RAPID + "&submit=Search&id=on&size=10")
-    except requests.exceptions.RequestException:
-        print("Access denied or no internet connection")
-        sys.exit(1)
+    link = "http://rapdb.dna.affrc.go.jp/tools/search/run?keyword=" + RAPID + "&submit=Search&id=on&size=10"
+
+    html_page = helper.connectionError(link)
 
     soup = BeautifulSoup(html_page.content, "lxml")
     result = soup.find('tr', attrs={"class": "result"})

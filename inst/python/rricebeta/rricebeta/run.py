@@ -46,20 +46,19 @@ def main():
             dataGramene = gramene.gramene(id)
             print(dataGramene)
 
-                # Faire try
         elif (db == "3"):
             try:
                 dataOryzabase = oryzabase.oryzabaseRapId(id)
                 print(dataOryzabase)
             except:
-                # Si vide ya erreur
-                print("no rap id")
+                # empty error
+                print("Rap ID not found")
                 try:
                     rapdbCGSNL = rapdb.rapdb(id)
                     dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
                     print(dataOryzabase)
                 except:
-                    print("not found")
+                    print("Not found")
 
         elif (db == "4"):
             ic4r.ic4r(id)
