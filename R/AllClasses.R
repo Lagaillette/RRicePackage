@@ -27,18 +27,21 @@ setClass(
     prototype( others = list()),
     
     validity = checkExperiment <- function(object){
-      errors <- character()
-      yearDate <- object@date
-      if(length(object@databases)<0){
-          msg <- paste("You have to have at least one database.")
+        ## To update when a DB is added. The number of databases we can call
+        nbDB <- 6
+        errors <- character()
+        yearDate <- object@date
+        if(length(object@databases)<0 || length(object@databases)>nbDB){
+          msg <- paste("You have to have at least one database",
+                       "and less than", nbDB, sep=" ")
           errors <- c(errors, msg)
-      }
-      if (yearDate > Sys.Date()) {
+        }
+        if (yearDate > Sys.Date()) {
           msg <- paste("The year has to be bellow", 
                        "the current year.")
           errors <- c(errors, msg)
-      }
-      if(length(errors) == 0) TRUE else errors
+        }
+        if(length(errors) == 0) TRUE else errors
     }
 
   
