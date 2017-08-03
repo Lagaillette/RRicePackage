@@ -128,7 +128,7 @@ setGeneric(
 #'
 #' @param object The object for which we want to get the id
 #' @return The id of the object
-#' @exportMethod getDate
+#' @exportMethod getId
 #' @name getId
 #' @rdname getId-methods
 #' @docType methods
