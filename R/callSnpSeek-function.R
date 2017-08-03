@@ -8,7 +8,11 @@
 #' will return a list with the both ids
 #' @rdname noDoubleIds-function
 noDoubleIds <- function (id) {
-    id <- as.character(id)
+    ##print(id[[1]]) -> id
+    ##print(id[[2]]) -> msu7Name
+    msu7Name <- as.character(id[[2]])
+    id <- as.character(id[[1]])
+    
     ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
     ##we only test the first id
     if(grepl(',', id)) 
@@ -17,10 +21,10 @@ noDoubleIds <- function (id) {
         id <- ids[[1]][[1]]
         id1 <- ids[[1]][[2]]
         liste <- list(id,id1)
-        return(liste)
+        return(list(list(id,msu7Name),list(id1,msu7Name)))
     }
     else {
-        return(id)
+        return(list(list(id,msu7Name)))
     }
 }
 
@@ -66,8 +70,10 @@ id <- function (rOutput) {
         id <- jsonOutput['raprepName']
     }
     
+    locName <- jsonOutput['msu7Name']
+    
     if (id != "None") {
-        return (id)
+        return (list(id,locName))
     }
     
 }
@@ -146,7 +152,7 @@ getIds <- function (i, locusList) {
         liste <- list()
         lapply(1 : length(listIds),
                FUN = function(x){liste <<- append(liste,listIds[[x]])})
-        
+
         ##print(liste)
         return (liste)
     }
@@ -155,8 +161,9 @@ getIds <- function (i, locusList) {
     }
 }
 
-#' Function for recup a list of ids
+#' CallSnpSeek
 #' 
+#' It will return a list of IDs and msu7Name
 #' 
 #' @param locus the list of locus for which we want the ids
 #' @return the list of id's of each genes we want
