@@ -68,6 +68,9 @@ createExperiment <- function(name, locus){
             print("1 for RAPDB")
             print("2 for GRAMENE")
             print("3 for ORYZABASE")
+            print("7 for IC4R")
+            print("9 for ")
+            print("10 for ")
             databases[i] <- as.numeric(readline())
             if(databases[i] > 0 && 
                databases[i] <= dbAvailables && 

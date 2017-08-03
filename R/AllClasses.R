@@ -178,3 +178,100 @@ setClass(
 
     contains = "Gene"
 )
+
+
+#' An S4 class to represent the seven database Gene.
+#'
+#' This gene is specific to the database 7 that is the database "IC4R". So it
+#' contains all the informations we can have about one gene with the "IC4R"
+#' database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot experimentName the experiment name
+#' @slot devStage devStage
+#' @slot experimentId the experiment id,
+#' @slot variety the variety,
+#' @slot projectId the project id,
+#' @slot tissue the tissue,
+#' @slot exprValue the expr value
+#' @name GeneDB7-class
+#' @rdname GeneDB7-class
+#' @exportClass GeneDB7
+#' @examples
+#' gene <- new("GeneDB7")
+setClass(
+    ##name of the class
+    "GeneDB7",
+    
+    ##attributes of the classnumeric
+    slots = list(experimentName = "list",
+                 devStage = "list",
+                 experimentId = "list",
+                 variety = "list",
+                 projectId = "list",
+                 tissue = "list",
+                 exprValue = "list"),
+    
+    contains = "Gene"
+)
+
+#' An S4 class to represent the Gene database number 9.
+#'
+#' This gene is specific to the database 9 that is the database "???". So it
+#' contains all the informations we can have about one gene with the "???"
+#' database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot family the family of the gene
+#' @name GeneDB9-class
+#' @rdname GeneDB9-class
+#' @exportClass GeneDB9
+#' @examples
+#' gene <- new("GeneDB9")
+setClass(
+    ##name of the class
+    "GeneDB9",
+    
+    ##attributes of the classnumeric
+    slots = list(family = "character"),
+    
+    contains = "Gene"
+)
+
+#' An S4 class to represent the Gene database number 10
+#'
+#' This gene is specific to the database 10 that is the database "???". So it
+#' contains all the informations we can have about one gene with the "???"
+#' database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot symbol the gene symbol
+#' @name GeneDB10-class
+#' @rdname GeneDB10-class
+#' @exportClass GeneDB10
+#' @examples
+#' gene <- new("GeneDB10")
+setClass(
+    ##name of the class
+    "GeneDB10",
+    
+    ##attributes of the classnumeric
+    slots = list(symbol = "character"),
+    
+    contains = "Gene"
+)
