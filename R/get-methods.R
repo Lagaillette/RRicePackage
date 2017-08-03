@@ -26,3 +26,17 @@ setMethod(
         return(object@date)
     }
 )
+
+#' @rdname getId-methods
+#' @aliases getId,Experiment-method
+#' @examples 
+#' gene <- new("Gene", id="exId" )
+#' 
+#' getId(exp)
+setMethod(
+    "getId",
+    signature = "Gene",
+    def = function(object){
+        return(object@id)
+    }
+)
