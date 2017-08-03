@@ -27,7 +27,7 @@ createExperiment <- function(name, locus){
     }else{
         ## the number of databases available. To increment every time we have
         ## one more database available
-        dbAvailables <- 3
+        dbAvailables <- 10
         ## to check if the number the user will put is correct or not
         correctNbdb <- FALSE
         while(!correctNbdb){
@@ -69,8 +69,8 @@ createExperiment <- function(name, locus){
             print("2 for GRAMENE")
             print("3 for ORYZABASE")
             print("7 for IC4R")
-            print("9 for ")
-            print("10 for ")
+            print("9 for FUNRICEGENES1")
+            print("10 for FUNRICEGENS2")
             databases[i] <- as.numeric(readline())
             if(databases[i] > 0 && 
                databases[i] <= dbAvailables && 
