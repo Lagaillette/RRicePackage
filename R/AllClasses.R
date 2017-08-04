@@ -28,7 +28,7 @@ setClass(
     
     validity = checkExperiment <- function(object){
         ## To update when a DB is added. The number of databases we can call
-        nbDB <- 6
+        nbDB <- 9
         errors <- character()
         yearDate <- object@date
         if(length(object@databases)<0 || length(object@databases)>nbDB){
@@ -98,14 +98,14 @@ setClass(
 #' @slot oryzabaseGeneSymbolSynonym an identificator
 #' @slot position the position of the gene into the chromosome
 #' @slot description a description of the gene
-#' @name GeneDB1-class
-#' @rdname GeneDB1-class
-#' @exportClass GeneDB1
+#' @name RAPDB-class
+#' @rdname RAPDB-class
+#' @exportClass RAPDB
 #' @examples
-#' gene <- new("GeneDB1")
+#' gene <- new("RAPDB")
 setClass(
     ##name of the class
-    "GeneDB1",
+    "RAPDB",
     
     ##attributes of the classnumeric
     slots = list(rapDBGeneNameSynonym = "character",
@@ -150,14 +150,14 @@ setClass(
 #' @slot geneOntology id
 #' @slot traitOntology id
 #' @slot plantOntology id
-#' @name GeneDB3-class
-#' @rdname GeneDB3-class
-#' @exportClass GeneDB3
+#' @name Oryzabase-class
+#' @rdname Oryzabase-class
+#' @exportClass Oryzabase
 #' @examples 
-#' gene <- new("GeneDB3")
+#' gene <- new("Oryzabase")
 setClass(
     ##name of the class
-    "GeneDB3",
+    "Oryzabase",
 
     ##attributes of the classnumeric
     slots = list(traitGeneId = "character",
@@ -183,9 +183,9 @@ setClass(
 )
 
 
-#' An S4 class to represent the seven database Gene.
+#' An S4 class to represent Gene database IC4R.
 #'
-#' This gene is specific to the database 7 that is the database "IC4R". So it
+#' This gene is specific to the database "IC4R". So it
 #' contains all the informations we can have about one gene with the "IC4R"
 #' database.
 #'
@@ -202,14 +202,14 @@ setClass(
 #' @slot projectId the project id,
 #' @slot tissue the tissue,
 #' @slot exprValue the expr value
-#' @name GeneDB7-class
-#' @rdname GeneDB7-class
-#' @exportClass GeneDB7
+#' @name IC4R-class
+#' @rdname IC4R-class
+#' @exportClass IC4R
 #' @examples
-#' gene <- new("GeneDB7")
+#' gene <- new("IC4R")
 setClass(
     ##name of the class
-    "GeneDB7",
+    "IC4R",
     
     ##attributes of the classnumeric
     slots = list(experimentName = "list",
@@ -223,11 +223,11 @@ setClass(
     contains = "Gene"
 )
 
-#' An S4 class to represent the Gene database number 9.
+#' An S4 class to represent the Gene database Funricigenes 2.
 #'
-#' This gene is specific to the database 9 that is the database "???". So it
-#' contains all the informations we can have about one gene with the "???"
-#' database.
+#' This gene is specific to the database Funricigenes. So it
+#' contains all the informations we can have about one gene with the
+#' "Funricigenes 2" database.
 #'
 #' @slot id The id of the gene. Many genes can have the same id because 
 #' there are the same in spite of the different attributes they have.
@@ -236,14 +236,14 @@ setClass(
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot family the family of the gene
-#' @name GeneDB9-class
-#' @rdname GeneDB9-class
-#' @exportClass GeneDB9
+#' @name Funricigenes2-class
+#' @rdname Funricigenes2-class
+#' @exportClass Funricigenes2
 #' @examples
-#' gene <- new("GeneDB9")
+#' gene <- new("Funricigenes2")
 setClass(
     ##name of the class
-    "GeneDB9",
+    "Funricigenes2",
     
     ##attributes of the classnumeric
     slots = list(family = "character"),
@@ -251,11 +251,11 @@ setClass(
     contains = "Gene"
 )
 
-#' An S4 class to represent the Gene database number 10
+#' An S4 class to represent the Gene database Funricigenes 3
 #'
-#' This gene is specific to the database 10 that is the database "???". So it
-#' contains all the informations we can have about one gene with the "???"
-#' database.
+#' This gene is specific to the database Funricigenes. So it
+#' contains all the informations we can have about one gene with the
+#' "Funricigenes 3" database.
 #'
 #' @slot id The id of the gene. Many genes can have the same id because 
 #' there are the same in spite of the different attributes they have.
@@ -264,14 +264,14 @@ setClass(
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot symbol the gene symbol
-#' @name GeneDB10-class
-#' @rdname GeneDB10-class
-#' @exportClass GeneDB10
+#' @name Funricigenes3-class
+#' @rdname Funricigenes3-class
+#' @exportClass Funricigenes3
 #' @examples
-#' gene <- new("GeneDB10")
+#' gene <- new("Funricigenes3")
 setClass(
     ##name of the class
-    "GeneDB10",
+    "Funricigenes3",
     
     ##attributes of the classnumeric
     slots = list(symbol = "character"),

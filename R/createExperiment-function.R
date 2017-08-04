@@ -27,7 +27,7 @@ createExperiment <- function(name, locus){
     }else{
         ## the number of databases available. To increment every time we have
         ## one more database available
-        dbAvailables <- 10
+        dbAvailables <- 9
         ## to check if the number the user will put is correct or not
         correctNbdb <- FALSE
         while(!correctNbdb){
@@ -64,13 +64,9 @@ createExperiment <- function(name, locus){
         genes <- vector(mode='list', length=nbdb)
         i <- 1
         while(i <= nbdb){
-            print("Enter the number(s) of the database you want : ")
-            print("1 for RAPDB")
-            print("2 for GRAMENE")
-            print("3 for ORYZABASE")
-            print("7 for IC4R")
-            print("9 for FUNRICEGENES1")
-            print("10 for FUNRICEGENS2")
+            ##print the choices the user can do
+            databasesList()
+            ##read the choice
             databases[i] <- as.numeric(readline())
             if(databases[i] > 0 && 
                databases[i] <= dbAvailables && 
@@ -85,7 +81,7 @@ createExperiment <- function(name, locus){
                 }
                 else{
                     message("this number of database not exists. Try again")
-                    message("You can put a number between 1 and 3")
+                    message("You can put a number between 1 and ", dbAvailables)
                 }
                 
             }

@@ -68,3 +68,26 @@ getOutPutJSON <- function (outPut) {
         return(outPut)
     }
 }
+
+
+#' Function for see the list of the databases we can call
+#'
+#' this function will print the databases we can call 
+#' 
+#' @return print the databases we can call  
+#' @export
+#' @rdname databasesList-function
+#' @examples 
+#' databasesList()
+databasesList <- function () {
+    print("Enter the number(s) of the database you want : ")
+    print("1 for RAPDB")
+    print("2 for GRAMENE")
+    print("3 for ORYZABASE")
+    print("4 for IC4R")
+    print("5 for Planttfdb")
+    print("6 for Plntfdb")
+    print("7 for FUNRICEGENES1")
+    print("8 for FUNRICEGENS2")
+    print("9 for FUNRICEGENS3")
+}
