@@ -84,7 +84,6 @@ def funricegenes2(ID):
 
 
 def funricegenes3(ID):
-
     link = "https://funricegenes.github.io/geneKeyword.table.txt"
 
     # Import file tab-delimited direclty by the link
@@ -100,7 +99,21 @@ def funricegenes3(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    hashmap = {"Symbol" : data["Symbol"].values[0], "Keyword" : data["Keyword"].values[0], "Title" : data["Title"].values[0]}
+    hashmap = {}
+    if(data["Symbol"].empty):
+        hashmap["Symbol"] = "None"
+    else:
+        hashmap["Symbol"] = data["Symbol"].values[0]
+
+    if(data["Keyword"].empty):
+        hashmap["Keyword"] = "None"
+    else:
+        hashmap["Keyword"] = data["Keyword"].values[0]
+
+    if(data["Title"].empty):
+        hashmap["Title"] = "None"
+    else:
+        hashmap["Title"] = data["Title"].values[0]
 
     return hashmap
 
