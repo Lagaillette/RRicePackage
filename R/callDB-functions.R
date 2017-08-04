@@ -257,10 +257,34 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                 system_name = jsonOutput["system_name"]
                 db_type = jsonOutput["db_type"]
                 gene_idx = jsonOutput["gene_idx"]
-                location_region = jsonOutput["location"]$location$region
-                location_start = jsonOutput["location"]$location$start
-                location_end = jsonOutput["location"]$location$end
+                loc_region = jsonOutput["location"]$location$region
+                loc_start = jsonOutput["location"]$location$start
+                loc_end = jsonOutput["location"]$location$end
+                loc_strand = jsonOutput["location"]$location$strand
+                loc_map = jsonOutput["location"]$location$map
                 # = jsonOutput[""]
+                
+                location <- data.frame(region = c(as.character(loc_region)),
+                                       start = c(as.character(loc_start)),
+                                       end = c(as.character(loc_end)),
+                                       strand = c(as.character(loc_strand)),
+                                       map = c(as.character(loc_map))
+                )
+
+                newGene <- new("Gramene",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               description = as.character(description),
+                               biotype = as.character(biotype),
+                               taxon_id = as.character(taxon_id),
+                               system_name = as.character(system_name),
+                               db_type = as.character(db_type),
+                               gene_idx = as.character(gene_idx),
+                               location = location
+
+                return (newGene)
                 
                 # print(paste0(idRec," ",
                 #       description," ",
@@ -273,6 +297,12 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                 # print(paste0(location_region," ",
                 #              location_start," ",
                 #              location_end))
+                
+
+                
+                # data2 <- data.frame(ch = c("1","1"),
+                #                     st = c("148907","527906"),
+                #                     end = c("248907","842359"))
             }
         }
     }
@@ -1189,7 +1219,6 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
             # }
             # #print(symbol)
             
-            #####
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
             
@@ -1204,18 +1233,17 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
                 jsonOutput <- fromJSON(rOutput)
                 
                 ##print(jsonOutput)
-                symbol <- jsonOutput['symbol']
+                symbol <- jsonOutput['Symbol']
 
                 newGene <- new("Funricigenes",
                                id = as.character(id),
                                genesIDs = as.list(IdsList[[x]][[y]]),
                                locus = locusList[x,],
                                others = list(),
-                               symbol = symbol)
+                               symbol = as.character(symbol))
 
                 return (newGene)
             }
-            ####
         }
     }
     else {
@@ -1348,43 +1376,42 @@ creationGeneDB8 <- function (x, y, IdsList, locusList) {
             #print(rOutput)
 
             
-            str <- rOutput[1]
-
-            if (str == "Series([], dtype: object)" || is.na(str)){
-                symbol <- "None"
-                name <- "None"
-            }
-            else {
-                str <- strsplit(str,"°")
-                symbol <- str[[1]][[2]]
-                name <- str[[1]][[3]]
-            }
-            print(paste(symbol, name))
-            
-            ##### BAPTISTE  ####
-            
-            # rOutput <- lapply(1 : length(rOutput),
-            #                   function(x) getOutPutJSON(rOutput[x]))
+            # str <- rOutput[1]
             # 
-            # rOutput[sapply(rOutput, is.null)] <- NULL
-            
-            # if (length(rOutput) > 0) {
-            #     jsonOutput <- fromJSON(rOutput[[1]])
-            # 
-            #     symbol <- jsonOutput['symbol']
-            #     name <- jsonOutput['name']
-            # 
-            #     newGene <- new("Funricigenes2",
-            #                    id = as.character(id),
-            #                    genesIDs = as.list(IdsList[[x]][[y]]),
-            #                    locus = locusList[x,],
-            #                    others = list(),
-            #                    symbol = symbol,
-            #                    name = name)
-            # 
-            #     return (newGene)
+            # if (str == "Series([], dtype: object)" || is.na(str)){
+            #     symbol <- "None"
+            #     name <- "None"
             # }
-            ####
+            # else {
+            #     str <- strsplit(str,"°")
+            #     symbol <- str[[1]][[2]]
+            #     name <- str[[1]][[3]]
+            # }
+            # print(paste(symbol, name))
+            
+            
+            rOutput <- lapply(1 : length(rOutput),
+                              function(x) getOutPutJSON(rOutput[x]))
+
+            rOutput[sapply(rOutput, is.null)] <- NULL
+
+            if (length(rOutput) > 0) {
+                rOutput <- gsub('\'', '"', rOutput)
+                jsonOutput <- fromJSON(rOutput)
+
+                symbol <- jsonOutput['Symbol']
+                name <- jsonOutput['Name']
+
+                newGene <- new("Funricigenes2",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               symbol = as.character(symbol),
+                               name = as.character(name))
+
+                return (newGene)
+            }
             
             
             
@@ -1518,30 +1545,30 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
             
             print(rOutput)
             
-            
-            # str <- rOutput[1]
+            # rOutput <- lapply(1 : length(rOutput),
+            #                   function(x) getOutPutJSON(rOutput[x]))
             # 
-            # if (str == "Series([], dtype: object)" || is.na(str)){
-            #     symbol <- "None"
-            #     name <- "None"
-            # }
-            # else {
-            #     str <- strsplit(str,"~")
-            #     symbol <- str[[1]][[2]]
-            #     name <- str[[1]][[3]]
-            # }
-            #print(symbol)
-            #print(name)
-            
-            # newGene <- new("Funricigenes3",
-            #                id = as.character(id),
-            #                genesIDs = as.list(IdsList[[x]][[y]]),
-            #                locus = locusList[x,],
-            #                others = list(),
-            #                symbol = symbol,
-            #                name = name)
+            # rOutput[sapply(rOutput, is.null)] <- NULL
             # 
-            # return (newGene)
+            # if (length(rOutput) > 0) {
+            #     rOutput <- gsub('\'', '"', rOutput)
+            #     jsonOutput <- fromJSON(rOutput)
+            #     
+            #     symbol <- jsonOutput['Symbol']
+            #     keyword <- jsonOutput['Keyword']
+            #     title <- jsonOutput['Title']
+            #     
+            #     newGene <- new("Funricigenes3",
+            #                    id = as.character(id),
+            #                    genesIDs = as.list(IdsList[[x]][[y]]),
+            #                    locus = locusList[x,],
+            #                    others = list(),
+            #                    symbol = as.character(symbol),
+            #                    keyword = as.character(keyword),
+            #                    title = as.character(title))
+            #     
+            #     return (newGene)
+            # }
             
         }
     }
