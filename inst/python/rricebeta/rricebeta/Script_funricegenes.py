@@ -89,7 +89,7 @@ def funricegenes3(ID):
 
     # Import file tab-delimited direclty by the link
     try:
-        array = pd.read_csv(link, sep="\t", header=None, encoding="utf-8")
+        array = pd.read_csv(link, sep="\t", header=None, encoding='latin-1')
     except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
@@ -100,8 +100,7 @@ def funricegenes3(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    hashmap = {"Symbol" :
-                   data["Symbol"].values[0], "Keyword" : data["Keyword"].values[0], "Title" : data["Title"].values[0]}
+    hashmap = {"Symbol" : data["Symbol"].values[0], "Keyword" : data["Keyword"].values[0], "Title" : data["Title"].values[0]}
 
     return hashmap
 
