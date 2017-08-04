@@ -20,21 +20,52 @@ def planttfdb(MSUID):
                link = 'http://planttfdb.cbi.pku.edu.cn/'+linkfound.get('href')
                break
 
-    # Import file tab-delimited
-    try:
-        array = pd.read_csv(link, sep="\t", header=None)
-    except pd.io.common.EmptyDataError:
-        array = pd.DataFrame()
-    # Named columns
-    array.columns = ["TF_ID", "Gene_ID", "Family"]
+    # Give the entire name of the file with the extension .gz
+    filename = link.split("/")[-1]
 
-    data = array.loc[array['TF_ID'] == MSUID]
+    # Give the name of the file without .gz
+    uncompressName = filename[:-3] + ".txt"
+    pathToFile = helper.formatPathToFile(uncompressName)
+
+    # Test existant file
+    if(helper.existFile(pathToFile)):
+        # Fetch the file by the url and decompress it
+        r = requests.get(link)
+        decompressedFile = gzip.decompress(r.content)
+
+        # Create the file .txt
+
+
+
+        with open(pathToFile, "wb") as f:
+                f.write(decompressedFile)
+                f.close()
+
+        # Use the previous created file (.txt)
+
+    with open(pathToFile, "r+b") as file:
+
+        # Import file tab-delimited
+
+        try:
+            array = pd.read_csv(file, sep="\t", header=None)
+        except pd.io.common.EmptyError:
+                array = pd.DataFrame()
+        # Named columns
+        array.columns = ["TF_ID", "Gene_ID", "Family"]
+
+        data = array.loc[array['TF_ID'] == MSUID]
+
     if (not data.empty):
-        return data["Family"].values
+
+        return data
     else:
         data = array.loc[array['Gene_ID'] == MSUID]
-        if (data.empty):
-            return False
-        else:
-            return data["Family"].values
+
+    if (data.empty):
+
+        return False
+    else:
+
+        return data["Family"]
 
