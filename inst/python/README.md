@@ -1,4 +1,4 @@
-# Database
+# Databases
 
 ```
 1. RAPdb
