@@ -17,6 +17,7 @@ import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
 import Script_plntfdb as plntfdb
 import Script_funricegenes as funricegenes
+import Script_MSU as msu
 
 
 def main():
@@ -49,6 +50,7 @@ def main():
 
         elif (db == "3"):
             dataOryzabase = oryzabase.oryzabase(id)
+            print(dataOryzabase)
 
         elif (db == "4"):
             ic4r.ic4r(id)
@@ -74,8 +76,12 @@ def main():
             dataFunricegenes3 = funricegenes.funricegenes3(id)
             print(dataFunricegenes3)
 
-                    # Ecriture fichier a revoir !!!!!!!!! pour les id et hashmap[iricname] et hashmpap [raprepname]
         elif (db == "10"):
+            dataMsu = msu.msu(id)
+            print(dataMsu)
+
+                    # Ecriture fichier a revoir !!!!!!!!! pour les id et hashmap[iricname] et hashmpap [raprepname]
+        elif (db == "13"):
             url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"
             filename = url.split("/")[-1]
 

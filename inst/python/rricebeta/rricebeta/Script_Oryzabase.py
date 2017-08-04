@@ -3,20 +3,40 @@
 import helper
 import requests
 from bs4 import BeautifulSoup
-import os
 import sys
-import json
 
 def oryzabase(RAPID):
 
-    link = "https://shigen.nig.ac.jp/rice/oryzabase/gene/advanced/search"
+    link = "https://shigen.nig.ac.jp/rice/oryzabase/gene/advanced/list"
 
     data = {'rapId': 'Os07g0586200'}
-    #Fake user agent to avoid website reject
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
 
-    r = requests.post(link, headers=headers, data=data)
-    html_page = helper.connectionError(r.link)
-    print(html_page.content)
+    html_page = helper.connectionErrorPost(link, data)
+    soup = BeautifulSoup(html_page.content, "lxml")
 
+    # Headers declaration
+    headers = []
+    headers.append("CGSNL Gene Symbol")
+    headers.append("Gene symbol synonym(s)")
+    headers.append("CGSNL Gene Name")
+    headers.append("Gene name synonym(s)")
+    headers.append("Chr. No.")
+    headers.append("Trait Class")
+    headers.append("Gene Ontology")
+    headers.append("Trait Ontology")
+    headers.append("Plant Ontology")
+    headers.append("RAP ID")
+    headers.append("Mutant Image")
+
+    dict = {}
+    for search in soup.findAll('table', {"class": "table_summery_list table_nowrapTh max_width_element"}):
+        i = 0
+        for datafound in search.findAll('td'):
+            dataFormat = datafound.text.replace('\r', '')
+            dataFormat = dataFormat.replace('\n', '')
+            dataFormat = dataFormat.replace('\t', '')
+            dict[headers[i]] = dataFormat
+            i = i + 1
+
+    return dict
 

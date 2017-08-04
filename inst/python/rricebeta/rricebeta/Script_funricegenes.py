@@ -71,13 +71,13 @@ def funricegenes2(ID):
         if(data["Name"].empty):
             hashmap = {"Symbol": "None", "Name": "None"}
         else:
-            hashmap = {"Symbol": "None", "Name": data["Name"].values}
+            hashmap = {"Symbol": "None", "Name": data["Name"].values[0]}
 
     else:
         if (data["Name"].empty):
-            hashmap = {"Symbol": data["Symbol"].values, "Name": "None"}
+            hashmap = {"Symbol": data["Symbol"].values[0], "Name": "None"}
         else:
-            hashmap = {"Symbol" : data["Symbol"].values, "Name" : data["Name"].values}
+            hashmap = {"Symbol" : data["Symbol"].values[0], "Name" : data["Name"].values[0]}
 
     return hashmap
 
@@ -101,7 +101,7 @@ def funricegenes3(ID):
         data = array.loc[array['RAPdb'] == ID]
 
     hashmap = {"Symbol" :
-                   data["Symbol"].values, "Keyword" : data["Keyword"].values, "Title" : data["Title"].values}
+                   data["Symbol"].values[0], "Keyword" : data["Keyword"].values[0], "Title" : data["Title"].values[0]}
 
     return hashmap
 
