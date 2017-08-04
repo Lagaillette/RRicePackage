@@ -16,7 +16,7 @@
     <SUITE FILE_PATH="coverage/RRice$ScriptV3.coverage" NAME="ScriptV3 Coverage Results" MODIFIED="1497857700739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RRice" />
     <SUITE FILE_PATH="coverage/RRiceBeta$ScriptV4_Gramene_JSON__1_.coverage" NAME="ScriptV4_Gramene_JSON (1) Coverage Results" MODIFIED="1497942068655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RRiceBeta" />
     <SUITE FILE_PATH="coverage/RRiceBeta$Unittests_in_testPython_py.coverage" NAME="Unittests in testPython.py Coverage Results" MODIFIED="1497947138156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RRiceBeta" />
-    <SUITE FILE_PATH="coverage/rricebeta$run.coverage" NAME="run Coverage Results" MODIFIED="1501840629543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rricebeta" />
+    <SUITE FILE_PATH="coverage/rricebeta$run.coverage" NAME="run Coverage Results" MODIFIED="1501841073130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rricebeta" />
     <SUITE FILE_PATH="coverage/rricebeta$snpSeekAll.coverage" NAME="snpSeekAll Coverage Results" MODIFIED="1499152685257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rricebeta" />
     <SUITE FILE_PATH="coverage/rricebeta$ScriptV9.coverage" NAME="ScriptV9 Coverage Results" MODIFIED="1498621976623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rricebeta" />
     <SUITE FILE_PATH="coverage/RRice$ScriptV4_Gramene_JSON.coverage" NAME="ScriptV4_Gramene_JSON Coverage Results" MODIFIED="1497857192605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/RRice" />
@@ -27,7 +27,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="run.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rricebeta/run.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
@@ -95,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Script_planttfdb.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Script_planttfdb.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rricebeta/Script_planttfdb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="252">
+              <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -200,8 +200,8 @@
         <option value="$PROJECT_DIR$/rricebeta/Script_Oryzabase.py" />
         <option value="$PROJECT_DIR$/rricebeta/Script_MSU.py" />
         <option value="$PROJECT_DIR$/rricebeta/Script_funricegenes.py" />
-        <option value="$PROJECT_DIR$/rricebeta/Script_planttfdb.py" />
         <option value="$PROJECT_DIR$/rricebeta/run.py" />
+        <option value="$PROJECT_DIR$/rricebeta/Script_planttfdb.py" />
       </list>
     </option>
   </component>
@@ -980,22 +980,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rricebeta/Script_planttfdb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rricebeta/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="74" column="25" lean-forward="true" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rricebeta/Script_planttfdb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
           </folding>
         </state>
       </provider>

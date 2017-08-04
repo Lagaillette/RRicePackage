@@ -28,7 +28,7 @@ def planttfdb(MSUID):
     pathToFile = helper.formatPathToFile(uncompressName)
 
     # Test existant file
-    if(helper.existFile(pathToFile)):
+    if(not helper.existFile(pathToFile)):
         # Fetch the file by the url and decompress it
         r = requests.get(link)
         decompressedFile = gzip.decompress(r.content)
