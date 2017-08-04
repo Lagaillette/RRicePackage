@@ -86,7 +86,7 @@ databasesList <- function () {
     print("3 for ORYZABASE")
     print("4 for IC4R")
     print("5 for Planttfdb")
-    print("6 for Plntfdb")
+    print("6 for PLNTFDB")
     print("7 for FUNRICEGENES1")
     print("8 for FUNRICEGENS2")
     print("9 for FUNRICEGENS3")

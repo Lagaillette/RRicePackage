@@ -58,6 +58,7 @@ createExperiment <- function(name, locus){
                 message("please write the date in the format asked.")
             }
         }
+        message("loading informations...")
         ## We get all the geneIds of the locuses
         genesIds <- callSnpSeek(locus)
         ## We create the list which will have the genes of the databases
@@ -71,6 +72,7 @@ createExperiment <- function(name, locus){
             if(databases[i] > 0 && 
                databases[i] <= dbAvailables && 
                !alreadyUsedDB(databases,i)){
+                message('loading informations of the database...')
                 callDB <- paste("callDB",databases[i],sep="")
                 genes[[i]] <- (do.call(callDB, args = list(genesIds, locus)))
                 i <- i+1

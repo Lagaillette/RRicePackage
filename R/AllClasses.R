@@ -236,6 +236,62 @@ setClass(
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot family the family of the gene
+#' @name PLNTFDB-class
+#' @rdname PLNTFDB-class
+#' @exportClass PLNTFDB
+#' @examples
+#' gene <- new("PLNTFDB")
+setClass(
+    ##name of the class
+    "PLNTFDB",
+    
+    ##attributes of the classnumeric
+    slots = list(family = "character"),
+    
+    contains = "Gene"
+)
+
+#' An S4 class to represent the Gene database Funricigenes
+#'
+#' This gene is specific to the database Funricigenes. So it
+#' contains all the informations we can have about one gene with the
+#' "Funricigenes" database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot symbol the gene symbol
+#' @name Funricigenes3-class
+#' @rdname Funricigenes3-class
+#' @exportClass Funricigenes3
+#' @examples
+#' gene <- new("Funricigenes3")
+setClass(
+    ##name of the class
+    "Funricigenes",
+    
+    ##attributes of the classnumeric
+    slots = list(symbol = "character"),
+    
+    contains = "Gene"
+)
+
+#' An S4 class to represent the Gene database Funricigenes 2
+#'
+#' This gene is specific to the database Funricigenes. So it
+#' contains all the informations we can have about one gene with the
+#' "Funricigenes 2" database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot symbol the gene symbol
 #' @name Funricigenes2-class
 #' @rdname Funricigenes2-class
 #' @exportClass Funricigenes2
@@ -246,7 +302,7 @@ setClass(
     "Funricigenes2",
     
     ##attributes of the classnumeric
-    slots = list(family = "character"),
+    slots = list(symbol = "character", name = "character"),
     
     contains = "Gene"
 )
@@ -274,7 +330,9 @@ setClass(
     "Funricigenes3",
     
     ##attributes of the classnumeric
-    slots = list(symbol = "character"),
+    slots = list(symbol = "character", 
+                 keyword = "character", 
+                 title = "character"),
     
     contains = "Gene"
 )
