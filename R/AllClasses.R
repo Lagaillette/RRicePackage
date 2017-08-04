@@ -281,7 +281,7 @@ setClass(
 
 #' An S4 class to represent the Gene database Funricigenes 2
 #'
-#' This gene is specific to the database Funricigenes. So it
+#' This gene is specific to the database Funricigenes 2. So it
 #' contains all the informations we can have about one gene with the
 #' "Funricigenes 2" database.
 #'
@@ -309,7 +309,7 @@ setClass(
 
 #' An S4 class to represent the Gene database Funricigenes 3
 #'
-#' This gene is specific to the database Funricigenes. So it
+#' This gene is specific to the database Funricigenes 3. So it
 #' contains all the informations we can have about one gene with the
 #' "Funricigenes 3" database.
 #'
@@ -333,6 +333,46 @@ setClass(
     slots = list(symbol = "character", 
                  keyword = "character", 
                  title = "character"),
+    
+    contains = "Gene"
+)
+
+#' An S4 class to represent the Gene database Gramene
+#'
+#' This gene is specific to the database Gramene. So it
+#' contains all the informations we can have about one gene with the
+#' "Gramene" database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot description description of the gene
+#' @slot biotype the biotype of the gene
+#' @slot taxonId id
+#' @slot systemName system name
+#' @slot dbType type of the db
+#' @slot geneIdx id
+#' @slot location location 
+#' @name Gramene-class
+#' @rdname Gramene-class
+#' @exportClass Gramene
+#' @examples
+#' gene <- new("Gramene")
+setClass(
+    ##name of the class
+    "Gramene",
+    
+    ##attributes of the classnumeric
+    slots = list(description = "character",
+                 biotype = "character",
+                 taxonId = "character",
+                 systemName = "character",
+                 dbType = "character",
+                 geneIdx = "character",
+                 location = "data.frame"),
     
     contains = "Gene"
 )

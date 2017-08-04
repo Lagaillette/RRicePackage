@@ -64,9 +64,9 @@ setGeneric(
     def = function(object, nbDB){standardGeneric("getDBGenes" )}
 )
 
-#' Get the attributes of an object.
+#' Get the attribute names  of an object.
 #'
-#' @param object The object for which we want to know the attributes.
+#' @param object The object for which we want to know the attribute names.
 #' @return the list of the attributes wanted.
 #' @exportMethod getAttributesNames
 #' @name getAttributesNames
@@ -75,7 +75,7 @@ setGeneric(
 #' @docType methods
 setGeneric(
     name ="getAttributesNames",
-    def = function(object, nbDB){standardGeneric("getAttributesNames" )}
+    def = function(object){standardGeneric("getAttributesNames" )}
 )
 
 ######################### Getters & setters ###################################
