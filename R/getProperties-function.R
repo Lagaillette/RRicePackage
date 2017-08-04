@@ -6,7 +6,7 @@
 #' @param attributesVector number
 #' @return it will return a dataframe with all the informations you want
 #' @export
-#' @rdname getProperties-function
+#' @rdname getProperties-function 
 getProperties <- function(geneList, attributesVector){
     if(length(geneList) == 0){
         stop("your gene list is empty")
