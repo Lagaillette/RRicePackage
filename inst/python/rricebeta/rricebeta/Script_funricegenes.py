@@ -41,11 +41,13 @@ def funricegenes(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    if(data["Symbol"].empty):
-        return "None"
-
+    if (data["Symbol"].empty):
+        hashmap = {"Symbol": "None"}
     else:
-        return data["Symbol"]
+        hashmap = {"Symbol": data["Symbol"].values[0]}
+
+    return hashmap
+
 
 
 def funricegenes2(ID):
