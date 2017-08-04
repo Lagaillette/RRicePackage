@@ -376,3 +376,35 @@ setClass(
     
     contains = "Gene"
 )
+
+#' An S4 class to represent the Gene database Gramene
+#'
+#' This gene is specific to the database Gramene. So it
+#' contains all the informations we can have about one gene with the
+#' "Gramene" database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot protein protein
+#' @slot genomicSequence genomic sequence
+#' @slot cds cds
+#' @name MSU-class
+#' @rdname MSU-class
+#' @exportClass MSU
+#' @examples
+#' gene <- new("MSU")
+setClass(
+    ##name of the class
+    "MSU",
+    
+    ##attributes of the classnumeric
+    slots = list(protein = "character",
+                 genomicSequence = "character",
+                 cds = "character"),
+    
+    contains = "Gene"
+)
