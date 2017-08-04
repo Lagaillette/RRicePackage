@@ -3,7 +3,6 @@ import helper
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from pandas.io.common import EmptyDataError
 
 
 
@@ -31,7 +30,7 @@ def funricegenes(ID):
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
 
     # Named columns
@@ -42,7 +41,11 @@ def funricegenes(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    return data["Symbol"]
+    if(data["Symbol"].empty):
+        return "None"
+
+    else:
+        return data["Symbol"]
 
 
 def funricegenes2(ID):
@@ -52,7 +55,7 @@ def funricegenes2(ID):
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU", "Name"]
@@ -62,7 +65,17 @@ def funricegenes2(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    hashmap = {"Symbol" : data["Symbol"].values, "Name" : data["Name"].values}
+    if(data["Symbol"].empty):
+        if(data["Name"].empty):
+            hashmap = {"Symbol": "None", "Name": "None"}
+        else:
+            hashmap = {"Symbol": "None", "Name": data["Name"].values}
+
+    else:
+        if (data["Name"].empty):
+            hashmap = {"Symbol": data["Symbol"].values, "Name": "None"}
+        else:
+            hashmap = {"Symbol" : data["Symbol"].values, "Name" : data["Name"].values}
 
     return hashmap
 
@@ -75,7 +88,7 @@ def funricegenes3(ID):
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None, encoding="utf-8")
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU", "Keyword", "Title"]

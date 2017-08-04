@@ -10,7 +10,8 @@ import helper
 import snpSeek as snpSeek
 import Scriptv7_Table as rapdb
 import ScriptGramene as gramene
-import ScriptV8_Oryzabase as oryzabase
+#import ScriptV8_Oryzabase as oryzabase
+import Script_Oryzabase as oryzabase
 import snpSeekAll as snpSeekAll
 import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
@@ -47,18 +48,7 @@ def main():
             print(dataGramene)
 
         elif (db == "3"):
-            try:
-                dataOryzabase = oryzabase.oryzabaseRapId(id)
-                print(dataOryzabase)
-            except:
-                # empty error
-                print("Rap ID not found")
-                try:
-                    rapdbCGSNL = rapdb.rapdb(id)
-                    dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
-                    print(dataOryzabase)
-                except:
-                    print("Not found")
+            dataOryzabase = oryzabase.oryzabase(id)
 
         elif (db == "4"):
             ic4r.ic4r(id)
@@ -139,6 +129,22 @@ def main():
         # Return the SnpSeek Call
         elif (db == "12"):
             print(dataSnp)
+
+        """
+        elif (db == "3"):
+            try:
+                dataOryzabase = oryzabase.oryzabaseRapId(id)
+                print(dataOryzabase)
+            except:
+                # empty error
+                print("Rap ID not found")
+                try:
+                    rapdbCGSNL = rapdb.rapdb(id)
+                    dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
+                    print(dataOryzabase)
+                except:
+                    print("Not found")
+        """
 
 
 
