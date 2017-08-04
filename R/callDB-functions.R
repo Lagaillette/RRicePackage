@@ -1061,8 +1061,8 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
             ##print(class(rOutput))
             ##print(rOutput[1])
             ##print(rOutput[2])
-            id <- rOutput[1]
-            family <- rOutput[2]
+            #id <- rOutput[1]
+            family <- rOutput[1]
             #print(paste(id,family))
             
             newGene <- new("PLNTFDB",
