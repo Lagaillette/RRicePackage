@@ -31,7 +31,7 @@ setMethod(
 #' @rdname deleteAttribute-methods
 #' @aliases deleteAttribute,Gene-method
 #' @examples 
-#' gene <- new("GeneDB1")
+#' gene <- new("RAPDB")
 #' gene <- addAttribute(gene, "test", "value")
 #' gene <- deleteAttribute(gene, "test")
 setMethod(

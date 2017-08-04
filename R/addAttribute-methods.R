@@ -26,7 +26,7 @@ setMethod(
 #' @rdname addAttribute-methods
 #' @aliases addAttribute,Gene-method
 #' @examples 
-#' gene <- new("GeneDB1")
+#' gene <- new("RAPDB")
 #' gene <- addAttribute(gene, "test", "value")
 setMethod(
     "addAttribute",

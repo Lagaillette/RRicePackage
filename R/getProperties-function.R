@@ -2,16 +2,16 @@
 #'
 #' Get the properties you want from the genes you want
 #'
-#' @param geneList number
-#' @param attributesVector number
+#' @param geneVector vector
+#' @param attributesVector vector
 #' @return it will return a dataframe with all the informations you want
 #' @export
-#' @rdname getProperties-function 
-getProperties <- function(geneList, attributesVector){
-    if(length(geneList) == 0){
+#' @rdname getProperties-function
+getProperties <- function(geneVector, attributesVector){
+    if(length(geneVector) == 0){
         stop("your gene list is empty")
     }
-    if(!inherits(geneList[[1]],c("Gene"))){
+    if(!inherits(geneVector[[1]],c("Gene"))){
         stop("you are not giving a list of genes")
     }
     properties <- data.frame()
@@ -22,7 +22,7 @@ getProperties <- function(geneList, attributesVector){
             className <- obj[[1]][[1]]
             attributeName <- obj[[1]][[2]]
             resList <- c()
-            resList <- purrr::map(geneList,
+            resList <- purrr::map(geneVector,
                                   function(x, class, attribute, resList){
                 if(class(x) == class){
                     properties <- attributes(x)
