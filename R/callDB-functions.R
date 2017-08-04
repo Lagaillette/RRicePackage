@@ -901,7 +901,7 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
     
     
     id <- IdsList[[x]][[y]]
-    id <- as.character(id)
+    id <- as.character(id[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -921,7 +921,7 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
             # 
             # rOutput[sapply(rOutput, is.null)] <- NULL
             
-            print(rOutput)
+            ##print(rOutput)
             
             # if (length(rOutput) > 0) {
             #     jsonOutput <- fromJSON(rOutput[[1]])
@@ -929,6 +929,17 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
             #     # = jsonOutput[""]
             #     
             # }
+            
+            newGene <- new("PLANTTFD",
+                           id = as.character(id),
+                           genesIDs = as.list(IdsList[[x]][[y]]),
+                           locus = locusList[x,],
+                           others = list(),
+                           family = as.character(rOutput)
+
+            return (newGene)
+            
+            
         }
     }
     else {

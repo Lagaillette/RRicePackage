@@ -10,12 +10,14 @@ import helper
 import snpSeek as snpSeek
 import Scriptv7_Table as rapdb
 import ScriptGramene as gramene
-import ScriptV8_Oryzabase as oryzabase
+#import ScriptV8_Oryzabase as oryzabase
+import Script_Oryzabase as oryzabase
 import snpSeekAll as snpSeekAll
 import Script_IC4R as ic4r
 import Script_planttfdb as planttfdb
 import Script_plntfdb as plntfdb
 import Script_funricegenes as funricegenes
+import Script_MSU as msu
 
 
 def main():
@@ -30,7 +32,6 @@ def main():
     db = sys.argv[4]
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
-
 
     id = sys.argv[5]
 
@@ -47,18 +48,8 @@ def main():
         print(dataGramene)
 
     elif (db == "3"):
-        try:
-            dataOryzabase = oryzabase.oryzabaseRapId(id)
-            print(dataOryzabase)
-        except:
-            # empty error
-            print("Rap ID not found")
-            try:
-                rapdbCGSNL = rapdb.rapdb(id)
-                dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
-                print(dataOryzabase)
-            except:
-                print("Not found")
+        dataOryzabase = oryzabase.oryzabase(id)
+        print(dataOryzabase)
 
     elif (db == "4"):
         ic4r.ic4r(id)
@@ -84,8 +75,12 @@ def main():
         dataFunricegenes3 = funricegenes.funricegenes3(id)
         print(dataFunricegenes3)
 
-                # Ecriture fichier a revoir !!!!!!!!! pour les id et hashmap[iricname] et hashmpap [raprepname]
     elif (db == "10"):
+        dataMsu = msu.msu(id)
+        print(dataMsu)
+
+                # Ecriture fichier a revoir !!!!!!!!! pour les id et hashmap[iricname] et hashmpap [raprepname]
+    elif (db == "13"):
         url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"
         filename = url.split("/")[-1]
 
@@ -139,6 +134,22 @@ def main():
     # Return the SnpSeek Call
     elif (db == "12"):
         print(dataSnp)
+
+    """
+    elif (db == "3"):
+        try:
+            dataOryzabase = oryzabase.oryzabaseRapId(id)
+            print(dataOryzabase)
+        except:
+            # empty error
+            print("Rap ID not found")
+            try:
+                rapdbCGSNL = rapdb.rapdb(id)
+                dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
+                print(dataOryzabase)
+            except:
+                print("Not found")
+    """
 
 
 
