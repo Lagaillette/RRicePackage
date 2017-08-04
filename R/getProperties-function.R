@@ -1,4 +1,12 @@
-#' function
+#' Get the properties you want from the genes you want
+#'
+#' Get the properties you want from the genes you want
+#'
+#' @param geneList number
+#' @param attributesVector number
+#' @return it will return a dataframe with all the informations you want
+#' @export
+#' @rdname getProperties-function
 getProperties <- function(geneList, attributesVector){
     if(length(geneList) == 0){
         stop("your gene list is empty")

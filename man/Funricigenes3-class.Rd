@@ -10,7 +10,7 @@ This gene is specific to the database Funricigenes. So it
 contains all the informations we can have about one gene with the
 "Funricigenes" database.
 
-This gene is specific to the database Funricigenes. So it
+This gene is specific to the database Funricigenes 3. So it
 contains all the informations we can have about one gene with the
 "Funricigenes 3" database.
 }

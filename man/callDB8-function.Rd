@@ -15,7 +15,7 @@ callDB8(IdsList, locusList)
 It will return only a list with all the genesDB8
 }
 \description{
-This function will call the Gramene database
+This function will call
 }
 \examples{
 locusList <- data.frame(ch = c("1","1"),

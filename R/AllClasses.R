@@ -377,11 +377,11 @@ setClass(
     contains = "Gene"
 )
 
-#' An S4 class to represent the Gene database Gramene
+#' An S4 class to represent the Gene database MSU
 #'
-#' This gene is specific to the database Gramene. So it
+#' This gene is specific to the database MSU So it
 #' contains all the informations we can have about one gene with the
-#' "Gramene" database.
+#' "MSU" database.
 #'
 #' @slot id The id of the gene. Many genes can have the same id because 
 #' there are the same in spite of the different attributes they have.
@@ -405,6 +405,34 @@ setClass(
     slots = list(protein = "character",
                  genomicSequence = "character",
                  cds = "character"),
+    
+    contains = "Gene"
+)
+
+#' An S4 class to represent the Gene database PLANTTFDB
+#'
+#' This gene is specific to the database PLANTTFDB So it
+#' contains all the informations we can have about one gene with the
+#' "PLANTTFDB" database.
+#'
+#' @slot id The id of the gene. Many genes can have the same id because 
+#' there are the same in spite of the different attributes they have.
+#' @slot genesIDs the list of diferent ids it have we will use with the 
+#' databases.
+#' @slot locus The locus the gene belongs.
+#' @slot others The others attributes the user want to add or delete.
+#' @slot family family
+#' @name PLANTTFDB-class
+#' @rdname PLANTTFDB-class
+#' @exportClass PLANTTFDB
+#' @examples
+#' gene <- new("PLANTTFDB")
+setClass(
+    ##name of the class
+    "PLANTTFDB",
+    
+    ##attributes of the classnumeric
+    slots = list(family = "character"),
     
     contains = "Gene"
 )
