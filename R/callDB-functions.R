@@ -253,10 +253,10 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                 idRec = jsonOutput["_id"]
                 description = jsonOutput["description"]
                 biotype = jsonOutput["biotype"]
-                taxon_id = jsonOutput["taxon_id"]
-                system_name = jsonOutput["system_name"]
-                db_type = jsonOutput["db_type"]
-                gene_idx = jsonOutput["gene_idx"]
+                taxonId = jsonOutput["taxon_id"]
+                systemName = jsonOutput["system_name"]
+                dbType = jsonOutput["db_type"]
+                geneIdx = jsonOutput["gene_idx"]
                 loc_region = jsonOutput["location"]$location$region
                 loc_start = jsonOutput["location"]$location$start
                 loc_end = jsonOutput["location"]$location$end
@@ -278,11 +278,12 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                                others = list(),
                                description = as.character(description),
                                biotype = as.character(biotype),
-                               taxon_id = as.character(taxon_id),
-                               system_name = as.character(system_name),
-                               db_type = as.character(db_type),
-                               gene_idx = as.character(gene_idx),
+                               taxonId = as.character(taxonId),
+                               systemName = as.character(systemName),
+                               dbType = as.character(dbType),
+                               geneIdx = as.character(geneIdx),
                                location = location
+                )
 
                 return (newGene)
                 
@@ -1064,12 +1065,12 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
             family <- rOutput[2]
             #print(paste(id,family))
             
-            newGene <- new("GeneDB9",
+            newGene <- new("PLNTFDB",
                            id = as.character(id),
                            genesIDs = as.list(IdsList[[x]][[y]]),
                            locus = locusList[x,],
                            others = list(),
-                           family = family)
+                           family = as.character(family))
             
             return (newGene)
         }
