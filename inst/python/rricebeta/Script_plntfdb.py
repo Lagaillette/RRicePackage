@@ -24,3 +24,6 @@ def plntfdb(ID):
                    return False
            i = i + 1
 
+       else:
+           return False
+

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-import requests
+import helper
 from bs4 import BeautifulSoup
 import pandas as pd
 
 
 def ic4r(RAPID):
 
-    html_page = requests.get('http://expression.ic4r.org/expression-api?term='+RAPID+'#showtable')
+    link = 'http://expression.ic4r.org/expression-api?term='+RAPID+'#showtable'
+    html_page = helper.connectionError(link)
     soup = BeautifulSoup(html_page.content, "lxml")
     # Find headers
     headers = []
@@ -24,9 +25,8 @@ def ic4r(RAPID):
                 dict[str(headers[i][0])] = linkbody.contents
                 i = i+1
 
-            print(dict)
-            #print(content)
             #content.append(dict)
+            print(dict)
     """
     df = pd.DataFrame(content)
     # Affichage premiere ligne

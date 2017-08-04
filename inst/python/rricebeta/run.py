@@ -30,11 +30,9 @@ def main():
     db = sys.argv[4]
 
     dataSnp = snpSeek.snpSeek(contig, start, end)
-    hashmap = dataSnp[0]
 
-    if(len(sys.argv) > 5):
+    if(sys.argv[5] != "None"):
         id = sys.argv[5]
-        print(id)
 
         if (db == "1"):
             dataRapdb = rapdb.rapdb(id)
@@ -45,29 +43,49 @@ def main():
                 print(dataSnp[i])
 
         elif (db == "2"):
-            if (hashmap["raprepName"]):
-                dataGramene = gramene.gramene(hashmap["raprepName"])
-                print(dataGramene)
-            else:
-                print("empty")
+            dataGramene = gramene.gramene(id)
+            print(dataGramene)
 
-                # Faire try
         elif (db == "3"):
             try:
                 dataOryzabase = oryzabase.oryzabaseRapId(id)
                 print(dataOryzabase)
             except:
-                # Si vide ya erreur
-                print("no rap id")
+                # empty error
+                print("Rap ID not found")
                 try:
-                    rapdbCGSNL = rapdb.rapdb(hashmap["raprepName"])
+                    rapdbCGSNL = rapdb.rapdb(id)
                     dataOryzabase = oryzabase.oryzabaseCGSNL(rapdbCGSNL["CGSNL Gene Name"])
                     print(dataOryzabase)
                 except:
-                    print("not found")
+                    print("Not found")
 
-                    # Ecriture fichier
         elif (db == "4"):
+            ic4r.ic4r(id)
+
+        elif (db == "5"):
+            dataPlanttfdb = planttfdb.planttfdb(id)
+            print(dataPlanttfdb)
+
+        # LOC_xxxxxxxx
+        elif (db == "6"):
+            dataPlntfdb = plntfdb.plntfdb(id)
+            print(dataPlntfdb)
+
+        elif (db == "7"):
+            dataFunricegenes = funricegenes.funricegenes(id)
+            print(dataFunricegenes)
+
+        elif (db == "8"):
+            dataFunricegenes2 = funricegenes.funricegenes2(id)
+            print(dataFunricegenes2)
+
+        elif (db == "9"):
+            dataFunricegenes3 = funricegenes.funricegenes3(id)
+            print(dataFunricegenes3)
+
+                    # Ecriture fichier a revoir !!!!!!!!! pour les id et hashmap[iricname] et hashmpap [raprepname]
+        elif (db == "10"):
             url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz"
             filename = url.split("/")[-1]
 
@@ -93,8 +111,8 @@ def main():
                 array.columns = ["RAP", "LOC"]
 
                 # Find the line corresponding to the entered RAP ID (Select LOC FROM LOC where RAP = RapID)
-                data = array.loc[array['RAP'] == hashmap["raprepName"]]
-                data.loc[:, 'iricname'] = hashmap['iricname']
+                data = array.loc[array['RAP'] == id]
+                #data.loc[:, 'iricname'] = hashmap['iricname']
 
                 # Store the corresponding LOC ID and split the string
                 print(data['iricname'])
@@ -102,9 +120,9 @@ def main():
 
                 f.close()
 
-                # Plage chromosome
-                # Cree le fichier fileID.txt
-        elif (db == "5"):
+        # Plage chromosome
+        # Cree le fichier fileID.txt
+        elif (db == "11"):
             snpSeekAll.snpSeekAll("Os12:1..27,531,856")
             snpSeekAll.snpSeekAll("Os02:1..35,937,250")
             snpSeekAll.snpSeekAll("Os03:1..36,413,819")
@@ -118,26 +136,20 @@ def main():
             snpSeekAll.snpSeekAll("Os11:1..29,021,106")
             snpSeekAll.snpSeekAll("Os12:1..27,531,856")
 
-            # Return the SnpSeek Call
-        elif (db == "6"):
+        # Return the SnpSeek Call
+        elif (db == "12"):
             print(dataSnp)
 
 
-        elif (db == "7"):
-            dataIc4r = ic4r.ic4r(id)
-            print(dataIc4r)
 
-        elif (db == "8"):
-            dataPlanttfdb = planttfdb.planttfdb(id)
-            print(dataPlanttfdb)
 
-        elif (db == "9"):
-            dataPlntfdb = plntfdb.plntfdb(id)
-            print(dataPlntfdb)
 
-        elif (db == "10"):
-            dataFunricegenes = funricegenes.funricegenes(id)
-            print(dataFunricegenes)
+
+
+
+
+
+
 
 
     #geneID(contig, start, end, hashmap[], hashmap["raprepName"])

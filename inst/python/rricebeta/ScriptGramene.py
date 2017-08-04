@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import requests
+import helper
 
 def gramene(RAPID):
 
@@ -12,5 +12,6 @@ def gramene(RAPID):
         """
 
         # Fetch the file by the url and decompress it
-        r = requests.get('http://data.gramene.org/v53/genes?q=' + RAPID + '&bedFeature=gene&bedCombiner=canonical')
-        return r.content.decode('UTF-8')
+        link = 'http://data.gramene.org/v53/genes?q=' + RAPID + '&bedFeature=gene&bedCombiner=canonical'
+        html_page = helper.connectionError(link)
+        return html_page.content.decode('UTF-8')

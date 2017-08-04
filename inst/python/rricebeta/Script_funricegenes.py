@@ -3,7 +3,6 @@ import helper
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from pandas.io.common import EmptyDataError
 
 
 
@@ -14,7 +13,6 @@ def funricegenes(ID):
     """
     # Give the entire name of the file with the extension .gz
     filename = link.split("/")[-1]
-
     # Fetch the file by the url and decompress it
     r = requests.get(link)
     pathToFile = helper.formatPathToFile(filename)
@@ -27,11 +25,13 @@ def funricegenes(ID):
             f.close()
     """
 
+
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
+
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU"]
     if (ID[:3] == "LOC"):
@@ -39,8 +39,13 @@ def funricegenes(ID):
 
     else:
         data = array.loc[array['RAPdb'] == ID]
+        
+    if(data["Symbol"].empty):
+        hashmap = {"Symbol" : "None"}
+    else:
+        hashmap = {"Symbol" : data["Symbol"].values[0]}
 
-    return data["Symbol"]
+    return hashmap
 
 
 def funricegenes2(ID):
@@ -50,7 +55,7 @@ def funricegenes2(ID):
     # Import file tab-delimited direclty by the link
     try:
         array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU", "Name"]
@@ -60,7 +65,17 @@ def funricegenes2(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    hashmap = {"Symbol" : data["Symbol"].values, "Name" : data["Name"].values}
+    if(data["Symbol"].empty):
+        if(data["Name"].empty):
+            hashmap = {"Symbol": "None", "Name": "None"}
+        else:
+            hashmap = {"Symbol": "None", "Name": data["Name"].values[0]}
+
+    else:
+        if (data["Name"].empty):
+            hashmap = {"Symbol": data["Symbol"].values[0], "Name": "None"}
+        else:
+            hashmap = {"Symbol" : data["Symbol"].values[0], "Name" : data["Name"].values[0]}
 
     return hashmap
 
@@ -72,8 +87,8 @@ def funricegenes3(ID):
 
     # Import file tab-delimited direclty by the link
     try:
-        array = pd.read_csv(link, sep="\t", header=None)
-    except EmptyDataError:
+        array = pd.read_csv(link, sep="\t", header=None, encoding="utf-8")
+    except pd.io.common.EmptyDataError:
         array = pd.DataFrame()
     # Named columns
     array.columns = ["Symbol", "RAPdb", "MSU", "Keyword", "Title"]
@@ -83,7 +98,7 @@ def funricegenes3(ID):
     else:
         data = array.loc[array['RAPdb'] == ID]
 
-    hashmap = {"Symbol" : data["Symbol"].values, "Keyword" : data["Keyword"].values, "Title" : data["Title"].values}
+    hashmap = {"Symbol" :
+                   data["Symbol"].values[0], "Keyword" : data["Keyword"].values[0], "Title" : data["Title"].values[0]}
 
     return hashmap
-

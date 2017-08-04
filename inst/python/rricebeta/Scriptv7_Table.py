@@ -1,62 +1,20 @@
 #!/usr/bin/env python3
 
+import helper
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
 import os
 import sys
 import json
-
-# declaration des parametres au tout debut du main
-
-def formatPathToFile(nameFile):
-    # on supprime le dernier char tant qu'on n'a pas rencontré '/'
-    pathToFile = os.path.dirname(__file__)
-    #under not windows (nt = windows)
-    if os.name != "nt":
-        while not (pathToFile.endswith('/')):
-            pathToFile = pathToFile[0:-1]
-
-        pathToFile += 'resources/'+nameFile
-    else:
-        while not (pathToFile.endswith('\\')):
-            pathToFile = pathToFile[0:-1]
-
-        pathToFile += 'resources\\'+nameFile
-    return pathToFile
-
-def loadFileURL(nameFile, url):
-
-    """
-    Download the file located in the rapdb download page
-
-    """
-
-    # Fetch the file by the url and decompress it
-    r = requests.get(url)
-
-    # Create the file .txt
-    with open(nameFile, "wb") as f:
-        f.write(r.content)
-        print("File created")
-        f.close()
-
-
-def existFile(pathToFile):
-    """
-
-    :return: return True if the file already exist, else return False
-    :rtype: Bool
-    """
-    return (os.path.isfile(pathToFile))
 
 def rapdb(RAPID):
     #Parameters
     # RAPID_valide = "Os06g0654600"
     #End parameters
+    link = "http://rapdb.dna.affrc.go.jp/tools/search/run?keyword=" + RAPID + "&submit=Search&id=on&size=10"
 
-    html_page = requests.get(
-        "http://rapdb.dna.affrc.go.jp/tools/search/run?keyword=" + RAPID + "&submit=Search&id=on&size=10")
+    html_page = helper.connectionError(link)
+
     soup = BeautifulSoup(html_page.content, "lxml")
     result = soup.find('tr', attrs={"class": "result"})
     hashmap = {}
@@ -83,27 +41,27 @@ def rapdb(RAPID):
     try:
         RAP_name = result.find('td', attrs={"class": "c05"}).contents[0]
     except:
-        print("Empty error")
+        print("Error : empty RAP_name")
         RAP_name = ""
     try:
         CGSNL_symbol = result.find('td', attrs={"class": "c06"}).contents[0]
     except:
-        print("Empty error")
+        print("Error : empty CGSNL_symbol")
         CGSNL_symbol = ""
     try:
         CGSNL_name = result.find('td', attrs={"class": "c07"}).contents[0]
     except:
-        print("Empty error")
+        print("Error : empty CGSNL_name")
         CGSNL_name = ""
     try:
         Oryzabase_symbol = result.find('td', attrs={"class": "c08"}).contents[0]
     except:
-        print("Empty error")
+        print("Error : empty Oryzabase_symbol")
         Oryzabase_symbol = ""
     try:
         Oryzabase_name = result.find('td', attrs={"class": "c09"}).contents[0]
     except:
-        print("Empty error")
+        print("Error : empty Oryzabase_name")
         Oryzabase_name = ""
 
     hashmap = {"ID": rapid,
@@ -116,17 +74,6 @@ def rapdb(RAPID):
                "Oryzabase Gene Symbol Synonym(s)": Oryzabase_symbol,
                "Oryzabase Gene Name Synonym(s)": Oryzabase_name
                }
-    """
-    print(hashmap['CGSNL Gene Name'])
-    print(len(hashmap))
-    pathToFile = formatPathToFile("OryzabaseGeneListEn.txt")
-    if (existFile(pathToFile) == False):
-        loadFileURL(pathToFile, "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
-    else:
-        print("File already exist")
-    print("Find file OK")
-    #self.oryzabase(hashmap)
-    """
 
     return json.dumps(hashmap)
 
