@@ -444,10 +444,11 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
             
             rOutput[sapply(rOutput, is.null)] <- NULL
             
-            ##print(rOutput)
+            print(rOutput)
             
             if (length(rOutput) > 0) {
-                jsonOutput <- fromJSON(rOutput[[1]])
+                rOutput <- gsub('\'', '"', rOutput)
+                jsonOutput <- fromJSON(rOutput)
                 
                 traitGeneId = jsonOutput["Trait Gene Id"]
                 cgsnlGeneSymbol =jsonOutput["CGSNL Gene Symbol"]
@@ -456,7 +457,7 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
                 geneNameSynonym =jsonOutput["Gene name synonym(s)"]
                 proteinName =jsonOutput["Protein Name"]
                 allele = jsonOutput["Allele"]
-                chromosomeNo = jsonOutput["Chromosome No."]
+                chromosomeNo = jsonOutput["Chr. No."]
                 explanation =jsonOutput["Explanation"]
                 traitClass =jsonOutput["Trait Class"]
                 rapId =jsonOutput["RAP ID"]
@@ -546,7 +547,7 @@ callDB3 <- function (IdsList, locusList) {
     listGenes <- data.frame()
     
     if (class(IdsList) == "list") {
-        if (!is.na(IdsList[[1]][[1]])){
+        if (length(IdsList) != 0){
             if (IdsList[[1]][[1]] == "idTest"){
                 return(list())
             }
@@ -1544,32 +1545,32 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
                 rOutput = system2(command = path, args=args, stdout = TRUE)
             }
             
-            print(rOutput)
+            ##print(rOutput)
             
-            # rOutput <- lapply(1 : length(rOutput),
-            #                   function(x) getOutPutJSON(rOutput[x]))
-            # 
-            # rOutput[sapply(rOutput, is.null)] <- NULL
-            # 
-            # if (length(rOutput) > 0) {
-            #     rOutput <- gsub('\'', '"', rOutput)
-            #     jsonOutput <- fromJSON(rOutput)
-            #     
-            #     symbol <- jsonOutput['Symbol']
-            #     keyword <- jsonOutput['Keyword']
-            #     title <- jsonOutput['Title']
-            #     
-            #     newGene <- new("Funricigenes3",
-            #                    id = as.character(id),
-            #                    genesIDs = as.list(IdsList[[x]][[y]]),
-            #                    locus = locusList[x,],
-            #                    others = list(),
-            #                    symbol = as.character(symbol),
-            #                    keyword = as.character(keyword),
-            #                    title = as.character(title))
-            #     
-            #     return (newGene)
-            # }
+            rOutput <- lapply(1 : length(rOutput),
+                              function(x) getOutPutJSON(rOutput[x]))
+
+            rOutput[sapply(rOutput, is.null)] <- NULL
+
+            if (length(rOutput) > 0) {
+                rOutput <- gsub('\'', '"', rOutput)
+                jsonOutput <- fromJSON(rOutput)
+
+                symbol <- jsonOutput['Symbol']
+                keyword <- jsonOutput['Keyword']
+                title <- jsonOutput['Title']
+
+                newGene <- new("Funricigenes3",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               symbol = as.character(symbol),
+                               keyword = as.character(keyword),
+                               title = as.character(title))
+
+                return (newGene)
+            }
             
         }
     }
@@ -1628,6 +1629,161 @@ callDB9 <- function (IdsList, locusList) {
         ##We call the function creationGeneDB1 to create our newGene
         listGenes <- lapply(1 : length(IdsList),
                             FUN = function(x) callCreationGeneDB9(x, 
+                                                                  IdsList, 
+                                                                  locusList))
+        
+        
+        ##Remove all the NULL object from the list
+        listGenes[sapply(listGenes, is.null)] <- NULL
+        
+        ##To delete all the geneDB1 which exists in double
+        listGenes <- unique(listGenes)
+        
+        ##liste is a list with only the genes. 
+        liste <- list()
+        lapply(1 : length(listGenes),
+               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
+        
+        return (liste)
+    }
+    else {
+        stop("IdsList has to be a list")
+    }
+}
+
+###################################  DB10  (MSU) -   #################
+#' creationGeneDB10
+#'
+#' This function is called only by callDB10 and will create the gene DB10
+#' It will call run.py script which will return the list of the genes which
+#' are present in the locus
+#'
+#' @param x number
+#' @param y number
+#' @param IdsList list
+#' @param locusList list
+#' @return it will return a GeneDB10
+#' @importFrom jsonlite fromJSON
+#' @importFrom findpython find_python_cmd
+#' @importFrom methods new
+#' @rdname creationGeneDB10-function
+creationGeneDB10 <- function (x, y, IdsList, locusList) {
+    ##PATH for package when it will be installed -> when it will be released
+    path <- system.file("python/rricebeta",
+                        "run.py",
+                        package = "rRice")
+    
+    ##manage the spaces -> for example "Program Files" under windows will 
+    ##generate an error because with system2 we generate a command line
+    ##with multiple arguments in one string. 
+    if (Sys.info()["sysname"] == "Windows"){
+        path <- shortPathName(path)
+    }
+    
+    ch = as.character(locusList[x,1])
+    start = as.character(locusList[x,2])
+    end = as.character(locusList[x,3])
+    
+    id <- IdsList[[x]][[y]]
+    id <- as.character(id[[1]])
+    
+    if (ch != "" && start != "" && end != "") {
+        if (id != "None") {
+            ##Call run.py from python 
+            if (Sys.info()["sysname"] == "Windows"){
+                args = c(path, ch, start, end, "10", id)
+                cmd <- findpython::find_python_cmd()
+                rOutput = system2(command = cmd, args=args, stdout = TRUE)
+            }
+            else {
+                args = c(ch, start, end, "10", id)
+                rOutput = system2(command = path, args=args, stdout = TRUE)
+            }
+            
+            ##print(rOutput)
+            
+            rOutput <- lapply(1 : length(rOutput),
+                              function(x) getOutPutJSON(rOutput[x]))
+            
+            rOutput[sapply(rOutput, is.null)] <- NULL
+            
+            if (length(rOutput) > 0) {
+                rOutput <- gsub('\'', '"', rOutput)
+                jsonOutput <- fromJSON(rOutput)
+                
+                protein <- jsonOutput['Protein']
+                genomicSequence <- jsonOutput['Genomic Sequence']
+                cds <- jsonOutput['CDS']
+              
+                newGene <- new("MSU",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               protein = as.character(protein),
+                               genomicSequence = as.character(genomicSequence),
+                               cds = as.character(cds))
+
+                return (newGene)
+            }
+            
+        }
+    }
+    else {
+        stop("One of the element of the locus is empty")
+    }
+}
+
+#' callCreationGeneDB10
+#'
+#' This function ...
+#'
+#' @param x number
+#' @param IdsList list
+#' @param locusList list
+#' @return It will return a list of genesDB10
+#' @rdname callCreationGeneDB10-function
+callCreationGeneDB10<- function (x, IdsList, locusList) {
+    listGenes10 <- data.frame()
+    
+    listGenes10 <- lapply(1 : length(IdsList[[x]]),
+                         FUN = function(y) creationGeneDB10(x,
+                                                           y,
+                                                           IdsList,
+                                                           locusList))
+    
+    ##Remove all the NULL object from the list
+    ##listGenes[sapply(listGenes, is.null)] <- NULL
+    
+    return(listGenes10)
+}
+
+#' callDB10
+#'
+#' This function will call 
+#'
+#' @param IdsList list of locus for which we want the genes
+#' @param locusList list
+#' @return It will return only a list with all the genesDB10
+#' @export
+#' @rdname callDB10-function
+#' @examples 
+#' locusList <- data.frame(ch = c("1","1"),
+#'                         st = c("148907","527906"),
+#'                         end = c("248907","842359"))
+#'                         
+#' ids <- list(list("Os01g0102700","Os01g0102800"),
+#'             list("Os01g0109750","Os01g0110100"))
+#'                 
+#' callDB10(ids, locusList)
+callDB10 <- function (IdsList, locusList) {
+    
+    listGenes <- data.frame()
+    
+    if (class(IdsList) == "list") {
+        ##We call the function creationGeneDB1 to create our newGene
+        listGenes <- lapply(1 : length(IdsList),
+                            FUN = function(x) callCreationGeneDB10(x, 
                                                                   IdsList, 
                                                                   locusList))
         
