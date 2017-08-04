@@ -930,12 +930,13 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
             #     
             # }
             
-            newGene <- new("PLANTTFD",
+            newGene <- new("PLANTTFDB",
                            id = as.character(id),
                            genesIDs = as.list(IdsList[[x]][[y]]),
                            locus = locusList[x,],
                            others = list(),
                            family = as.character(rOutput)
+            )
 
             return (newGene)
             
