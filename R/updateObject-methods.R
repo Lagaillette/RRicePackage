@@ -1,7 +1,7 @@
 #' @rdname updateObject-methods
 #' @aliases updateObject,Experiment-method
 #' @examples 
-#' gene1 <- new("GeneDB1")
+#' gene1 <- new("RAPDB")
 #' listGenes <- list(gene1)
 #' exp <- new(Class="Experiment",
 #' name="test",

@@ -21,7 +21,7 @@ createExperiment <- function(name, locus){
                       name="test",
                       date=Sys.Date(),
                       databases=list(1),
-                      genes=list(new("GeneDB1")),
+                      genes=list(new("RAPDB")),
                       others=list())
         return(result)
     }else{

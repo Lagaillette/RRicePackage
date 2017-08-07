@@ -10,8 +10,8 @@ analyseDataDB4(rOutput)
 \item{rOutput}{character}
 }
 \value{
-it will return ...
+it will return a list of elements
 }
 \description{
-This function is called
+This function returns a list with importants elements
 }

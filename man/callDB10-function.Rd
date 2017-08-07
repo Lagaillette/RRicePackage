@@ -7,23 +7,22 @@
 callDB10(IdsList, locusList)
 }
 \arguments{
-\item{IdsList}{list of locus for which we want the genes}
+\item{IdsList}{list of ids and uniquename we can catch with callSnpSeek}
 
-\item{locusList}{list}
+\item{locusList}{list of locus for which we want the genes}
 }
 \value{
 It will return only a list with all the genesDB10
 }
 \description{
-This function will call
+This function is linked to MSU database and will return a list of genes
 }
 \examples{
 locusList <- data.frame(ch = c("1","1"),
                         st = c("148907","527906"),
                         end = c("248907","842359"))
                         
-ids <- list(list("Os01g0102700","Os01g0102800"),
-            list("Os01g0109750","Os01g0110100"))
+ids <- list(list("testId"))
                 
 callDB10(ids, locusList)
 }

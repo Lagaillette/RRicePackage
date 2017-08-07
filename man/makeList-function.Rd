@@ -15,5 +15,6 @@ makeList(liste, number)
 it will return ...
 }
 \description{
-This function is called in order to return elemnt which will form a list
+This function is called in order to return element in order to restructure
+a list
 }

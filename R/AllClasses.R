@@ -292,6 +292,7 @@ setClass(
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot symbol the gene symbol
+#' @slot name name
 #' @name Funricigenes2-class
 #' @rdname Funricigenes2-class
 #' @exportClass Funricigenes2
@@ -320,6 +321,8 @@ setClass(
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot symbol the gene symbol
+#' @slot keyword keyword
+#' @slot title title
 #' @name Funricigenes3-class
 #' @rdname Funricigenes3-class
 #' @exportClass Funricigenes3

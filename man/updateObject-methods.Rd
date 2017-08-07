@@ -24,7 +24,7 @@ The object without the attribute we want to delete
 Update an attribute of an object
 }
 \examples{
-gene1 <- new("GeneDB1")
+gene1 <- new("RAPDB")
 listGenes <- list(gene1)
 exp <- new(Class="Experiment",
 name="test",

@@ -23,6 +23,8 @@ databases.}
 \item{\code{others}}{The others attributes the user want to add or delete.}
 
 \item{\code{symbol}}{the gene symbol}
+
+\item{\code{name}}{name}
 }}
 
 \examples{

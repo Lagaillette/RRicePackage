@@ -16,10 +16,8 @@ creationGeneDB4(x, y, IdsList, locusList)
 \item{locusList}{list}
 }
 \value{
-it will return a GeneDB4
+it will return a gene from the class IC4R
 }
 \description{
-This function is called only by callDB4 and will create the gene DB4
-It will call run.py script which will return the list of the genes which
-are present in the locus
+This function returns a gene specific to the IC4R database
 }

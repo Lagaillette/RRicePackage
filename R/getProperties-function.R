@@ -33,7 +33,7 @@
 #     properties <- purrr::map(props,function(x, properties){
 #         properties <<- append(properties, x)
 #     }, properties)
-#     names(properties) 
+#     names(properties)
 #     return(properties)
 # }
 
@@ -44,6 +44,7 @@
 #' @param geneList list
 #' @param attributesVector vector
 #' @return it will return a dataframe with all the informations you want
+#' @import purrr
 #' @export
 #' @rdname getProperties-function
 getProperties <- function(geneList, attributesVector){

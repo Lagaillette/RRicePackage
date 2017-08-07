@@ -4,10 +4,10 @@
 \alias{getProperties}
 \title{Get the properties you want from the genes you want}
 \usage{
-getProperties(geneVector, attributesVector)
+getProperties(geneList, attributesVector)
 }
 \arguments{
-\item{geneVector}{vector}
+\item{geneList}{list}
 
 \item{attributesVector}{vector}
 }

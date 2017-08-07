@@ -7,22 +7,22 @@
 callDB1(IdsList, locusList)
 }
 \arguments{
-\item{IdsList}{list of locus for which we want the genes}
+\item{IdsList}{list of ids and uniquename we can catch with callSnpSeek}
 
-\item{locusList}{list}
+\item{locusList}{list of locus for which we want the genes}
 }
 \value{
 It will return only a list with all the genesDB1
 }
 \description{
-This function is the new function which will replace callDB1 function
+This function is linked to RAPDB database and will return a list of genes
 }
 \examples{
 locusList <- data.frame(ch = c("1"),
                         st = c("148907"),
                         end = c("248907"))
                         
-ids <- list(list("Os01g0102700"))
+ids <- list(list("testId"))
                 
 callDB1(ids, locusList)
 }
