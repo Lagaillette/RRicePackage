@@ -264,11 +264,11 @@ setClass(
 #' @slot locus The locus the gene belongs.
 #' @slot others The others attributes the user want to add or delete.
 #' @slot symbol the gene symbol
-#' @name Funricigenes3-class
-#' @rdname Funricigenes3-class
-#' @exportClass Funricigenes3
+#' @name Funricigenes-class
+#' @rdname Funricigenes-class
+#' @exportClass Funricigenes
 #' @examples
-#' gene <- new("Funricigenes3")
+#' gene <- new("Funricigenes")
 setClass(
     ##name of the class
     "Funricigenes",

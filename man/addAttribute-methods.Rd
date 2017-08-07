@@ -35,6 +35,6 @@ date=Sys.Date(),
 databases=list(1),
 others=list())
 exp <- addAttribute(exp, "test", "value")
-gene <- new("GeneDB1")
+gene <- new("RAPDB")
 gene <- addAttribute(gene, "test", "value")
 }

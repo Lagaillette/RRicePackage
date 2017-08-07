@@ -4,12 +4,12 @@
 \alias{getProperties}
 \title{Get the properties you want from the genes you want}
 \usage{
-getProperties(geneList, attributesVector)
+getProperties(geneVector, attributesVector)
 }
 \arguments{
-\item{geneList}{number}
+\item{geneVector}{vector}
 
-\item{attributesVector}{number}
+\item{attributesVector}{vector}
 }
 \value{
 it will return a dataframe with all the informations you want

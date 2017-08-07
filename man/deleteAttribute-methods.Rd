@@ -33,7 +33,7 @@ databases=list(1),
 others=list())
 exp <- addAttribute(exp, "test", "value")
 exp <- deleteAttribute(exp, "test")
-gene <- new("GeneDB1")
+gene <- new("RAPDB")
 gene <- addAttribute(gene, "test", "value")
 gene <- deleteAttribute(gene, "test")
 }
