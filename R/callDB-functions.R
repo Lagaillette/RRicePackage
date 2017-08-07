@@ -2,15 +2,13 @@
 
 #' creationGeneDB1
 #'
-#' This function is called only by callDB1 and will create the gene DB1
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the RAPDB database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB1
+#' @return it will return a gene from the class RAPDB
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -117,12 +115,12 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB1
 #'
-#' This function ...
+#' This function calls creationGeneDB1 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB1
+#' @return It will return a list of genes 
 #' @rdname callCreationGeneDB1-function
 callCreationGeneDB1 <- function (x, IdsList, locusList) {
     listGenes1 <- data.frame()
@@ -141,10 +139,10 @@ callCreationGeneDB1 <- function (x, IdsList, locusList) {
 
 #' callDB1
 #'
-#' This function is the new function which will replace callDB1 function
+#' This function is linked to RAPDB database and will return a list of genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB1
 #' @export
 #' @rdname callDB1-function
@@ -153,7 +151,7 @@ callCreationGeneDB1 <- function (x, IdsList, locusList) {
 #'                         st = c("148907"),
 #'                         end = c("248907"))
 #'                         
-#' ids <- list(list("Os01g0102700"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB1(ids, locusList)
 callDB1 <- function (IdsList, locusList) {
@@ -195,15 +193,13 @@ callDB1 <- function (IdsList, locusList) {
 
 #' creationGeneDB2
 #'
-#' This function is called only by callDB2 and will create the gene DB2
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the GRAMENE database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB2
+#' @return it will return a gene from the class Gramene
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -291,24 +287,6 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                 )
 
                 return (newGene)
-                
-                # print(paste0(idRec," ",
-                #       description," ",
-                #       biotype," ",
-                #       taxon_id," ",
-                #       system_name," ",
-                #       db_type," ",
-                #       gene_idx," "
-                #       ))
-                # print(paste0(location_region," ",
-                #              location_start," ",
-                #              location_end))
-                
-
-                
-                # data2 <- data.frame(ch = c("1","1"),
-                #                     st = c("148907","527906"),
-                #                     end = c("248907","842359"))
             }
         }
     }
@@ -321,12 +299,12 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB2
 #'
-#' This function ...
+#' This function calls creationGeneDB2 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB2
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB2-function
 callCreationGeneDB2 <- function (x, IdsList, locusList) {
     listGenes2 <- data.frame()
@@ -345,10 +323,10 @@ callCreationGeneDB2 <- function (x, IdsList, locusList) {
 
 #' callDB2
 #'
-#' This function will call the Gramene database
+#' This function is linked to GRAMENE database and will return a list of genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB2
 #' @export
 #' @rdname callDB2-function
@@ -357,7 +335,7 @@ callCreationGeneDB2 <- function (x, IdsList, locusList) {
 #'                         st = c("148907"),
 #'                         end = c("248907"))
 #'                         
-#' ids <- list(list("Os01g0102700"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB2(ids, locusList)
 callDB2 <- function (IdsList, locusList) {
@@ -401,15 +379,13 @@ callDB2 <- function (IdsList, locusList) {
 
 #' creationGeneDB3
 #'
-#' This function is called only by callDB3 and will create the gene DB3
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the ORYZABASE database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB3
+#' @return it will return a gene from the class Oryzabase
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -513,12 +489,12 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB3
 #'
-#' This function ...
+#' This function calls creationGeneDB3 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB3
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB3-function
 callCreationGeneDB3 <- function (x, IdsList, locusList) {
     listGenes3 <- data.frame()
@@ -529,18 +505,16 @@ callCreationGeneDB3 <- function (x, IdsList, locusList) {
                                                            IdsList,
                                                            locusList))
     
-    ##Remove all the NULL object from the list
-    #listGenes3[sapply(listGenes3, is.null)] <- NULL
-    
     return(listGenes3)
 }
 
 #' callDB3
 #'
-#' This function will call the third database
+#' This function is linked to ORYZABASE database and will return a list of 
+#' genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB3
 #' @export
 #' @rdname callDB3-function
@@ -597,12 +571,12 @@ callDB3 <- function (IdsList, locusList) {
 
 #' makeList
 #'
-#' This function is called in order to return elemnt which will form a list 
+#' This function is called in order to return element in order to restructure
+#' a list 
 #'
 #' @param liste list
 #' @param number number
 #' @return it will return ... 
-#' @importFrom methods new
 #' @rdname makeList-function
 makeList <- function (liste, number){
     #print(liste[[1]])
@@ -627,12 +601,11 @@ makeList <- function (liste, number){
 
 #' analyseDataDB7
 #'
-#' This function is called 
+#' This function returns a list with importants elements
 #'
 #' @param rOutput character
-#' @return it will return ... 
+#' @return it will return a list of elements
 #' @importFrom jsonlite fromJSON
-#' @importFrom methods new
 #' @rdname analyseDataDB7-function
 analyseDataDB4 <- function (rOutput) {
     if (length(rOutput) > 0 && rOutput != "None") {
@@ -653,22 +626,6 @@ analyseDataDB4 <- function (rOutput) {
         tissue = jsonOutput["Tissue"]
         expr_value = jsonOutput["Expression value"]
         
-        # print(paste0(experiment_name," ",
-        #              dev_stage," ",
-        #              experiment_id," ",
-        #              variety," ",
-        #              project_id," ",
-        #              tissue," ",
-        #              expr_value))
-        
-        #print(experiment_id)
-        #print(dev_stage)
-        #print(experiment_name)
-        #print(variety)
-        #print(project_id)
-        #print(tissue)
-        #print(expr_value)
-        
         return(list(experiment_name,
                     dev_stage,
                     experiment_id,
@@ -676,22 +633,18 @@ analyseDataDB4 <- function (rOutput) {
                     project_id,
                     tissue,
                     expr_value))
-        
-        
     }
 }
 
 #' creationGeneDB4
 #'
-#' This function is called only by callDB4 and will create the gene DB4
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the IC4R database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB4
+#' @return it will return a gene from the class IC4R
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -797,18 +750,16 @@ creationGeneDB4 <- function (x, y, IdsList, locusList) {
     else {
         stop("One of the element of the locus is empty")
     }
-    
-    
 }
 
 #' callCreationGeneDB4
 #'
-#' This function ...
+#' This function calls creationGeneDB4 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB4
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB4-function
 callCreationGeneDB4 <- function (x, IdsList, locusList) {
     listGenes4 <- data.frame()
@@ -827,10 +778,10 @@ callCreationGeneDB4 <- function (x, IdsList, locusList) {
 
 #' callDB4
 #'
-#' This function will call the Gramene database
+#' This function is linked to IC4R database and will return a list of genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB4
 #' @export
 #' @rdname callDB4-function
@@ -839,8 +790,7 @@ callCreationGeneDB4 <- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB4(ids, locusList)
 callDB4 <- function (IdsList, locusList) {
@@ -878,18 +828,16 @@ callDB4 <- function (IdsList, locusList) {
     }
 }
 
-#############################  DB5 (PLANTTFDB) - STAND BY  ####################
+#############################  DB5 (PLANTTFDB)  ####################
 #' creationGeneDB5
 #'
-#' This function is called only by callDB8 and will create the gene DB5
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the PLANTTFDB database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB5
+#' @return it will return a gene from the class PLANTTFDB
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -984,12 +932,12 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB5
 #'
-#' This function ...
+#' This function calls creationGeneDB5 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB5
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB5-function
 callCreationGeneDB5 <- function (x, IdsList, locusList) {
     listGenes5 <- data.frame()
@@ -1008,10 +956,11 @@ callCreationGeneDB5 <- function (x, IdsList, locusList) {
 
 #' callDB5
 #'
-#' This function will call the Gramene database
+#' This function is linked to PLANTTFDB database and will return a list of 
+#' genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB5
 #' @export
 #' @rdname callDB5-function
@@ -1020,8 +969,7 @@ callCreationGeneDB5 <- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB5(ids, locusList)
 callDB5 <- function (IdsList, locusList) {
@@ -1062,15 +1010,13 @@ callDB5 <- function (IdsList, locusList) {
 ###################################  DB6 (PLNTFDB) Works ######################
 #' creationGeneDB6
 #'
-#' This function is called only by callDB6 and will create the gene DB6
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the PLNTFDB database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB6
+#' @return it will return a gene from the class PLNTFDB
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -1134,12 +1080,12 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB6
 #'
-#' This function ...
+#' This function calls creationGeneDB6 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB6
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB6-function
 callCreationGeneDB6 <- function (x, IdsList, locusList) {
     listGenes6 <- data.frame()
@@ -1158,10 +1104,10 @@ callCreationGeneDB6 <- function (x, IdsList, locusList) {
 
 #' callDB6
 #'
-#' This function will call 
+#' This function is linked to PLNTFDB database and will return a list of genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB6
 #' @export
 #' @rdname callDB6-function
@@ -1170,8 +1116,7 @@ callCreationGeneDB6 <- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB6(ids, locusList)
 callDB6 <- function (IdsList, locusList) {
@@ -1210,18 +1155,16 @@ callDB6 <- function (IdsList, locusList) {
 }
 
 
-###################################  DB7 (FUNRICEGENES)- works  ###############
+###################################  DB7 (FUNRICIGENES)  ###############
 #' creationGeneDB7
 #'
-#' This function is called only by callDB7 and will create the gene DB7
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the FUNRICIGENES database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB7
+#' @return it will return a gene from the class Funricigenes
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -1311,12 +1254,12 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB7
 #'
-#' This function ...
+#' This function calls creationGeneDB7 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB7
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB7-function
 callCreationGeneDB7 <- function (x, IdsList, locusList) {
     listGenes7 <- data.frame()
@@ -1335,10 +1278,11 @@ callCreationGeneDB7 <- function (x, IdsList, locusList) {
 
 #' callDB7
 #'
-#' This function will call 
+#' This function is linked to FUNRICIGENES database and will return a list of 
+#' genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB7
 #' @export
 #' @rdname callDB7-function
@@ -1347,8 +1291,7 @@ callCreationGeneDB7 <- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB7(ids, locusList)
 callDB7 <- function (IdsList, locusList) {
@@ -1387,18 +1330,16 @@ callDB7 <- function (IdsList, locusList) {
 }
 
 
-###################################  DB8 (FUNRICEGENES2) - works  #############
+###################################  DB8 (FUNRICIGENES2)  #############
 #' creationGeneDB8
 #'
-#' This function is called only by callDB8 and will create the gene DB8
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the FUNRICIGENES2 database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB8
+#' @return it will return a gene from the class Funricigenes2
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -1487,12 +1428,12 @@ creationGeneDB8 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB8
 #'
-#' This function ...
+#' This function calls creationGeneDB8 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB8
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB8-function
 callCreationGeneDB8 <- function (x, IdsList, locusList) {
     listGenes8 <- data.frame()
@@ -1511,10 +1452,11 @@ callCreationGeneDB8 <- function (x, IdsList, locusList) {
 
 #' callDB8
 #'
-#' This function will call 
+#' This function is linked to FUNRICIGENES2 database and will return a list of 
+#' genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB8
 #' @export
 #' @rdname callDB8-function
@@ -1523,8 +1465,7 @@ callCreationGeneDB8 <- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB8(ids, locusList)
 callDB8 <- function (IdsList, locusList) {
@@ -1562,18 +1503,16 @@ callDB8 <- function (IdsList, locusList) {
     }
 }
 
-###################################  DB9  (FUNRICEGENES3) -   #################
+###################################  DB9  (FUNRICIGENES3) -   #################
 #' creationGeneDB9
 #'
-#' This function is called only by callDB9 and will create the gene DB9
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the FUNRICIGENES3 database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB9
+#' @return it will return a gene from the class Funricigenes3
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -1647,12 +1586,12 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB9
 #'
-#' This function ...
+#' This function calls creationGeneDB9 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB9
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB9-function
 callCreationGeneDB9<- function (x, IdsList, locusList) {
     listGenes9 <- data.frame()
@@ -1671,10 +1610,11 @@ callCreationGeneDB9<- function (x, IdsList, locusList) {
 
 #' callDB9
 #'
-#' This function will call 
+#' This function is linked to FUNRICIGENES3 database and will return a list of 
+#' genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB9
 #' @export
 #' @rdname callDB9-function
@@ -1683,8 +1623,7 @@ callCreationGeneDB9<- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB9(ids, locusList)
 callDB9 <- function (IdsList, locusList) {
@@ -1725,15 +1664,13 @@ callDB9 <- function (IdsList, locusList) {
 ###################################  DB10  (MSU) -   #################
 #' creationGeneDB10
 #'
-#' This function is called only by callDB10 and will create the gene DB10
-#' It will call run.py script which will return the list of the genes which
-#' are present in the locus
+#' This function returns a gene specific to the MSU database
 #'
 #' @param x number
 #' @param y number
 #' @param IdsList list
 #' @param locusList list
-#' @return it will return a GeneDB10
+#' @return it will return a gene from the class MSU
 #' @importFrom jsonlite fromJSON
 #' @importFrom findpython find_python_cmd
 #' @importFrom methods new
@@ -1807,12 +1744,12 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
 
 #' callCreationGeneDB10
 #'
-#' This function ...
+#' This function calls creationGeneDB10 function
 #'
 #' @param x number
 #' @param IdsList list
 #' @param locusList list
-#' @return It will return a list of genesDB10
+#' @return It will return a list of genes
 #' @rdname callCreationGeneDB10-function
 callCreationGeneDB10<- function (x, IdsList, locusList) {
     listGenes10 <- data.frame()
@@ -1831,10 +1768,10 @@ callCreationGeneDB10<- function (x, IdsList, locusList) {
 
 #' callDB10
 #'
-#' This function will call 
+#' This function is linked to MSU database and will return a list of genes
 #'
-#' @param IdsList list of locus for which we want the genes
-#' @param locusList list
+#' @param IdsList list of ids and uniquename we can catch with callSnpSeek
+#' @param locusList list of locus for which we want the genes
 #' @return It will return only a list with all the genesDB10
 #' @export
 #' @rdname callDB10-function
@@ -1843,8 +1780,7 @@ callCreationGeneDB10<- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("Os01g0102700","Os01g0102800"),
-#'             list("Os01g0109750","Os01g0110100"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB10(ids, locusList)
 callDB10 <- function (IdsList, locusList) {
