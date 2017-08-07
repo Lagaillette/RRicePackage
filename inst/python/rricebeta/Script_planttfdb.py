@@ -66,5 +66,15 @@ def planttfdb(MSUID):
 
         return False
     else:
+        hashmap = {"Family": data["Family"].values[0]}
+        return hashmap
+        #return data["Family"]
 
-        return data["Family"]
+
+
+
+
+
+
+
+
