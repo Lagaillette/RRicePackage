@@ -1,4 +1,4 @@
-################################  DB1 (RAPDB) - works #########################
+################################  DB1 (RAPDB)  ############################
 
 #' creationGeneDB1
 #'
@@ -160,33 +160,38 @@ callDB1 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB1(x, 
-                                                                  IdsList, 
-                                                                  locusList))
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB1(x,
+                                                                IdsList,
+                                                                locusList))
         
         
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
         
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
         
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
         
-        return (liste)
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
     }
 }
 
-################################  DB2 (GRAMENE) - #######################
+################################  DB2 (GRAMENE) #######################
 
 #' creationGeneDB2
 #'
@@ -359,26 +364,31 @@ callDB2 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB2(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB2(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -444,7 +454,7 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
             
             rOutput[sapply(rOutput, is.null)] <- NULL
             
-            print(rOutput)
+            ##print(rOutput)
             
             if (length(rOutput) > 0) {
                 rOutput <- gsub('\'', '"', rOutput)
@@ -539,44 +549,42 @@ callCreationGeneDB3 <- function (x, IdsList, locusList) {
 #'                         st = c("148907","527906"),
 #'                         end = c("248907","842359"))
 #'                         
-#' ids <- list(list("idTest"))
+#' ids <- list(list("testId"))
 #'                 
 #' callDB3(ids, locusList)
 callDB3 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        if (length(IdsList) != 0){
-            if (IdsList[[1]][[1]] == "idTest"){
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
                 return(list())
-            }
-            else {
-                ##We call the function creationGeneDB1 to create our newGene
-                listGenes <- lapply(1 : length(IdsList),
-                                    FUN = function(x) 
-                                        callCreationGeneDB3(x, 
-                                                            IdsList, 
-                                                            locusList))
-                
-                
-                ##Remove all the NULL object from the list
-                listGenes[sapply(listGenes, is.null)] <- NULL
-                
-                ##To delete all the geneDB1 which exists in double
-                listGenes <- unique(listGenes)
-                
-                ##liste is a list with only the genes. 
-                liste <- list()
-                lapply(1 : length(listGenes),
-                       FUN = function(x){
-                           liste <<- append(liste,listGenes[[x]])})
-                
-                ##Remove all the NULL object from the list
-                liste[sapply(liste, is.null)] <- NULL
-                
-                return (liste)
-            }
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                FUN = function(x) 
+                                    callCreationGeneDB3(x, 
+                                                        IdsList, 
+                                                        locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   FUN = function(x){
+                       liste <<- append(liste,listGenes[[x]])})
+            
+            ##Remove all the NULL object from the list
+            liste[sapply(liste, is.null)] <- NULL
+            
+            return (liste)
         }
     }
     else {
@@ -585,7 +593,7 @@ callDB3 <- function (IdsList, locusList) {
         
 }
 
-################################  DB4 (IC4R) - works but very long data #######
+################################  DB4 (IC4R) - very long data #######
 
 #' makeList
 #'
@@ -839,26 +847,31 @@ callDB4 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB4(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB4(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -901,7 +914,7 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
     
     
     id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    id <- as.character(id[[2]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -922,6 +935,7 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
             # rOutput[sapply(rOutput, is.null)] <- NULL
             
             ##print(rOutput)
+            #family <- as.character(rOutput[1])
             
             # if (length(rOutput) > 0) {
             #     jsonOutput <- fromJSON(rOutput[[1]])
@@ -930,17 +944,37 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
             #     
             # }
             
-            newGene <- new("PLANTTFDB",
-                           id = as.character(id),
-                           genesIDs = as.list(IdsList[[x]][[y]]),
-                           locus = locusList[x,],
-                           others = list(),
-                           family = as.character(rOutput)
-            )
-
-            return (newGene)
-            
-            
+            if (rOutput == "False"){
+                family <- rOutput
+                
+                newGene <- new("PLANTTFDB",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               family = as.character(family)
+                )
+                
+                return (newGene)
+            }
+            else if (length(rOutput) > 0) {
+                rOutput <- gsub('\'', '"', rOutput)
+                
+                jsonOutput <- fromJSON(rOutput)
+                
+                ##print(jsonOutput)
+                family <- jsonOutput['Family']
+                
+                newGene <- new("PLANTTFDB",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               family = as.character(family)
+                )
+                
+                return (newGene)
+            }
         }
     }
     else {
@@ -994,26 +1028,31 @@ callDB5 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB5(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB5(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -1139,26 +1178,31 @@ callDB6 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB6(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB6(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -1311,26 +1355,31 @@ callDB7 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB7(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB7(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -1482,26 +1531,31 @@ callDB8 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB8(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB8(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -1637,26 +1691,31 @@ callDB9 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB9(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB9(x,
+                                                                IdsList,
+                                                                locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
@@ -1792,26 +1851,31 @@ callDB10 <- function (IdsList, locusList) {
     
     listGenes <- data.frame()
     
-    if (class(IdsList) == "list") {
-        ##We call the function creationGeneDB1 to create our newGene
-        listGenes <- lapply(1 : length(IdsList),
-                            FUN = function(x) callCreationGeneDB10(x, 
-                                                                  IdsList, 
-                                                                  locusList))
-        
-        
-        ##Remove all the NULL object from the list
-        listGenes[sapply(listGenes, is.null)] <- NULL
-        
-        ##To delete all the geneDB1 which exists in double
-        listGenes <- unique(listGenes)
-        
-        ##liste is a list with only the genes. 
-        liste <- list()
-        lapply(1 : length(listGenes),
-               FUN = function(x){liste <<- append(liste,listGenes[[x]])})
-        
-        return (liste)
+    if (class(IdsList) == "list" && length(IdsList) > 0) {
+        if (class(IdsList[[1]][[1]]) != "list"){
+            return(list())
+        }
+        else {
+            ##We call the function creationGeneDB1 to create our newGene
+            listGenes <- lapply(1 : length(IdsList),
+                                function(x) callCreationGeneDB10(x,
+                                                                 IdsList,
+                                                                 locusList))
+            
+            
+            ##Remove all the NULL object from the list
+            listGenes[sapply(listGenes, is.null)] <- NULL
+            
+            ##To delete all the geneDB1 which exists in double
+            listGenes <- unique(listGenes)
+            
+            ##liste is a list with only the genes. 
+            liste <- list()
+            lapply(1 : length(listGenes),
+                   function(x){liste <<- append(liste,listGenes[[x]])})
+            
+            return (liste)
+        }
     }
     else {
         stop("IdsList has to be a list")
