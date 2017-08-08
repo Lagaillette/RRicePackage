@@ -78,6 +78,23 @@ setGeneric(
     def = function(object){standardGeneric("getAttributesNames" )}
 )
 
+
+#' get the properties you want to keep
+#'
+#' @param object The object for which we want to extract a dataframe
+#' @param attributesVector list of the properties you ask thanks to the function
+#' "getAttributes"
+#' @return a data frame with the genes and the properties you want 
+#' @exportMethod getProperties
+#' @name getProperties
+#' @rdname getProperties-methods
+#' @docType methods
+setGeneric(
+    name = "getProperties",
+    def = function(object, attributesVector){standardGeneric("getProperties" )}
+)
+
+
 ######################### Getters & setters ###################################
 
 #' Get the name of an object
@@ -163,3 +180,6 @@ setGeneric(
     name = "getLocus",
     def = function(object){standardGeneric("getLocus" )}
 )
+
+
+
