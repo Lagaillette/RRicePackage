@@ -10,8 +10,11 @@
 noDoubleIds <- function (id) {
     ##print(id[[1]]) -> id
     ##print(id[[2]]) -> msu7Name
+    ##print(id)
     msu7Name <- as.character(id[[2]])
+    iricname <- as.character(id[[3]])
     id <- as.character(id[[1]])
+    
     
     ##for the ids like "Os01g0115500,Os01g0115566" (the double ids)
     ##we only test the first id
@@ -21,10 +24,10 @@ noDoubleIds <- function (id) {
         id <- ids[[1]][[1]]
         id1 <- ids[[1]][[2]]
         liste <- list(id,id1)
-        return(list(list(id,msu7Name),list(id1,msu7Name)))
+        return(list(list(id,msu7Name,iricname),list(id1,msu7Name,iricname)))
     }
     else {
-        return(list(list(id,msu7Name)))
+        return(list(list(id,msu7Name,iricname)))
     }
 }
 
@@ -71,9 +74,11 @@ id <- function (rOutput) {
     }
     
     locName <- jsonOutput['msu7Name']
+    iricname <- jsonOutput['iricname']
+    #print(iricname)
     
     if (id != "None") {
-        return (list(id,locName))
+        return (list(id,locName,iricname))
     }
     
 }

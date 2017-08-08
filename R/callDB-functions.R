@@ -26,8 +26,14 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
         path <- shortPathName(path)
     }
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    ids <- IdsList[[x]][[y]]
+    
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
+    
+    id <- as.character(ids[[1]])
+    
     
     ##print(id)
     
@@ -93,9 +99,12 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
                                         st = as.character(locusList[x,2]),
                                         end = as.character(locusList[x,3]))
                 
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
+                
                 newGene <- new("RAPDB",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = dataLocus,
                                others = list(),
                                rapDBGeneNameSynonym = as.character(rapName),
@@ -224,10 +233,13 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
+    ids <- IdsList[[x]][[y]]
     
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    id <- as.character(ids[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -277,10 +289,13 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                                        strand = c(as.character(loc_strand)),
                                        map = c(as.character(loc_map))
                 )
+                
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
 
                 newGene <- new("Gramene",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                description = as.character(description),
@@ -413,10 +428,13 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
+    ids <- IdsList[[x]][[y]]
     
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    id <- as.character(ids[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -463,9 +481,12 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
                 traitOntology = jsonOutput["Trait Ontology"]
                 plantOntology = jsonOutput["Plant Ontology"]
                 
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
+                
                 newGene <- new("Oryzabase",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                traitGeneId = as.character(traitGeneId),
@@ -675,10 +696,13 @@ creationGeneDB4 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
+    ids <- IdsList[[x]][[y]]
     
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    id <- as.character(ids[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -741,9 +765,12 @@ creationGeneDB4 <- function (x, y, IdsList, locusList) {
 
                 ##print(exprValue)
                 
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
+                
                 newGene <- new("IC4R",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                experimentName = experimentName,
@@ -871,10 +898,13 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
+    ids <- IdsList[[x]][[y]]
     
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[2]])
+    id <- as.character(ids[[2]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -919,9 +949,12 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
                 ##print(jsonOutput)
                 family <- jsonOutput['Family']
                 
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
+                
                 newGene <- new("PLANTTFDB",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                family = as.character(family)
@@ -1053,10 +1086,13 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
+    ids <- IdsList[[x]][[y]]
     
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[2]])
+    id <- as.character(ids[[2]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -1096,6 +1132,8 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
             
+            genesids <- list(MSU7 = msu,
+                             RAPDB = rapdb)
             
             if (length(rOutput[[1]]) > 0) {
                 rOutput <- gsub('\'', '"', rOutput)
@@ -1106,8 +1144,8 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
                 family <- jsonOutput['Family']
                 
                 newGene <- new("PLNTFDB",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                family = as.character(family)
@@ -1117,8 +1155,8 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
             }
             else {
                 newGene <- new("PLNTFDB",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                family = "False"
@@ -1239,8 +1277,13 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    ids <- IdsList[[x]][[y]]
+    
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
+    
+    id <- as.character(ids[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -1292,9 +1335,12 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
                 ##print(jsonOutput)
                 symbol <- jsonOutput['Symbol']
 
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
+                
                 newGene <- new("Funricigenes",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                symbol = as.character(symbol))
@@ -1417,8 +1463,13 @@ creationGeneDB8 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    ids <- IdsList[[x]][[y]]
+    
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
+    
+    id <- as.character(ids[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -1464,10 +1515,13 @@ creationGeneDB8 <- function (x, y, IdsList, locusList) {
 
                 symbol <- jsonOutput['Symbol']
                 name <- jsonOutput['Name']
+                
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
 
                 newGene <- new("Funricigenes2",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                symbol = as.character(symbol),
@@ -1593,8 +1647,13 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    ids <- IdsList[[x]][[y]]
+    
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
+    
+    id <- as.character(ids[[1]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -1626,10 +1685,13 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
                 symbol <- jsonOutput['Symbol']
                 keyword <- jsonOutput['Keyword']
                 title <- jsonOutput['Title']
+                
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
 
                 newGene <- new("Funricigenes3",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                symbol = as.character(symbol),
@@ -1754,8 +1816,13 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
     start = as.character(locusList[x,2])
     end = as.character(locusList[x,3])
     
-    id <- IdsList[[x]][[y]]
-    id <- as.character(id[[2]])
+    ids <- IdsList[[x]][[y]]
+    
+    iricname <- as.character(ids[[3]])
+    rapdb <- as.character(ids[[1]])
+    msu <- as.character(ids[[2]])
+    
+    id <- as.character(ids[[2]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
@@ -1787,10 +1854,13 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
                 protein <- jsonOutput['Protein']
                 genomicSequence <- jsonOutput['Genomic Sequence']
                 cds <- jsonOutput['CDS']
+                
+                genesids <- list(MSU7 = msu,
+                                 RAPDB = rapdb)
               
                 newGene <- new("MSU",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               id = iricname,
+                               genesIDs = genesids,
                                locus = locusList[x,],
                                others = list(),
                                protein = as.character(protein),
