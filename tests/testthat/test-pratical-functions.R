@@ -1,4 +1,4 @@
-geneTest1 <- new("GeneDB1",
+geneTest1 <- new("RAPDB",
                  id="test1", locus=data.frame(),
                  others=list(),
                  rapDBGeneNameSynonym="character",
@@ -10,7 +10,7 @@ geneTest1 <- new("GeneDB1",
                  position=data.frame(),
                  description="character")
 
-geneTest2 <- new("GeneDB1",
+geneTest2 <- new("RAPDB",
                  id="test2", locus=data.frame(),
                  others=list(),
                  rapDBGeneNameSynonym="character",

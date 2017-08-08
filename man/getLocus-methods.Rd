@@ -23,5 +23,5 @@ Get the locus of an object
 \examples{
 gene <- new("Gene", id="exId", locus=data.frame(1,222,333) )
 
-getLocus(exp)
+getLocus(gene)
 }

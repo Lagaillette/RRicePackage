@@ -66,7 +66,7 @@
 # 
 # 
 # 
-library(testthat)
+#library(testthat)
 
 snp <- list(list(list("Os01g0102700","LOC_Os01g01307")))
 
@@ -247,16 +247,16 @@ gene5 <- list(
         genesIDs = list("Os01g0104500","LOC_Os01g01470"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
-        
+
         family = "NAC"
     )
 )
 
-test_that("Test callDB5 with multiple values",{
-    testthat::expect_equal(callDB5(snp1, data1), gene5)
-    testthat::expect_error(callDB5("string", data2))
-    testthat::expect_error(callDB5(data1))
-})
+# test_that("Test callDB5 with multiple values",{
+#     testthat::expect_equal(callDB5(snp1, data1), gene5)
+#     testthat::expect_error(callDB5("string", data2))
+#     testthat::expect_error(callDB5(data1))
+# })
 
 #### test callDB6 ####
 
@@ -266,7 +266,7 @@ gene6 <- list(
         genesIDs = list("Os01g0104500","LOC_Os01g01470"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
-        
+
         family = "NAC"
     )
 )
@@ -285,7 +285,7 @@ gene7 <- list(
         genesIDs = list("Os01g0104500","LOC_Os01g01470"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
-        
+
         symbol = "ONAC020"
     )
 )
@@ -306,7 +306,7 @@ gene8 <- list(
         genesIDs = list("Os01g0102800","LOC_Os01g01312"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
-        
+
         symbol = "CHR704",
         name = "Snf2_family"
     )
@@ -328,7 +328,7 @@ gene9 <- list(
         genesIDs = list("Os01g0104600","LOC_Os01g01484"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
-        
+
         symbol = "OsDET1",
         keyword = "leaf",
         title = "Mutation of OsDET1 increases chlorophyll content in rice"

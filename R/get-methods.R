@@ -32,7 +32,7 @@ setMethod(
 #' @examples 
 #' gene <- new("Gene", id="exId" )
 #' 
-#' getId(exp)
+#' getId(gene)
 setMethod(
     "getId",
     signature = "Gene",
@@ -46,7 +46,7 @@ setMethod(
 #' @examples 
 #' gene <- new("Gene", id="exId", locus=data.frame(1,222,333) )
 #' 
-#' getLocus(exp)
+#' getLocus(gene)
 setMethod(
     "getLocus",
     signature = "Gene",

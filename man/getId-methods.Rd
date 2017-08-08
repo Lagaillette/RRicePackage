@@ -23,5 +23,5 @@ Get the id of an object
 \examples{
 gene <- new("Gene", id="exId" )
 
-getId(exp)
+getId(gene)
 }

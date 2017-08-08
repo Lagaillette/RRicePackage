@@ -22,7 +22,7 @@ the list of the genes of the database you want.
 Get all the genes of the data base you want.
 }
 \examples{
-gene1 <- new("GeneDB1")
+gene1 <- new("RAPDB")
 listGenes <- list(gene1)
 exp <- new(Class="Experiment",
 name="test",

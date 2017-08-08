@@ -1,4 +1,4 @@
-geneTest1 <- new("GeneDB1",
+geneTest1 <- new("RAPDB",
                  id="test1", locus=data.frame(),
                  others=list(),
                  rapDBGeneNameSynonym="character",
@@ -10,7 +10,7 @@ geneTest1 <- new("GeneDB1",
                  position=data.frame(),
                  description="character")
 
-geneTest2 <- new("GeneDB1",
+geneTest2 <- new("RAPDB",
                  id="test2", locus=data.frame(),
                  others=list(),
                  rapDBGeneNameSynonym="character",
@@ -22,7 +22,7 @@ geneTest2 <- new("GeneDB1",
                  position=data.frame(),
                  description="character")
 
-geneDB3Test <- new("GeneDB3",
+geneDB3Test <- new("Oryzabase",
                    id="test2", locus=data.frame(),
                    others=list(),
                    traitGeneId="character",
@@ -74,6 +74,6 @@ test_that("Experiment with some bad consitions",{
 })
 
 test_that("GeneDBi with no error",{
-    testthat::expect_s4_class(geneTest1, "GeneDB1")
-    testthat::expect_s4_class(geneDB3Test, "GeneDB3")
+    testthat::expect_s4_class(geneTest1, "RAPDB")
+    testthat::expect_s4_class(geneDB3Test, "Oryzabase")
 })
