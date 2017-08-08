@@ -7,17 +7,16 @@ import gzip
 import csv
 import pandas as pd
 import helper
-import snpSeek as snpSeek
-import Scriptv7_Table as rapdb
-import ScriptGramene as gramene
-#import ScriptV8_Oryzabase as oryzabase
-import Script_Oryzabase as oryzabase
-import snpSeekAll as snpSeekAll
-import Script_IC4R as ic4r
-import Script_planttfdb as planttfdb
-import Script_plntfdb as plntfdb
-import Script_funricegenes as funricegenes
-import Script_MSU as msu
+import snpseek as snpSeek
+import rapdb as rapdb
+import gramene as gramene
+import oryzabase as oryzabase
+import snpseekall as snpSeekAll
+import ic4r as ic4r
+import planttfdb as planttfdb
+import plntfdb as plntfdb
+import funricegenes as funricegenes
+import msu as msu
 
 
 def main():
@@ -151,21 +150,6 @@ def main():
                 except:
                     print("Not found")
         """
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #geneID(contig, start, end, hashmap[], hashmap["raprepName"])
-
 
 
 

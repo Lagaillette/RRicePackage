@@ -124,6 +124,7 @@ def connectionErrorPost(link, data):
     :param data: data to give to the form
     :return: requests.get(link)
     """
+
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
         html_page = requests.post(link, data=data, headers=headers)
