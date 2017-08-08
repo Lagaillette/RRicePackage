@@ -83,6 +83,9 @@ returnError <- function (outPut) {
         print(outPut)
     else if (outPut == "Unknow internet error")
         print(outPut)
+    #else if (outPut == "on telecharege")
+    #    print(outPut)
+        
 }
 
 #'Function for a JSON return

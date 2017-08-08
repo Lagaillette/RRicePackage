@@ -9,11 +9,11 @@ library(PythonInR)
 #' @import PythonInR
 #' @rdname callExecutablePy-function
 callExecutablePy <- function () {
-    path <- system.file("python/rricebeta",
-                        "test.py",
+    path <- system.file("python",
+                        "execfile.py",
                         package = "rRice")
     
-    path2 <- system.file("python/rricebeta",
+    path2 <- system.file("python",
                         package = "rRice")
     
     #print(paste0("R : ",path))
@@ -45,8 +45,8 @@ callExecutablePy <- function () {
 #' @import utils
 #' @rdname dlPythonModules-function
 dlPythonModules <- function () {
-    path <- system.file("python/rricebeta",
-                        "importModules.py",
+    path <- system.file("python",
+                        "importmodules.py",
                         package = "rRice")
     
     if (Sys.info()["sysname"] != "Windows"){

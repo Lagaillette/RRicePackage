@@ -15,7 +15,7 @@
 #' @rdname creationGeneDB1-function
 creationGeneDB1 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -209,7 +209,7 @@ callDB1 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB2-function
 creationGeneDB2 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -398,7 +398,7 @@ callDB2 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB3-function
 creationGeneDB3 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -660,7 +660,7 @@ analyseDataDB4 <- function (rOutput) {
 #' @rdname creationGeneDB4-function
 creationGeneDB4 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -856,7 +856,7 @@ callDB4 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB5-function
 creationGeneDB5 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -1038,7 +1038,7 @@ callDB5 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB6-function
 creationGeneDB6 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -1224,7 +1224,7 @@ callDB6 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB7-function
 creationGeneDB7 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -1402,7 +1402,7 @@ callDB7 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB8-function
 creationGeneDB8 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -1578,7 +1578,7 @@ callDB8 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB9-function
 creationGeneDB9 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -1739,7 +1739,7 @@ callDB9 <- function (IdsList, locusList) {
 #' @rdname creationGeneDB10-function
 creationGeneDB10 <- function (x, y, IdsList, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
@@ -1755,7 +1755,7 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
     end = as.character(locusList[x,3])
     
     id <- IdsList[[x]][[y]]
-    id <- as.character(id[[1]])
+    id <- as.character(id[[2]])
     
     if (ch != "" && start != "" && end != "") {
         if (id != "None") {
