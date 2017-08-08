@@ -10,24 +10,7 @@ def funricegenes(ID):
 
     link = "https://funricegenes.github.io/geneInfo.table.txt"
 
-    """
-    # Give the entire name of the file with the extension .gz
-    filename = link.split("/")[-1]
-
-    # Fetch the file by the url and decompress it
-    r = requests.get(link)
-    pathToFile = helper.formatPathToFile(filename)
-    print(r.content)
-    #if file exist
-    if(not helper.existFile(pathToFile)):
-        # Create the file .txt
-        with open(pathToFile, "wb") as f:
-            f.write(r.content)
-            f.close()
-    """
-
-
-    # Import file tab-delimited direclty by the link
+    # Import file tab-delimited direclty by the link (currently no connection test)
     try:
         array = pd.read_csv(link, sep="\t", header=None)
     except pd.io.common.EmptyDataError:

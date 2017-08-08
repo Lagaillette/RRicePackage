@@ -11,7 +11,8 @@ def plntfdb(ID):
 
     html_page = requests.get('http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?seq_id='+ID)
     soup = BeautifulSoup(html_page.content, "lxml")
-    # Find headers
+
+    #Find in the tab
     for search in soup.findAll('div', { "id" : "subcontent" }):
        i=1
        for linkfound in search.findAll('a'):

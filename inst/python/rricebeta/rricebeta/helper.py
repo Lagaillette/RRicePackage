@@ -4,7 +4,7 @@ import sys
 
 def existFile(pathToFile):
     """
-    pathToFile: String
+    :param pathToFile: entire path to the file
     :return: return True if the file already exist, else return False
     """
     return (os.path.isfile(pathToFile))
@@ -12,7 +12,7 @@ def existFile(pathToFile):
 
 def formatPathToFile(nameFile):
     """
-    nameFile: String
+    :param nameFile: name of the file with its extension
     :return: return the entire path to the file
     """
 
@@ -26,9 +26,11 @@ def formatPathToFile(nameFile):
 
 
 def loadFileURL(nameFile, url):
-
     """
     Download the file located in the rapdb download page
+
+    :param nameFile: name of the file (the all path to the file if you want to save the file in another folder)
+    :param url: url where is located the file
 
     """
 
@@ -43,6 +45,12 @@ def loadFileURL(nameFile, url):
 
 
 def connectionError(link):
+    """
+    Test website issues and returns requests.get(link) result
+
+    :param link: URL
+    :return: requests.get(link)
+    """
     try:
         html_page = requests.get(link, allow_redirects=False)
 
@@ -106,8 +114,16 @@ def connectionError(link):
         sys.exit(1)
 
 
+
 def connectionErrorPost(link, data):
 
+    """
+    Return requests.get(link) with post request and test website issues
+
+    :param link: URL
+    :param data: data to give to the form
+    :return: requests.get(link)
+    """
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
         html_page = requests.post(link, data=data, headers=headers)
