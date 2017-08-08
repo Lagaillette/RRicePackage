@@ -10,6 +10,7 @@ import gzip
 
 def planttfdb(MSUID):
 
+    # Find the file
     url = 'http://planttfdb.cbi.pku.edu.cn/download.php'
     html_page = helper.connectionError(url)
     soup = BeautifulSoup(html_page.content, "lxml")
@@ -41,8 +42,7 @@ def planttfdb(MSUID):
                 f.write(decompressedFile)
                 f.close()
 
-        # Use the previous created file (.txt)
-
+    # Use the previous created file (.txt)
     with open(pathToFile, "r+b") as file:
 
         # Import file tab-delimited
@@ -66,15 +66,6 @@ def planttfdb(MSUID):
 
         return False
     else:
+
         hashmap = {"Family": data["Family"].values[0]}
         return hashmap
-        #return data["Family"]
-
-
-
-
-
-
-
-
-
