@@ -18,7 +18,7 @@ def plntfdb(ID):
            # third line
            if(i==3):
                if(linkfound.contents[0]):
-                   return linkfound.contents[0]
+                   return {'Family' : linkfound.contents[0]}
 
                else:
                    return False
