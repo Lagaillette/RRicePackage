@@ -125,6 +125,9 @@ getIds <- function (i, locusList) {
         
         #rOutput = system2(command=path, args=args, stdout=TRUE)
         
+        lapply(1 : length(rOutput),
+               function(x) returnError(rOutput[x]))
+        
         rOutput <- lapply(1 : length(rOutput),
                           function(x) getOutPutJSON(rOutput[x]))
         

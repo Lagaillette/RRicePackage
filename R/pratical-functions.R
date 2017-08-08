@@ -55,6 +55,36 @@ alreadyUsedDB <- function(databases,i){
     return(alreadyUsed)
 }
 
+#' Function which returns only the right errors
+#'
+#' This function will return all the errors like "Bad request",...
+#' 
+#' @param outPut character
+#' @return return only errors we know
+#' @rdname returnError-function
+returnError <- function (outPut) {
+    if (outPut == "Website maintenance")
+        print(outPut)
+    else if (outPut == "Bad request")
+        print(outPut)
+    else if (outPut == "Forbidden")
+        print(outPut)
+    else if (outPut == "Not found")
+        print(outPut)
+    else if (outPut == "Too Many Requests")
+        print(outPut)
+    else if (outPut == "Internal Server Error")
+        print(outPut)
+    else if (outPut == "Service Unavailable")
+        print(outPut)
+    else if (outPut == "Gateway Timeout")
+        print(outPut)
+    else if (outPut == "HTTP Version Not Supported")
+        print(outPut)
+    else if (outPut == "Unknow internet error")
+        print(outPut)
+}
+
 #'Function for a JSON return
 #'
 #' this function will only return an JSON return which start with "\{"

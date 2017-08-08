@@ -49,6 +49,9 @@ creationGeneDB1 <- function (x, y, IdsList, locusList) {
                 rOutput = system2(command = path, args=args, stdout = TRUE)
             }
             
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
             
@@ -239,6 +242,9 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                 rOutput = system2(command = path, args=args, stdout = TRUE)
             }
             
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
             
@@ -424,6 +430,9 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
                 args = c(ch, start, end, "3", id)
                 rOutput = system2(command = path, args=args, stdout = TRUE)
             }
+            
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
             
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
@@ -696,6 +705,9 @@ creationGeneDB4 <- function (x, y, IdsList, locusList) {
             # #r <- substring(r, 1, (length(r)-1))
             # r <- substr(r, 1, nchar(r)-1)
             
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
 
@@ -892,20 +904,14 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
             #     
             # }
             
-            if (rOutput == "False"){
-                family <- rOutput
-                
-                newGene <- new("PLANTTFDB",
-                               id = as.character(id),
-                               genesIDs = as.list(IdsList[[x]][[y]]),
-                               locus = locusList[x,],
-                               others = list(),
-                               family = as.character(family)
-                )
-                
-                return (newGene)
-            }
-            else if (length(rOutput) > 0) {
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
+            rOutput <- lapply(1 : length(rOutput),
+                              function(x) getOutPutJSON(rOutput[x]))
+            
+            
+            if (length(rOutput[[1]]) > 0) {
                 rOutput <- gsub('\'', '"', rOutput)
                 
                 jsonOutput <- fromJSON(rOutput)
@@ -922,6 +928,15 @@ creationGeneDB5 <- function (x, y, IdsList, locusList) {
                 )
                 
                 return (newGene)
+            }
+            else {
+                newGene <- new("PLANTTFDB",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               family = "False"
+                )
             }
         }
     }
@@ -1007,7 +1022,7 @@ callDB5 <- function (IdsList, locusList) {
     }
 }
 
-###################################  DB6 (PLNTFDB) Works ######################
+###################################  DB6 (PLNTFDB) ######################
 #' creationGeneDB6
 #'
 #' This function returns a gene specific to the PLNTFDB database
@@ -1060,17 +1075,55 @@ creationGeneDB6 <- function (x, y, IdsList, locusList) {
             ##print(rOutput[1])
             ##print(rOutput[2])
             #id <- rOutput[1]
-            family <- rOutput[1]
-            #print(paste(id,family))
             
-            newGene <- new("PLNTFDB",
-                           id = as.character(id),
-                           genesIDs = as.list(IdsList[[x]][[y]]),
-                           locus = locusList[x,],
-                           others = list(),
-                           family = as.character(family))
             
-            return (newGene)
+            
+            # family <- rOutput[1]
+            # #print(paste(id,family))
+            # 
+            # newGene <- new("PLNTFDB",
+            #                id = as.character(id),
+            #                genesIDs = as.list(IdsList[[x]][[y]]),
+            #                locus = locusList[x,],
+            #                others = list(),
+            #                family = as.character(family))
+            # 
+            # return (newGene)
+            
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
+            rOutput <- lapply(1 : length(rOutput),
+                              function(x) getOutPutJSON(rOutput[x]))
+            
+            
+            if (length(rOutput[[1]]) > 0) {
+                rOutput <- gsub('\'', '"', rOutput)
+                
+                jsonOutput <- fromJSON(rOutput)
+                
+                ##print(jsonOutput)
+                family <- jsonOutput['Family']
+                
+                newGene <- new("PLNTFDB",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               family = as.character(family)
+                )
+                
+                return (newGene)
+            }
+            else {
+                newGene <- new("PLNTFDB",
+                               id = as.character(id),
+                               genesIDs = as.list(IdsList[[x]][[y]]),
+                               locus = locusList[x,],
+                               others = list(),
+                               family = "False"
+                )
+            }
         }
     }
     else {
@@ -1219,6 +1272,9 @@ creationGeneDB7 <- function (x, y, IdsList, locusList) {
             #     symbol <- symbol[[1]][[length(symbol[[1]])]]
             # }
             # #print(symbol)
+            
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
             
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
@@ -1393,6 +1449,9 @@ creationGeneDB8 <- function (x, y, IdsList, locusList) {
             # }
             # print(paste(symbol, name))
             
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
             
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
@@ -1552,6 +1611,9 @@ creationGeneDB9 <- function (x, y, IdsList, locusList) {
             
             ##print(rOutput)
             
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
+            
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
 
@@ -1709,6 +1771,9 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
             }
             
             ##print(rOutput)
+            
+            lapply(1 : length(rOutput),
+                   function(x) returnError(rOutput[x]))
             
             rOutput <- lapply(1 : length(rOutput),
                               function(x) getOutPutJSON(rOutput[x]))
