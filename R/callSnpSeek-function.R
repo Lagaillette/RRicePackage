@@ -91,7 +91,7 @@ id <- function (rOutput) {
 #' @rdname getIds-function
 getIds <- function (i, locusList) {
     ##PATH for package when it will be installed -> when it will be released
-    path <- system.file("python/rricebeta",
+    path <- system.file("python",
                         "run.py",
                         package = "rRice")
     
