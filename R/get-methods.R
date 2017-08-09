@@ -28,7 +28,7 @@ setMethod(
 )
 
 #' @rdname getId-methods
-#' @aliases getId,Experiment-method
+#' @aliases getId,Gene-method
 #' @examples 
 #' gene <- new("Gene", id="exId" )
 #' 
@@ -42,7 +42,7 @@ setMethod(
 )
 
 #' @rdname getLocus-methods
-#' @aliases getLocus,Experiment-method
+#' @aliases getLocus,Gene-method
 #' @examples 
 #' gene <- new("Gene", id="exId", locus=data.frame(1,222,333) )
 #' 
@@ -52,5 +52,25 @@ setMethod(
     signature = "Gene",
     def = function(object){
         return(object@locus)
+    }
+)
+
+#' @rdname getGenes-methods
+#' @aliases getGenes,Experiment-method
+#' @examples 
+#' gene <- new("Gene", id="exId", locus=data.frame(1,222,333) )
+#' 
+#' exp <- new(Class="Experiment",
+#'  date=Sys.Date(),
+#'   name="ex",
+#'   genes=list(list(gene)),
+#'    databases=list(1))
+#' 
+#' getGenes(exp)
+setMethod(
+    "getGenes",
+    signature = "Experiment",
+    def = function(object){
+        return(object@genes)
     }
 )

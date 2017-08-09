@@ -4,7 +4,6 @@
 \name{getId}
 \alias{getId}
 \alias{getId,Gene-method}
-\alias{getId,Experiment-method}
 \title{Get the id of an object}
 \usage{
 getId(object)

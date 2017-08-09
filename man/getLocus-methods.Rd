@@ -4,7 +4,6 @@
 \name{getLocus}
 \alias{getLocus}
 \alias{getLocus,Gene-method}
-\alias{getLocus,Experiment-method}
 \title{Get the locus of an object}
 \usage{
 getLocus(object)

@@ -194,5 +194,18 @@ setGeneric(
     def = function(object){standardGeneric("getLocus" )}
 )
 
+#' Get the genes of an object
+#'
+#' @param object The object for which we want to get the genes
+#' @return The genes of the object
+#' @exportMethod getGenes
+#' @name getGenes
+#' @rdname getGenes-methods
+#' @docType methods
+setGeneric(
+    name = "getGenes",
+    def = function(object){standardGeneric("getGenes" )}
+)
+
 
 
