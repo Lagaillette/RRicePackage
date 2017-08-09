@@ -1858,7 +1858,7 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
                 rOutput = system2(command = path, args=args, stdout = TRUE)
             }
             
-            ##print(rOutput)
+            print(rOutput)
             
             lapply(1 : length(rOutput),
                    function(x) returnError(rOutput[x]))
@@ -1869,7 +1869,24 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
             rOutput[sapply(rOutput, is.null)] <- NULL
             
             if (length(rOutput) > 0) {
-                rOutput <- gsub('\'', '"', rOutput)
+                
+                ##Sometimes, if the JSON is too big, the rOutput of the json 
+                ##will be sent with 2 "print" in the python part. 
+                ##When the JSON is in one or two prints, we can get the right
+                ##json with the paste0. But if we receive 3 prints for the 
+                ##json, we will face a problem. But actually we never face 
+                ##this problem
+                if (substr(rOutput[[1]],
+                           nchar(rOutput[[1]]),
+                           nchar(rOutput[[1]])) != "}") {
+                    rOutput <- paste0(rOutput[[1]],rOutput[[2]])
+                    rOutput <- gsub('\'', '"', rOutput)
+                    jsonOutput <- fromJSON(rOutput)
+                }
+                else {
+                    rOutput <- gsub('\'', '"', rOutput)
+                    jsonOutput <- fromJSON(rOutput[[1]])
+                }
                 jsonOutput <- fromJSON(rOutput)
                 
                 protein <- jsonOutput['Protein']
