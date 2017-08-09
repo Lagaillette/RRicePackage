@@ -82,8 +82,7 @@ setGeneric(
 #' get the properties you want to keep
 #'
 #' @param object The object for which we want to extract a dataframe
-#' @param attributesVector list of the properties you ask thanks to the function
-#' "getAttributes"
+#' @param idWanted id you want to keep to identify your gene
 #' @return a data frame with the genes and the properties you want 
 #' @exportMethod getProperties
 #' @name getProperties
@@ -91,7 +90,7 @@ setGeneric(
 #' @docType methods
 setGeneric(
     name = "getProperties",
-    def = function(object, attributesVector){standardGeneric("getProperties" )}
+    def = function(object, idWanted){standardGeneric("getProperties" )}
 )
 
 #' select the properties you want to study

@@ -6,15 +6,14 @@
 \alias{getProperties,Experiment-method}
 \title{get the properties you want to keep}
 \usage{
-getProperties(object, attributesVector)
+getProperties(object, idWanted)
 
-\S4method{getProperties}{Experiment}(object, attributesVector)
+\S4method{getProperties}{Experiment}(object, idWanted)
 }
 \arguments{
 \item{object}{The object for which we want to extract a dataframe}
 
-\item{attributesVector}{list of the properties you ask thanks to the function
-"getAttributes"}
+\item{idWanted}{id you want to keep to identify your gene}
 }
 \value{
 a data frame with the genes and the properties you want
