@@ -6,6 +6,7 @@
 #' @slot date The date of the experiment
 #' @slot databases the databases which concern the object we are studying 
 #' @slot genes The list of genes we avec download.
+#' @slot properties The properties you want to keep
 #' @slot others The others attributes the user can add and delete
 #' @name Experiment-class
 #' @rdname Experiment-class
@@ -22,13 +23,14 @@ setClass(
                    date = "Date",
                    databases = "list",
                    genes = "list",
+                   properties = "list",
                    others = "list"),
     
     prototype( others = list()),
     
     validity = checkExperiment <- function(object){
         ## To update when a DB is added. The number of databases we can call
-        nbDB <- 9
+        nbDB <- 10
         errors <- character()
         yearDate <- object@date
         if(length(object@databases)<0 || length(object@databases)>nbDB){

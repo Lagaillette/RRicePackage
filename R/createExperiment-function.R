@@ -27,7 +27,7 @@ createExperiment <- function(name, locus){
     }else{
         ## the number of databases available. To increment every time we have
         ## one more database available
-        dbAvailables <- 9
+        dbAvailables <- 10
         ## to check if the number the user will put is correct or not
         correctNbdb <- FALSE
         while(!correctNbdb){

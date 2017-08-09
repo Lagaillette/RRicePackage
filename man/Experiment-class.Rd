@@ -18,6 +18,8 @@ Some details about this class and my plans for it in the body.
 
 \item{\code{genes}}{The list of genes we avec download.}
 
+\item{\code{properties}}{The properties you want to keep}
+
 \item{\code{others}}{The others attributes the user can add and delete}
 }}
 

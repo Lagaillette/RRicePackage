@@ -94,6 +94,20 @@ setGeneric(
     def = function(object, attributesVector){standardGeneric("getProperties" )}
 )
 
+#' select the properties you want to study
+#'
+#' @param object The object for which we want to extract a dataframe
+#' @param attributesVector list of the attributes you want to keep
+#' @return a data frame with the genes and the properties you want 
+#' @exportMethod selectProperties
+#' @name selectProperties
+#' @rdname selectProperties-methods
+#' @docType methods
+setGeneric(
+    name = "selectProperties",
+    def = function(object, attributesVector){standardGeneric("selectProperties" )}
+)
+
 
 ######################### Getters & setters ###################################
 
