@@ -120,14 +120,16 @@ getOutPutJSON <- function (outPut) {
 #' @examples 
 #' databasesList()
 databasesList <- function () {
-    print("Enter the number(s) of the database you want : ")
-    print("1 for RAPDB")
-    print("2 for GRAMENE")
-    print("3 for ORYZABASE")
-    print("4 for IC4R")
-    print("5 for Planttfdb")
-    print("6 for PLNTFDB")
-    print("7 for FUNRICEGENES1")
-    print("8 for FUNRICEGENS2")
-    print("9 for FUNRICEGENS3")
+    cat("Enter the number(s) of the database you want : \n")
+    cat("1 for RAPDB \n")
+    cat("2 for GRAMENE \n")
+    cat("3 for ORYZABASE \n")
+    cat("4 for IC4R \n")
+    cat("5 for Planttfdb \n")
+    cat("6 for PLNTFDB \n")
+    cat("7 for FUNRICEGENES1 \n")
+    cat("8 for FUNRICEGENS2 \n")
+    cat("9 for FUNRICEGENS3 \n")
+    cat("10 for MSU7")
+    
 }
