@@ -1,11 +1,12 @@
 #' @rdname getProperties-methods
 #' @aliases getProperties,Experiment-method
+#' @import purrr
 setMethod(
     "getProperties",
     signature = "Experiment",
     definition = function(object, idWanted){
         geneList <- object@genes
-        attributesVector <- object@properties
+        attributesList <- object@properties
         if(length(geneList) == 0){
             stop("your gene list is empty")
         }
@@ -15,18 +16,26 @@ setMethod(
         if(idWanted != "RAPDB" && idWanted != "MSU7"){
             stop("you have to give RAPDB or MSU7 as idWanted parameter")
         }
-        if(length(attributesVector) == 0){
+        if(length(attributesList) == 0){
             return(object@genes)
         }else{
+            ##get the Ids that the user want as name
+            geneNames <- purrr::map(geneList[[1]], function(x){
+                x@genesIDs[idWanted][[1]]
+            })
+            ##declare the matrix with the size we need
             result <- matrix(nrow=length(geneList[[1]]),
-                             ncol=length(attributesVector))
+                             ncol=length(attributesList))
+            ##change the matrix in a dataframe
             result <- as.data.frame(result)
+            ##give the name to every gene which is now a line of the dataframe
+            row.names(result) <- geneNames
             i <- 1
             j <- 1
             while(j <= length(geneList[[1]])){
                 while (i <= length(geneList)){
-                    for(k in 1:length(attributesVector)){
-                        obj <- strsplit(attributesVector[[k]],"[.]")
+                    for(k in 1:length(attributesList)){
+                        obj <- strsplit(attributesList[[k]],"[.]")
                         className <- obj[[1]][[1]]
                         attributeName <- obj[[1]][[2]]
                         if(class(geneList[[i]][[j]]) == className){
@@ -41,7 +50,7 @@ setMethod(
                 j <- j+1
                 i <- 1
             }
-            names(result) <- tolower(attributesVector)
+            names(result) <- tolower(attributesList)
             return(result)
         }
         
