@@ -68,7 +68,7 @@
 # 
 #library(testthat)
 
-snp <- list(list(list("Os01g0102700","LOC_Os01g01307")))
+snp <- list(list(list("Os01g0102700","LOC_Os01g01307","OsNippo01g011900")))
 
 data1 <- data.frame(ch = c("1"),
                     st = c("148907"),
@@ -99,20 +99,20 @@ data3 <- data.frame()
 #### test callSnpSeek ####
 
 result1 <- list(list(
-    list("Os01g0102700","LOC_Os01g01307"),
-    list("Os01g0102800","LOC_Os01g01312"),
-    list("Os01g0102900","LOC_Os01g01340"),
-    list("Os01g0103000","LOC_Os01g01350"),
-    list("Os01g0103100","LOC_Os01g01360"),
-    list("Os01g0103600","LOC_Os01g01369"),
-    list("Os01g0103800","LOC_Os01g01390"),
-    list("Os01g0103900","LOC_Os01g01400"),
-    list("Os01g0104000","LOC_Os01g01410"),
-    list("Os01g0104100","LOC_Os01g01420"),
-    list("Os01g0104200","LOC_Os01g01430"),
-    list("Os01g0104400","LOC_Os01g01450"),
-    list("Os01g0104500","LOC_Os01g01470"),
-    list("Os01g0104600","LOC_Os01g01484")))
+    list("Os01g0102700","LOC_Os01g01307","OsNippo01g011900"),
+    list("Os01g0102800","LOC_Os01g01312","OsNippo01g011950"),
+    list("Os01g0102900","LOC_Os01g01340","OsNippo01g012200"),
+    list("Os01g0103000","LOC_Os01g01350","OsNippo01g012250"),
+    list("Os01g0103100","LOC_Os01g01360","OsNippo01g012350"),
+    list("Os01g0103600","LOC_Os01g01369","OsNippo01g012500"),
+    list("Os01g0103800","LOC_Os01g01390","OsNippo01g012700"),
+    list("Os01g0103900","LOC_Os01g01400","OsNippo01g012750"),
+    list("Os01g0104000","LOC_Os01g01410","OsNippo01g012800"),
+    list("Os01g0104100","LOC_Os01g01420","OsNippo01g012850"),
+    list("Os01g0104200","LOC_Os01g01430","OsNippo01g012900"),
+    list("Os01g0104400","LOC_Os01g01450","OsNippo01g013050"),
+    list("Os01g0104500","LOC_Os01g01470","OsNippo01g013150"),
+    list("Os01g0104600","LOC_Os01g01484","OsNippo01g013200")))
 
 result2 <- list(list())
 
@@ -134,8 +134,8 @@ test_that("callSnpSeek doesn't work with other things than data.frame",{
 
 gene1 <- list(
     new("RAPDB",
-        id = "Os01g0102700",
-        genesIDs = list("Os01g0102700","LOC_Os01g01307"),
+        id = "OsNippo01g011900",
+        genesIDs = list(MSU7 = "LOC_Os01g01307",RAPDB = "Os01g0102700"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
         rapDBGeneNameSynonym = "",
@@ -164,8 +164,8 @@ test_that("Test callDB1 with multiple values",{
 #### test callDB2 ####
 gene2 <- list(
     new("Gramene",
-        id = "Os01g0102700",
-        genesIDs = list("Os01g0102700","LOC_Os01g01307"),
+        id = "OsNippo01g011900",
+        genesIDs = list(MSU7 = "LOC_Os01g01307",RAPDB = "Os01g0102700"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
         
@@ -193,8 +193,8 @@ test_that("Test callDB2 with multiple values",{
 
 gene3 <- list(
     new("Oryzabase",
-        id = "Os01g0102700",
-        genesIDs = list("Os01g0102700","LOC_Os01g01307"),
+        id = "OsNippo01g011900",
+        genesIDs = list(MSU7 = "LOC_Os01g01307",RAPDB = "Os01g0102700"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
         traitGeneId = "NULL",
@@ -239,12 +239,12 @@ test_that("Test callDB4 with multiple values",{
 
 #### test callDB5 ####
 
-snp1 <- list(list(list("Os01g0104500","LOC_Os01g01470")))
+snp1 <- list(list(list("Os01g0104500","LOC_Os01g01470","OsNippo01g013150")))
 
 gene5 <- list(
     new("PLANTTFDB",
-        id = "LOC_Os01g01470",
-        genesIDs = list("Os01g0104500","LOC_Os01g01470"),
+        id = "OsNippo01g013150",
+        genesIDs = list(MSU7 = "LOC_Os01g01470",RAPDB = "Os01g0104500"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
 
@@ -262,8 +262,8 @@ gene5 <- list(
 
 gene6 <- list(
     new("PLNTFDB",
-        id = "LOC_Os01g01470",
-        genesIDs = list("Os01g0104500","LOC_Os01g01470"),
+        id = "OsNippo01g013150",
+        genesIDs = list(MSU7 = "LOC_Os01g01470",RAPDB = "Os01g0104500"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
 
@@ -281,8 +281,8 @@ test_that("Test callDB6 with multiple values",{
 
 gene7 <- list(
     new("Funricigenes",
-        id = "Os01g0104500",
-        genesIDs = list("Os01g0104500","LOC_Os01g01470"),
+        id = "OsNippo01g013150",
+        genesIDs = list(MSU7 = "LOC_Os01g01470",RAPDB = "Os01g0104500"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
 
@@ -298,12 +298,12 @@ test_that("Test callDB7 with multiple values",{
 
 #### test callDB8 ####
 
-snp2 <- list(list(list("Os01g0102800","LOC_Os01g01312")))
+snp2 <- list(list(list("Os01g0102800","LOC_Os01g01312","OsNippo01g011950")))
 
 gene8 <- list(
     new("Funricigenes2",
-        id = "Os01g0102800",
-        genesIDs = list("Os01g0102800","LOC_Os01g01312"),
+        id = "OsNippo01g011950",
+        genesIDs = list(MSU7 = "LOC_Os01g01312",RAPDB = "Os01g0102800"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
 
@@ -320,12 +320,12 @@ test_that("Test callDB8 with multiple values",{
 
 #### test callDB9 ####
 
-snp3 <- list(list(list("Os01g0104600","LOC_Os01g01484")))
+snp3 <- list(list(list("Os01g0104600","LOC_Os01g01484","OsNippo01g013200")))
 
 gene9 <- list(
     new("Funricigenes3",
-        id = "Os01g0104600",
-        genesIDs = list("Os01g0104600","LOC_Os01g01484"),
+        id = "OsNippo01g013200",
+        genesIDs = list(MSU7 = "LOC_Os01g01484",RAPDB = "Os01g0104600"),
         locus = data.frame(ch = "1", st = "148907", end = "248907"),
         others = list(),
 
