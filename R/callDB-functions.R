@@ -1858,7 +1858,7 @@ creationGeneDB10 <- function (x, y, IdsList, locusList) {
                 rOutput = system2(command = path, args=args, stdout = TRUE)
             }
             
-            print(rOutput)
+            ##print(rOutput)
             
             lapply(1 : length(rOutput),
                    function(x) returnError(rOutput[x]))
