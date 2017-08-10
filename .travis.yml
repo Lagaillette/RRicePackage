@@ -3,3 +3,11 @@
 language: R
 sudo: false
 cache: packages
+
+before_install:
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+install:
+  ## For a Bioconductor package
+  - ./travis-tool.sh install_bioc BiocInstaller
+  - ./travis-tool.sh install_r knitr

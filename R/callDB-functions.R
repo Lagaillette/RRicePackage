@@ -498,6 +498,9 @@ creationGeneDB3 <- function (x, y, IdsList, locusList) {
                 traitOntology = jsonOutput["Trait Ontology"]
                 plantOntology = jsonOutput["Plant Ontology"]
                 
+                ##print(class(geneOntology))
+                ##print(class(geneOntology[[1]]))
+                
                 genesids <- list(MSU7 = msu,
                                  RAPDB = rapdb)
                 
