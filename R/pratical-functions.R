@@ -155,7 +155,7 @@ getAttributes <- function(class){
 #' @param attributesVector the attributes you want to extract from the class
 #' @return print the attributes of the class
 #' @export
-#' @rdname getAttributes-function
+#' @rdname createAttributesVector-function
 #' @examples 
 #' createAttributesVector("RAPDB",c("id"))
 createAttributesVector <- function(class, attributesVector){

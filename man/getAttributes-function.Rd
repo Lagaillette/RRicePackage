@@ -2,31 +2,19 @@
 % Please edit documentation in R/pratical-functions.R
 \name{getAttributes}
 \alias{getAttributes}
-\alias{createAttributesVector}
 \title{Function for see the list of the attributes of the class}
 \usage{
 getAttributes(class)
-
-createAttributesVector(class, attributesVector)
 }
 \arguments{
-\item{class}{the name of the class you want}
-
-\item{attributesVector}{the attributes you want to extract from the class}
-
 \item{class}{the name of the class you want}
 }
 \value{
 print the attributes of the class
-
-print the attributes of the class
 }
 \description{
 this function will print the attributes of the class
-
-this function will give you the vector to use selectProperties
 }
 \examples{
 getAttributes("RAPDB")
-createAttributesVector("RAPDB",c("id"))
 }
