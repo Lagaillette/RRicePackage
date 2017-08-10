@@ -136,6 +136,7 @@ databasesList <- function () {
 #'
 #' this function will print the attributes of the class
 #' 
+#' @param class the name of the class you want
 #' @return print the attributes of the class
 #' @export
 #' @rdname getAttributes-function
@@ -144,4 +145,22 @@ databasesList <- function () {
 getAttributes <- function(class){
     gene <- new(class)
     getAttributesNames(gene)
+}
+
+#' Function to create the vector of the attributes you want from a class
+#'
+#' this function will give you the vector to use selectProperties
+#' 
+#' @param class the name of the class you want
+#' @param attributesVector the attributes you want to extract from the class
+#' @return print the attributes of the class
+#' @export
+#' @rdname getAttributes-function
+#' @examples 
+#' createAttributesVector("RAPDB",c("id"))
+createAttributesVector <- function(class, attributesVector){
+    result <- purrr::map(attributesVector,function(x, class){
+        paste(class, ".", attributesVector, sep = "")
+    },class)
+    return(result)
 }
