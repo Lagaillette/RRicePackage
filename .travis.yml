@@ -10,3 +10,4 @@ before_install:
 install:
   ## For a Bioconductor package
   - ./travis-tool.sh install_bioc BiocInstaller
+  - ./travis-tool.sh install_r knitr
