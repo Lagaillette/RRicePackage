@@ -63,8 +63,6 @@ alreadyUsedDB <- function(databases,i){
 #' @return return only errors we know
 #' @rdname returnError-function
 returnError <- function (outPut) {
-    print(outPut)
-    typeof(outPut)
     if(outPut == "Website maintenance"){
         print(outPut)
     }
@@ -122,14 +120,28 @@ getOutPutJSON <- function (outPut) {
 databasesList <- function () {
     cat("Enter the number(s) of the database you want : \n")
     cat("1 for RAPDB \n")
-    cat("2 for GRAMENE \n")
-    cat("3 for ORYZABASE \n")
+    cat("2 for Gramene \n")
+    cat("3 for Oryzabase \n")
     cat("4 for IC4R \n")
     cat("5 for Planttfdb \n")
     cat("6 for PLNTFDB \n")
-    cat("7 for FUNRICEGENES1 \n")
-    cat("8 for FUNRICEGENS2 \n")
-    cat("9 for FUNRICEGENS3 \n")
-    cat("10 for MSU7")
+    cat("7 for Funricigenes \n")
+    cat("8 for Funricigenes2 \n")
+    cat("9 for Funricigenes3 \n")
+    cat("10 for MSU")
     
+}
+
+#' Function for see the list of the attributes of the class
+#'
+#' this function will print the attributes of the class
+#' 
+#' @return print the attributes of the class
+#' @export
+#' @rdname getAttributes-function
+#' @examples 
+#' getAttributes("RAPDB")
+getAttributes <- function(class){
+    gene <- new(class)
+    getAttributesNames(gene)
 }
