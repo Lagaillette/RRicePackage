@@ -42,7 +42,14 @@ setMethod(
                             properties <- attributes(geneList[[i]][[j]])
                             properties <- properties[attributeName]
                             properties <- properties[[1]]
-                            result[[k]][[j]] <- properties[[1]]
+                            if(typeof(properties) == "list"){
+                                for(i in 1:length(properties)){
+                                result[[k]][[j]] <- paste(result[[k]][[j]],properties[[i]])
+                                }
+                            }else{
+                                result[[k]][[j]] <- properties[[1]]
+                            }
+                            
                         }
                     }
                     i <- i+1
