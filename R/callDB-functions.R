@@ -265,7 +265,6 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
             rOutput[sapply(rOutput, is.null)] <- NULL
             
             ##print(rOutput)
-            ##???print(substr(rOutput[[1]],nchar(rOutput[[1]])-20, nchar(rOutput[[1]])))
             
             if (length(rOutput) > 0) {
                 ##Sometimes, if the JSON is too big, the rOutput of the json 
@@ -283,9 +282,6 @@ creationGeneDB2 <- function (x, y, IdsList, locusList) {
                 else {
                     jsonOutput <- fromJSON(rOutput[[1]])
                 }
-                
-                
-                ##jsonOutput <-
 
                 
                 ##Few informations BUT NOT ALL!! See with Julien and Hai what

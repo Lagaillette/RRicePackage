@@ -7,7 +7,7 @@
 #' @return It will return only one id if it is not a double ID. Otherwise, it
 #' will return a list with the both ids
 #' @rdname noDoubleIds-function
-noDoubleIds <- function (id) {
+noDoubleIds <- function (id) { 
     ##print(id[[1]]) -> id
     ##print(id[[2]]) -> msu7Name
     ##print(id)
