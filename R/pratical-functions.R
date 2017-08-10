@@ -63,8 +63,8 @@ alreadyUsedDB <- function(databases,i){
 #' @return return only errors we know
 #' @rdname returnError-function
 returnError <- function (outPut) {
-    print(outPut)
-    typeof(outPut)
+    #print(outPut)
+    #typeof(outPut)
     if(outPut == "Website maintenance"){
         print(outPut)
     }
