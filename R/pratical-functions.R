@@ -45,7 +45,7 @@ alreadyUsedDB <- function(databases,i){
     j <- 1
     alreadyUsed <- FALSE
     while(j < i && !alreadyUsed){
-        if (as.numeric(databases[j]) == as.numeric(databases[i])){
+        if (databases[[j]] == databases[[i]]){
             alreadyUsed <- TRUE
         }
         else{
@@ -105,31 +105,6 @@ getOutPutJSON <- function (outPut) {
     else if (substr(outPut, nchar(outPut), nchar(outPut)) == "}"){
         return(outPut)
     }
-}
-
-
-#' Function for see the list of the databases we can call
-#'
-#' this function will print the databases we can call 
-#' 
-#' @return print the databases we can call  
-#' @export
-#' @rdname databasesList-function
-#' @examples 
-#' databasesList()
-databasesList <- function () {
-    cat("Enter the number(s) of the database you want : \n")
-    cat("1 for RAPDB \n")
-    cat("2 for Gramene \n")
-    cat("3 for Oryzabase \n")
-    cat("4 for IC4R \n")
-    cat("5 for Planttfdb \n")
-    cat("6 for PLNTFDB \n")
-    cat("7 for Funricigenes \n")
-    cat("8 for Funricigenes2 \n")
-    cat("9 for Funricigenes3 \n")
-    cat("10 for MSU")
-    
 }
 
 #' Function for see the list of the attributes of the class

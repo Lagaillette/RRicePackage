@@ -107,7 +107,6 @@ setGeneric(
     def = function(object, attributesVector){standardGeneric("selectProperties" )}
 )
 
-
 ######################### Getters & setters ###################################
 
 #' Get the name of an object

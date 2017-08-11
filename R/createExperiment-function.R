@@ -27,7 +27,7 @@ createExperiment <- function(name, locus){
     }else{
         ## the number of databases available. To increment every time we have
         ## one more database available
-        dbAvailables <- 10
+        dbAvailables <- databasesAvailables()
         ## to check if the number the user will put is correct or not
         correctNbdb <- FALSE
         while(!correctNbdb){
@@ -68,12 +68,12 @@ createExperiment <- function(name, locus){
             ##print the choices the user can do
             databasesList()
             ##read the choice
-            databases[i] <- as.numeric(readline())
-            if(databases[i] > 0 && 
-               databases[i] <= dbAvailables && 
-               !alreadyUsedDB(databases,i)){
+            databases[[i]] <- changeNumberIntoDBName(as.numeric(readline()))
+            if(!alreadyUsedDB(databases,i)){
                 message('loading informations of the database...')
-                callDB <- paste("callDB",databases[i],sep="")
+                callDB <- paste("callDB",
+                                changeDBNameIntoNumber(databases[i]),
+                                sep="")
                 genes[[i]] <- (do.call(callDB, args = list(genesIds, locus)))
                 i <- i+1
             }
